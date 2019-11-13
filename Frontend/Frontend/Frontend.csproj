@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{775BB3C3-926C-48A0-BA1F-32D09D740588}</ProjectGuid>
+    <ProjectGuid>{87E4F8B7-1301-46A6-9B92-0F6A979CDB46}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Frontend</RootNamespace>
     <AssemblyName>Frontend</AssemblyName>
@@ -53,6 +53,7 @@
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
