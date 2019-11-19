@@ -33,11 +33,11 @@
     </Page.Resources>
 
     <Grid Width="1640" Height="1000" Background="White">
-        <TextBlock HorizontalAlignment="Left" Margin="450,153,0,0" TextWrapping="Wrap" Text=" - Das Studenplan Verwaltungssystem" VerticalAlignment="Top" Width="719" FontFamily="Kiona" FontSize="32" Foreground="#FF57514D"/>
-        <TextBlock HorizontalAlignment="Left" Height="38" Margin="319,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontFamily="Kiona" FontSize="32" FontWeight="Thin" Text="StuPla" Foreground="#FF265B65"/>
-        <Button x:Name="Home" Content="Home"  Style="{StaticResource HomescreenButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="484" Margin="317,269,0,0" Height="202" FontFamily="Kiona" FontSize="32" Foreground="White" Background="#FF265B65"/>
-        <Button x:Name="Stundenplan" Content="Stundenplan"  Click="Timetable_Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="485" Margin="834,269,0,0" Height="202" FontFamily="Kiona" FontSize="32"   Style="{StaticResource HomescreenButton}"/>
-        <Button x:Name="Tauschboerse" Content="Tauschbörse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="484" Margin="317,500,0,0" Height="202" FontFamily="Kiona" FontSize="32"  Style="{StaticResource HomescreenButton}"/>
-        <Button x:Name="Stammdaten" Content="Stammdaten" HorizontalAlignment="Left" VerticalAlignment="Top" Width="485" Margin="833,500,0,0" Height="202" FontFamily="Kiona" FontSize="32" Style="{StaticResource HomescreenButton}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="450,72,0,0" TextWrapping="Wrap" Text=" - Das StudenplanVerwaltungssystem" VerticalAlignment="Top" Width="719" FontFamily="Kiona" FontSize="32" Foreground="#FF201F1F"/>
+        <TextBlock HorizontalAlignment="Left" Height="38" Margin="319,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontFamily="Kiona" FontSize="32" FontWeight="Bold" Text="StuPla" Foreground="#FF265B65"/>
+        <Button x:Name="Home" Content="Home"  Style="{StaticResource HomescreenButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="484" Margin="317,206,0,0" Height="202" FontFamily="Kiona" FontSize="32" Foreground="White" Background="#FF265B65"/>
+        <Button x:Name="Stundenplan" Content="Stundenplan"  Click="Timetable_Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="485" Margin="834,206,0,0" Height="202" FontFamily="Kiona" FontSize="32"   Style="{StaticResource HomescreenButton}"/>
+        <Button x:Name="Tauschboerse" Content="Tauschbörse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="484" Margin="317,437,0,0" Height="202" FontFamily="Kiona" FontSize="32"  Style="{StaticResource HomescreenButton}"/>
+        <Button x:Name="Stammdaten" Content="Stammdaten" HorizontalAlignment="Left" VerticalAlignment="Top" Width="485" Margin="833,437,0,0" Height="202" FontFamily="Kiona" FontSize="32" Style="{StaticResource HomescreenButton}"/>
     </Grid>
 </Page>
