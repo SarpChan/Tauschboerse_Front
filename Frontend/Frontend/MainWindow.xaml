@@ -8,5 +8,4 @@
         Title="StuPla" d:DesignHeight="2000" d:DesignWidth="1980"
         Source="View/RootPage.xaml"
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
-
 </NavigationWindow>
