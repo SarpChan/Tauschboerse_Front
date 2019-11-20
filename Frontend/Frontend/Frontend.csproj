@@ -123,6 +123,11 @@
   <ItemGroup>
     <Content Include="Helpers\.gitignore" />
     <Content Include="Models\.gitignore" />
+    <Resource Include="Resources\Icons\left_arrow_b.png" />
+    <Resource Include="Resources\Icons\left_arrow_w.png" />
+    <Resource Include="Resources\Icons\logout_b.png" />
+    <Resource Include="Resources\Icons\logout_w.png" />
+    <Resource Include="Resources\Icons\stupla_logo.png" />
     <Content Include="UserControls\.gitignore" />
     <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\edit_b.png" />
