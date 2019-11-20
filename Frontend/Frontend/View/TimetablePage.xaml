@@ -61,14 +61,9 @@
                 </Rectangle.Fill>
             </Rectangle>
             <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-
-
         </Grid>
-
         <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
             <TextBlock Padding="0,16,0,0"  Text="Zeit" Height="65" TextAlignment="Center" Width="129" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White"/>
         </Canvas>
-
-
     </Grid>
 </Page>
