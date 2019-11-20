@@ -1,0 +1,74 @@
+﻿<Page x:Class="Frontend.View.TimetablePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Frontend.View"
+        mc:Ignorable="d"
+        d:DesignHeight="1000" d:DesignWidth="1640">
+    <Grid Width="1640" Height="1000" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="1550"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="77"/>
+            <RowDefinition Height="113"/>
+            <RowDefinition Height="137"/>
+            <RowDefinition Height="593"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
+        <Grid Width="1550" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="1550"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="58"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Legende:" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
+            <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Resources/Icons/lecture_b.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vorlesung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+            <Rectangle Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Resources/Icons/exercise_b.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Uebung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+            <Rectangle Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Resources/Icons/tutorial_b.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tutorium" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+            <Rectangle Grid.Column="7" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Resources/Icons/practicum_b.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+
+
+        </Grid>
+
+        <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
+            <TextBlock Padding="0,16,0,0"  Text="Zeit" Height="65" TextAlignment="Center" Width="129" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White"/>
+        </Canvas>
+
+
+    </Grid>
+</Page>

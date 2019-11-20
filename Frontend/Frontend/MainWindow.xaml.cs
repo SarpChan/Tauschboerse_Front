@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,12 @@ namespace Frontend
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : NavigationWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+            this.ShowsNavigationUI = false;
         }
     }
 }

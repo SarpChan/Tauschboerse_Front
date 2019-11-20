@@ -3,13 +3,10 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\Helpers",
-    "\\Frontend\\Frontend\\Models",
     "\\Frontend\\Frontend\\Resources",
-    "\\Frontend\\Frontend\\UserControls",
-    "\\Frontend\\Frontend\\View",
-    "\\Frontend\\Frontend\\ViewModel"
+    "\\Frontend\\Frontend\\Resources\\Icons",
+    "\\Frontend\\Frontend\\View"
   ],
-  "SelectedNode": "\\Frontend\\Frontend\\ViewModel\\.gitignore",
+  "SelectedNode": "\\Frontend\\Frontend\\Properties",
   "PreviewInSolutionExplorer": false
 }
