@@ -6,58 +6,46 @@
       xmlns:local="clr-namespace:Frontend.View"
       mc:Ignorable="d"
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="RootPage">
-
-    <Grid x:Name="MainGrid" Width="1980" Height="1080" Background="White">
+      Title="Root"
+      Height="{Binding WindowSettings.Height,Mode=TwoWay}"
+        Width="{Binding WindowSettings.Width, Mode=TwoWay}">
+    <!--RootPage Grid-->
+    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"/>
-            <ColumnDefinition Width="1640"/>
+            <ColumnDefinition MinWidth="450" Width="1640*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="1000" />
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1000*" />
         </Grid.RowDefinitions>
-        <!--topbar-->
-        <Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,0,1">
-            <StackPanel x:Name="TopBarStackPanel" HorizontalAlignment="Left" Height="80" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="1920" Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Rectangle Width="50"/>
-                    <Image Name="StuPla" Source="../Resources/Icons/stupla_logo.png" Height="50" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                    <TextBlock Padding="10,21,0,0" Width="120" Height="80" Text="StuPla" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="32"/>
-                </StackPanel>
-                <Rectangle Width="1450"/>
-                <Button Click="Home_Button_Click" Style="{StaticResource LogoutButton}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <TextBlock Padding="10,21,0,0" Width="180" Height="80" Text="Abmelden" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="24"/>
-                    <Image Name="Logout" Source="../Resources/Icons/logout_b.png" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            </StackPanel>
-                </Button>
-            </StackPanel>
-        </Border>
-        <!--sidebar-->
-        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,1,0">
+ 
+        <!--Topbar-->
+        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+        <Button Click="Home_Button_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
+        <Button Click="Logout_Button_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
+
+        <!--Sidebar-->
+        <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0"/>
         <Grid x:Name="LeftMenuGrid" Width="280" Height="1000" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280"/>
-                <ColumnDefinition Width="0"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="690" />
+                <RowDefinition Height="940" />
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="Black" Grid.Row="0"/>
-            <Button Tag="Home" Click="Home_Button_Click" Grid.Row="1" Style="{StaticResource MenuButton}" />
-            <Button Tag="Mein Stundenplan" Click="Timetable_Button_Click" Grid.Row="2" Style="{StaticResource MenuButton}"/>
-            <Button Tag="Tauschboerse" Click="Timetable_Button_Click" Grid.Row="3" Style="{StaticResource MenuButton}"/>
-            <Button Tag="Stammdaten" Click="Timetable_Button_Click" Grid.Row="4" Style="{StaticResource MenuButton}"/>
-            <Button Tag="Admin" Click="Timetable_Button_Click" Grid.Row="5" Style="{StaticResource MenuButton}"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <Button Tag="Home" Click="Home_Button_Click" Style="{StaticResource MenuButton}" />
+                <Button Tag="Mein Stundenplan" Click="Timetable_Button_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Tauschboerse" Click="SharingService_Button_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Stammdaten" Click="PersonalData_Button_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Admin" Click="Admin_Button_Click" Style="{StaticResource MenuButton}"/>
+            </StackPanel>
         </Grid>
-        </Border>
-        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1"/>
+        
+        <!--MainFrame-->
+        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

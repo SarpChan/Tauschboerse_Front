@@ -24,13 +24,39 @@ namespace Frontend.View
         {
             InitializeComponent();
         }
+
+
+        private void Home_Button_Click(object sender, RoutedEventArgs e)
+        {
+            HomePage homePage = new HomePage();
+            MainFrame.NavigationService.Navigate(homePage);
+        }
+
         private void Timetable_Button_Click(object sender, RoutedEventArgs e)
         {
             TimetablePage timetablePage = new TimetablePage();
             MainFrame.NavigationService.Navigate(timetablePage);
         }
 
-        private void Home_Button_Click(object sender, RoutedEventArgs e)
+        private void SharingService_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SharingServicePage sharingServicePage = new SharingServicePage();
+            MainFrame.NavigationService.Navigate(sharingServicePage);
+        }
+
+        private void PersonalData_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PersonalDataPage personalDataPage = new PersonalDataPage();
+            MainFrame.NavigationService.Navigate(personalDataPage);
+        }
+
+        private void Admin_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AdminPage adminPage = new AdminPage();
+            MainFrame.NavigationService.Navigate(adminPage);
+        }
+
+        private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
             HomePage homePage = new HomePage();
             MainFrame.NavigationService.Navigate(homePage);

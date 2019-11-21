@@ -4,24 +4,27 @@
              xmlns:local="clr-namespace:Frontend"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
+        <!--MenuButton-->
         <Style TargetType="{x:Type Button}" x:Key="MenuButton">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="FontFamily" Value="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="FontSize" Value="24" />
-            <Setter Property="Width" Value="280" />
+            <Setter Property="Width" Value="279" />
             <Setter Property="Height" Value="50" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border BorderBrush="Black" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}">
+                            <!--MenuButton contains Horizontal StackPanel: [TEXT] [ARROW_IMAGE]-->
                             <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBlock Padding="10,0,0,0" Width="230" Text="{TemplateBinding Tag}" VerticalAlignment="Center"/>
+                                <TextBlock Padding="10,0,0,0" Width="229" Text="{TemplateBinding Tag}" VerticalAlignment="Center" FontFamily="/Resources/Fonts/#Roboto" />
                                 <Image Name="Arrow" Source="./Resources/Icons/left_arrow_b.png" Width="50" Height="20" Stretch="Uniform" VerticalAlignment="Center" />
                             </StackPanel>
                         </Border>
+                        <!--Trigger for switching the arrow image. black to white on hover-->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter TargetName="Arrow" Property="Source" Value="./Resources/Icons/left_arrow_w.png" />
@@ -30,6 +33,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <!--Trigger for switching the MenuButton Background to #265b65 on hover-->
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#265b65"/>
@@ -38,30 +42,50 @@
             </Style.Triggers>
         </Style>
 
+        <!--LogoutButton-->
         <Style TargetType="{x:Type Button}" x:Key="LogoutButton">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="FontFamily" Value="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="White"/>
-
+            <Setter Property="Width" Value="280" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoutButton contains Horizontal StackPanel: [TEXT] [LOGOUT_IMAGE]-->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Padding="0,28,0,0" Width="160" Height="80" Text="Abmelden" FontFamily="/Resources/Fonts/#Roboto" TextAlignment="Center" FontSize="24"/>
+                                <Image Name="Logout" Source="./Resources/Icons/logout_b.png" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
                         </Border>
-
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#265b65"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
+
+        <!--LogoButton-->
+        <Style TargetType="{x:Type Button}" x:Key="LogoButton">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
+                                <Image Name="StuPla" Source="./Resources/Icons/stupla_logo.png" Height="50" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Padding="0,21,0,0" Width="120" Height="80" Text="StuPla" FontFamily="/Resources/Fonts/#Roboto" TextAlignment="Center" FontSize="32"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </Application.Resources>
 </Application>

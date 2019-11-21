@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        d:DesignHeight="1000" d:DesignWidth="1640">
-    <Grid Width="1640" Height="1000" Background="White">
+        d:DesignHeight="1000" d:DesignWidth="1640"
+        Title="Timetable">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Width="1640" Height="2000" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="1550"/>
@@ -66,4 +68,6 @@
             <TextBlock Padding="0,16,0,0"  Text="Zeit" Height="65" TextAlignment="Center" Width="129" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White"/>
         </Canvas>
     </Grid>
+    
+    </ScrollViewer>
 </Page>

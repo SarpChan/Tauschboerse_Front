@@ -1,5 +1,4 @@
-﻿using Frontend.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Frontend
+namespace Frontend.View
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaction logic for AdminPage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class AdminPage : Page
     {
-        public MainWindow()
+        public AdminPage()
         {
             InitializeComponent();
-            this.ShowsNavigationUI = false;
         }
-
-        
     }
 }
