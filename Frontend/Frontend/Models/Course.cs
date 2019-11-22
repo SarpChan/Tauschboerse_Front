@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace Timetable
 {
-    public class Couse
+    public class Course
     {
-        public long id { get; set; }
-        public string title { get; set; }
-        public User owner { get; set; }
-        public HashSet<CourseComponent> courseComponents { get; set; }
-        public HashSet<Module> modules { get; set; }
-        public HashSet<Term> terms { get; set; }
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public User Owner { get; set; }
+        public HashSet<CourseComponent> CourseComponents { get; set; }
+        public HashSet<Module> Modules { get; set; }
+        public HashSet<Term> Terms { get; set; }
     }
 }

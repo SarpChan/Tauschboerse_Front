@@ -1,16 +1,13 @@
 using System.Collections.Generic;
-using System.Data.Entity;
-using Frontend.Models;
-using System;
 
-namespace Frontend.Models
+namespace Timetable
 {
     public class Campus
     {
         public Campus() { }
-        public long id { get; set; }
-        public string name { get; set; }
-        public string adress { get; set; }
-        public List<Building> buildings { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public List<Building> Buildings { get; set; }
     }
 }

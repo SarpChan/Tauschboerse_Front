@@ -5,10 +5,10 @@ namespace Timetable
 {
 	public class Term
     {
-        public long id { get; set; }
-		public HashSet<Course> courses { get; set; }
-        public DateTime dateStart { get; set; }
-		public DateTime dateEnd { get; set; }
-		public int period { get; set; }
+        public long Id { get; set; }
+		public HashSet<Course> Courses { get; set; }
+        public DateTime DateStart { get; set; }
+		public DateTime DateEnd { get; set; }
+		public int Period { get; set; }
     }
 }

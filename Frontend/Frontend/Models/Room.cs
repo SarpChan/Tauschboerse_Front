@@ -2,9 +2,9 @@ namespace Timetable
 {
     public class Room
     {
-        public long id { get; set; }
-        public int number { get; set; }
-        public int seats { get; set; }
-        public Building building { get; set; }
+        public long Id { get; set; }
+        public int Number { get; set; }
+        public int Seats { get; set; }
+        public Building Building { get; set; }
     }
 }

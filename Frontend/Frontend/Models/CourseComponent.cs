@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace Timetable
 {
-    enum courseType { LECTURE, PRACTICE, TUTORIAL, TEST };
+    enum CourseType { LECTURE, PRACTICE, TUTORIAL, TEST };
     public class CourseComponent
     {
-        public long id { get; set; }
-        public courseType type { get; set; }
-        public int creditPoints { get; set; }
-        public string exam { get; set; }
-        public HashSet<Group> groups { get; set; }
+        public long Id { get; set; }
+        public CourseType Type { get; set; }
+        public int CreditPoints { get; set; }
+        public string Exam { get; set; }
+        public HashSet<Group> Groups { get; set; }
     }
 }

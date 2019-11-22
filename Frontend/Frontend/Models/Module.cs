@@ -1,14 +1,14 @@
-using System.Collections.Generics;
+using System.Collections.Generic;
 
-namespace Frontend
+namespace Timetable
 {
     public class Module
     {
-        public long id { get; set; }
-        public string title { get; set; }
-        public int creditPoints { get; set; }
-        public int period { get; set; }
-        public HashSet<Curriculum> curriculua { get; set;}
-        public HashSet<Course> courses { get; set; }
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public int CreditPoints { get; set; }
+        public int Period { get; set; }
+        public HashSet<Curriculum> Curriculua { get; set;}
+        public HashSet<Course> Courses { get; set; }
     }
 }

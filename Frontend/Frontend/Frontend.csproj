@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,10 +69,14 @@
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModel\RestClient.cs" />
+    <Compile Include="ViewModel\TimetableViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +130,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Design\projectGuides.guides" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,9 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Helpers\.gitignore" />
-    <Content Include="Models\.gitignore" />
     <Content Include="UserControls\.gitignore" />
-    <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\edit_b.png" />
     <Resource Include="Resources\Icons\exercise_b.png" />
     <Resource Include="Resources\Icons\exercise_w.png" />

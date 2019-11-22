@@ -1,14 +1,14 @@
-﻿using System.Collcetions.Generics;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Timetable
 {
     public class ExamRegulation
     {
-        public long id { get; set; }
-        public DateTime date { get; set; }
-        public int rule { get; set; }
-        public StudyProgram studyPrograms { get; set; }
-        public HashSet<Curriculum> curricula { get; set; }
+        public long Id { get; set; }
+        public DateTime Date { get; set; }
+        public int Rule { get; set; }
+        public StudyProgram StudyPrograms { get; set; }
+        public HashSet<Curriculum> Curricula { get; set; }
     }
 }

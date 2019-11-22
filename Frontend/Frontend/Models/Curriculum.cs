@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+
 namespace Timetable
 {
     public class Curriculum
     {
-        public long id { get; set; }
-        public int term { get; set; }
-        public ExamRegulations examRegulation { get; set; }
-        public HashSet<Module> modules { get; set; }
+        public long Id { get; set; }
+        public int Term { get; set; }
+        public ExamRegulation ExamRegulation { get; set; }
+        public HashSet<Module> Modules { get; set; }
     }
 }
