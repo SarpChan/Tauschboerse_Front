@@ -9,7 +9,7 @@
         MinWidth="730" MinHeight="480"
         Source="View/RootPage.xaml"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
-        Icon="/Resources/Icons/stupla_logo.png"
+        Icon="{StaticResource stupla_logo_icon}"
         WindowStyle="SingleBorderWindow"
         ShowsNavigationUI="False">
 </NavigationWindow>
