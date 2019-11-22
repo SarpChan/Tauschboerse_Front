@@ -56,6 +56,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseComponent.cs" />
+    <Compile Include="Models\Curriculum.cs" />
+    <Compile Include="Models\ExamRegulation.cs" />
+    <Compile Include="Models\FieldOfStudy.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\StudyProgram.cs" />
+    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\University.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
