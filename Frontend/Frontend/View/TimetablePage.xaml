@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640">
-    <Grid Width="1640" Height="1000" Background="White">
+    <Grid x:Name="MainGrid" Width="1640" Height="1000" Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="1550"/>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.95*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="77"/>
@@ -17,8 +17,8 @@
             <RowDefinition Height="137"/>
             <RowDefinition Height="593"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-        <Grid Width="1550" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
+        <TextBlock x:Name="Titel" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
+        <Grid x:Name="Legende" Width="1550" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="50"/>
@@ -62,8 +62,35 @@
             </Rectangle>
             <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
         </Grid>
-        <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
-            <TextBlock Padding="0,16,0,0"  Text="Zeit" Height="65" TextAlignment="Center" Width="129" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White"/>
-        </Canvas>
+        <Grid x:Name="TimetableWrapper" Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.95*"/>
+                <ColumnDefinition Width="0.05*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.18*"/>
+                    <ColumnDefinition Width="0.18*"/>
+                    <ColumnDefinition Width="0.18*"/>
+                    <ColumnDefinition Width="0.18*"/>
+                    <ColumnDefinition Width="0.18*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Text="Zeit" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="0" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E"/>
+                <TextBox Text="Montag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="1" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E"/>
+                <TextBox Text="Dienstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="2" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E" />
+                <TextBox Text="Mittwoch" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="3" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E" />
+                <TextBox Text="Donnerstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="4" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E" />
+                <TextBox Text="Freitag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E"  Grid.Column="5" HorizontalContentAlignment="Center" Padding="0,10" Foreground="White" BorderBrush="#FF7D7E7E" />
+                <local:TimetableItem Grid.Row="1" Grid.Column="1" ID="4215" PersonName="WEI" CourseName="Programmieren 3" RoomNumber="D001" Color="#FF672F60" Height="476.4"/>
+
+            </Grid>
+        </Grid>
+
+
     </Grid>
 </Page>
