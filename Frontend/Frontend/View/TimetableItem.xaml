@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.View"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Color,ElementName=TimeTableItem}" BorderThickness="1">
+             d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Color,ElementName=TimeTableItem}" BorderThickness="3">
     <UserControl.Resources>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>

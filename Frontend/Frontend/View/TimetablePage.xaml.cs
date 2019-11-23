@@ -56,5 +56,10 @@ namespace Frontend.View
             HomePage homePage = new HomePage();
             this.NavigationService.Navigate(homePage);
         }
+
+        private void TimetableItem_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
