@@ -5,7 +5,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Frontend.View"
       mc:Ignorable="d"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
@@ -117,8 +116,8 @@
  
         <!--Topbar-->
         <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
-        <Button Click="Home_Button_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
-        <Button Click="Logout_Button_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
+        <Button Click="HomeButton_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
+        <Button Click="LogoutButton_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
 
         <!--Sidebar-->
         <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,0"/>
@@ -132,11 +131,11 @@
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Tag="Home" Click="Home_Button_Click" Style="{StaticResource MenuButton}"/>
-                <Button Tag="Mein Stundenplan" Click="Timetable_Button_Click" Style="{StaticResource MenuButton}"/>
-                <Button Tag="Tauschboerse" Click="SharingService_Button_Click" Style="{StaticResource MenuButton}"/>
-                <Button Tag="Stammdaten" Click="PersonalData_Button_Click" Style="{StaticResource MenuButton}"/>
-                <Button Tag="Admin" Click="Admin_Button_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Home" Click="HomeButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Mein Stundenplan" Click="TimetableButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
             </StackPanel>
         </Grid>
         

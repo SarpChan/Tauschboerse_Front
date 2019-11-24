@@ -1,7 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Frontend.Resources">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--Icons (_b = schwarz, _w = weiss, _t = cd_darkteal)-->
     <BitmapImage x:Key="edit_b" UriSource="/Resources/Icons/edit_b.png"/>
     <BitmapImage x:Key="exercise_b" UriSource="/Resources/Icons/exercise_b.png"/>
@@ -22,5 +20,4 @@
     <BitmapImage x:Key="stupla_logo_icon" UriSource="/Resources/Icons/stupla_logo_icon.png"/>
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
-
 </ResourceDictionary>
