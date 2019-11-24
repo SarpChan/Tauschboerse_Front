@@ -142,6 +142,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Thin.ttf" />
     <Resource Include="Resources\Fonts\Kiona-Regular.ttf" />
     <Resource Include="Resources\Fonts\Roboto-Light.ttf" />
     <Resource Include="Resources\Fonts\Roboto-Regular.ttf" />
@@ -154,6 +156,7 @@
     <Content Include="Models\.gitignore" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
+    <Resource Include="Resources\Icons\left_arrow_t.png" />
     <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\left_arrow_b.png" />
     <Resource Include="Resources\Icons\left_arrow_w.png" />

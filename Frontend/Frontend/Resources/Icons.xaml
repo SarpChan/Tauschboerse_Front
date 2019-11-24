@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Frontend.Resources">
     
-    <!--Icons (_b = schwarz, _w = weiss)-->
+    <!--Icons (_b = schwarz, _w = weiss, _t = cd_darkteal)-->
     <BitmapImage x:Key="edit_b" UriSource="/Resources/Icons/edit_b.png"/>
     <BitmapImage x:Key="exercise_b" UriSource="/Resources/Icons/exercise_b.png"/>
     <BitmapImage x:Key="exercise_w" UriSource="/Resources/Icons/exercise_w.png"/>
@@ -10,6 +10,7 @@
     <BitmapImage x:Key="lecture_w" UriSource="/Resources/Icons/lecture_b.png"/>
     <BitmapImage x:Key="left_arrow_b" UriSource="/Resources/Icons/left_arrow_b.png"/>
     <BitmapImage x:Key="left_arrow_w" UriSource="/Resources/Icons/left_arrow_w.png"/>
+    <BitmapImage x:Key="left_arrow_t" UriSource="/Resources/Icons/left_arrow_t.png"/>
     <BitmapImage x:Key="logout_b" UriSource="/Resources/Icons/logout_b.png"/>
     <BitmapImage x:Key="logout_w" UriSource="/Resources/Icons/logout_w.png"/>
     <BitmapImage x:Key="pdf_b" UriSource="/Resources/Icons/pdf_b.png"/>

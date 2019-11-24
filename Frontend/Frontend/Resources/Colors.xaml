@@ -32,6 +32,12 @@
             <Color A="255" R="197" G="197" B="197"/>
         </SolidColorBrush.Color>
     </SolidColorBrush>
+    <!--#d2e7eb-->
+    <SolidColorBrush x:Key="CD_LightBlueGrey">
+        <SolidColorBrush.Color>
+            <Color A="255" R="210" G="231" B="235"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
     <!--#4cb8ca-->
     <SolidColorBrush x:Key="CD_Teal">
         <SolidColorBrush.Color>

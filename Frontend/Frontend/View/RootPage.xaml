@@ -37,7 +37,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter TargetName="Arrow" Property="Source"
-                                        Value="{StaticResource left_arrow_w}" />
+                                        Value="{StaticResource left_arrow_t}" />
                             </Trigger>
                             <Trigger Property="IsFocused" Value="true">
                                 <Setter TargetName="Arrow" Property="Source"
@@ -50,8 +50,8 @@
             <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
-                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                    <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
                 </Trigger>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
