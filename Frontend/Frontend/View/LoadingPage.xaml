@@ -9,7 +9,7 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="LoadingPage">
 
-    <Grid Height="1000" Width="1640" Background="{StaticResource CD_Teal}">
+    <Grid Height="1000" Width="1640" Background="{StaticResource CD_Teal_Alpha}">
         <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
     </Grid>
 </Page>
