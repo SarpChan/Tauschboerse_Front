@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        d:DesignHeight="1000" d:DesignWidth="1640">
-    <Grid x:Name="MainGrid" Width="1640" Height="1000" Background="White">
+        d:DesignHeight="1000" d:DesignWidth="1640"
+        Title="Timetable">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Width="1640" Height="2000" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -98,7 +100,9 @@
                 </Grid>
             </Border>
         </Grid>
-        
+
 
     </Grid>
+
+    </ScrollViewer>
 </Page>
