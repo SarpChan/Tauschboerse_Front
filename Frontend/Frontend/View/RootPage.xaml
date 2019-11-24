@@ -17,15 +17,15 @@
         <!--MenuButton-->
         <Style TargetType="{x:Type Button}" x:Key="MenuButton">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
             <Setter Property="FontSize" Value="24" />
             <Setter Property="Width" Value="280" />
             <Setter Property="Height" Value="50" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="Black" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
                             <!--MenuButton contains Horizontal StackPanel: [TEXT] [ARROW_IMAGE]-->
                             <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -33,9 +33,13 @@
                                 <Image Name="Arrow" Source="{StaticResource left_arrow_b}" Width="50" Height="20" Stretch="Uniform" VerticalAlignment="Center" />
                             </StackPanel>
                         </Border>
-                        <!--Trigger for switching the arrow image. black to white on hover-->
+                        <!--Triggers for switching the arrow image. black to white on hover and focus-->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_w}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
                                 <Setter TargetName="Arrow" Property="Source"
                                         Value="{StaticResource left_arrow_w}" />
                             </Trigger>
@@ -43,11 +47,15 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--Trigger for switching the MenuButton Background to #265b65 on hover-->
+            <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#265b65"/>
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -56,13 +64,13 @@
         <Style TargetType="{x:Type Button}" x:Key="LogoutButton">
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
             <Setter Property="Width" Value="280" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
                             <!--LogoutButton contains Horizontal StackPanel: [TEXT] [LOGOUT_IMAGE]-->
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock Padding="0,28,0,0" Width="160" Height="80" Text="Abmelden" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="24"/>
@@ -78,12 +86,12 @@
         <Style TargetType="{x:Type Button}" x:Key="LogoButton">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
                             <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
                                 <Image Name="StuPla" Source="{StaticResource stupla_logo_icon}" Height="70" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -97,7 +105,7 @@
     </Page.Resources>
 
     <!--RootPage Grid-->
-    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="White">
+    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="{StaticResource CD_White}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"/>
             <ColumnDefinition MinWidth="450" Width="1640*"/>
@@ -108,12 +116,12 @@
         </Grid.RowDefinitions>
  
         <!--Topbar-->
-        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
         <Button Click="Home_Button_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
         <Button Click="Logout_Button_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
 
         <!--Sidebar-->
-        <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+        <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,0"/>
         <Grid x:Name="LeftMenuGrid" Width="280" Height="1000" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280"/>
@@ -122,7 +130,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="940" />
             </Grid.RowDefinitions>
-            <Border BorderThickness="0,0,0,1" BorderBrush="Black" Grid.Row="0"/>
+            <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
             <StackPanel Orientation="Vertical" Grid.Row="1">
                 <Button Tag="Home" Click="Home_Button_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Mein Stundenplan" Click="Timetable_Button_Click" Style="{StaticResource MenuButton}"/>
