@@ -5,7 +5,7 @@
     <BitmapImage x:Key="exercise_b" UriSource="/Resources/Icons/exercise_b.png"/>
     <BitmapImage x:Key="exercise_w" UriSource="/Resources/Icons/exercise_w.png"/>
     <BitmapImage x:Key="lecture_b" UriSource="/Resources/Icons/lecture_b.png"/>
-    <BitmapImage x:Key="lecture_w" UriSource="/Resources/Icons/lecture_b.png"/>
+    <BitmapImage x:Key="lecture_w" UriSource="/Resources/Icons/lecture_w.png"/>
     <BitmapImage x:Key="left_arrow_b" UriSource="/Resources/Icons/left_arrow_b.png"/>
     <BitmapImage x:Key="left_arrow_w" UriSource="/Resources/Icons/left_arrow_w.png"/>
     <BitmapImage x:Key="left_arrow_t" UriSource="/Resources/Icons/left_arrow_t.png"/>
