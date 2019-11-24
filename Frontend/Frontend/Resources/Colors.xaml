@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#ffffff-->
+        <SolidColorBrush x:Key="CD_White">
+        <SolidColorBrush.Color>
+            <Color A="255" R="255" G="255" B="255"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#201f1f-->
+    <SolidColorBrush x:Key="CD_Black">
+        <SolidColorBrush.Color>
+            <Color A="255" R="32" G="31" B="31"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#57514d-->
+    <SolidColorBrush x:Key="CD_GreyBrown">
+        <SolidColorBrush.Color>
+            <Color A="255" R="87" G="81" B="77"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#7d7e7e-->
+    <SolidColorBrush x:Key="CD_Grey">
+        <SolidColorBrush.Color>
+            <Color A="255" R="125" G="126" B="126"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#c5c5c5-->
+    <SolidColorBrush x:Key="CD_LightGrey">
+        <SolidColorBrush.Color>
+            <Color A="255" R="197" G="197" B="197"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#d2e7eb-->
+    <SolidColorBrush x:Key="CD_LightBlueGrey">
+        <SolidColorBrush.Color>
+            <Color A="255" R="210" G="231" B="235"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#4cb8ca-->
+    <SolidColorBrush x:Key="CD_Teal">
+        <SolidColorBrush.Color>
+            <Color A="255" R="76" G="184" B="202"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#265b65-->
+    <SolidColorBrush x:Key="CD_DarkTeal">
+        <SolidColorBrush.Color>
+            <Color A="255" R="38" G="91" B="101"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+</ResourceDictionary>
