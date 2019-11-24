@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ModuleListModel.cs" />
+    <Compile Include="ViewModel\TimetableViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,9 @@
     </Compile>
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeTable.xaml.cs">
+      <DependentUpon>TimeTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
@@ -109,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

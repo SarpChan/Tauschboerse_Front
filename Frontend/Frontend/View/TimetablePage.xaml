@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
+        xmlns:project ="clr-namespace:Frontend"
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Width="1640" Height="2000" Background="White">
+        <Grid Height="2000" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -69,37 +70,9 @@
                     <ColumnDefinition Width="0.95*"/>
                     <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
-            <Border BorderBrush="#FF7E7E7E" BorderThickness="2">
-                <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.1*"/>
-                        <ColumnDefinition Width="0.18*"/>
-                        <ColumnDefinition Width="0.18*"/>
-                        <ColumnDefinition Width="0.18*"/>
-                        <ColumnDefinition Width="0.18*"/>
-                        <ColumnDefinition Width="0.18*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Rectangle Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"/>
-                    <TextBlock x:Name="text_zeit" Text="Zeit" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="0" Padding="0,10" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="text__montag" Text="Montag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="1" Padding="0,10" Foreground="White" Focusable="False" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="text_dienstag" Text="Dienstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="2" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="text_mittwoch" Text="Mittwoch" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="3" Padding="0,10" Foreground="White" HorizontalAlignment="Center"  />
-                    <TextBlock x:Name="text_donnerstag" Text="Donnerstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="4" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="text_freitag" Text="Freitag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E"  Grid.Column="5" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
-                    <local:TimetableItem x:Name="timetableitem_test1" Grid.Row="1" Grid.Column="1" ID="4215" PersonName="WEI" CourseName="Programmieren 3" RoomNumber="D001" Color="#FF672F60" Height="476.4">
-                        <local:TimetableItem.ContextMenu>
-                            <ContextMenu/>
-                        </local:TimetableItem.ContextMenu>
-                    </local:TimetableItem>
-                    <local:TimetableItem Grid.Row="1" Grid.Column="3" ID="42069" PersonName="Nicklas" CourseName="Toller Test" RoomNumber="D017" Color="#FF265B65" Height="300" Margin="0" VerticalAlignment="Top" Loaded="TimetableItem_Loaded"/>
-
-                </Grid>
-            </Border>
-        </Grid>
+                
+            <local:TimeTable ></local:TimeTable>
+            </Grid>
 
 
     </Grid>
