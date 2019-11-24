@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Timetable
 {
-    enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
+    public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
     public class Group
     {
         //Starttime and Endttime

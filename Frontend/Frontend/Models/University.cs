@@ -8,6 +8,6 @@ namespace Timetable
         public string Name { get; set; }
         public string Adress { get; set; }
         public List<Campus> Campus { get; set; }
-       public HashSet<FieldOfStudy> FieldOfStudy { get; set; }
+        public HashSet<FieldOfStudy> FieldOfStudy { get; set; }
     }
 }

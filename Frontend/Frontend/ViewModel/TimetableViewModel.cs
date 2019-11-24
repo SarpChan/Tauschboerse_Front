@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Frontend.Models;
 using HttpUtils;
 using Newtonsoft.Json;
 using Timetable;
@@ -15,15 +16,14 @@ namespace Frontend.ViewModel
     class TimetableViewModel: ViewModelBase
     {
         //Liste der Gruppen = Stundenplan -> AUSLAGERN IN MODELS? Timetable.cs ?
-        private List<Group> groupList { get; set; }
-        //Angemeldeter Benutzer
-        private Student activeStudent { get; set; }
+        private List<Group> GroupList { get; set; }
+        MockupModels mm;
 
         //Konstruktor
-        public TimetableViewModel(Student activeStudent)
+        public TimetableViewModel()
         {
-            this.activeStudent = activeStudent;
-            this.groupList = new List<Group>();
+            this.GroupList = new List<Group>();
+            mm = new MockupModels();
         }
 
         /**
@@ -33,7 +33,7 @@ namespace Frontend.ViewModel
         */
         public void RequestTimetableFromServer()
         {
-            string restUri = @"http://localhost:8080/" + activeStudent.EnrolementNumber + "/timetable";
+            string restUri = @"http://localhost:8080/" + mm.ActiveStudent.EnrolementNumber + "/timetable";
             var restClient = new RestClient(endpoint: restUri, method: HttpVerb.GET);
             var json = restClient.MakeRequest();
             LoadJsonIntoModel(json);
@@ -46,7 +46,7 @@ namespace Frontend.ViewModel
         */
     public void LoadJsonIntoModel(string json)
         {
-            groupList = JsonConvert.DeserializeObject<List<Group>>(json);
+            GroupList = JsonConvert.DeserializeObject<List<Group>>(json);
         }
     }
 }

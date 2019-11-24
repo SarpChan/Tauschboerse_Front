@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Timetable
 {
-    enum CourseType { LECTURE, PRACTICE, TUTORIAL, TEST };
+    public enum CourseType { LECTURE, PRACTICE, TUTORIAL, TEST };
     public class CourseComponent
     {
         public long Id { get; set; }

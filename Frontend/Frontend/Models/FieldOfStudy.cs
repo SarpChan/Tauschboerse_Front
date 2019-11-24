@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Timetable
 {
-	class FieldOfStudy
+	public class FieldOfStudy
     {
         public long Id { get; set; }
         public string Title { get; set; }
