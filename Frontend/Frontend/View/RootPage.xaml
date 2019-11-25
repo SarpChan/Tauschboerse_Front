@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
       Height="{Binding WindowSettings.Height,Mode=TwoWay}"
@@ -101,6 +102,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--Loading Page-->
+        <Style TargetType="{x:Type Grid}" x:Key="LoadingPage" >
+            <Setter Property="Background" Value="{StaticResource CD_Teal_Alpha}"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding isLoading}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding isLoading}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
     <!--RootPage Grid-->
@@ -141,5 +156,9 @@
         
         <!--MainFrame-->
         <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
+        <Grid Style="{StaticResource LoadingPage}" Grid.Row="1" Grid.Column="1">
+            <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
+        </Grid>
     </Grid>
 </Page>

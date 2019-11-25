@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Frontend.ViewModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Frontend.View
@@ -11,13 +12,21 @@ namespace Frontend.View
 
     public partial class RootPage : Page
     {
+        public bool IsLoading {get; set; }
+        public bool isLoading;
+
+        private TimetableViewModel tvm = new TimetableViewModel(); //TODO: FRAGE FUER MITTWOCH: HAT DIE PAGE CS DATEI DAS VM ODER DAS VM DAS VIEW??? PROBLEM: MUSS JA AUF DER PAGE DAS LOADING SWITCHEN UND IM VIEWMODEL DAS LOADING MACHEN. IDEE: VIEW HAT GETTER SETTER FUER LOADING, DAS WARS
         /* <summary>
         * Konstruktor der RootPage : Page
         * </summary>
         */
         public RootPage()
         {
+            DataContext = this;
+            IsLoading = false;
+            isLoading = false;
             InitializeComponent();
+            
         }
 
         /* <summary>
@@ -26,8 +35,11 @@ namespace Frontend.View
         */
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
+            IsLoading = false;
+            isLoading = false;
             HomePage homePage = new HomePage();
             MainFrame.NavigationService.Navigate(homePage);
+            
         }
 
         /* <summary>
@@ -36,8 +48,11 @@ namespace Frontend.View
         */
         private void TimetableButton_Click(object sender, RoutedEventArgs e)
         {
+            IsLoading = true;
+            isLoading = true;
             TimetablePage timetablePage = new TimetablePage();
             MainFrame.NavigationService.Navigate(timetablePage);
+       
         }
 
         /* <summary>
