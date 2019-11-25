@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
+      xmlns:uc="clr-namespace:Frontend.UserControls"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
@@ -146,8 +147,9 @@
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Tag="Home" Click="HomeButton_Click" Style="{StaticResource MenuButton}"/>
-                <Button Tag="Mein Stundenplan" Click="TimetableButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Home" Click="HomeButton_Click" Style="{StaticResource MenuButton}" />
+                <uc:TimetableButton TimetableButtonCommand="{Binding SwitchToTimetablePage}"/> <!--TODO: NICHT ZUGREIFBAR!!!-->
+                <!--<Button Tag="Mein Stundenplan" Command="{Binding SwitchToTimetablePage}" Style="{StaticResource MenuButton}"/>-->
                 <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
@@ -155,9 +157,13 @@
         </Grid>
         
         <!--MainFrame-->
-        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
+            <Frame.Source>
+                <Binding Path="ActivePage" UpdateSourceTrigger="PropertyChanged"/>
+            </Frame.Source>
+        </Frame>
 
-        <Grid Style="{StaticResource LoadingPage}" Grid.Row="1" Grid.Column="1">
+                    <Grid Style="{StaticResource LoadingPage}" Grid.Row="1" Grid.Column="1">
             <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
         </Grid>
     </Grid>

@@ -4,7 +4,7 @@ using HttpUtils;
 using Newtonsoft.Json;
 using Timetable;
 
-namespace Frontend.ViewModel
+namespace Frontend.Helpers
 {
     /**
      * <summary>

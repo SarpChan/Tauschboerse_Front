@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.ViewModel
+namespace Frontend.Helpers
 {
     /*
     * Standard-Basisklasse für ViewModels

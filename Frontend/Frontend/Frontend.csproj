@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\ActionCommand.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
     <Compile Include="Models\Course.cs" />
@@ -72,10 +73,13 @@
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="UserControls\TimetableButton.xaml.cs">
+      <DependentUpon>TimetableButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\RestClient.cs" />
     <Compile Include="ViewModel\RootPageViewModel.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -114,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TimetableButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

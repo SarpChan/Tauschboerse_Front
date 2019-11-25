@@ -1,6 +1,7 @@
-﻿using Frontend.ViewModel;
+﻿using Frontend.Helpers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Frontend.View
 {
@@ -28,6 +29,9 @@ namespace Frontend.View
             InitializeComponent();
             
         }
+
+        
+
 
         /* <summary>
         * Methode fuer Eventhandling "Click auf HomeButton" 
