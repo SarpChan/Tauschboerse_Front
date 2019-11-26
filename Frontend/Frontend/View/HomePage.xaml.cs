@@ -15,7 +15,7 @@ namespace Frontend.View
 
         private void TimetableButton_Click(object sender, RoutedEventArgs e)
         {
-            TimetablePage timetablePage = new TimetablePage();
+            TimetablePage timetablePage = TimetablePage.Instance;
             this.NavigationService.Navigate(timetablePage);
         }
 

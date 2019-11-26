@@ -14,6 +14,7 @@ using Timetable;
 using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
+using System.Windows;
 
 namespace Frontend
 {
@@ -23,36 +24,78 @@ namespace Frontend
      */
 
     class RootPageViewModel : ViewModelBase
-    {
-        public bool IsLoading { get; set; }
-
-        private Page _ActivePage = null;
-        public Page ActivePage
-        {
-            get { return _ActivePage; }
+    {        
+        //Loading Flag ob loading page angezeigt werden soll
+        private bool _isLoading = false;
+        public bool IsLoading {
+            get { return _isLoading; }
             set
             {
-                if (_ActivePage != value)
+                if (_isLoading != value)
                 {
-                    _ActivePage = value;
-                    OnPropertyChanged("ActivePage");
+                    _isLoading = value;
+                    OnPropertyChanged("IsLoading");
                 }
             }
         }
+        //TODO: RPVM Brauche ich die DependencyProperty fuer Variablen???
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register("IsLoading", typeof(Page), typeof(RootPageViewModel), new UIPropertyMetadata(null));
 
-        private ICommand _SwitchToTimetablePage; //Raffe gar nix grad
-        public ICommand SwitchToTimetablePage
+        //TODO: RPVM Momentan aktive page die angezeigt wird (Idee: Frame.Source soll diese Variable benutzen)
+        private Page _activePage = null;
+        public Page ActivePage
+        {
+            get { return _activePage; }
+            set
+            {
+                if (_activePage != value)
+                {
+                    _activePage = value;
+                    OnPropertyChanged("ActivePage");
+                    Console.WriteLine("ACTIVE PAGE = " + ActivePage);
+                }
+            }
+        }
+        public static readonly DependencyProperty ActivePageProperty =
+            DependencyProperty.Register("ActivePage", typeof(Page), typeof(RootPageViewModel), new UIPropertyMetadata(null));
+
+
+        //TODO: RPVM FRAGE: ICommand fuer den ButtonClick (!: Kann man einfach ein SwitchPage machen und irgendwie aus der GUI/View die geklickte page mitgeben?)
+        private ICommand _SwitchToTimetablePageCommand; //Raffe gar nix grad
+        public ICommand SwitchToTimetablePageCommand
         {
             get
             {
-                if (_SwitchToTimetablePage == null)
+                if (_SwitchToTimetablePageCommand == null)
                 {
-                    _SwitchToTimetablePage = new ActionCommand(dummy => this.ActivePage = new TimetablePage());
+                    _SwitchToTimetablePageCommand = new ActionCommand(dummy => this.ActivePage = TimetablePage.Instance);
                 }
-                return _SwitchToTimetablePage;
+                Console.WriteLine("TT SWITCH");
+                return _SwitchToTimetablePageCommand;
+                
             }
         }
+        public static readonly DependencyProperty SwitchToTimetablePageCommandProperty =
+            DependencyProperty.Register("SwitchToTimetablePageCommand", typeof(ICommand), typeof(RootPageViewModel), new UIPropertyMetadata(null));
 
-
+        //TODO: RPVM Waere das moeglich? Mache ich das "falsch rum"? also sollte die active page im view gesetzt werden?
+        public void NavigateToPage(Page page)
+         {
+             ActivePage = page;
+         }
+         private ICommand _SwitchToActivePage;
+         public ICommand SwitchToActivePage
+         {
+             get
+             {
+                 if (_SwitchToActivePage == null) //TODO: RPVM FRAGE: Kann man parameter in die commands geben? (TimetablePage). Wie kann man ueberhaupt auf irgendwas zugreifen? 
+                 {
+                     _SwitchToActivePage = new ActionCommand(page => NavigateToPage((Page)page));
+                 }
+                 return _SwitchToActivePage;
+             }
+         }
+ 
     }
 }

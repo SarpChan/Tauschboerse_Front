@@ -1,7 +1,7 @@
 ﻿using Frontend.Helpers;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Frontend.View
 {
@@ -13,34 +13,25 @@ namespace Frontend.View
 
     public partial class RootPage : Page
     {
-        public bool IsLoading {get; set; }
-        public bool isLoading;
 
-        private TimetableViewModel tvm = new TimetableViewModel(); //TODO: FRAGE FUER MITTWOCH: HAT DIE PAGE CS DATEI DAS VM ODER DAS VM DAS VIEW??? PROBLEM: MUSS JA AUF DER PAGE DAS LOADING SWITCHEN UND IM VIEWMODEL DAS LOADING MACHEN. IDEE: VIEW HAT GETTER SETTER FUER LOADING, DAS WARS
         /* <summary>
         * Konstruktor der RootPage : Page
         * </summary>
         */
         public RootPage()
         {
-            DataContext = this;
-            IsLoading = false;
-            isLoading = false;
             InitializeComponent();
-            
         }
-
-        
 
 
         /* <summary>
         * Methode fuer Eventhandling "Click auf HomeButton" 
         * </summary>
         */
+        //TODO: RP Alle Button_Clicks durch ICommands ersetzen
+        [Obsolete]
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            IsLoading = false;
-            isLoading = false;
             HomePage homePage = new HomePage();
             MainFrame.NavigationService.Navigate(homePage);
             
@@ -50,11 +41,10 @@ namespace Frontend.View
         * Methode fuer Eventhandling "Click auf TimetableButton" 
         * </summary>
         */
+        [Obsolete]
         private void TimetableButton_Click(object sender, RoutedEventArgs e)
         {
-            IsLoading = true;
-            isLoading = true;
-            TimetablePage timetablePage = new TimetablePage();
+            TimetablePage timetablePage = TimetablePage.Instance;
             MainFrame.NavigationService.Navigate(timetablePage);
        
         }
@@ -63,6 +53,7 @@ namespace Frontend.View
         * Methode fuer Eventhandling "Click auf SharingServiceButton" 
         * </summary>
         */
+        [Obsolete]
         private void SharingServiceButton_Click(object sender, RoutedEventArgs e)
         {
             SharingServicePage sharingServicePage = new SharingServicePage();
@@ -73,6 +64,7 @@ namespace Frontend.View
         * Methode fuer Eventhandling "Click auf PersonalDataButton" 
         * </summary>
         */
+        [Obsolete]
         private void PersonalDataButton_Click(object sender, RoutedEventArgs e)
         {
             PersonalDataPage personalDataPage = new PersonalDataPage();
@@ -83,6 +75,7 @@ namespace Frontend.View
         * Methode fuer Eventhandling "Click auf AdminButton" 
         * </summary>
         */
+        [Obsolete]
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
             AdminPage adminPage = new AdminPage();
@@ -93,6 +86,7 @@ namespace Frontend.View
         * Methode fuer Eventhandling "Click auf LogoutButton" 
         * </summary>
         */
+        [Obsolete]
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             HomePage homePage = new HomePage();

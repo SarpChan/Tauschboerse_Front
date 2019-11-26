@@ -73,8 +73,26 @@
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="UserControls\TimetableButton.xaml.cs">
-      <DependentUpon>TimetableButton.xaml</DependentUpon>
+    <Compile Include="UserControls\TP_LogoButton.xaml.cs">
+      <DependentUpon>TP_LogoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TP_LogoutButton.xaml.cs">
+      <DependentUpon>TP_LogoutButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_AdminButton.xaml.cs">
+      <DependentUpon>SB_AdminButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_PersonalDataButton.xaml.cs">
+      <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_SharingServiceButton.xaml.cs">
+      <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
+      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
+      <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RestClient.cs" />
     <Compile Include="ViewModel\RootPageViewModel.cs" />
@@ -121,7 +139,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TimetableButton.xaml">
+    <Page Include="Resources\UserControlsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TP_LogoButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TP_LogoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_AdminButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_PersonalDataButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_SharingServiceButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_HomeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SB_TimetableButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,7 +233,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Helpers\.gitignore" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
     <Resource Include="Resources\Icons\left_arrow_t.png" />
@@ -197,7 +242,6 @@
     <Resource Include="Resources\Icons\logout_b.png" />
     <Resource Include="Resources\Icons\logout_w.png" />
     <Resource Include="Resources\Icons\stupla_logo.png" />
-    <Content Include="UserControls\.gitignore" />
     <Resource Include="Resources\Icons\edit_b.png" />
     <Resource Include="Resources\Icons\exercise_b.png" />
     <Resource Include="Resources\Icons\exercise_w.png" />
