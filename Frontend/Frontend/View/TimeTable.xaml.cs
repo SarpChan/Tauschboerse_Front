@@ -33,18 +33,20 @@ namespace Frontend.View
 
         }
 
-        public List ItemsSource
+        public Object ItemsSource
         {
             get
             {
-                return (List)GetValue(ItemsSourceProperty);
+                return (Object) (GetValue(ItemsSourceProperty));
             }
             set
             {
                 SetValue(ItemsSourceProperty, value);
+                   
             }
         }
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(List<>), typeof(TimeTable), new UIPropertyMetadata(null));
+        //System.Collections.ObjectModel.ObservableCollection[Frontend.ModuleDummy]
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(Object), typeof(TimeTable), new UIPropertyMetadata(null));
 
 
     }

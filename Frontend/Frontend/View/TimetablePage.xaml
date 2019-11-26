@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
+    <Page.Resources>
+        <project:TimetableViewModel x:Key="TimetableViewModel"/>
+    </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Height="2000" Background="White">
         <Grid.ColumnDefinitions>
@@ -65,13 +68,23 @@
             </Rectangle>
             <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
         </Grid>
-        <Grid x:Name="TimetableWrapper" Grid.Row="3" Grid.Column="1">
+            <Grid x:Name="TimetableWrapper" Grid.Row="3" Grid.Column="1" DataContext="{Binding Source={StaticResource TimetableViewModel}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.95*"/>
                     <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
-                
-            <local:TimeTable ></local:TimeTable>
+
+                <local:TimeTable ItemsSource="{Binding ModuleList}"></local:TimeTable>
+                <ListView ItemsSource="{Binding ModuleList}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Width="60" Header="Anzahl" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Width="360" Header="Name" DisplayMemberBinding="{Binding ID}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
 
 

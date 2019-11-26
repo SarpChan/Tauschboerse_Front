@@ -9,9 +9,7 @@
              xmlns:project ="clr-namespace:Frontend"
              mc:Ignorable="d" 
              d:DesignHeight="1400 " d:DesignWidth="1600">
-    <UserControl.Resources>
-        <project:TimetableViewModel x:Key="TimetableViewMode"/>
-    </UserControl.Resources>
+    
     <Border BorderBrush="#FF7E7E7E" BorderThickness="2">
         <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
