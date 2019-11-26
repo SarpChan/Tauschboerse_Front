@@ -10,10 +10,8 @@ namespace Frontend.View
     * Verwaltet nur die Events der Button_Click's
     * </summary>
     */
-
     public partial class RootPage : Page
     {
-
         /* <summary>
         * Konstruktor der RootPage : Page
         * </summary>

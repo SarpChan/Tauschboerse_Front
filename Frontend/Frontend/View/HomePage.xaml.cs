@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Frontend.View
@@ -8,6 +9,11 @@ namespace Frontend.View
     /// </summary>
     public partial class HomePage : Page
     {
+        private static readonly Lazy<HomePage> lazyHomePageSingleton =
+            new Lazy<HomePage>(() => new HomePage());
+
+        public static HomePage Instance { get { return lazyHomePageSingleton.Value; } }
+
         public HomePage()
         {
             InitializeComponent();
