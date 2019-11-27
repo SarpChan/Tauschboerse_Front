@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:Frontend.View"
              xmlns:project ="clr-namespace:Frontend"
              mc:Ignorable="d" 
-             d:DesignHeight="500 " d:DesignWidth="1600">
+             d:DesignHeight="500 " d:DesignWidth="1000">
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>
     </UserControl.DataContext>
@@ -36,7 +36,7 @@
             <!-- <local:TimetableItem x:Name="timetableitem_test1" Grid.Row="1" Grid.Column="1" ID="4215" PersonName="WEI" CourseName="Programmieren 3" RoomNumber="D001" Color="#FF672F60" Height="476.4"/>
             <local:TimetableItem Grid.Row="1" Grid.Column="3" ID="42069" PersonName="Nicklas" CourseName="Toller Test" RoomNumber="D017" Color="#FF265B65" Height="300" Margin="0" VerticalAlignment="Top"/> -->
             <Canvas Grid.Row="1" Grid.ColumnSpan="6">
-                <Rectangle Fill="Aqua" Height="400px" Width="1000px"/>
+                <Rectangle Fill="Aqua" Height="400px"/>
                 <ItemsControl ItemsSource="{Binding ModuleList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type project:ModuleDummy}">
@@ -46,7 +46,7 @@
                                  die Canvas.Left/Top-Properties beziehen sich auf dieses innere Canvas,
                                  X/Y-Koordinaten passen (nur) wegen der 0x0-Ausbreitung des inneren Canvas
                             -->
-                                <local:TimetableItem TimeStart="0815" TimeWidth="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}" ItemWidth="{Binding ActualWidth, ElementName=TimeTableWrapper, Mode=OneWay}" TimeEnd="0945" Day="2" ID="{Binding ID}" PersonName="Marc" CourseName="Toller Test" RoomNumber="D017" Color="#FF2B65" />
+                                <local:TimetableItem TimeStart="0815" Module="{Binding .}" TimeWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" ItemWidth="{Binding ColumnWidth, ElementName=Timetable, Mode=OneWay}" TimeEnd="0945" Day="2" ID="{Binding ID}" PersonName="Marc" CourseName="Toller Test" RoomNumber="D017" Color="#FF2B65" />
                             </Canvas>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

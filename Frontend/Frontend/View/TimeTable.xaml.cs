@@ -27,26 +27,24 @@ namespace Frontend.View
      */
     public partial class TimeTable : UserControl
     {
+
+        private int Days = 6;
         public TimeTable()
         {
             InitializeComponent();
-
+            
         }
 
-        public Object ItemsSource
+        public readonly DependencyProperty ColumnWidthProperty = DependencyProperty.Register("ColumWidth", typeof(double), typeof(TimeTable), new UIPropertyMetadata(null));
+
+        public double ColumnWidth
         {
             get
             {
-                return (Object) (GetValue(ItemsSourceProperty));
-            }
-            set
-            {
-                SetValue(ItemsSourceProperty, value);
-                   
+                return (this.ActualWidth - text_zeit.ActualWidth) / Days;
             }
         }
-        //System.Collections.ObjectModel.ObservableCollection[Frontend.ModuleDummy]
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(Object), typeof(TimeTable), new UIPropertyMetadata(null));
+
 
 
     }

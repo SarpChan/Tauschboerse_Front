@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.View"
+             xmlns:converters="clr-namespace:Frontend.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Color,ElementName=TimeTableItem}" BorderThickness="3"
              >
     <UserControl.Resources>
+        <converters:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
-    <Grid x:Name="Grid_Main" Margin="0" Width="{Binding ItemWidth,ElementName=TimeTableItem}">
+    <Grid x:Name="Grid_Main" Margin="0" Width="{Binding ItemWidth, ConverterParameter=6, Converter={StaticResource WidthPercentageConverter}}">
+        <!-- Width="{Binding ItemWidth,ElementName=TimeTableItem}" -->
         <Grid.RowDefinitions>
             <RowDefinition Height="33"/>
             <RowDefinition Height="*"/>
@@ -20,7 +23,7 @@
                 <ColumnDefinition Width="0.8*"/>
                 <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="Text_Number" Text="{Binding ID,ElementName=TimeTableItem}" Background="{Binding Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" Foreground="White" Padding="10,0,0,0"/>
+            <TextBlock x:Name="Text_Number" Text="{Binding Module.ID,ElementName=TimeTableItem}" Background="{Binding Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" Foreground="White" Padding="10,0,0,0"/>
             <Rectangle x:Name="Icon" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="32" Height="33" Margin="0" Fill="{DynamicResource Icon}" />
         </Grid>
         <DockPanel HorizontalAlignment="Stretch" x:Name="DockPanel_Content"  LastChildFill="False" Grid.Row="1">

@@ -23,6 +23,10 @@ namespace Frontend.View
         public TimetableItem()
         {
             InitializeComponent();
+            /*
+             * 
+             * 
+             */
         }
 
         #region properties
@@ -42,7 +46,7 @@ namespace Frontend.View
 
         public double ItemWidth {
             get {
-                return (((double)GetValue(ItemWidthProperty))-TimeWidth)/6.0; 
+                return (double)GetValue(ItemWidthProperty); 
             } 
             set { 
                 SetValue(ItemWidthProperty, value); 
