@@ -22,6 +22,7 @@ namespace Frontend.Models
         public long LectureId { get; set; }
         [JsonProperty("room")]
         public long RoomId { get; set; }
+        [JsonConverter(typeof(StudentConverter))]
         public List<int> Students { get; set; }
 
     }
