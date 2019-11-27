@@ -1,47 +1,145 @@
-﻿<Page x:Class="Frontend.View.RootPage"
+﻿<!--RootPage
+    Width und Height gebunden an die jeweiligen Werte des MainWindow-->
+    <Page x:Class="Frontend.View.RootPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Frontend.View"
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="RootPage">
+      Title="Root"
+      Height="{Binding WindowSettings.Height,Mode=TwoWay}"
+      Width="{Binding WindowSettings.Width, Mode=TwoWay}">
 
-    <Grid x:Name="MainGrid" Width="1980" Height="1080" Background="White">
+    <!--Resources, die TopBar- und SideBar-nativ sind und nicht in anderen Pages vorkommen-->
+    <Page.Resources>
+        <!--MenuButton-->
+        <Style TargetType="{x:Type Button}" x:Key="MenuButton">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
+                            <!--MenuButton contains Horizontal StackPanel: [TEXT] [ARROW_IMAGE]-->
+                            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Padding="10,0,0,0" Width="229" Text="{TemplateBinding Tag}" VerticalAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                                <Image Name="Arrow" Source="{StaticResource left_arrow_b}" Width="50" Height="20" Stretch="Uniform" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                        <!--Triggers for switching the arrow image. black to white on hover and focus-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_t}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_w}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--LogoutButton-->
+        <Style TargetType="{x:Type Button}" x:Key="LogoutButton">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoutButton contains Horizontal StackPanel: [TEXT] [LOGOUT_IMAGE]-->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Padding="0,28,0,0" Width="160" Height="80" Text="Abmelden" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="24"/>
+                                <Image Name="Logout" Source="{StaticResource logout_b}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--LogoButton-->
+        <Style TargetType="{x:Type Button}" x:Key="LogoButton">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
+                                <Image Name="StuPla" Source="{StaticResource stupla_logo_icon}" Height="70" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Padding="0,21,0,0" Width="120" Height="80" Text="StuPla" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="32"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <!--RootPage Grid-->
+    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="{StaticResource CD_White}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"/>
-            <ColumnDefinition Width="1640"/>
+            <ColumnDefinition MinWidth="450" Width="1640*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="1000" />
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1000*" />
         </Grid.RowDefinitions>
+ 
+        <!--Topbar-->
+        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
+        <Button Click="HomeButton_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
+        <Button Click="LogoutButton_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
 
-        <!--topbar-->
-        <StackPanel  x:Name="TopBarStackPanel"  HorizontalAlignment="Left" Height="80" Grid.RowSpan="2" VerticalAlignment="Top" Width="1920"/>
-        <!--sidebar-->
+        <!--Sidebar-->
+        <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,0"/>
         <Grid x:Name="LeftMenuGrid" Width="280" Height="1000" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="230"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="280"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="690" />
+                <RowDefinition Height="940" />
             </Grid.RowDefinitions>
-            <Button Content="Home" FontSize="24" Width="230" Height="50" HorizontalAlignment="Left" FontFamily="Roboto" Click="Home_Button_Click" Grid.Row="1" Style="{StaticResource MenuButton}" />
-            <Button Content="Mein Stundenplan" FontSize="24" Width="230" Height="50" HorizontalAlignment="Left" FontFamily="Roboto" Click="Timetable_Button_Click" Grid.Row="2" Style="{StaticResource MenuButton}"/>
-            <Button Content="Tauschboerse" FontSize="24" Width="230" Height="50" HorizontalAlignment="Left" FontFamily="Roboto" Click="Timetable_Button_Click" Grid.Row="3" Style="{StaticResource MenuButton}"/>
-            <Button Content="Stammdaten" FontSize="24" Width="230" Height="50" HorizontalAlignment="Left" FontFamily="Roboto" Click="Timetable_Button_Click" Grid.Row="4" Style="{StaticResource MenuButton}"/>
-            <Button Content="Admin" FontSize="24" Width="230" Height="50" HorizontalAlignment="Left" FontFamily="Roboto" Click="Timetable_Button_Click" Grid.Row="5" Style="{StaticResource MenuButton}"/>
+            <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <Button Tag="Home" Click="HomeButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Mein Stundenplan" Click="TimetableButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
+            </StackPanel>
         </Grid>
-        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1"/>
+        
+        <!--MainFrame-->
+        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
-    
 </Page>
