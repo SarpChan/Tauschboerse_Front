@@ -3,7 +3,11 @@ using System.Windows.Input;
 using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
-using System.Windows;
+using RestSharp;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Timetable;
+using System.Threading;
 
 namespace Frontend
 {
@@ -13,7 +17,8 @@ namespace Frontend
      */
 
     class RootPageViewModel : ViewModelBase
-    {        
+    {
+        #region properties
         //Loading Flag ob loading page angezeigt werden soll
         private bool _isLoading;
         public bool IsLoading {
@@ -29,7 +34,6 @@ namespace Frontend
             }
         }
 
-        //TODO: RPVM Momentan aktive page die angezeigt wird (Idee: Frame.Source soll diese Variable benutzen)
         private Page _activePage;
         public Page ActivePage
         {
@@ -45,6 +49,7 @@ namespace Frontend
                 }
             }
         }
+        #endregion
 
         public RootPageViewModel()
         {
@@ -52,22 +57,7 @@ namespace Frontend
             IsLoading = false;
         }
 
-        //TODO: RPVM FRAGE: ICommand fuer den ButtonClick (!: Kann man einfach ein SwitchPage machen und irgendwie aus der GUI/View die geklickte page mitgeben?)
-        private ICommand _SwitchToTimetablePageCommand; //Raffe gar nix grad
-        public ICommand SwitchToTimetablePageCommand
-        {
-            get
-            {
-                if (_SwitchToTimetablePageCommand == null)
-                {
-                    _SwitchToTimetablePageCommand = new ActionCommand(dummy => this.SwitchActivePage(TimetablePage.Instance));
-                }
-                Console.WriteLine("TTP SWITCH");
-                return _SwitchToTimetablePageCommand;
-                
-            }
-        }
-
+        #region commands
         private ICommand _SwitchToHomePageCommand;
         public ICommand SwitchToHomePageCommand
         {
@@ -75,42 +65,109 @@ namespace Frontend
             {
                 if (_SwitchToHomePageCommand == null)
                 {
-                    _SwitchToHomePageCommand = new ActionCommand(dummy => this.SwitchActivePage(HomePage.Instance)); 
+                    _SwitchToHomePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new HomePage()));
                 }
-                Console.WriteLine("HP SWITCH");
                 return _SwitchToHomePageCommand;
-
             }
         }
 
-        //TODO: RPVM Waere das moeglich? Mache ich das "falsch rum"? also sollte die active page im view gesetzt werden?
-        public void NavigateToPage(Page page)
-         {
-             ActivePage = page;
-         }
-         private ICommand _SwitchToActivePage;
-         public ICommand SwitchToActivePage
-         {
-             get
-             {
-                 if (_SwitchToActivePage == null) //TODO: RPVM FRAGE: Kann man parameter in die commands geben? (TimetablePage). Wie kann man ueberhaupt auf irgendwas zugreifen? 
-                 {
-                     _SwitchToActivePage = new ActionCommand(page => NavigateToPage((Page)page));
-                 }
-                 return _SwitchToActivePage;
-             }
-         }
-
-        private void SwitchActivePage(Page ap)
+        private ICommand _SwitchToTimetablePageCommand;
+        public ICommand SwitchToTimetablePageCommand
         {
-            if(ap.GetType().Equals(typeof(TimetablePage)))
+            get
             {
-                IsLoading = true;
-            } else
+                if (_SwitchToTimetablePageCommand == null)
+                {
+                    _SwitchToTimetablePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new TimetablePage()));
+                }
+                return _SwitchToTimetablePageCommand;
+            }
+        }
+
+        private ICommand _SwitchToSharingServicePageCommand;
+        public ICommand SwitchToSharingServicePage
+        {
+            get
+            {
+                if (_SwitchToSharingServicePageCommand == null)
+                {
+                    _SwitchToSharingServicePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new SharingServicePage()));
+                }
+                return _SwitchToSharingServicePageCommand;
+            }
+        }
+
+        private ICommand _SwitchToPersonalDataPageCommand;
+        public ICommand SwitchToPersonalDataPageCommand
+        {
+            get
+            {
+                if (_SwitchToPersonalDataPageCommand == null)
+                {
+                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new PersonalDataPage()));
+                }
+                return _SwitchToPersonalDataPageCommand;
+            }
+        }
+
+        private ICommand _SwitchToAdminPageCommand;
+        public ICommand SwitchToAdminPageCommand
+        {
+            get
+            {
+                if (_SwitchToAdminPageCommand == null)
+                {
+                    _SwitchToAdminPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new AdminPage()));
+                }
+                return _SwitchToAdminPageCommand;
+            }
+        }
+
+        private ICommand _LogoutCommand;
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                if (_LogoutCommand == null)
+                {
+                    _LogoutCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new HomePage()));
+                }
+                return _LogoutCommand;
+            }
+        }
+        #endregion
+
+        #region methods
+        private async void SwitchActivePageAsync(Page newActivePage)
+        {
+            if (newActivePage.GetType().Equals(typeof(HomePage)))
             {
                 IsLoading = false;
             }
-            ActivePage = ap;
+            else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
+            {
+                SwitchIsLoading();
+                await RequestTimetableFromServerAsync();
+                SwitchIsLoading();
+
+            }
+            else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
+            {
+                IsLoading = false;
+            }
+            else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
+            {
+                IsLoading = false;
+            }
+            else if (newActivePage.GetType().Equals(typeof(AdminPage)))
+            {
+                IsLoading = true;
+            }
+            else
+            {
+                IsLoading = false;
+            }
+            ActivePage = newActivePage;
         }
 
         private void SwitchIsLoading()
@@ -118,5 +175,32 @@ namespace Frontend
             IsLoading = !IsLoading;
         }
 
+
+        public async Task RequestTimetableFromServerAsync()
+        {
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("timetable/{id}", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("id", "1001337");
+            var body = new
+            {
+                Id = "",
+                Slots = "",
+                Day = "",
+                Term = "",
+                CourseComponent = "",
+                Lecture = "",
+                Room = "",
+                Students = ""
+            };
+            request.AddJsonBody(body);
+            var cancellationTokenSource = new CancellationTokenSource();
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            Console.WriteLine(response.Content);
+
+        }
+    
+        #endregion
     }
 }

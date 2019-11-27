@@ -8,7 +8,7 @@ namespace Frontend.View
     /// Interaktionslogik für TimetablePage.xaml
     /// </summary>
     public partial class TimetablePage : Page
-    {//TODO: TTP Singleton sinnvoll?? Wenn ja, wie? private Constructor wirft fehler
+    {//TODO: TTP Singleton sinnvoll??
         private static readonly Lazy<TimetablePage> lazyTimetablePageSingleton =
             new Lazy<TimetablePage>(() => new TimetablePage());
 

@@ -76,6 +76,12 @@
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="UserControls\SideBar.xaml.cs">
+      <DependentUpon>SideBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TopBar.xaml.cs">
+      <DependentUpon>TopBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TP_LogoButton.xaml.cs">
       <DependentUpon>TP_LogoButton.xaml</DependentUpon>
     </Compile>
@@ -97,7 +103,6 @@
     <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\RestClient.cs" />
     <Compile Include="ViewModel\RootPageViewModel.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
@@ -143,6 +148,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControlsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TopBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,6 +273,9 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>106.6.10</Version>
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>1.4.18</Version>

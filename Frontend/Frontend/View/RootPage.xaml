@@ -57,12 +57,18 @@
                 <RowDefinition Height="940" />
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
+            <!--<user_controls:SideBar Grid.Row="1"
+                                   SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"
+                                   SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"
+                                   SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"
+                                   SB_PersonalDataButtonCommand="{Binding SwitchToPersonalDataPageCommand}"
+                                   SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>-->
             <StackPanel Orientation="Vertical" Grid.Row="1">
                 <user_controls:SB_HomeButton SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"/>
                 <user_controls:SB_TimetableButton SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
+                <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToPersonalDataPageCommand}"/>
+                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
+                <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
             </StackPanel>
         </Grid>
         
