@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -56,6 +59,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseComponent.cs" />
+    <Compile Include="Models\Curriculum.cs" />
+    <Compile Include="Models\ExamRegulation.cs" />
+    <Compile Include="Models\FieldOfStudy.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Helpers\JSONConverter.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudyProgram.cs" />
+    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\University.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -138,10 +157,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Design\projectGuides.guides" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\hsrm_medieninformatik.json" />
     <Resource Include="Resources\Fonts\Roboto-Regular.ttf" />
     <Resource Include="Resources\Fonts\Roboto-Medium.ttf" />
     <Resource Include="Resources\Fonts\Roboto-Thin.ttf" />
