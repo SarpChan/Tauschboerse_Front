@@ -25,6 +25,44 @@ namespace Frontend.View
             InitializeComponent();
         }
 
+        #region properties
+
+        public ModuleDummy Module
+        {
+            get
+            {
+                return (ModuleDummy)GetValue(ModuleProperty);
+            }
+            set
+            {
+                SetValue(ModuleProperty, value);
+            }
+        }
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(ModuleDummy), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+        public double ItemWidth {
+            get {
+                return (((double)GetValue(ItemWidthProperty))-TimeWidth)/6.0; 
+            } 
+            set { 
+                SetValue(ItemWidthProperty, value); 
+            } 
+        }
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+        public double TimeWidth { get { return (double)GetValue(TimeWidthProperty); } set { SetValue(TimeWidthProperty, value); } }
+        public static readonly DependencyProperty TimeWidthProperty = DependencyProperty.Register("TimeWidth", typeof(double), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+
+        public string TimeStart { get { return (string)GetValue(TimeStartProperty); } set { SetValue(TimeStartProperty, value); } }
+        public static readonly DependencyProperty TimeStartProperty = DependencyProperty.Register("TimeStart", typeof(string), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+        public string TimeEnd { get { return (string)GetValue(TimeEndProperty); } set { SetValue(TimeEndProperty, value); } }
+        public static readonly DependencyProperty TimeEndProperty = DependencyProperty.Register("TimeEnd", typeof(string), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+        public string Day { get { return (string)GetValue(DayProperty); } set { SetValue(DayProperty, value); } }
+        public static readonly DependencyProperty DayProperty = DependencyProperty.Register("Day", typeof(string), typeof(TimetableItem), new UIPropertyMetadata(null));
+
 
         public string RoomNumber { 
             get { 
@@ -47,6 +85,8 @@ namespace Frontend.View
 
         public string Color { get { return (string)GetValue(ColorProperty); } set { SetValue(ColorProperty, value); } }
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(string), typeof(TimetableItem), new UIPropertyMetadata(null));
-
+        
+        
+        #endregion
     }
 }

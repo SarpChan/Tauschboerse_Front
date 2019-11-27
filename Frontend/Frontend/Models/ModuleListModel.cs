@@ -8,7 +8,7 @@ namespace Frontend
 {
     class ModuleListModel
     {
-        //Hier eig liste mit Modulen reingereicht
+        //Hier eig liste mit Modulen reingereicht??
         public ModuleListModel()
         {
             int i = 0;
@@ -32,9 +32,10 @@ namespace Frontend
         public List<ModuleDummy> ModuleList { get { return _moduleList; } }
     }
 
-    class ModuleDummy
+    public class ModuleDummy
     {
         public string Name { get; set; }
         public string ID { get; set; }
     }
+
 }
