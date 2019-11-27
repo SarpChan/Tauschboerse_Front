@@ -3,7 +3,7 @@ using Frontend.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 //TODO: Documentation WIKI + Code
-namespace JSONConverter
+namespace Frontend.Helpers
 
 {
     class TermConverter : JsonConverter
