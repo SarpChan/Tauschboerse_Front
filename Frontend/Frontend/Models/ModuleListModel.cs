@@ -14,7 +14,14 @@ namespace Frontend
             int i = 0;
             foreach (string module in new string[] { "Prog3", "EIBO" })
             {
-                AddModule(new ModuleDummy() { ID = ""+(i++), Name = module });
+                if(i == 0)
+                {
+                    AddModule(new ModuleDummy() { ID = "" + (i++), Name = module, StartTime = "0815", EndTime = "0945", Day = "0" });
+                } else
+                {
+                    AddModule(new ModuleDummy() { ID = "" + (i++), Name = module, StartTime = "1000", EndTime = "1130", Day = "3" });
+                }
+                
             }
         }
 
@@ -36,6 +43,10 @@ namespace Frontend
     {
         public string Name { get; set; }
         public string ID { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+
+        public string Day { get; set; }
     }
 
 }
