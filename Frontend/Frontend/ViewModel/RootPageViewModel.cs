@@ -6,7 +6,7 @@ using Frontend.View;
 using RestSharp;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Timetable;
+using Frontend.Models;
 using System.Threading;
 
 namespace Frontend
@@ -17,6 +17,7 @@ namespace Frontend
      */
 
     class RootPageViewModel : ViewModelBase
+        //TODO: Mockup vom server anzeigen
     {
         #region properties
         //Loading Flag ob loading page angezeigt werden soll
@@ -49,11 +50,28 @@ namespace Frontend
                 }
             }
         }
+
+        private MockupModels _mm;
+        public MockupModels MM
+        {
+            get { return _mm; }
+            set
+            {
+                if (_mm != value)
+                {
+                    _mm = value;
+                    OnPropertyChanged("MM");
+                }
+            }
+        }
+
         #endregion
+
 
         public RootPageViewModel()
         {
             ActivePage = new HomePage();
+            this.MM = new MockupModels();
             IsLoading = false;
         }
 
@@ -199,6 +217,7 @@ namespace Frontend
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
+            MM.ModuleList = (string)response.Content;
             cancellationTokenSource.Dispose();
         }
     

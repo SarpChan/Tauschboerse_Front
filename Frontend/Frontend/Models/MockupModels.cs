@@ -7,15 +7,24 @@ using Timetable;
 
 namespace Frontend.Models
 {
-    class MockupModels
-    {
-        public List<Group> GroupList { get; set; }
-        public Student ActiveStudent { get; set; }
+    class MockupModels { 
 
-        public MockupModels ()
+        public MockupModels()
         {
-            this.ActiveStudent = new Student();
-            this.ActiveStudent.EnrolementNumber = 1001337;
+            ModuleList = "";
+        }
+    private string _moduleList;
+    public string ModuleList
+    {
+        get
+        {
+            return _moduleList;
+        }
+        set
+        {
+            _moduleList = value;
         }
     }
+
+   }
 }
