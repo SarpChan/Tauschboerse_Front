@@ -149,7 +149,6 @@ namespace Frontend
                 SwitchIsLoading();
                 await RequestTimetableFromServerAsync();
                 SwitchIsLoading();
-
             }
             else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
             {
@@ -165,7 +164,7 @@ namespace Frontend
             }
             else
             {
-                IsLoading = false;
+                return;
             }
             ActivePage = newActivePage;
         }
@@ -201,7 +200,6 @@ namespace Frontend
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
             cancellationTokenSource.Dispose();
-
         }
     
         #endregion

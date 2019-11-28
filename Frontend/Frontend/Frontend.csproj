@@ -89,6 +89,7 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\Timetable.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="UserControls\SideBar.xaml.cs">
