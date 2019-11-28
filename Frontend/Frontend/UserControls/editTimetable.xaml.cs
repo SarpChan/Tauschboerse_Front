@@ -18,11 +18,19 @@ namespace Frontend.UserControls
     /// <summary>
     /// Interaktionslogik für editTimetable.xaml
     /// </summary>
-    public partial class editTimetable : UserControl
+    public partial class EditTimetable : UserControl
     {
-        public editTimetable()
+        public EditTimetable()
         {
             InitializeComponent();
         }
+
+        public ICommand TT_SaveButtonCommand
+        {
+            get { return (ICommand)GetValue(TT_SaveButtonCommandProperty); }
+            set { SetValue(TT_SaveButtonCommandProperty, value); }
+        }
+        public static readonly DependencyProperty TT_SaveButtonCommandProperty =
+            DependencyProperty.Register("TT_SaveButtonCommand", typeof(ICommand), typeof(EditTimetable), new UIPropertyMetadata(null));
     }
 }
