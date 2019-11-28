@@ -178,11 +178,13 @@ namespace Frontend
 
         public async Task RequestTimetableFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("timetable/{id}", Method.GET);
+            var client = new RestClient("http://localhost:8080/"); //Base-URL
+            var request = new RestRequest("/rest/module/read", Method.GET); //REST Path
+            //var request = new RestRequest("rest/timetable", Method.GET);
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("id", "1001337");
+            //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber);
+            request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
             var body = new
             {
                 Id = "",
@@ -198,6 +200,7 @@ namespace Frontend
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
+            cancellationTokenSource.Dispose();
 
         }
     
