@@ -11,18 +11,29 @@ namespace Frontend
         //Hier eig liste mit Modulen reingereicht??
         public ModuleListModel()
         {
-            int i = 0;
-            foreach (string module in new string[] { "Prog3", "EIBO" })
+            AddModule(new ModuleDummy()
             {
-                if(i == 0)
-                {
-                    AddModule(new ModuleDummy() { ID = "" + (i++), Name = module, StartTime = "0815", EndTime = "0945", Day = "0" });
-                } else
-                {
-                    AddModule(new ModuleDummy() { ID = "" + (i++), Name = module, StartTime = "1000", EndTime = "1130", Day = "3" });
-                }
-                
-            }
+                ID = "0",
+                StartTime = "0815",
+                EndTime = "0945",
+                Day = "0",
+                PersonName = "Nick",
+                RoomNumber = "D14",
+                CourseName = "Entwicklung Interaktiver Benutzeroberflächen",
+                Color = "#FFF4A233"
+            });
+            AddModule(new ModuleDummy()
+            {
+                ID = "1",
+                StartTime = "1415",
+                EndTime = "1545",
+                Day = "3",
+                PersonName = "Olli",
+                RoomNumber = "D17",
+                CourseName = "Programmieren 3",
+                Color = "#FFA8EEDD"
+            });
+
         }
 
         private List<ModuleDummy> _moduleList = new List<ModuleDummy>();
@@ -41,11 +52,13 @@ namespace Frontend
 
     public class ModuleDummy
     {
-        public string Name { get; set; }
         public string ID { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
-
+        public string RoomNumber { get; set; }
+        public string PersonName { get; set; }
+        public string CourseName { get; set; }
+        public string Color { get; set; }
         public string Day { get; set; }
     }
 

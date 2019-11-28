@@ -57,6 +57,12 @@ namespace Frontend.View
         public double TimeWidth { get { return (double)GetValue(TimeWidthProperty); } set { SetValue(TimeWidthProperty, value); } }
         public static readonly DependencyProperty TimeWidthProperty = DependencyProperty.Register("TimeWidth", typeof(double), typeof(TimetableItem), new UIPropertyMetadata(null));
 
+        public double TotalWidth { get { return (double)GetValue(TotalWidthProperty); } set { SetValue(TimeWidthProperty, value); } }
+        public static readonly DependencyProperty TotalWidthProperty = DependencyProperty.Register("TotalWidth", typeof(double), typeof(TimetableItem), new UIPropertyMetadata(null));
+
+        public double TotalHeight { get { return (double)GetValue(TotalHeightProperty); } set { SetValue(TimeWidthProperty, value); } }
+        public static readonly DependencyProperty TotalHeightProperty = DependencyProperty.Register("TotalHeight", typeof(double), typeof(TimetableItem), new UIPropertyMetadata(null));
+
 
         public string TimeStart { get { return (string)GetValue(TimeStartProperty); } set { SetValue(TimeStartProperty, value); } }
         public static readonly DependencyProperty TimeStartProperty = DependencyProperty.Register("TimeStart", typeof(string), typeof(TimetableItem), new UIPropertyMetadata(null));

@@ -46,7 +46,11 @@
                                  die Canvas.Left/Top-Properties beziehen sich auf dieses innere Canvas,
                                  X/Y-Koordinaten passen (nur) wegen der 0x0-Ausbreitung des inneren Canvas
                             -->
-                                <local:TimetableItem TimeStart="0815" Module="{Binding .}" TimeWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" ItemWidth="{Binding ColumnWidth, ElementName=Timetable, Mode=OneWay}" TimeEnd="0945" Day="2" ID="{Binding ID}" PersonName="Marc" CourseName="Toller Test" RoomNumber="D017" Color="#FF2B65" />
+                                <local:TimetableItem TimeStart="0815" Module="{Binding .}" 
+                                                     TimeWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" 
+                                                     ItemWidth="{Binding ColumnWidth, ElementName=Timetable, Mode=OneWay}"
+                                                     TotalWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"
+                                                     TotalHeight="{Binding ActualHeight, ElementName=Timetable, Mode=OneWay}" />
                             </Canvas>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
