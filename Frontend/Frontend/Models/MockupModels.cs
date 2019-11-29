@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timetable;
-
-namespace Frontend.Models
+﻿namespace Frontend.Models
 {
     class MockupModels { 
 
         public MockupModels()
         {
-            ModuleList = "";
+            MockModule = "EMPTY";
         }
-    private string _moduleList;
-    public string ModuleList
-    {
-        get
+        private string _mockModule;
+        public string MockModule
         {
-            return _moduleList;
-        }
-        set
-        {
-            _moduleList = value;
+            get
+            {
+                return _mockModule;
+            }
+            set
+            {
+                _mockModule = value;
+            }
         }
     }
-
-   }
 }

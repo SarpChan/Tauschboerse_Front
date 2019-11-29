@@ -9,7 +9,7 @@ namespace Frontend
     {
         public MainWindow()
         {
-            this.DataContext = new RootPageViewModel(); //TODO: verifizieren wie genau DataContext funktioniert
+            this.DataContext = new MainViewModel(); //TODO: verifizieren wie genau DataContext funktioniert
             InitializeComponent();
             this.ShowsNavigationUI = false;
         }

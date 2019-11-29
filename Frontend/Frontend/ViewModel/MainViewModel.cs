@@ -13,10 +13,11 @@ namespace Frontend
 {
     /**
      * <summary>
+     * Haupt ViewModel. Hat alle Properties, ICommands und Methoden //TODO: sind mehr als eins überhaupt benötigt?
      * </summary>
      */
 
-    class RootPageViewModel : ViewModelBase
+    class MainViewModel : ViewModelBase
         //TODO: Mockup vom server anzeigen
     {
         #region properties
@@ -35,6 +36,7 @@ namespace Frontend
             }
         }
 
+        //Aktuell angezeigte Page. Frame hat Binding darauf um zu switchen
         private Page _activePage;
         public Page ActivePage
         {
@@ -51,6 +53,7 @@ namespace Frontend
             }
         }
 
+        //Nur zum testen bis Model exisitiert
         private MockupModels _mm;
         public MockupModels MM
         {
@@ -64,11 +67,9 @@ namespace Frontend
                 }
             }
         }
-
         #endregion
 
-
-        public RootPageViewModel()
+        public MainViewModel()
         {
             ActivePage = new HomePage();
             this.MM = new MockupModels();
@@ -76,6 +77,9 @@ namespace Frontend
         }
 
         #region commands
+        /*
+         * Alle ICommands für die Button-Funktionen
+         */
         private ICommand _SwitchToHomePageCommand;
         public ICommand SwitchToHomePageCommand
         {
@@ -156,6 +160,9 @@ namespace Frontend
         #endregion
 
         #region methods
+        /*
+         * Handled das Page-Switchen
+         */
         private async void SwitchActivePageAsync(Page newActivePage)
         {
             if (newActivePage.GetType().Equals(typeof(HomePage)))
@@ -178,7 +185,7 @@ namespace Frontend
             }
             else if (newActivePage.GetType().Equals(typeof(AdminPage)))
             {
-                IsLoading = true;
+                IsLoading = false;
             }
             else
             {
@@ -187,20 +194,26 @@ namespace Frontend
             ActivePage = newActivePage;
         }
 
+        /*
+         * Simple Methode zum ändern des IsLoading-Zustands
+         */
         private void SwitchIsLoading()
         {
             IsLoading = !IsLoading;
         }
 
-
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
         public async Task RequestTimetableFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
             var request = new RestRequest("/rest/module/read", Method.GET); //REST Path
-            //var request = new RestRequest("rest/timetable", Method.GET);
+            //var request = new RestRequest("rest/timetable", Method.GET); //REST Path
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber);
+            //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber); //Adds "?moduleID='EnrolementNumber'" to Path
             request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
             var body = new
             {
@@ -217,10 +230,9 @@ namespace Frontend
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
-            MM.ModuleList = (string)response.Content;
+            MM.MockModule = (string)response.Content; //Zum Testen
             cancellationTokenSource.Dispose();
         }
-    
         #endregion
     }
 }

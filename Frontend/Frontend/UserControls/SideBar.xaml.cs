@@ -6,6 +6,7 @@ namespace Frontend.UserControls
 {
     /// <summary>
     /// Interaction logic for SideBar.xaml
+    /// Funktioniert aktuell nicht, weil ich nicht weiß wie man das mit den multiplen ICommands richtig macht in der RootPage.xaml
     /// </summary>
     public partial class SideBar : UserControl
     {
