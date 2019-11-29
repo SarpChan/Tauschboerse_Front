@@ -1,14 +1,20 @@
-﻿<UserControl 
-             x:Name="Timetable"
-             x:Class="Frontend.View.TimeTable"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.View"
              xmlns:project ="clr-namespace:Frontend"
+             xmlns:Helpers="clr-namespace:Frontend.Helpers" 
+             x:Name="Timetable"
+             x:Class="Frontend.View.TimeTable"
              mc:Ignorable="d" 
              d:DesignHeight="500 " d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Helpers:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
+        <Helpers:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
+        <Helpers:ItemWidthConverter x:Key="ItemWidthConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>
     </UserControl.DataContext>
@@ -28,6 +34,7 @@
             </Grid.RowDefinitions>
             <Rectangle Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"/>
             <TextBlock x:Name="text_zeit" Text="Zeit" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="0" Padding="0,10" Foreground="White" HorizontalAlignment="Center"/>
+            <Label x:Name="timeWidth" Content="" Grid.Column="0" HorizontalAlignment="Stretch"/>
             <TextBlock x:Name="text__montag" Text="Montag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="1" Padding="0,10" Foreground="White" Focusable="False" HorizontalAlignment="Center"/>
             <TextBlock x:Name="text_dienstag" Text="Dienstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="2" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
             <TextBlock x:Name="text_mittwoch" Text="Mittwoch" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="3" Padding="0,10" Foreground="White" HorizontalAlignment="Center"  />
@@ -40,24 +47,55 @@
                 <ItemsControl ItemsSource="{Binding ModuleList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type project:ModuleDummy}">
+                            <DataTemplate.Resources>
+                                <Style TargetType="local:TimetableItem">
+                                    <Setter Property="Canvas.Top">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource TimeToYCoordinatesConverter}">
+                                                <Binding Path="StartTime"/>
+                                                <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Canvas.Left">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource TimeToXCoordinatesConverter}">
+                                                <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                                <Binding Path="ActualWidth" ElementName="timeWidth" Mode="OneWay"/>
+                                                <Binding Path="Day"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Width">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource ItemWidthConverter}">
+                                                <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                                <Binding Path="ActualWidth" ElementName="timeWidth" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataTemplate.Resources>
                             <Canvas>
                                 <!-- Null x Null großes Canvas, jedes davon (je Item) wird auf (0,0) 
                                  im umgebenden Canvas des ItemsControl hinzugefügt, 
                                  die Canvas.Left/Top-Properties beziehen sich auf dieses innere Canvas,
                                  X/Y-Koordinaten passen (nur) wegen der 0x0-Ausbreitung des inneren Canvas
                             -->
-                                <local:TimetableItem TimeStart="0815" Module="{Binding .}" 
+
+                                <local:TimetableItem Module="{Binding .}" 
                                                      TimeWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" 
                                                      ItemWidth="{Binding ColumnWidth, ElementName=Timetable, Mode=OneWay}"
                                                      TotalWidth="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"
-                                                     TotalHeight="{Binding ActualHeight, ElementName=Timetable, Mode=OneWay}" />
+                                                     TotalHeight="{Binding ActualHeight, ElementName=Timetable, Mode=OneWay}"/>
                             </Canvas>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+                    
                 </ItemsControl>
                 <!-- ItemsSource="{Binding ModuleList}" -->
             </Canvas>
-            
+
         </Grid>
     </Border>
 </UserControl>

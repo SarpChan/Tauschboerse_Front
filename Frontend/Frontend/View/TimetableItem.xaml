@@ -15,15 +15,7 @@
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
     <Grid x:Name="Grid_Main" Margin="0" Width="{Binding ItemWidth, ConverterParameter=6, Converter={StaticResource WidthPercentageConverter}}"
-          Canvas.Top="{Binding Module.StartTime, Converter={StaticResource TimeToYCoordinatesConverter}, ElementName=TimeTableItem, ConverterParameter={Binding TotalHeight, ElementName=TimeTableItem}}"
-             Canvas.Left="{Binding Module.Day, Converter={StaticResource TimeToXCoordinatesConverter}, ElementName=TimeTableItem, 
-                         ConverterParameter={Binding TotalWidth}}">
-        <Grid.Canvas.Left></Grid.Canvas.Left>
-                <MultiBinding Converter="{StaticResource AccessLevelToVisibilityConverter}">
-                    <Binding Path="Tag" RelativeSource="{RelativeSource Mode=FindAncestor,
-                                                     AncestorType=UserControl}"/>
-                    <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
-                </MultiBinding>
+          >
         <!-- https://social.msdn.microsoft.com/Forums/vstudio/en-US/a1a47227-ff4d-44d0-92c5-728ccc7ed53e/how-to-multibinding-canvasleft-in-itemscontrol?forum=wpf -->
         <!-- Width="{Binding ItemWidth,ElementName=TimeTableItem}" -->
         <Grid.RowDefinitions>
