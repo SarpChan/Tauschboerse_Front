@@ -32,5 +32,21 @@ namespace Frontend.UserControls
         }
         public static readonly DependencyProperty TT_SaveButtonCommandProperty =
             DependencyProperty.Register("TT_SaveButtonCommand", typeof(ICommand), typeof(EditTimetable), new UIPropertyMetadata(null));
+
+        public ICommand TT_TimeButtonCommand
+        {
+            get { return (ICommand)GetValue(TT_TimeButtonCommandProperty); }
+            set { SetValue(TT_TimeButtonCommandProperty, value); }
+        }
+        public static readonly DependencyProperty TT_TimeButtonCommandProperty =
+            DependencyProperty.Register("TT_SaveButtonCommand", typeof(ICommand), typeof(EditTimetable), new UIPropertyMetadata(null));
+
+        public ICommand TT_DetailButtonCommand
+        {
+            get { return (ICommand)GetValue(TT_DetailButtonCommandProperty); }
+            set { SetValue(TT_DetailButtonCommandProperty, value); }
+        }
+        public static readonly DependencyProperty TT_DetailButtonCommandProperty =
+            DependencyProperty.Register("TT_SaveButtonCommand", typeof(ICommand), typeof(EditTimetable), new UIPropertyMetadata(null));
     }
 }

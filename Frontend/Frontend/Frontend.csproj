@@ -165,6 +165,9 @@
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
     <Resource Include="Resources\Icons\left_arrow_t.png" />
+    <Resource Include="Resources\Icons\info.png" />
+    <Resource Include="Resources\Icons\times.png" />
+    <Resource Include="Resources\Icons\save.png" />
     <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\left_arrow_b.png" />
     <Resource Include="Resources\Icons\left_arrow_w.png" />
