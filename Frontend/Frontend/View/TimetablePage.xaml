@@ -68,7 +68,7 @@
                 <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
                     <TextBlock Padding="0,16,0,0" Width="{Binding ElementName=canvas_timetable, Path=Width}" Height="52" TextAlignment="Center" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White">
                         <TextBlock.Text>
-                            <Binding Path="DataContext.MockModule" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource AncestorType={x:Type Page}}"/>
+                            <Binding Path="DataContext.MM" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource AncestorType={x:Type Page}}"/>
                         </TextBlock.Text>
                     </TextBlock>
                 </Canvas>

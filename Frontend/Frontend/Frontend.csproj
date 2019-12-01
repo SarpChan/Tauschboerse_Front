@@ -53,7 +53,6 @@
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -76,7 +75,7 @@
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
-    <Compile Include="Models\MockupModels.cs" />
+    <Compile Include="Models\MockModule.cs" />
     <Compile Include="UserControls\TP_LogoButton.xaml.cs">
       <DependentUpon>TP_LogoButton.xaml</DependentUpon>
     </Compile>

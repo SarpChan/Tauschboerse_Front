@@ -18,12 +18,11 @@ namespace Frontend.ViewModel
      */
 
     class MainViewModel : ViewModelBase
-        //TODO: Mockup vom server anzeigen
+        //TODO: Mockup vom server in MockupModel speichern und von dort aus anzeigen
     {
-
         public MainViewModel()
         {
-            MockModule = "EMPTY";
+            MM = "EMPTY";
             ActivePage = new HomePage();
             IsLoading = false;
         }
@@ -61,17 +60,17 @@ namespace Frontend.ViewModel
         }
 
         //Nur zum testen bis Model exisitiert
-        private string _mockModule;
-        public string MockModule
+        private string _mm;
+        public string MM
         {
-            get { return _mockModule; }
+            get { return _mm; }
             set
             {
-                if (_mockModule != value)
+                if (_mm != value)
                 {
-                    _mockModule = value;
-                    OnPropertyChanged("MockModule");
-                    Console.WriteLine("MM CHANGED TO: " + _mockModule);
+                    _mm = value;
+                    OnPropertyChanged("MM");
+                    Console.WriteLine("MM CHANGED!!");
                 }
             }
         }
@@ -231,7 +230,7 @@ namespace Frontend.ViewModel
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
-            MockModule = (string)response.Content; //Zum Testen
+            MM = (string)response.Content; //Zum Testen
             cancellationTokenSource.Dispose();
         }
         #endregion
