@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 namespace Frontend.Helpers
 {
+    /// <summary>
+    /// The TermConverter class converts a json object of the type Term to a term object 
+    /// and sets the variables if those are provided.
+    /// </summary>
     class TermConverter : JsonConverter
     {
         public override bool CanRead => true;
@@ -38,6 +42,10 @@ namespace Frontend.Helpers
 
         }
     }
+    /// <summary>
+    /// The StudentConverter class converts a json object of the type Student to a set of students
+    /// and sets the variables if those are provided.
+    /// </summary>
     class StudentConverter : JsonConverter
     {
         public override bool CanRead => true;
@@ -77,6 +85,9 @@ namespace Frontend.Helpers
 
         }
     }
+    /// <summary>
+    /// The Converter class converts a string of json objects to a university object.
+    /// </summary>
     class Converter
     {
         public University ParseJson(string json)
