@@ -72,8 +72,8 @@
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControls\SelectionBar.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SelectionBarElement.xaml">
       <SubType>Designer</SubType>
@@ -88,14 +88,14 @@
     <Compile Include="UserControls\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TB_LogoButton.xaml.cs">
+      <DependentUpon>TB_LogoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
+      <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TP_LogoButton.xaml.cs">
-      <DependentUpon>TP_LogoButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TP_LogoutButton.xaml.cs">
-      <DependentUpon>TP_LogoutButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -167,15 +167,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\TB_LogoButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TB_LogoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\TopBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TP_LogoButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TP_LogoutButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
