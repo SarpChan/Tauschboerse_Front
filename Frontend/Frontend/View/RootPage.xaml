@@ -137,7 +137,10 @@
                 <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
-                <user_controls:SelectionBarElement SBE_Tag="Fischtest" Grid.Row="1" Grid.Column="1"/>
+                <!--
+                <user_controls:SelectionBarElement SBE_Tag="Test" Grid.Row="1" Grid.Column="1"/>
+                <user_controls:SelectionBar AmountOfElements="5" Grid.Row="1" Grid.Column="1"/>
+                -->
             </StackPanel>
         </Grid>
         

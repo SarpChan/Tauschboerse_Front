@@ -117,7 +117,7 @@
     </Style>
     
     <!--SelectionBarElement-->
-    <Style TargetType="{x:Type Button}" x:Key="SelectionBarElement">
+    <Style TargetType="{x:Type Button}" x:Key="SelectionBarButton">
         <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
         <Setter Property="Background" Value="{StaticResource CD_Grey}"/>
         <Setter Property="FontSize" Value="24" />
