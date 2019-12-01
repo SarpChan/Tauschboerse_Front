@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Curriculum class models a course curriculum.
+    /// </summary>
     public class Curriculum
     {
         public long Id { get; set; }

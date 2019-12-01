@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Course class models a course.
+    /// </summary>
     public class Course
     {
         public long Id { get; set; }

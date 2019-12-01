@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Term class models a term.
+    /// </summary>
     public class Term
     {
         public long Id { get; set; }

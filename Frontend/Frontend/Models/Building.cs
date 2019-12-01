@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Building class models a building.
+    /// </summary>
     public class Building
     {
         public long Id { get; set; }

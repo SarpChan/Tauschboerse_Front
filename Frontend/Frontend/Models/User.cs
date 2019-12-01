@@ -1,5 +1,8 @@
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The User class models an user.
+    /// </summary>
     public class User
     {
         public long Id { get; set; }

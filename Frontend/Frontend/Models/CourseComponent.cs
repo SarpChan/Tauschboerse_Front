@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The CourseComponent class models a course component.
+    /// </summary>
     public enum CourseType { LECTURE, PRACTICE, TUTORIAL, TEST };
     public class CourseComponent
     {

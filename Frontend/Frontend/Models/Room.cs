@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Room class models a room.
+    /// </summary>
     public class Room
     {
         public long Id { get; set; }

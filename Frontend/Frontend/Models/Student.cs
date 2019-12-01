@@ -2,6 +2,9 @@
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Student class models a student.
+    /// </summary>
     public class Student
     {
         public long Id { get; set; }

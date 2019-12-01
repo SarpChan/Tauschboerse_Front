@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Campus class models a campus.
+    /// </summary>
     public class Campus
     {
         public long Id { get; set; }

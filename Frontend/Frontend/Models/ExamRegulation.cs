@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The ExamRegulation class models an exam regulation.
+    /// </summary>
     public class ExamRegulation
     {
         public long Id { get; set; }

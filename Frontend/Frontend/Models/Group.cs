@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 using Frontend.Helpers;
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The Group class models a group.
+    /// </summary>
     public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
     public class Group
     {
@@ -14,6 +17,7 @@ namespace Frontend.Models
         public DayOfWeek Day { get; set; }
         public Dictionary<string, int> startTime { get; set; } // convert to datettime
         public Dictionary<string, int> endTime { get; set; }
+        // Use custom converter to create a new Term object
         [JsonConverter(typeof(TermConverter))]
         public Term Term { get; set; }
         [JsonProperty("courseComponent")]
@@ -22,8 +26,9 @@ namespace Frontend.Models
         public long LectureId { get; set; }
         [JsonProperty("room")]
         public long RoomId { get; set; }
+        //Use custom converter to create a new Student object
         [JsonConverter(typeof(StudentConverter))]
-        public List<int> Students { get; set; }
+        public HashSet<Student> Students { get; set; }
 
     }
 }
