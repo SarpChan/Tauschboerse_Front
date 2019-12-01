@@ -4,16 +4,14 @@ using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
 using RestSharp;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Frontend.Models;
 using System.Threading;
 
 namespace Frontend.ViewModel
 {
     /**
      * <summary>
-     * Haupt ViewModel. Hat alle Properties, ICommands und Methoden //TODO: sind mehr als eins überhaupt benötigt?
+     * Haupt ViewModel. Hat alle Properties, ICommands und Methoden
      * </summary>
      */
 
@@ -58,7 +56,7 @@ namespace Frontend.ViewModel
                 }
             }
         }
-
+        
         //Nur zum testen bis Model exisitiert
         private string _mm;
         public string MM
@@ -70,7 +68,7 @@ namespace Frontend.ViewModel
                 {
                     _mm = value;
                     OnPropertyChanged("MM");
-                    Console.WriteLine("MM CHANGED!!");
+                    Console.WriteLine("MM CHANGED TO: " + _mm);
                 }
             }
         }
@@ -229,8 +227,14 @@ namespace Frontend.ViewModel
             request.AddJsonBody(body);
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+            //Zum Testen
             Console.WriteLine(response.Content);
-            MM = (string)response.Content; //Zum Testen
+            if ((string)response.Content != "")
+            {
+                MM = (string)response.Content; 
+            }
+            //Zum Testen
             cancellationTokenSource.Dispose();
         }
         #endregion

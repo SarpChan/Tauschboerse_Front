@@ -27,11 +27,13 @@ namespace Frontend.View
         {
             InitializeComponent();
         }
-
+        
         #region MainFrame DataContext to Pages
-        /*
-         * Benoetigt um DataContext an Pages in Frame weiter zu geben. 
+        
+         /* 
+          * Benoetigt um DataContext an Pages in Frame weiter zu geben.
          */
+
         private void FrameDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             UpdateFrameDataContext(sender, e);

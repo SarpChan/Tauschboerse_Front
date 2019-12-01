@@ -75,7 +75,7 @@
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
-    <Compile Include="Models\MockModule.cs" />
+    <Compile Include="Models\MockupData.cs" />
     <Compile Include="UserControls\TP_LogoButton.xaml.cs">
       <DependentUpon>TP_LogoButton.xaml</DependentUpon>
     </Compile>

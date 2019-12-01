@@ -1,5 +1,4 @@
-﻿using Frontend.ViewModel;
-using System.Windows.Navigation;
+﻿using System.Windows.Navigation;
 
 namespace Frontend
 {
@@ -10,7 +9,6 @@ namespace Frontend
     {
         public MainWindow()
         {
-            this.DataContext = new MainViewModel(); //TODO: verifizieren wie genau DataContext funktioniert
             InitializeComponent();
             this.ShowsNavigationUI = false;
         }

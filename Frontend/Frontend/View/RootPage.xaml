@@ -9,11 +9,14 @@
       xmlns:user_controls="clr-namespace:Frontend.UserControls"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:helpers="clr-namespace:Frontend.Helpers"
+      xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
       Height="{Binding WindowSettings.Height,Mode=TwoWay}"
       Width="{Binding WindowSettings.Width, Mode=TwoWay}">
-
+    <Page.DataContext>
+        <viewmodel:MainViewModel x:Name="MainViewModel"/>
+    </Page.DataContext>
     <Page.Resources>
         <!--Loading Page-->
         <Style TargetType="{x:Type Grid}" x:Key="LoadingPage" >
