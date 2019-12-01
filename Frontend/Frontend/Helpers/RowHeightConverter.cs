@@ -13,8 +13,9 @@ namespace Frontend.Helpers
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             double totalHeight = System.Convert.ToDouble(values[0]);
+            double headerHeight = System.Convert.ToDouble(values[1]);
             int rowAmount = (int)Globals.GetDuration() / Globals.Subdivisions;
-            return totalHeight/rowAmount;
+            return (totalHeight-headerHeight)/rowAmount+10;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

@@ -18,14 +18,14 @@
             <ColumnDefinition Width="0.95*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="77"/>
-            <RowDefinition Height="113"/>
-            <RowDefinition Height="137"/>
-            <RowDefinition Height="593"/>
-            <RowDefinition Height="593"/>
-        </Grid.RowDefinitions>
+            <RowDefinition Height="0.03*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.04*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
         <TextBlock x:Name="Titel" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-        <Grid x:Name="Legende" Width="1550" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
+        <Grid x:Name="Legende" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="50"/>
@@ -35,8 +35,8 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="1550"/>
+                <ColumnDefinition Width="220"/> 
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="5"/>
@@ -71,11 +71,11 @@
         </Grid>
             <Grid x:Name="TimetableWrapper" Grid.Row="3" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.60*"/>
+                    <ColumnDefinition Width="0.95*"/>
                     <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
 
-                <local:TimeTable></local:TimeTable>
+                <local:TimeTable/>
 
             </Grid>
 

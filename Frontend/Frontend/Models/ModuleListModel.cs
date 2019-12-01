@@ -13,11 +13,11 @@ namespace Frontend
         {
             AddModule(new ModuleDummy()
             {
-                ID = "0",
-                StartTime = "10:15",
+                ID = "69",
+                StartTime = "11:15",
                 EndTime = "09:45",
-                Day = "0",
-                PersonName = "Nick",
+                Day = "1",
+                PersonName = "Lukas",
                 RoomNumber = "D14",
                 CourseName = "EIBO",
                 Color = "#FFF4A233"
@@ -33,7 +33,39 @@ namespace Frontend
                 CourseName = "Programmieren 3",
                 Color = "#FFA8EEDD"
             });
-
+            AddModule(new ModuleDummy()
+            {
+                ID = "1",
+                StartTime = "08:15",
+                EndTime = "15:45",
+                Day = "0",
+                PersonName = "Nicklas",
+                RoomNumber = "D11",
+                CourseName = "Programmieren 3",
+                Color = "#FFA16C17"
+            });
+            AddModule(new ModuleDummy()
+            {
+                ID = "1",
+                StartTime = "09:15",
+                EndTime = "19:15",
+                Day = "4",
+                PersonName = "Sonntag",
+                RoomNumber = "D8",
+                CourseName = "Programmieren 4",
+                Color = "#FFABCDEF"
+            });
+            AddModule(new ModuleDummy()
+            {
+                ID = "1",
+                StartTime = "12:00",
+                EndTime = "19:00",
+                Day = "2",
+                PersonName = "Sanja",
+                RoomNumber = "D17",
+                CourseName = "Programmieren 1",
+                Color = "#FF99AA88"
+            });
         }
 
         private List<ModuleDummy> _moduleList = new List<ModuleDummy>();
