@@ -6,6 +6,7 @@ using Frontend.View;
 using RestSharp;
 using System.Threading.Tasks;
 using System.Threading;
+using Frontend.Models;
 
 namespace Frontend.ViewModel
 {
@@ -72,6 +73,7 @@ namespace Frontend.ViewModel
                 }
             }
         }
+
         #endregion
 
         #region commands
@@ -235,6 +237,7 @@ namespace Frontend.ViewModel
                 MM = (string)response.Content; 
             }
             //Zum Testen
+
             cancellationTokenSource.Dispose();
         }
         #endregion

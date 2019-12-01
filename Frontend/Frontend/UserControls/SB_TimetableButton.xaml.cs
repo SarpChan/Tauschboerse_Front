@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class SB_TimetableButton : UserControl
     {
         public SB_TimetableButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand SB_TimetableButtonCommand
         {
             get { return (ICommand)GetValue(SB_TimetableButtonCommandProperty); }

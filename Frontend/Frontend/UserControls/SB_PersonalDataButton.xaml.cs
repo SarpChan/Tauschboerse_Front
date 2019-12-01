@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class SB_PersonalDataButton : UserControl
     {
         public SB_PersonalDataButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand SB_PersonalDataButtonCommand
         {
             get { return (ICommand)GetValue(SB_PersonalDataButtonCommandProperty); }

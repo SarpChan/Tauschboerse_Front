@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class SB_AdminButton : UserControl
     {
         public SB_AdminButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand SB_AdminButtonCommand
         {
             get { return (ICommand)GetValue(SB_AdminButtonCommandProperty); }
