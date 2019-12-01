@@ -1,4 +1,5 @@
-﻿using System.Windows.Navigation;
+﻿using Frontend.ViewModel;
+using System.Windows.Navigation;
 
 namespace Frontend
 {

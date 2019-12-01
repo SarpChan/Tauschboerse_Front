@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Frontend.Models;
 using System.Threading;
 
-namespace Frontend
+namespace Frontend.ViewModel
 {
     /**
      * <summary>
@@ -20,6 +20,14 @@ namespace Frontend
     class MainViewModel : ViewModelBase
         //TODO: Mockup vom server anzeigen
     {
+
+        public MainViewModel()
+        {
+            MockModule = "EMPTY";
+            ActivePage = new HomePage();
+            IsLoading = false;
+        }
+
         #region properties
         //Loading Flag ob loading page angezeigt werden soll
         private bool _isLoading;
@@ -48,33 +56,26 @@ namespace Frontend
                     _activePage = value;
                     OnPropertyChanged("ActivePage");
                     Console.WriteLine("ACTIVE PAGE = " + ActivePage);
-                    Console.WriteLine(ActivePage.GetType().FullName);
                 }
             }
         }
 
         //Nur zum testen bis Model exisitiert
-        private MockupModels _mm;
-        public MockupModels MM
+        private string _mockModule;
+        public string MockModule
         {
-            get { return _mm; }
+            get { return _mockModule; }
             set
             {
-                if (_mm != value)
+                if (_mockModule != value)
                 {
-                    _mm = value;
-                    OnPropertyChanged("MM");
+                    _mockModule = value;
+                    OnPropertyChanged("MockModule");
+                    Console.WriteLine("MM CHANGED TO: " + _mockModule);
                 }
             }
         }
         #endregion
-
-        public MainViewModel()
-        {
-            ActivePage = new HomePage();
-            this.MM = new MockupModels();
-            IsLoading = false;
-        }
 
         #region commands
         /*
@@ -230,7 +231,7 @@ namespace Frontend
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
-            MM.MockModule = (string)response.Content; //Zum Testen
+            MockModule = (string)response.Content; //Zum Testen
             cancellationTokenSource.Dispose();
         }
         #endregion

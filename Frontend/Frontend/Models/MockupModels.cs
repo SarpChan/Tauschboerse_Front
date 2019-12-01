@@ -1,22 +1,21 @@
-﻿namespace Frontend.Models
+﻿using System.Windows;
+
+namespace Frontend.Models
 {
-    class MockupModels { 
+    class MockupModels : DependencyObject
+    { 
 
         public MockupModels()
         {
             MockModule = "EMPTY";
         }
-        private string _mockModule;
+ 
         public string MockModule
         {
-            get
-            {
-                return _mockModule;
-            }
-            set
-            {
-                _mockModule = value;
-            }
+            get { return (string) GetValue(MockModuleProperty); }
+            set { SetValue(MockModuleProperty, value); }
         }
+        public static readonly DependencyProperty MockModuleProperty =
+            DependencyProperty.Register("MockModule", typeof(string), typeof(MockupModels));
     }
 }
