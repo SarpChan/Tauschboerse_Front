@@ -54,4 +54,52 @@
             <Color A="255" R="38" G="91" B="101"/>
         </SolidColorBrush.Color>
     </SolidColorBrush>
+    <!--#ef7a04-->
+    <SolidColorBrush x:Key="CD_Orange">
+        <SolidColorBrush.Color>
+            <Color A="255" R="239" G="122" B="4"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#c45a41-->
+    <SolidColorBrush x:Key="CD:OrangeBrown">
+        <SolidColorBrush.Color>
+            <Color A="255" R="196" G="90" B="65"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#eedc00-->
+    <SolidColorBrush x:Key="CD_Yellow">
+        <SolidColorBrush.Color>
+            <Color A="255" R="238" G="220" B="0"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#ddd33e-->
+    <SolidColorBrush x:Key="CD_LimeYellow">
+        <SolidColorBrush.Color>
+            <Color A="255" R="221" G="211" B="62"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#672f60-->
+    <SolidColorBrush x:Key="CD_Purple">
+        <SolidColorBrush.Color>
+            <Color A="255" R="103" G="47" B="96"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#4b6b29-->
+    <SolidColorBrush x:Key="CD_Green">
+        <SolidColorBrush.Color>
+            <Color A="255" R="75" G="107" B="41"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#a1262d-->
+    <SolidColorBrush x:Key="C_DarkRed">
+        <SolidColorBrush.Color>
+            <Color A="255" R="161" G="38" B="45"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
+    <!--#cc0000-->
+    <SolidColorBrush x:Key="CD_Red">
+        <SolidColorBrush.Color>
+            <Color A="255" R="204" G="0" B="0"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
 </ResourceDictionary>
