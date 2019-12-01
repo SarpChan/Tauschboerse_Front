@@ -12,5 +12,6 @@ namespace Frontend.Models
         public string StartDate { get; set; } //convert string to datetime
 		public string EndDate { get; set; }
 		public int Period { get; set; }
+        public bool TermIsSet { get; set; } = true;
     }
 }
