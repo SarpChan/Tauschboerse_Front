@@ -25,7 +25,7 @@ namespace Frontend
             AddModule(new ModuleDummy()
             {
                 ID = "1",
-                StartTime = "14:15",
+                StartTime = "08:15",
                 EndTime = "15:45",
                 Day = "3",
                 PersonName = "Olli",

@@ -46,7 +46,7 @@
             <TextBlock x:Name="text_freitag" Text="Freitag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E"  Grid.Column="5" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
             <!-- <local:TimetableItem x:Name="timetableitem_test1" Grid.Row="1" Grid.Column="1" ID="4215" PersonName="WEI" CourseName="Programmieren 3" RoomNumber="D001" Color="#FF672F60" Height="476.4"/>
             <local:TimetableItem Grid.Row="1" Grid.Column="3" ID="42069" PersonName="Nicklas" CourseName="Toller Test" RoomNumber="D017" Color="#FF265B65" Height="300" Margin="0" VerticalAlignment="Top"/> -->
-
+            
             <Canvas Grid.Row="1" Grid.ColumnSpan="6">
                 <ItemsControl ItemsSource="{Binding RowList}">
                     <ItemsControl.ItemTemplate> 
@@ -90,11 +90,9 @@
                                 </Style>
                             </DataTemplate.Resources>
                             <Canvas>
-                                <Label Content="{Binding Time}" FontSize="12px" Panel.ZIndex="99"/>
+                                <Label Content="{Binding Time}" FontSize="12px" Panel.ZIndex="99" Width="{Binding ActualWidth, ElementName=timeWidth, Mode=OneWay}" HorizontalContentAlignment="Center" />
                                 <Rectangle Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" Fill="{Binding Color}" Panel.ZIndex="-1" 
                                  />
-
-
                             </Canvas>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -132,12 +130,6 @@
                                 </Style>
                             </DataTemplate.Resources> 
                             <Canvas>
-                                <!-- Null x Null großes Canvas, jedes davon (je Item) wird auf (0,0) 
-                                 im umgebenden Canvas des ItemsControl hinzugefügt, 
-                                 die Canvas.Left/Top-Properties beziehen sich auf dieses innere Canvas,
-                                 X/Y-Koordinaten passen (nur) wegen der 0x0-Ausbreitung des inneren Canvas
-                            -->
-
                                 <local:TimetableItem Module="{Binding .}" />
                             </Canvas>
                         </DataTemplate>

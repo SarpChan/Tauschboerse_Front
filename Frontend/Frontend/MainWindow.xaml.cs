@@ -23,7 +23,7 @@ namespace Frontend
     {
         public MainWindow()
         {
-            DataContext = new TimetableViewModel();
+            //DataContext = new TimetableViewModel();
             InitializeComponent();
             this.ShowsNavigationUI = false;
         }

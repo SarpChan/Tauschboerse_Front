@@ -12,6 +12,7 @@ namespace Frontend
     {
         private ModuleListModel moduleListModel = new ModuleListModel();
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
+        private DayListModel dayListModel = new DayListModel();
 
         public TimetableViewModel()
         {
@@ -38,6 +39,13 @@ namespace Frontend
         {
             get { return _RowList; }
         }
+
+        private ObservableCollection<DayModel> _DayList = new ObservableCollection<DayModel>();
+        public ObservableCollection<DayModel> DayList
+        {
+            get { return _DayList; }
+        }
+
 
         #endregion
     }

@@ -8,10 +8,7 @@
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
-    <Page.Resources>
-        <project:TimetableViewModel x:Key="TimetableViewModel"/>
-    </Page.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  DataContext="{Binding Source={StaticResource TimetableViewModel}}">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
         <Grid Height="2000" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>

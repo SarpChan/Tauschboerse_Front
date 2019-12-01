@@ -46,7 +46,7 @@ namespace Frontend.Helpers
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
             
 
-            return timeWidth + weekday * widthPerItem;
+            return timeWidth + (weekday) * widthPerItem;
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
@@ -66,7 +66,7 @@ namespace Frontend.Helpers
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             Console.WriteLine(timeWidth);
-            return (totalWidth - timeWidth) / Globals.weekdays;
+            return ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
