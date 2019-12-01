@@ -16,7 +16,7 @@
             </Style>
         </StackPanel.Resources>
         <UserControl x:Name="tt_save_button">
-            <Button Tag="TTSaveButton" Command="{Binding TT_SaveButtonCommand,ElementName=tt_save_button}" Click="Button_Click">
+            <Button Tag="TTSaveButton" Command="{Binding TT_SaveButtonCommand,ElementName=tt_save_button}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="VerticalAlignment" Value="Center" />
