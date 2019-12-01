@@ -19,7 +19,6 @@ namespace Frontend.Helpers
         }
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var terms = new HashSet<Term>();
             var groups = new HashSet<Group>();
             var jArray = JArray.Load(reader);
 
@@ -27,24 +26,17 @@ namespace Frontend.Helpers
             {
                 var group = new Group();
                 serializer.Populate(j.CreateReader(), group);
-
-                if (group.Term.TermIsSet)
+                
+                if (!group.Term.TermIsSet)
                 {
-                    terms.Add(group.Term);
-                }
-                else
-                {
-                    foreach (Term t in terms)
+                    foreach (var g in groups)
                     {
-                        Console.WriteLine(t);
-                        Console.WriteLine(t.GetType());
-                        Console.WriteLine(group.Term.Id);
-                        Console.WriteLine(group.Term.Id.GetType());
-                        if (t.Id == group.Term.Id)
+                        if (g.Term.Id == group.Term.Id)
                         {
+                            var t = g.Term;
                             group.Term = t;
-                        }
 
+                        }
                     }
                 }
                 groups.Add(group);
