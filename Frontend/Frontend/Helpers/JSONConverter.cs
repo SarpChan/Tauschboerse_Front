@@ -2,9 +2,9 @@
 using Frontend.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-//TODO: Documentation WIKI + Code
-namespace Frontend.Helpers
+using System.Collections.Generic;
 
+namespace Frontend.Helpers
 {
     class TermConverter : JsonConverter
     {
@@ -19,19 +19,18 @@ namespace Frontend.Helpers
         }
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            Term term = new Term();
             try
             {
                 JObject item = JObject.Load(reader);
-                var term = new Term();
                 serializer.Populate(item.CreateReader(), term);
                 return term;
             }
             catch (Newtonsoft.Json.JsonReaderException)
             {
-          
             }
-            Term t = new Term();
-            return t;
+            return term;
+
         }
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -39,7 +38,6 @@ namespace Frontend.Helpers
 
         }
     }
-
     class StudentConverter : JsonConverter
     {
         public override bool CanRead => true;
@@ -53,19 +51,25 @@ namespace Frontend.Helpers
         }
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            var students = new HashSet<Student>();
             try
             {
-                JObject item = JObject.Load(reader);
-                var student = new Student();
-                serializer.Populate(item.CreateReader(), student);
-                return student;
+                var jArray = JArray.Load(reader);
+                foreach (var j in jArray)
+                {
+                    Student student = new Student();
+                    serializer.Populate(j.CreateReader(), student);
+                    students.Add(student);
+                }
+                return students;
             }
             catch (Newtonsoft.Json.JsonReaderException)
             {
-
             }
-            Student s = new Student();
-            return s;
+            catch (Newtonsoft.Json.JsonSerializationException)
+            {
+            }
+            return students;
         }
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -73,7 +77,6 @@ namespace Frontend.Helpers
 
         }
     }
-
     class Converter
     {
         public University ParseJson(string json)
