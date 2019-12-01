@@ -87,5 +87,53 @@
                 </Button.Style>
             </Button>
         </UserControl>
+        <UserControl x:Name="tt_component_button">
+            <Button Tag="TTDetailButton" Command="{Binding TT_ComponentButtonCommand,ElementName=tt_component_button}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+                        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                                        <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
+                                            <Image Name="Details" Source="{StaticResource info}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </UserControl>
+        <UserControl x:Name="tt_delete_button">
+            <Button Tag="TTDetailButton" Command="{Binding TT_DeleteButtonCommand,ElementName=tt_delete_button}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+                        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                                        <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
+                                            <Image Name="Details" Source="{StaticResource info}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </UserControl>
     </StackPanel>
 </UserControl>

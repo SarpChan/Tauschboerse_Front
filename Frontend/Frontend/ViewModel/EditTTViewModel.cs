@@ -34,6 +34,17 @@ namespace Frontend.TT
             set { m_ButtonCommand = value; }
         }
 
+        public ICommand TT_ComponentButtonCommand
+        {
+            get { return m_ButtonCommand; }
+            set { m_ButtonCommand = value; }
+        }
+        public ICommand TT_DeleteButtonCommand
+        {
+            get { return m_ButtonCommand; }
+            set { m_ButtonCommand = value; }
+        }
+
         public void ShowMessage(object obj)
         {
             MessageBox.Show("Test");
