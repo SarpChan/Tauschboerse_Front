@@ -28,22 +28,13 @@ namespace Frontend.View
     public partial class TimeTable : UserControl
     {
 
-        private int Days = 6;
         public TimeTable()
         {
             InitializeComponent();
             
         }
 
-        public readonly DependencyProperty ColumnWidthProperty = DependencyProperty.Register("ColumWidth", typeof(double), typeof(TimeTable), new UIPropertyMetadata(null));
-
-        public double ColumnWidth
-        {
-            get
-            {
-                return (this.ActualWidth - text_zeit.ActualWidth) / Days;
-            }
-        }
+      
 
 
 

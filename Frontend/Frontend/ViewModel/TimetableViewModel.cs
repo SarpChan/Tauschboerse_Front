@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,12 +11,17 @@ namespace Frontend
     class TimetableViewModel : ViewModelBase
     {
         private ModuleListModel moduleListModel = new ModuleListModel();
+        private TimetableRowListModel rowListModel = new TimetableRowListModel();
 
         public TimetableViewModel()
         {
             foreach( var ding in moduleListModel.ModuleList)
             {
                 _ModuleList.Add(ding);
+            }
+            foreach (var row in rowListModel.RowList)
+            {
+                _RowList.Add(row);
             }
         }
 
@@ -25,6 +31,12 @@ namespace Frontend
         public ObservableCollection<ModuleDummy> ModuleList
         {
             get { return _ModuleList;  }
+        }
+
+        private ObservableCollection<RowModel> _RowList = new ObservableCollection<RowModel>();
+        public ObservableCollection<RowModel> RowList
+        {
+            get { return _RowList; }
         }
 
         #endregion

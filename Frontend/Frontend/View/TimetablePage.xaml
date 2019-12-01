@@ -76,19 +76,8 @@
                 </Grid.ColumnDefinitions>
 
                 <local:TimeTable></local:TimeTable>
-                
-            </Grid>
 
-            <ListView ItemsSource="{Binding ModuleList}" Grid.Column="2" Grid.Row="4">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Width="60" Header="Anzahl" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Width="360" Header="Name" DisplayMemberBinding="{Binding ID}"/>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            </Grid>
 
         </Grid>
 

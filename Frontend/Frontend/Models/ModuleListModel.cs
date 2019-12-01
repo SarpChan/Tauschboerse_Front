@@ -19,7 +19,7 @@ namespace Frontend
                 Day = "0",
                 PersonName = "Nick",
                 RoomNumber = "D14",
-                CourseName = "Entwicklung Interaktiver Benutzeroberflächen",
+                CourseName = "EIBO",
                 Color = "#FFF4A233"
             });
             AddModule(new ModuleDummy()
@@ -52,6 +52,7 @@ namespace Frontend
 
     public class ModuleDummy
     {
+        public enum ModuleType {Vorlesung,Übung,Praktikum,Tutorium};
         public string ID { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
@@ -60,6 +61,7 @@ namespace Frontend
         public string CourseName { get; set; }
         public string Color { get; set; }
         public string Day { get; set; }
+        public ModuleType Type { get; set; }
     }
 
 }

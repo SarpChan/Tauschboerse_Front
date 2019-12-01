@@ -14,7 +14,6 @@ namespace Frontend.Helpers
 
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            Console.WriteLine(value[0]);
             double totalHeight = System.Convert.ToDouble(value[1]);
             TimeSpan ModuleStartTime = new TimeSpan(
                 System.Convert.ToInt32((value[0] as string).Split(':')[0]),

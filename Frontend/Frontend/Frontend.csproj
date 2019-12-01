@@ -57,9 +57,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\RowHeightConverter.cs" />
     <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
+    <Compile Include="Helpers\TypeToIconConverter.cs" />
     <Compile Include="Helpers\WidthPercentageConverter.cs" />
     <Compile Include="Models\ModuleListModel.cs" />
+    <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
