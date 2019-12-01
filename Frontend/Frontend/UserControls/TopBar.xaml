@@ -14,8 +14,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition MinWidth="450" Width="1640*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
+        <Button Grid.Column="0" Style="{StaticResource LogoButton}"/>
+        <Button Grid.Column="1" Style="{StaticResource LogoutButton}" /> 
+    </Grid>
+</UserControl>
+<!--<StackPanel Orientation="Horizontal" >
         <Button Command="{Binding TB_LogoButtonCommand,ElementName=topbar}" Style="{StaticResource LogoButton}"/>
         <Button Command="{Binding TB_LogoutButtonCommand,ElementName=topbar}" Style="{StaticResource LogoutButton}"/>
-    </StackPanel>
-</UserControl>
+    </StackPanel>-->
