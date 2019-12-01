@@ -24,17 +24,18 @@ namespace Frontend.Helpers
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             Term term = new Term();
-            try
+            switch (reader.TokenType)
             {
-                JObject item = JObject.Load(reader);
-                serializer.Populate(item.CreateReader(), term);
-                return term;
-            }
-            catch (Newtonsoft.Json.JsonReaderException)
-            {
+                case JsonToken.Integer:
+                    var test = reader.Value;
+                    term.Id = (long)test;
+                    break;
+                case JsonToken.StartObject:
+                    JObject item = JObject.Load(reader);
+                    serializer.Populate(item.CreateReader(), term);
+                    break;
             }
             return term;
-
         }
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -42,6 +43,7 @@ namespace Frontend.Helpers
 
         }
     }
+
     /// <summary>
     /// The StudentConverter class converts a json object of the type Student to a set of students
     /// and sets the variables if those are provided.
@@ -60,22 +62,19 @@ namespace Frontend.Helpers
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var students = new HashSet<Student>();
-            try
+            switch (reader.TokenType)
             {
-                var jArray = JArray.Load(reader);
-                foreach (var j in jArray)
-                {
-                    Student student = new Student();
-                    serializer.Populate(j.CreateReader(), student);
-                    students.Add(student);
-                }
-                return students;
-            }
-            catch (Newtonsoft.Json.JsonReaderException)
-            {
-            }
-            catch (Newtonsoft.Json.JsonSerializationException)
-            {
+                case JsonToken.Integer:
+                    break;
+                case JsonToken.StartObject:
+                    var jArray = JArray.Load(reader);
+                    foreach (var j in jArray)
+                    {
+                        Student student = new Student();
+                        serializer.Populate(j.CreateReader(), student);
+                        students.Add(student);
+                    }
+                    break;
             }
             return students;
         }
