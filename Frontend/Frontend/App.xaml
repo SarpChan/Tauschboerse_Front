@@ -10,7 +10,7 @@
                 <ResourceDictionary  Source="Resources/Colors.xaml"/>
                 <ResourceDictionary  Source="Resources/Icons.xaml"/>
                 <ResourceDictionary  Source="Resources/Fonts.xaml"/>
-                <ResourceDictionary  Source="UserControls/Buttons.xaml"/>
+                <ResourceDictionary  Source="Resources/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
