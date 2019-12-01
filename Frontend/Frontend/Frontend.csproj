@@ -71,52 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControls\SB_AdminButton.xaml.cs">
-      <DependentUpon>SB_AdminButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
-      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SB_PersonalDataButton.xaml.cs">
-      <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SB_SharingServiceButton.xaml.cs">
-      <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
-      <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
-    </Compile>
-    <Page Include="UserControls\SelectionBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\SelectionBarElement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Compile Include="UserControls\SelectionBar.xaml.cs">
-      <DependentUpon>SelectionBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
-      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar.xaml.cs">
-      <DependentUpon>SideBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TopBar.xaml.cs">
-      <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TP_LogoButton.xaml.cs">
-      <DependentUpon>TP_LogoButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TP_LogoutButton.xaml.cs">
-      <DependentUpon>TP_LogoutButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\ActionCommand.cs" />
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Models\MockupData.cs" />
+    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
+      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TP_LogoButton.xaml.cs">
       <DependentUpon>TP_LogoButton.xaml</DependentUpon>
     </Compile>
@@ -178,8 +140,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Fonts.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Icons.xaml">
       <SubType>Designer</SubType>
@@ -188,6 +150,10 @@
     <Page Include="Resources\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SelectionBarElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\TP_LogoButton.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -198,30 +164,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SB_AdminButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_SharingServiceButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_TimetableButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SideBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TopBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TP_LogoButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TP_LogoutButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -349,6 +291,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\save_hover_b.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
