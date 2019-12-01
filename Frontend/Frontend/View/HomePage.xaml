@@ -8,7 +8,10 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Home">
     <Page.Resources>
-        
+        <Style TargetType="{x:Type Image}" x:Key="imgB" BasedOn="{StaticResource imageButton}">
+            <Setter Property="Source" Value="{StaticResource save_b}" />
+            </Style>
+   
         <!--Margin Icons -->
         <Thickness  x:Key="buttonMargin" Left="10" Right="10" Top="10" Bottom="10" />
         <!--Margin Headline -->
@@ -56,10 +59,8 @@
             <ColumnDefinition/>
             <ColumnDefinition  Width="0.5*"/>
         </Grid.ColumnDefinitions>
-
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Text=" - Das StudenplanVerwaltungssystem" Margin="{StaticResource headlineMargin}" Style="{StaticResource HeadlineTextBlock}" />
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Margin="{StaticResource stuplaMargin}" Style="{StaticResource HeadlineTextBlock}" FontWeight="Bold" Text="StuPla" Foreground="{StaticResource CD_DarkTeal}"/>
-        
         <Button x:Name="Home" Content="Home" Grid.Column="1" Grid.Row="1"  Style="{StaticResource HomescreenButton}"  Foreground="White" Background="{StaticResource CD_DarkTeal}"/>
         <Button x:Name="Stundenplan" Content="Stundenplan"  Grid.Column="2" Grid.Row="1"  Click="TimetableButton_Click" Style="{StaticResource HomescreenButton}"/>
         <Button x:Name="Tauschboerse" Content="Tauschbörse"  Grid.Column="1" Grid.Row="2" Style="{StaticResource HomescreenButton}"/>
