@@ -79,8 +79,9 @@ namespace Frontend.Helpers
             switch (reader.TokenType)
             {
                 case JsonToken.Integer:
-                    var test = reader.Value;
-                    term.Id = (long)test;
+                    var id = reader.Value;
+                    term.Id = (long)id;
+                    term.TermIsSet = false;
                     break;
                 case JsonToken.StartObject:
                     JObject item = JObject.Load(reader);
