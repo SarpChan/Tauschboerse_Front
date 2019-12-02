@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 namespace Frontend.Helpers
 {
+    /// <summary>
+    /// The GroupConverter class converts a json object of the type Group to a Group object 
+    /// and stores Term objects in a Set as well as sets the Term object of the group.
+    /// </summary>
     class GroupConverter : JsonConverter
     {
         public override bool CanRead => true;
@@ -19,6 +23,7 @@ namespace Frontend.Helpers
         }
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            //Hier resettet er terms leider nach jedem Schleifendurchlauf.
             var terms = new HashSet<Term>();
             var groups = new HashSet<Group>();
             var jArray = JArray.Load(reader);
@@ -54,8 +59,8 @@ namespace Frontend.Helpers
         }
     }
     /// <summary>
-    /// The TermConverter class converts a json object of the type Term to a term object 
-    /// and sets the variables if those are provided.
+    /// The TermConverter class converts a json object of the type Term to a Term object 
+    /// and sets the variables if those are provided. If the json object only refers to a term id, the variable TermIsSet is set to false.
     /// </summary>
     class TermConverter : JsonConverter
     {
