@@ -78,11 +78,11 @@
     <Compile Include="UserControls\SelectionBarElement.xaml.cs">
       <DependentUpon>SelectionBarElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TP_LogoButton.xaml.cs">
-      <DependentUpon>TP_LogoButton.xaml</DependentUpon>
+    <Compile Include="UserControls\TB_LogoButton.xaml.cs">
+      <DependentUpon>TB_LogoButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TP_LogoutButton.xaml.cs">
-      <DependentUpon>TP_LogoutButton.xaml</DependentUpon>
+    <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
+      <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -150,11 +150,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TP_LogoButton.xaml">
+    <Page Include="UserControls\TB_LogoButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TP_LogoutButton.xaml">
+    <Page Include="UserControls\TB_LogoutButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
