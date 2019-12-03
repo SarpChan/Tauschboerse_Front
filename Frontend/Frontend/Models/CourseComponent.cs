@@ -13,7 +13,6 @@ namespace Frontend.Models
         public CourseType Type { get; set; }
         public int CreditPoints { get; set; }
         public string Exam { get; set; }
-        [JsonConverter(typeof(GroupConverter))]
         public HashSet<Group> Groups { get; set; }
         [JsonProperty("course")]
         public long CourseId { get; set; }

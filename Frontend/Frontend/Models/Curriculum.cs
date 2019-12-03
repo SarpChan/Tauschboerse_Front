@@ -9,9 +9,11 @@ namespace Frontend.Models
     public class Curriculum
     {
         public long Id { get; set; }
+        [JsonProperty("termPeriod")] 
         public int Term { get; set; }
         [JsonProperty("examRegulation")]
         public long ExamRegulationId { get; set; }
-        public HashSet<Module> Modules { get; set; }
+        [JsonProperty("modulesInCurriculum")] 
+        public HashSet<ModulesInCurriculum> ModulesInCurricula { get; set; }
     }
 }

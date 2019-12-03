@@ -10,9 +10,8 @@ namespace Frontend.Models
         public long Id { get; set; }
         public string Title { get; set; }
         public User Owner { get; set; }
-        public HashSet<CourseComponent> CourseComponents { get; set; }
-        public HashSet<Group> Groups { get; set; }
         public List<int> Modules { get; set; }
-        public List<int> Terms { get; set; }
+        public HashSet<Term> Terms { get; set; }
+        public HashSet<CourseComponent> CourseComponents { get; set; }
     }
 }

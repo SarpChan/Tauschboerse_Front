@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Frontend.Models
 {
     /// <summary>
@@ -10,6 +12,6 @@ namespace Frontend.Models
         public string Lastname { get; set; }
         public string Loginname { get; set; }
         public string Password { get; set; }
-        public bool Admin { get; set; }
+        public List<int> Roles { get; set; }
     }
 }

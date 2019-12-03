@@ -12,6 +12,9 @@ namespace Frontend.Models
         public string StartDate { get; set; } //convert string to datetime
 		public string EndDate { get; set; }
 		public int Period { get; set; }
-        public bool TermIsSet { get; set; } = true;
+        public List<int> Courses { get; set; }
+        public List<int> Groups { get; set; }
+        public List<int> StudentAttendsCourses { get; set; }
+        public List<int> EnroledStudents { get; set; }                          
     }
 }

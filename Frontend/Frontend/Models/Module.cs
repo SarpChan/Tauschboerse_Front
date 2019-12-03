@@ -12,8 +12,7 @@ namespace Frontend.Models
         public string Title { get; set; }
         public int CreditPoints { get; set; }
         public int Period { get; set; }
-        [JsonProperty("curriculums")]
+        [JsonProperty("modulesInCurriculum")]
         public List<int> Curriculua { get; set;}
-        public HashSet<Course> Courses { get; set; }
     }
 }

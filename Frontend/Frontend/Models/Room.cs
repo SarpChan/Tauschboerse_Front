@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Frontend.Models
 {
@@ -12,5 +13,6 @@ namespace Frontend.Models
         public int Seats { get; set; }
         [JsonProperty("building")]
         public long BuildingId { get; set; }
+        public HashSet<Group> Groups { get; set; }
     }
 }

@@ -12,18 +12,18 @@ namespace Frontend.Models
         //Starttime and Endttime
         public long Id { get; set; }
         public int Slots { get; set; }
-        [JsonProperty("group")]
-        public char GroupLetter { get; set; }
+        public char GroupChar { get; set; }
+        [JsonProperty("dayOfWeek")]
         public DayOfWeek Day { get; set; }
         public Dictionary<string, int> startTime { get; set; } // convert to datettime
         public Dictionary<string, int> endTime { get; set; }
         // Use custom converter to create a new Term object
-        [JsonConverter(typeof(TermConverter))]
-        public Term Term { get; set; }
+        [JsonProperty("term")]
+        public long TermId { get; set; }
         [JsonProperty("courseComponent")]
         public long CourseComponentId { get; set; }
         [JsonProperty("lecturer")]
-        public long LectureId { get; set; }
+        public Lecturer Lecturer { get; set; }
         [JsonProperty("room")]
         public long RoomId { get; set; }
         //Use custom converter to create a new Student object

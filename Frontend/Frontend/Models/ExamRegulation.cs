@@ -13,6 +13,7 @@ namespace Frontend.Models
         public int Rule { get; set; }
         [JsonProperty("studyProgram")]
         public long StudyProgramId { get; set; }
+        [JsonProperty("curriculums")]
         public List<Curriculum> Curricula { get; set; }
     }
 }

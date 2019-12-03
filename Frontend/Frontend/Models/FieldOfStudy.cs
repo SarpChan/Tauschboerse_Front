@@ -9,6 +9,6 @@ namespace Frontend.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public HashSet<StudyProgram> StudyProgram { get; set; }
+        public HashSet<StudyProgram> StudyPrograms { get; set; }
     }
 }
