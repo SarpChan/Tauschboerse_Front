@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
+//README: The classes are not of use anymore as the json file changed drastically. The only class that can be reused is Converter.
+// Thanks.
+
 namespace Frontend.Helpers
 {
     /// <summary>

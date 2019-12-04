@@ -31,7 +31,7 @@ namespace Frontend.Models
         [JsonProperty("room")]
         public long RoomId { get; set; }
         [JsonProperty("students")]
-        public HashSet<Students> Students { get; set; }
+        public HashSet<Student> Students { get; set; }
         public List<int> PrioritizeGroups { get; set; }
 
     }
