@@ -20,4 +20,5 @@
     <BitmapImage x:Key="stupla_logo_icon" UriSource="/Resources/Icons/stupla_logo_icon.png"/>
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
+    <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
 </ResourceDictionary>
