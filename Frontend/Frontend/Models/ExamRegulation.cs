@@ -8,12 +8,17 @@ namespace Frontend.Models
     /// </summary>
     public class ExamRegulation
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("date")]
         public string Date { get; set; } //convert string to datettime
+        [JsonProperty("rule")]
         public int Rule { get; set; }
         [JsonProperty("studyProgram")]
         public long StudyProgramId { get; set; }
         [JsonProperty("curriculums")]
-        public List<Curriculum> Curricula { get; set; }
+        public HashSet<Curriculum> Curricula { get; set; }
+        [JsonProperty("students")]
+        public List<long> Students { get; set; }
     }
 }

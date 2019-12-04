@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+
 namespace Frontend.Models
 {
-    class Lecturer
+    class Role
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
         [JsonProperty("user")]
-        public long userId { get; set; }
-        public int priviledge { get; set; }
-        public List<int> Groups { get; set; }
+        public List<int> User { get; set; }
     }
 }

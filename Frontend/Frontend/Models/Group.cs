@@ -10,14 +10,18 @@ namespace Frontend.Models
     public class Group
     {
         //Starttime and Endttime
+        [JsonProperty("id")]
         public long Id { get; set; }
-        public int Slots { get; set; }
+        [JsonProperty("slots")]
+        public long Slots { get; set; }
+        [JsonProperty("groupChar")]
         public char GroupChar { get; set; }
         [JsonProperty("dayOfWeek")]
         public DayOfWeek Day { get; set; }
-        public Dictionary<string, int> startTime { get; set; } // convert to datettime
-        public Dictionary<string, int> endTime { get; set; }
-        // Use custom converter to create a new Term object
+        [JsonProperty("startTime")]
+        public Dictionary<string, int> StartTime { get; set; } // convert to datettime
+        [JsonProperty("endTime")]
+        public Dictionary<string, int> EndTime { get; set; }
         [JsonProperty("term")]
         public long TermId { get; set; }
         [JsonProperty("courseComponent")]
@@ -26,9 +30,9 @@ namespace Frontend.Models
         public Lecturer Lecturer { get; set; }
         [JsonProperty("room")]
         public long RoomId { get; set; }
-        //Use custom converter to create a new Student object
-        [JsonConverter(typeof(StudentConverter))]
-        public HashSet<Student> Students { get; set; }
+        [JsonProperty("students")]
+        public HashSet<Students> Students { get; set; }
+        public List<int> PrioritizeGroups { get; set; }
 
     }
 }

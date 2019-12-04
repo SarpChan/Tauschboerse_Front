@@ -8,11 +8,15 @@ namespace Frontend.Models
     /// </summary>
     public class Room
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("number")]
         public int Number { get; set; }
+        [JsonProperty("seats")]
         public int Seats { get; set; }
         [JsonProperty("building")]
         public long BuildingId { get; set; }
-        public HashSet<Group> Groups { get; set; }
+        [JsonProperty("groups")]
+        public List<int> Groups { get; set; }
     }
 }

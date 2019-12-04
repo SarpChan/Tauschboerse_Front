@@ -8,11 +8,15 @@ namespace Frontend.Models
     /// </summary>
     public class Campus
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("address")]
         public string Address { get; set; }
         [JsonProperty("university")]
         public long UniversityId { get; set; }
+        [JsonProperty("buildings")]
         public HashSet<Building> Buildings { get; set; }
     }
 }

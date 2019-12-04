@@ -7,11 +7,16 @@ namespace Frontend.Models
     /// </summary>
     public class Student
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("firstName")]
         public string FirstName { get; set; }
+        [JsonProperty("lastName")]
         public string LastName { get; set; }
+        [JsonProperty("loginName")]
         public string LoginName { get; set; }
-        public string Üassword { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
         public bool Admin { get; set; }
         public int EnrolementNumber { get; set; }
         public string Mail { get; set; }
