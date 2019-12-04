@@ -23,4 +23,5 @@
     <BitmapImage x:Key="times" UriSource="/Resources/Icons/times.png"/>
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
+    <BitmapImage x:Key="delete" UriSource="/Resources/Icons/delete.png"/>
 </ResourceDictionary>

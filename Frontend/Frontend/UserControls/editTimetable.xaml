@@ -28,8 +28,8 @@
                                     <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
                                         <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                                            <Image Name="Save" Source="{StaticResource save}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Speichern" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                            <Image Name="Save" Source="{StaticResource save_b}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Speichern" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -53,7 +53,7 @@
                                         <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
                                             <Image Name="Times" Source="{StaticResource times}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Zeiten" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Zeiten" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -77,7 +77,7 @@
                                         <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
                                             <Image Name="Details" Source="{StaticResource info}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -100,8 +100,8 @@
                                     <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
                                         <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                                            <Image Name="Details" Source="{StaticResource info}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                            <Image Name="Details" Source="{StaticResource tutorial_b}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Kursart" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -112,7 +112,7 @@
             </Button>
         </UserControl>
         <UserControl x:Name="tt_delete_button">
-            <Button Tag="TTDetailButton" Command="{Binding TT_DeleteButtonCommand,ElementName=tt_delete_button}">
+            <Button Tag="TTDetailButton" Command="{Binding TT_DeleteButtonCommand,ElementName=tt_delete_button}" Click="Button_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="VerticalAlignment" Value="Center" />
@@ -124,8 +124,8 @@
                                     <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
                                         <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                                            <Image Name="Details" Source="{StaticResource info}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="10,8,0,0" Width="150" Height="40" Text="Details" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                                            <Image Name="Details" Source="{StaticResource delete}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Löschen" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -135,5 +135,7 @@
                 </Button.Style>
             </Button>
         </UserControl>
+        
+        
     </StackPanel>
 </UserControl>

@@ -168,6 +168,7 @@
     <Resource Include="Resources\Icons\info.png" />
     <Resource Include="Resources\Icons\times.png" />
     <Resource Include="Resources\Icons\save.png" />
+    <Resource Include="Resources\Icons\delete.png" />
     <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\left_arrow_b.png" />
     <Resource Include="Resources\Icons\left_arrow_w.png" />
