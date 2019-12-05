@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 namespace Frontend.Models
 {
-    class Lecturer
+    public class Lecturer
     {
         public long Id { get; set; }
         [JsonProperty("user")]

@@ -9,16 +9,13 @@ namespace Frontend.Models
     {
         [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("firstName")]
-        public string FirstName { get; set; }
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
-        [JsonProperty("loginName")]
+        [JsonProperty("user")]
+        public long userId { get; set; }
         public string LoginName { get; set; }
         [JsonProperty("password")]
         public string Password { get; set; }
-        public bool Admin { get; set; }
-        public int EnrolementNumber { get; set; }
+        [JsonProperty("enrolementNumber")]
+        public int EnrolmentNumber { get; set; }
         public string Mail { get; set; }
         [JsonProperty("examRegulation")]
         public long ExamRegulationId { get; set; }
