@@ -5,31 +5,105 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:user_controls="clr-namespace:Frontend.UserControls"
       mc:Ignorable="d"
-      xmlns:user_controls="clr-namespace:Frontend.UserControls"
-      xmlns:gif="http://wpfanimatedgif.codeplex.com"
-      xmlns:helpers="clr-namespace:Frontend.Helpers"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
       Height="{Binding WindowSettings.Height,Mode=TwoWay}"
       Width="{Binding WindowSettings.Width, Mode=TwoWay}">
 
+    <!--Resources, die TopBar- und SideBar-nativ sind und nicht in anderen Pages vorkommen-->
     <Page.Resources>
-        <!--Loading Page-->
-        <Style TargetType="{x:Type Grid}" x:Key="LoadingPage" >
-            <Setter Property="Background" Value="{StaticResource CD_Teal_Alpha}"/>
-            <Setter Property="Visibility" Value="Hidden"/>
+        <!--MenuButton-->
+        <Style TargetType="{x:Type Button}" x:Key="MenuButton">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
+                            <!--MenuButton contains Horizontal StackPanel: [TEXT] [ARROW_IMAGE]-->
+                            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Padding="10,0,0,0" Width="229" Text="{TemplateBinding Tag}" VerticalAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                                <Image Name="Arrow" Source="{StaticResource left_arrow_b}" Width="50" Height="20" Stretch="Uniform" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                        <!--Triggers for switching the arrow image. black to white on hover and focus-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_t}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_w}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
             <Style.Triggers>
-                <DataTrigger Binding="{Binding IsLoading}" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding IsLoading}" Value="False">
-                    <Setter Property="Visibility" Value="Hidden"/>
-                </DataTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!--LogoutButton-->
+        <Style TargetType="{x:Type Button}" x:Key="LogoutButton">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoutButton contains Horizontal StackPanel: [TEXT] [LOGOUT_IMAGE]-->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Padding="0,28,0,0" Width="160" Height="80" Text="Abmelden" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="24"/>
+                                <Image Name="Logout" Source="{StaticResource logout_b}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--LogoButton-->
+        <Style TargetType="{x:Type Button}" x:Key="LogoButton">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                            <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
+                                <Image Name="StuPla" Source="{StaticResource stupla_logo_icon}" Height="70" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Padding="0,21,0,0" Width="120" Height="80" Text="StuPla" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="32"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
-        
+
     <!--RootPage Grid-->
     <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="{StaticResource CD_White}">
         <Grid.ColumnDefinitions>
@@ -43,8 +117,8 @@
  
         <!--Topbar-->
         <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
-        <user_controls:TB_LogoButton TB_LogoButtonCommand="{Binding SwitchToTimetablePage}" Grid.Column="0"/>
-        <user_controls:TB_LogoutButton TB_LogoutButtonCommand="{Binding SwitchToTimetablePage}" Grid.Column="1"/>
+        <Button Click="HomeButton_Click" Grid.Column="0" Style="{StaticResource LogoButton}"/>
+        <Button Click="LogoutButton_Click" Grid.Column="1" Style="{StaticResource LogoutButton}" />
 
         <!--Sidebar-->
         <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,0"/>
@@ -58,25 +132,20 @@
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <user_controls:SB_HomeButton SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"/>
-                <user_controls:SB_TimetableButton SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
-                <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
+                <Button Tag="Home" Click="HomeButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Mein Stundenplan" Click="TimetableButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
+                <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
+                <!--
+                <user_controls:SelectionBarElement SBE_Tag="Test" Grid.Row="1" Grid.Column="1"/>
+                <user_controls:SelectionBar AmountOfElements="5" Grid.Row="1" Grid.Column="1"/>
+                -->
             </StackPanel>
         </Grid>
         
         <!--MainFrame-->
-        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
-            <Frame.Source>
-                <Binding Path="ActivePage" Converter="{helpers:PageToUriConverter}" UpdateSourceTrigger="PropertyChanged"/>
-            </Frame.Source>
-        </Frame>
-        <Grid Style="{StaticResource LoadingPage}" Grid.Row="1" Grid.Column="1">
-            <Grid.Visibility>
-                <Binding Path="IsLoading" Converter="{helpers:BoolToVisibilityConverter FalseValue=Collapsed, TrueValue=Visible}" UpdateSourceTrigger="PropertyChanged"/>
-            </Grid.Visibility>
-            <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
-        </Grid>
+        
+        <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

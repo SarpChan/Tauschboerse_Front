@@ -56,34 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\ActionCommand.cs" />
-    <Compile Include="Helpers\BoolToValueConverter.cs" />
-    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
-    <Compile Include="Helpers\PageToUriConverter.cs" />
-    <Compile Include="Models\Building.cs" />
-    <Compile Include="Models\Campus.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseComponent.cs" />
-    <Compile Include="Models\Curriculum.cs" />
-    <Compile Include="Models\ExamRegulation.cs" />
-    <Compile Include="Models\FieldOfStudy.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\MockupModels.cs" />
-    <Compile Include="Models\Module.cs" />
-    <Compile Include="Models\Room.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudyProgram.cs" />
-    <Compile Include="Models\Term.cs" />
-    <Compile Include="Models\University.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="UserControls\TP_LogoButton.xaml.cs">
-      <DependentUpon>TP_LogoButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TP_LogoutButton.xaml.cs">
-      <DependentUpon>TP_LogoutButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\SB_AdminButton.xaml.cs">
       <DependentUpon>SB_AdminButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
+      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SB_PersonalDataButton.xaml.cs">
       <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
@@ -91,24 +68,27 @@
     <Compile Include="UserControls\SB_SharingServiceButton.xaml.cs">
       <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
-      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\RestClient.cs" />
-    <Compile Include="ViewModel\RootPageViewModel.cs" />
-    <Compile Include="ViewModel\TimetableViewModel.cs" />
-    <Compile Include="Helpers\ViewModelBase.cs" />
+    <Page Include="UserControls\SelectionBarElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
+      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TB_LogoButton.xaml.cs">
+      <DependentUpon>TB_LogoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
+      <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LoadingPage.xaml.cs">
-      <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PersonalDataPage.xaml.cs">
       <DependentUpon>PersonalDataPage.xaml</DependentUpon>
@@ -138,23 +118,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UserControlsStyles.xaml">
+    <Page Include="Resources\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\TP_LogoButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TP_LogoutButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SB_AdminButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_HomeButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -166,13 +146,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SB_HomeButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\SB_TimetableButton.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TB_LogoButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TB_LogoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
@@ -181,10 +165,6 @@
     <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LoadingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PersonalDataPage.xaml">
       <SubType>Designer</SubType>
@@ -236,10 +216,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Helpers\.gitignore" />
+    <Content Include="Models\.gitignore" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
     <Resource Include="Resources\Icons\left_arrow_t.png" />
-    <Resource Include="Resources\Icons\loading_anim.gif" />
+    <Resource Include="Resources\Icons\save_hover_b.png" />
+    <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\left_arrow_b.png" />
     <Resource Include="Resources\Icons\left_arrow_w.png" />
     <Resource Include="Resources\Icons\logout_b.png" />
@@ -257,13 +240,6 @@
     <Resource Include="Resources\Icons\tutorial_b.png" />
     <Resource Include="Resources\Icons\tutorial_w.png" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="WpfAnimatedGif">
-      <Version>1.4.18</Version>
-    </PackageReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

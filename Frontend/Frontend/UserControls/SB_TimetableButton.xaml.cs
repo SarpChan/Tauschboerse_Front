@@ -8,7 +8,6 @@ namespace Frontend.UserControls
     {
         public SB_TimetableButton() { InitializeComponent(); }
         /* Dependency Properties für eigene *bindbare* Properties */
-        //TODO: TT_Button Anscheinend funktioniert das nicht mit dem Command?
         public ICommand SB_TimetableButtonCommand
         {
             get { return (ICommand)GetValue(SB_TimetableButtonCommandProperty); }
