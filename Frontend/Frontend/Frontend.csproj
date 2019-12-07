@@ -99,6 +99,9 @@
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StudentModulePage.xaml.cs">
+      <DependentUpon>StudentModulePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
     <Page Include="View\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StudentModulePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\TimetablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
