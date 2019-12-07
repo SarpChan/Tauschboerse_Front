@@ -10,7 +10,7 @@
 
     <StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid Width="1640" Height="2000" Background="White">
+            <!--<Grid Width="1640" Height="2000" Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Width="1550"/>
@@ -20,57 +20,34 @@
                     <RowDefinition Height="113"/>
                     <RowDefinition Height="137"/>
                     <RowDefinition Height="593"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-                <Grid Width="1550" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="220"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="220"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="220"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="220"/>
-                        <ColumnDefinition Width="1550"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="58"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Legende:" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-                    <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="../Resources/Icons/lecture_b.png"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vorlesung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-                    <Rectangle Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="../Resources/Icons/exercise_b.png"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Uebung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-                    <Rectangle Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="../Resources/Icons/tutorial_b.png"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tutorium" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-                    <Rectangle Grid.Column="7" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="../Resources/Icons/practicum_b.png"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-                </Grid>
-                <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
-                    <TextBlock Padding="0,16,0,0"  Text="Zeit" Height="65" TextAlignment="Center" Width="129" FontFamily="Kiona" FontSize="24" Background="#FF7D7E7E" Foreground="White"/>
-                </Canvas>
+                </Grid.RowDefinitions>-->
+          <WrapPanel>
+               <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Modulauswahl" VerticalAlignment="Top" Style="{StaticResource HeadlineBoldTextBlock}"/>
+               <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                 </Grid.ColumnDefinitions>
+                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                 </Grid.RowDefinitions>
+                 <TextBlock Style="{StaticResource HeadlineTextBlock}">Legende:</TextBlock>
+                 <TextBlock Grid.Column="1" Style="{StaticResource HeadlineTextBlock}">Vorlesung</TextBlock>
+                 <TextBlock Grid.Column="2" Style="{StaticResource HeadlineTextBlock}">Übung</TextBlock>
+                 <TextBlock Grid.Column="3" Style="{StaticResource HeadlineTextBlock}">Höchste Priorität A-D Niedrigste Priorität:</TextBlock>
+                 <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadlineTextBlock}">Tutorium</TextBlock>
+                 <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource HeadlineTextBlock}">Praktikum</TextBlock>
+                 <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource HeadlineTextBlock}">Termin nicht möglich x</TextBlock>
+              </Grid>
+              <StackPanel  Orientation="Horizontal">
+              
+              </StackPanel>
 
-            </Grid>
+          <!--</Grid>-->
+          </WrapPanel>
         </ScrollViewer>
     </StackPanel>
 </Page>
