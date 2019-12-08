@@ -20,7 +20,8 @@
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.04*"/>
             <RowDefinition Height="0.4*"/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.05*"/>
+
             </Grid.RowDefinitions>
         <TextBlock x:Name="Titel" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
         <Grid x:Name="Legende" Height="137" Background="White" Grid.Column="1" Grid.Row="2">

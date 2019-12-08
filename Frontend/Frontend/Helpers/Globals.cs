@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace Frontend
 {
     //TODO: Change to Properties
+    /// <summary>
+    /// Temporary solution for saving global variables that can be changed
+    /// </summary>
     static class Globals
     {
         public static string[] Weekdays = new string[]
@@ -23,12 +26,16 @@ namespace Frontend
         public static TimeSpan StartTime = new TimeSpan(8,15,0);
         public static TimeSpan EndTime = new TimeSpan(19, 15, 0);
         public static int Subdivisions = 15;
+        public static int RowSeperatorAmount = 4;
         public static TimeSpan TimeSubdivision = new TimeSpan(0, 15, 0);
         public static string[] RowColors = { "#FFD2E7EB", "#FFFFFFFF" };
+        public static string RowSeperatorColor = "#FF7D7E7E";
         public static double GetDuration()
         {
             return (EndTime - StartTime).TotalMinutes;
         }
-        public static double Space = 5;
+        public static double Space = 2;
+        public static double RowPadding = 0;
+
     }
 }

@@ -14,10 +14,8 @@
         <converters:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
-    <Grid x:Name="Grid_Main" Margin="0" Width="{Binding ItemWidth, ConverterParameter=6, Converter={StaticResource WidthPercentageConverter}}"
+    <Grid x:Name="Grid_Main" Margin="0" 
           >
-        <!-- https://social.msdn.microsoft.com/Forums/vstudio/en-US/a1a47227-ff4d-44d0-92c5-728ccc7ed53e/how-to-multibinding-canvasleft-in-itemscontrol?forum=wpf -->
-        <!-- Width="{Binding ItemWidth,ElementName=TimeTableItem}" -->
         <Grid.RowDefinitions>
             <RowDefinition Height="33"/>
             <RowDefinition Height="*"/>

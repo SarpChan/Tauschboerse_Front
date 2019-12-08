@@ -20,7 +20,7 @@ namespace Frontend.Helpers
                 System.Convert.ToInt32((value[0] as string).Split(':')[1]),
                 0);
 
-            double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions);
+            double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions) + Globals.RowPadding;
             TimeSpan timeFromStart = ModuleStartTime - Globals.StartTime;
             return (timeFromStart.TotalMinutes/Globals.Subdivisions) * heightPerRow;
         }
@@ -65,8 +65,8 @@ namespace Frontend.Helpers
         {
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
-            Console.WriteLine(timeWidth);
-            return ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
+            double width = ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
+            return width < 0 ? 0 : width;
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
@@ -93,7 +93,7 @@ namespace Frontend.Helpers
                 System.Convert.ToInt32((value[1] as string).Split(':')[1]),
                 0);
             TimeSpan duration = ModuleEndTime - ModuleStartTime;
-            double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions);
+            double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions) + Globals.RowPadding;
             return (duration.TotalMinutes / Globals.Subdivisions) * heightPerRow;
         }
 

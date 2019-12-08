@@ -11,7 +11,7 @@
              x:Name="Timetable"
              x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
-             d:DesignHeight="1000 " d:DesignWidth="1000">
+             d:DesignHeight="1000" d:DesignWidth="1000">
     <UserControl.Resources>
         <Helpers:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
         <Helpers:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
@@ -22,6 +22,9 @@
         <Helpers:RowPositionConverter x:Key="RowPositionConverter"/>
         <Helpers:DayWidthConverter x:Key="DayWidthConverter"/>
         <Helpers:DayPositionConverter x:Key="DayPositionConverter"/>
+        <Helpers:SeperatorHeightConverters x:Key="SeperatorHeightConverters"/>
+        <Helpers:SeperatorPositionConverter x:Key="SeperatorPositionConverter"/>
+        <Helpers:RowLineColorConverter x:Key="RowLineColorConverter"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>
@@ -35,68 +38,25 @@
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.95*"/>
         </Grid.RowDefinitions>
-        
-            <Rectangle x:Name="HeaderBackground" Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <Label 
-                x:Name="text_zeit" 
-                Content="Zeit" 
-                FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
-                FontSize="32" 
-                Background="#FF7D7E7E" 
-                Grid.Row="0" 
-                Grid.Column="0" 
-                Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
-               />
 
-            <ItemsControl ItemsSource="{Binding DayList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:DayModel}">
-                        <DataTemplate.Resources>
-                            <Style TargetType="Label">
-                                <Setter Property="Canvas.Left">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource DayPositionConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
-                                            <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
-                                            <Binding Path="Index"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Width">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource DayWidthConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
-                                            <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <Binding Path="Name"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
+        <Rectangle x:Name="HeaderBackground" Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Label 
+            x:Name="text_zeit" 
+            Content="Zeit" 
+            FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
+            FontSize="32" 
+            Background="#FF7D7E7E" 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+            />
 
-                        </DataTemplate.Resources>
-                    <Canvas>
-                        <Label 
-                            FontFamily="/Frontend;component/Resources/Fonts/#Kiona" 
-                            FontSize="32" 
-                            Background="#FF7D7E7E"  
-                            Padding="0" 
-                            Foreground="White" 
-                            Grid.Row="0" 
-                            Grid.Column="1" 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" 
-                            Height="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}"
-                            />
-                    </Canvas>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+
 
         <Canvas Grid.Row="1">
+            <!-- 
+                For loop: Rows
+             -->
             <ItemsControl ItemsSource="{Binding RowList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:RowModel}">
@@ -113,8 +73,25 @@
                                 <Setter Property="Height">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource RowHeightConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                            <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualHeight" ElementName="HeaderBackground" Mode="OneWay"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style TargetType="Separator">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource RowLineColorConverter}">
+                                            <Binding Path="RowIndex"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Canvas.Top">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource RowPositionConverter}">
+                                            <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
+                                            <Binding Path="RowIndex"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -131,7 +108,7 @@
                                 <Setter Property="Height">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource RowHeightConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                            <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualHeight" ElementName="HeaderBackground" Mode="OneWay"/>
                                         </MultiBinding>
                                     </Setter.Value>
@@ -139,13 +116,32 @@
                             </Style>
                         </DataTemplate.Resources>
                         <Canvas>
-                            <Label BorderThickness="0,0,1,0" BorderBrush="Black" Content="{Binding Time}" FontSize="12px" Panel.ZIndex="99" Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}" HorizontalContentAlignment="Center" />
-                            <Rectangle Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" Fill="{Binding Color}" Panel.ZIndex="-1" 
-                                 />
+                            <Label 
+                                Content="{Binding Time}"
+                                FontSize="12px"
+                                Panel.ZIndex="10" 
+                                Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
+                                HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
+                            <Separator
+                                Panel.ZIndex="1"
+                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" Margin="0" 
+                                />
+                            <Rectangle 
+                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" 
+                                Fill="{Binding Color}" 
+                                Panel.ZIndex="0"
+                                />
+                            
+
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+            <!-- 
+                For loop: Modules
+             -->
+
             <ItemsControl ItemsSource="{Binding ModuleList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type project:ModuleDummy}">
@@ -188,13 +184,82 @@
                             </Style>
                         </DataTemplate.Resources>
                         <Canvas>
-                            <usercontrols:TimetableItem Module="{Binding .}" />
+                            <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" />
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
 
             </ItemsControl>
-            <!-- ItemsSource="{Binding ModuleList}" -->
         </Canvas>
+        <!-- 
+        For loop: Days & Seperators
+        -->
+        <ItemsControl ItemsSource="{Binding DayList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:DayModel}">
+                    <DataTemplate.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Canvas.Left">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource DayPositionConverter}">
+                                        <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                        <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
+                                        <Binding Path="Index"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Width">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource DayWidthConverter}">
+                                        <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                        <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Binding Path="Name"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Canvas.Left">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource SeperatorPositionConverter}">
+                                        <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
+                                        <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
+                                        <Binding Path="Index"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                    </DataTemplate.Resources>
+                    <Canvas>
+                        <Label 
+                            FontFamily="/Frontend;component/Resources/Fonts/#Kiona" 
+                            FontSize="32" 
+                            Background="#FF7D7E7E"  
+                            Padding="0" 
+                            Foreground="White" 
+                            Grid.Row="0" 
+                            Grid.Column="1" 
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            Height="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}"
+                            />
+                        <!-- TODO: Bind to Global Variable -->
+                        <Rectangle
+                            Fill="#FF716C6C" 
+                            Width="2"
+                            Grid.Row="1"
+                            Grid.Column="1" 
+                            Canvas.Top="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}" 
+                            Height="{Binding ActualHeight, ElementName=Timetable, Mode=OneWay}"
+                            Panel.ZIndex="1"/>
+                    </Canvas>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
