@@ -8,7 +8,7 @@ namespace Frontend.Models
 {
     class DayListModel
     {
-        //Hier eig liste mit Modulen reingereicht??
+
         public DayListModel()
         {
             for(int i = 0; i < Globals.weekdays; i++)

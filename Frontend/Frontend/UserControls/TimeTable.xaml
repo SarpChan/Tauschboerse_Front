@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.View"
              xmlns:project ="clr-namespace:Frontend"
+             xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
              x:Name="Timetable"
-             x:Class="Frontend.View.TimeTable"
+             x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
              d:DesignHeight="500 " d:DesignWidth="1000">
     <UserControl.Resources>
@@ -16,8 +17,10 @@
         <Helpers:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
         <Helpers:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
         <Helpers:ItemWidthConverter x:Key="ItemWidthConverter"/>
+        <Helpers:ItemHeightConverter x:Key="ItemHeightConverter"/>
         <Helpers:RowHeightConverter x:Key="RowHeightConverter"/>
         <Helpers:RowPositionConverter x:Key="RowPositionConverter"/>
+        
     </UserControl.Resources>
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>
@@ -44,9 +47,7 @@
             <TextBlock x:Name="text_mittwoch" Text="Mittwoch" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="3" Padding="0,10" Foreground="White" HorizontalAlignment="Center"  />
             <TextBlock x:Name="text_donnerstag" Text="Donnerstag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E" Grid.Column="4" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
             <TextBlock x:Name="text_freitag" Text="Freitag" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="32" Background="#FF7D7E7E"  Grid.Column="5" Padding="0,10" Foreground="White" HorizontalAlignment="Center" />
-            <!-- <local:TimetableItem x:Name="timetableitem_test1" Grid.Row="1" Grid.Column="1" ID="4215" PersonName="WEI" CourseName="Programmieren 3" RoomNumber="D001" Color="#FF672F60" Height="476.4"/>
-            <local:TimetableItem Grid.Row="1" Grid.Column="3" ID="42069" PersonName="Nicklas" CourseName="Toller Test" RoomNumber="D017" Color="#FF265B65" Height="300" Margin="0" VerticalAlignment="Top"/> -->
-            
+           
             <Canvas Grid.Row="1" Grid.ColumnSpan="6">
                 <ItemsControl ItemsSource="{Binding RowList}">
                     <ItemsControl.ItemTemplate> 
@@ -101,7 +102,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type project:ModuleDummy}">
                             <DataTemplate.Resources>
-                                <Style TargetType="local:TimetableItem">
+                                <Style TargetType="usercontrols:TimetableItem">
                                     <Setter Property="Canvas.Top">
                                         <Setter.Value>
                                             <MultiBinding Converter="{StaticResource TimeToYCoordinatesConverter}">
@@ -127,10 +128,19 @@
                                             </MultiBinding>
                                         </Setter.Value>
                                     </Setter>
+                                    <Setter Property="Height">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource ItemHeightConverter}">
+                                                <Binding Path="StartTime"/>
+                                                <Binding Path="EndTime"/>
+                                                <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                             </DataTemplate.Resources> 
                             <Canvas>
-                                <local:TimetableItem Module="{Binding .}" />
+                                <usercontrols:TimetableItem Module="{Binding .}" />
                             </Canvas>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

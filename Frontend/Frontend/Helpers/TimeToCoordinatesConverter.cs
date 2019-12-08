@@ -76,4 +76,32 @@ namespace Frontend.Helpers
 
         #endregion
     }
+
+    public class ItemHeightConverter : IMultiValueConverter
+    {
+        #region IValueConverter Members
+
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double totalHeight = System.Convert.ToDouble(value[2]);
+            TimeSpan ModuleStartTime = new TimeSpan(
+                System.Convert.ToInt32((value[0] as string).Split(':')[0]),
+                System.Convert.ToInt32((value[0] as string).Split(':')[1]),
+                0);
+            TimeSpan ModuleEndTime = new TimeSpan(
+                System.Convert.ToInt32((value[1] as string).Split(':')[0]),
+                System.Convert.ToInt32((value[1] as string).Split(':')[1]),
+                0);
+            TimeSpan duration = ModuleEndTime - ModuleStartTime;
+            double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions);
+            return (duration.TotalMinutes / Globals.Subdivisions) * heightPerRow;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

@@ -14,8 +14,8 @@ namespace Frontend
             AddModule(new ModuleDummy()
             {
                 ID = "69",
-                StartTime = "11:15",
-                EndTime = "09:45",
+                StartTime = "10:00",
+                EndTime = "11:30",
                 Day = "1",
                 PersonName = "Lukas",
                 RoomNumber = "D14",
@@ -37,7 +37,7 @@ namespace Frontend
             {
                 ID = "1",
                 StartTime = "08:15",
-                EndTime = "15:45",
+                EndTime = "09:45",
                 Day = "0",
                 PersonName = "Nicklas",
                 RoomNumber = "D11",
@@ -48,7 +48,7 @@ namespace Frontend
             {
                 ID = "1",
                 StartTime = "09:15",
-                EndTime = "19:15",
+                EndTime = "11:45",
                 Day = "4",
                 PersonName = "Sonntag",
                 RoomNumber = "D8",
@@ -59,7 +59,7 @@ namespace Frontend
             {
                 ID = "1",
                 StartTime = "12:00",
-                EndTime = "19:00",
+                EndTime = "15:00",
                 Day = "2",
                 PersonName = "Sanja",
                 RoomNumber = "D17",

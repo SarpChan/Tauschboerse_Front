@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Frontend.View
+namespace Frontend.UserControls
 {
     /// <summary>
     /// Interaction logic for TimeTable.xaml

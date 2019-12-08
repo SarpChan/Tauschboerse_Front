@@ -24,6 +24,10 @@ namespace Frontend
             {
                 _RowList.Add(row);
             }
+            foreach (var day in dayListModel.DayList)
+            {
+                _DayList.Add(day);
+            }
         }
 
         #region Properties

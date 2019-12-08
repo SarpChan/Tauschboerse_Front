@@ -81,10 +81,10 @@
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimeTable.xaml.cs">
+    <Compile Include="UserControls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimetableItem.xaml.cs">
+    <Compile Include="UserControls\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimetablePage _ALT.xaml.cs">
@@ -125,11 +125,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TimeTable.xaml">
+    <Page Include="UserControls\TimeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TimetableItem.xaml">
+    <Page Include="UserControls\TimetableItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
