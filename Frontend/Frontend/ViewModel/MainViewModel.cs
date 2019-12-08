@@ -7,6 +7,8 @@ using RestSharp;
 using System.Threading.Tasks;
 using System.Threading;
 using Frontend.Models;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Frontend.ViewModel
 {
@@ -215,27 +217,21 @@ namespace Frontend.ViewModel
             request.AddHeader("Accept", "application/json");
             //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber); //Adds "?moduleID='EnrolementNumber'" to Path
             request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
-            var body = new
-            {
-                Id = "",
-                Slots = "",
-                Day = "",
-                Term = "",
-                CourseComponent = "",
-                Lecture = "",
-                Room = "",
-                Students = ""
-            };
-            request.AddJsonBody(body);
+
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
             //Zum Testen
-            Console.WriteLine(response.Content);
+            string jsonFileString;
+            StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
+            jsonFileString = streamReader.ReadToEnd();
+            Timetable timetable = JsonConvert.DeserializeObject<Timetable>(jsonFileString);
+            //Console.WriteLine(response.Content);
             if ((string)response.Content != "")
             {
                 MM = (string)response.Content; 
             }
+            Console.WriteLine(timetable);
             //Zum Testen
 
             cancellationTokenSource.Dispose();

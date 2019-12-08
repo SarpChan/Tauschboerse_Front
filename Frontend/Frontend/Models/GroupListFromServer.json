@@ -1,0 +1,383 @@
+{
+  "TimetableName": "TESTTABLE",
+  "GroupList": [
+    {
+      "Id": 201,
+      "TermId": 454,
+      "CourseComponentId": 968,
+      "RoomId": 247,
+      "Slots": 19,
+      "GroupChar": "X",
+      "Day": "FRIDAY",
+      "Lecturer": "Schwanecke",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Suzanne",
+          "LastName": "Jensen",
+          "LoginName": "veniam",
+          "Password": "nulla",
+          "Admin": true,
+          "EnrolementNumber": 100294,
+          "Mail": "yatesfoster@snacktion.com",
+          "ExamRegulationId": 113,
+          "EnrolementTerm": 5599
+        },
+        {
+          "Id": 1,
+          "FirstName": "Morgan",
+          "LastName": "Waller",
+          "LoginName": "id",
+          "Password": "velit",
+          "Admin": false,
+          "EnrolementNumber": 100756,
+          "Mail": "joannakramer@baluba.com",
+          "ExamRegulationId": 378,
+          "EnrolementTerm": 6047
+        },
+        {
+          "Id": 2,
+          "FirstName": "Corinne",
+          "LastName": "Andrews",
+          "LoginName": "laboris",
+          "Password": "consequat",
+          "Admin": true,
+          "EnrolementNumber": 100750,
+          "Mail": "mamiemiddleton@roboid.com",
+          "ExamRegulationId": 237,
+          "EnrolementTerm": 7339
+        }
+      ]
+    },
+    {
+      "Id": 750,
+      "TermId": 542,
+      "CourseComponentId": 592,
+      "RoomId": 669,
+      "Slots": 39,
+      "GroupChar": "C",
+      "Day": "THURSDAY",
+      "Lecturer": "Schwanecke",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Odom",
+          "LastName": "Berry",
+          "LoginName": "Lorem",
+          "Password": "eu",
+          "Admin": true,
+          "EnrolementNumber": 100164,
+          "Mail": "boonegriffin@dogtown.com",
+          "ExamRegulationId": 903,
+          "EnrolementTerm": 5569
+        },
+        {
+          "Id": 1,
+          "FirstName": "Olga",
+          "LastName": "Lara",
+          "LoginName": "ad",
+          "Password": "cupidatat",
+          "Admin": true,
+          "EnrolementNumber": 100443,
+          "Mail": "karenmcgowan@geeknet.com",
+          "ExamRegulationId": 418,
+          "EnrolementTerm": 4956
+        },
+        {
+          "Id": 2,
+          "FirstName": "Lindsey",
+          "LastName": "White",
+          "LoginName": "exercitation",
+          "Password": "excepteur",
+          "Admin": true,
+          "EnrolementNumber": 100423,
+          "Mail": "shereeferrell@zillanet.com",
+          "ExamRegulationId": 681,
+          "EnrolementTerm": 2464
+        }
+      ]
+    },
+    {
+      "Id": 753,
+      "TermId": 659,
+      "CourseComponentId": 533,
+      "RoomId": 209,
+      "Slots": 26,
+      "GroupChar": "A",
+      "Day": "FRIDAY",
+      "Lecturer": "Krechel",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Bradford",
+          "LastName": "Daniel",
+          "LoginName": "magna",
+          "Password": "cupidatat",
+          "Admin": true,
+          "EnrolementNumber": 100812,
+          "Mail": "elvabenton@filodyne.com",
+          "ExamRegulationId": 649,
+          "EnrolementTerm": 4921
+        },
+        {
+          "Id": 1,
+          "FirstName": "Tanisha",
+          "LastName": "Barnes",
+          "LoginName": "non",
+          "Password": "proident",
+          "Admin": true,
+          "EnrolementNumber": 100580,
+          "Mail": "oliviastokes@miracula.com",
+          "ExamRegulationId": 381,
+          "EnrolementTerm": 3453
+        },
+        {
+          "Id": 2,
+          "FirstName": "Traci",
+          "LastName": "Wyatt",
+          "LoginName": "excepteur",
+          "Password": "voluptate",
+          "Admin": false,
+          "EnrolementNumber": 100655,
+          "Mail": "beverleybuchanan@zilidium.com",
+          "ExamRegulationId": 640,
+          "EnrolementTerm": 8674
+        }
+      ]
+    },
+    {
+      "Id": 647,
+      "TermId": 123,
+      "CourseComponentId": 941,
+      "RoomId": 696,
+      "Slots": 35,
+      "GroupChar": "X",
+      "Day": "TUESDAY",
+      "Lecturer": "Berdux",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Sasha",
+          "LastName": "Pollard",
+          "LoginName": "proident",
+          "Password": "dolore",
+          "Admin": true,
+          "EnrolementNumber": 100218,
+          "Mail": "albertastone@exoplode.com",
+          "ExamRegulationId": 611,
+          "EnrolementTerm": 6789
+        },
+        {
+          "Id": 1,
+          "FirstName": "Miranda",
+          "LastName": "Mays",
+          "LoginName": "aliquip",
+          "Password": "officia",
+          "Admin": true,
+          "EnrolementNumber": 100509,
+          "Mail": "mistycox@assistix.com",
+          "ExamRegulationId": 369,
+          "EnrolementTerm": 1120
+        },
+        {
+          "Id": 2,
+          "FirstName": "Deborah",
+          "LastName": "Boone",
+          "LoginName": "ut",
+          "Password": "adipisicing",
+          "Admin": false,
+          "EnrolementNumber": 100368,
+          "Mail": "liliandillard@ronbert.com",
+          "ExamRegulationId": 430,
+          "EnrolementTerm": 1594
+        }
+      ]
+    },
+    {
+      "Id": 629,
+      "TermId": 920,
+      "CourseComponentId": 814,
+      "RoomId": 794,
+      "Slots": 40,
+      "GroupChar": "X",
+      "Day": "TUESDAY",
+      "Lecturer": "Schwanecke",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Dennis",
+          "LastName": "Lawrence",
+          "LoginName": "do",
+          "Password": "laborum",
+          "Admin": true,
+          "EnrolementNumber": 100624,
+          "Mail": "madelinesteele@hinway.com",
+          "ExamRegulationId": 386,
+          "EnrolementTerm": 8434
+        },
+        {
+          "Id": 1,
+          "FirstName": "Sarah",
+          "LastName": "Grant",
+          "LoginName": "non",
+          "Password": "ea",
+          "Admin": true,
+          "EnrolementNumber": 100657,
+          "Mail": "trishamorales@xoggle.com",
+          "ExamRegulationId": 936,
+          "EnrolementTerm": 4211
+        },
+        {
+          "Id": 2,
+          "FirstName": "Pierce",
+          "LastName": "Cantrell",
+          "LoginName": "est",
+          "Password": "esse",
+          "Admin": false,
+          "EnrolementNumber": 100740,
+          "Mail": "vickieaton@singavera.com",
+          "ExamRegulationId": 408,
+          "EnrolementTerm": 2722
+        }
+      ]
+    },
+    {
+      "Id": 740,
+      "TermId": 385,
+      "CourseComponentId": 788,
+      "RoomId": 455,
+      "Slots": 21,
+      "GroupChar": "B",
+      "Day": "THURSDAY",
+      "Lecturer": "Berdux",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Terry",
+          "LastName": "Decker",
+          "LoginName": "eiusmod",
+          "Password": "Lorem",
+          "Admin": false,
+          "EnrolementNumber": 100791,
+          "Mail": "bobbipace@fortean.com",
+          "ExamRegulationId": 360,
+          "EnrolementTerm": 4044
+        },
+        {
+          "Id": 1,
+          "FirstName": "Greer",
+          "LastName": "Serrano",
+          "LoginName": "magna",
+          "Password": "occaecat",
+          "Admin": true,
+          "EnrolementNumber": 100190,
+          "Mail": "livingstonbruce@intrawear.com",
+          "ExamRegulationId": 381,
+          "EnrolementTerm": 3154
+        },
+        {
+          "Id": 2,
+          "FirstName": "Nell",
+          "LastName": "Morse",
+          "LoginName": "labore",
+          "Password": "labore",
+          "Admin": true,
+          "EnrolementNumber": 100429,
+          "Mail": "ethelrowe@gorganic.com",
+          "ExamRegulationId": 536,
+          "EnrolementTerm": 4293
+        }
+      ]
+    },
+    {
+      "Id": 614,
+      "TermId": 266,
+      "CourseComponentId": 574,
+      "RoomId": 867,
+      "Slots": 5,
+      "GroupChar": "C",
+      "Day": "WEDNESDAY",
+      "Lecturer": "Barth",
+      "StartTime": {
+        "08:15": 1
+      },
+      "EndTime": {
+        "13:15": 1
+      },
+      "Students": [
+        {
+          "Id": 0,
+          "FirstName": "Wolf",
+          "LastName": "Olsen",
+          "LoginName": "veniam",
+          "Password": "cillum",
+          "Admin": false,
+          "EnrolementNumber": 100539,
+          "Mail": "mckenziebridges@xplor.com",
+          "ExamRegulationId": 179,
+          "EnrolementTerm": 8400
+        },
+        {
+          "Id": 1,
+          "FirstName": "Donaldson",
+          "LastName": "Lane",
+          "LoginName": "eiusmod",
+          "Password": "ipsum",
+          "Admin": true,
+          "EnrolementNumber": 100846,
+          "Mail": "guzmanhatfield@automon.com",
+          "ExamRegulationId": 582,
+          "EnrolementTerm": 7709
+        },
+        {
+          "Id": 2,
+          "FirstName": "Rosario",
+          "LastName": "Knox",
+          "LoginName": "aliqua",
+          "Password": "eu",
+          "Admin": true,
+          "EnrolementNumber": 100691,
+          "Mail": "merrittcasey@comtrek.com",
+          "ExamRegulationId": 512,
+          "EnrolementTerm": 1555
+        }
+      ]
+    }
+  ]
+}

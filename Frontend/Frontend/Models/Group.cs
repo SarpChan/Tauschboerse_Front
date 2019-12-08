@@ -7,32 +7,22 @@ namespace Frontend.Models
     /// The Group class models a group.
     /// </summary>
     public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
+
     public class Group
     {
-        //Starttime and Endttime
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("slots")]
-        public long Slots { get; set; }
-        [JsonProperty("groupChar")]
-        public char GroupChar { get; set; }
-        [JsonProperty("dayOfWeek")]
-        public DayOfWeek Day { get; set; }
-        [JsonProperty("startTime")]
-        public Dictionary<string, int> StartTime { get; set; } // convert to datettime
-        [JsonProperty("endTime")]
-        public Dictionary<string, int> EndTime { get; set; }
-        [JsonProperty("term")]
         public long TermId { get; set; }
-        [JsonProperty("courseComponent")]
         public long CourseComponentId { get; set; }
-        [JsonProperty("lecturer")]
-        public Lecturer Lecturer { get; set; }
-        [JsonProperty("room")]
         public long RoomId { get; set; }
-        [JsonProperty("students")]
-        public HashSet<Student> Students { get; set; }
-        public List<int> PrioritizeGroups { get; set; }
+        public long Slots { get; set; }
+        public char GroupChar { get; set; }
+        public Dictionary<string, int> StartTime { get; set; } //warum dictionary? was fuer ein string soll denn da als key stehen?
+        public Dictionary<string, int> EndTime { get; set; }
+        //public Lecturer Lecturer { get; set; }
+        public string Lecturer { get; set; }
+        public DayOfWeek Day { get; set; }
+        //public List<int> PrioritizeGroups { get; set; } was ist das?-> null!
+        public HashSet<Student> Students { get; set; } //was ist das? -> null!
 
     }
 }
