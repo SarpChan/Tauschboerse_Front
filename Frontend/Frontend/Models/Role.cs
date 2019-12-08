@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
-    class Role
+    public class Role
     {
         [JsonProperty("id")]
         public long Id { get; set; }

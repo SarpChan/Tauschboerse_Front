@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
-    class ModulesInCurriculum
+    public class ModulesInCurriculum
     {
         [JsonProperty("id")]
         public long Id { get; set; }
