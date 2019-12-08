@@ -19,7 +19,7 @@ namespace Frontend
             "MO","DI","MI","DO","FR","SA","SO"
         };
 
-        public static int weekdays = 5;
+        public static int weekdays = 6;
         public static TimeSpan StartTime = new TimeSpan(8,15,0);
         public static TimeSpan EndTime = new TimeSpan(19, 15, 0);
         public static int Subdivisions = 15;

@@ -73,8 +73,7 @@
                     <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
 
-                <usercontrols:TimeTable/>
-
+                <usercontrols:TimeTable BorderBrush="Black"/>
             </Grid>
 
         </Grid>

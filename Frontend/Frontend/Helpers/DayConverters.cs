@@ -8,14 +8,13 @@ using System.Windows.Data;
 
 namespace Frontend.Helpers
 {
-    public class RowHeightConverter : IMultiValueConverter
+    public class DayWidthConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double totalHeight = System.Convert.ToDouble(values[0]);
-            double headerHeight = System.Convert.ToDouble(values[1]);
-            int rowAmount = (int)Globals.GetDuration() / Globals.Subdivisions;
-            return (totalHeight-headerHeight)/rowAmount;
+            double totalWidth = System.Convert.ToDouble(values[0]);
+            double timeWidth = System.Convert.ToDouble(values[1]);
+            return (totalWidth - timeWidth) / Globals.weekdays;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -24,16 +23,14 @@ namespace Frontend.Helpers
         }
     }
 
-    public class RowPositionConverter : IMultiValueConverter
+    public class DayPositionConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double totalHeight = System.Convert.ToDouble(values[0]);
-            int rowAmount = (int)Globals.GetDuration() / Globals.Subdivisions;
-            int rowIndex = System.Convert.ToInt32(values[1]);
-            double rowHeight = (double)totalHeight / rowAmount;
-
-            return rowIndex*rowHeight;
+            double totalWidth = System.Convert.ToDouble(values[0]);
+            double timeWidth = System.Convert.ToDouble(values[1]);
+            double index = System.Convert.ToInt32(values[2]);
+            return ((totalWidth - timeWidth) / Globals.weekdays) * index + timeWidth;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -41,4 +38,7 @@ namespace Frontend.Helpers
             throw new NotImplementedException();
         }
     }
+
+
+
 }
