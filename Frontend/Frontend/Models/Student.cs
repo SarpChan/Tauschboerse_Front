@@ -1,24 +1,19 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Frontend.Models
 {
     /// <summary>
-    /// The Student class models a student.
+    /// The Student class models a student and inherits from the class role.
     /// </summary>
-    public class Student
+    public class Student : Role
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-        [JsonProperty("user")]
-        public long userId { get; set; }
-        public string LoginName { get; set; }
-        [JsonProperty("password")]
-        public string Password { get; set; }
-        [JsonProperty("enrolementNumber")]
         public int EnrolmentNumber { get; set; }
         public string Mail { get; set; }
-        [JsonProperty("examRegulation")]
-        public long ExamRegulationId { get; set; }
-        public int EnrolementTerm { get; set; }
+        public ExamRegulation ExamRegulation { get; set; }
+        public Term EnrolementTerm { get; set; }
+        public HashSet<StudentPrioritizesGroup> PrioritizeGroups { get; set; }
+        public HashSet<StudentPassedExam> PassedExam { get; set; }
+        public HashSet<Group> Groups { get; set; }
     }
 }

@@ -61,11 +61,13 @@
     </ApplicationDefinition>
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\StudentPrioritizesGroup.cs" />
     <Compile Include="Models\StudentPassedExam.cs" />
     <Compile Include="Models\StudentAttendsCourse.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Lecturer.cs" />
-    <Compile Include="Models\ModulesInCurriculum.cs" />
+    <Compile Include="Models\ModuleInCurriculum.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseComponent.cs" />
     <Compile Include="Models\Curriculum.cs" />
@@ -73,7 +75,6 @@
     <Compile Include="Models\FieldOfStudy.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Module.cs" />
-    <Compile Include="Helpers\JSONConverter.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudyProgram.cs" />

@@ -1,38 +1,26 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Frontend.Helpers;
+using System;
 namespace Frontend.Models
 {
     /// <summary>
-    /// The Group class models a group.
+    /// The Group class models a group. A group belongs to one term, one course component and one room.
+    /// A group is hold by one lecturer and consists of many students.
     /// </summary>
     public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
     public class Group
     {
-        //Starttime and Endttime
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("slots")]
-        public long Slots { get; set; }
-        [JsonProperty("groupChar")]
+        public int Slots { get; set; }
         public char GroupChar { get; set; }
-        [JsonProperty("dayOfWeek")]
         public DayOfWeek Day { get; set; }
-        [JsonProperty("startTime")]
-        public Dictionary<string, int> StartTime { get; set; } // convert to datettime
-        [JsonProperty("endTime")]
-        public Dictionary<string, int> EndTime { get; set; }
-        [JsonProperty("term")]
-        public long TermId { get; set; }
-        [JsonProperty("courseComponent")]
-        public long CourseComponentId { get; set; }
-        [JsonProperty("lecturer")]
+        public DateTime StartTime { get; set; } 
+        public DateTime EndTime { get; set; }
+        public Term Term { get; set; }
+        public CourseComponent CourseComponent { get; set; }
         public Lecturer Lecturer { get; set; }
-        [JsonProperty("room")]
-        public long RoomId { get; set; }
-        [JsonProperty("students")]
+        public Room Room { get; set; }
         public HashSet<Student> Students { get; set; }
-        public List<int> PrioritizeGroups { get; set; }
+        public HashSet<PrioritizeGroups> PrioritizeGroups { get; set; }
 
     }
 }

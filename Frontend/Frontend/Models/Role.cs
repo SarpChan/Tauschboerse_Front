@@ -7,11 +7,12 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
-    public class Role
+    /// <summary>
+    /// The Role class models a role. A role is applicable to one user.
+    /// </summary>
+    public abstract class Role
     {
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("user")]
-        public List<int> User { get; set; }
+        public User User { get; set; }
     }
 }

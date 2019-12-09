@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+
 namespace Frontend.Models
 {
     /// <summary>
-    /// The Lecturere class models a lecturer and inherits from the class role.
-    /// A lecturer can have many groups.
+    /// The Administrator class models an administrator.
+    /// An administrator is a role with administrative permissions.
     /// </summary>
-    public class Lecturer : Role
+    public class Administrator
     {
         public int Priviledge { get; set; }
-        public HashSet<Group> Groups { get; set; }
     }
 }
