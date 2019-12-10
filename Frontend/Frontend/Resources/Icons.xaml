@@ -21,4 +21,10 @@
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
     <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
+    
+    <DrawingBrush x:Key="upload_b" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource CD_GreyBrown}" Geometry="M4.23529 13.7647H10.5882V7.41177H14.8235L7.41177 0L0 7.41177H4.23529V13.7647ZM0 15.8824H14.8235V18H0V15.8824Z "/>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
 </ResourceDictionary>
