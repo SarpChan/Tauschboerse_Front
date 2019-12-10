@@ -12,6 +12,16 @@ namespace Frontend.Helpers
     {
         #region IValueConverter Members
 
+        /// <summary>
+        /// Konvertiert (momentan) einen Zeitstring in ein Y Koordinate
+        /// </summary>
+        /// Splittet momenatan die Zeit an einem ":" um Stunde und Minute zu erhalten
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Zeit, Komplette Höhe </param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Pixel für die Y-Koordniate</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
             double totalHeight = System.Convert.ToDouble(value[1]);
@@ -32,20 +42,26 @@ namespace Frontend.Helpers
 
         #endregion
     }
-
+    
     public class TimeToXCoordinatesConverter : IMultiValueConverter
     {
         #region IValueConverter Members
-
+        /// <summary>
+        /// Konvertiert Wochentag in ein X Koordinate
+        /// </summary>
+        /// Splittet momenatan die Zeit an einem ":" um Stunde und Minute zu erhalten
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Komplette Breite, Breite der Zeitspalte, Tag</param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Pixel für die X-Koordniate</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
             double totalWidth = System.Convert.ToDouble(value[0]);
-            //double timeWidth = System.Convert.ToDouble(parameters[1]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             int weekday = System.Convert.ToInt32(value[2]);
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
-            
-
             return timeWidth + (weekday) * widthPerItem;
         }
 
@@ -60,7 +76,15 @@ namespace Frontend.Helpers
     public class ItemWidthConverter : IMultiValueConverter
     {
         #region IValueConverter Members
-
+        /// <summary>
+        /// Berechnet die Breite pro Spalte
+        /// </summary>
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Komplette Breite, Breite der Zeitspalte</param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Pixelbreite</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
             double totalWidth = System.Convert.ToDouble(value[0]);
@@ -80,7 +104,15 @@ namespace Frontend.Helpers
     public class ItemHeightConverter : IMultiValueConverter
     {
         #region IValueConverter Members
-
+        /// <summary>
+        /// Berechnet die Höhe eines TimetableItems
+        /// </summary>
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Startzeit, Endzeit, Komplette Höhe</param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Höhe in Pixel</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
             double totalHeight = System.Convert.ToDouble(value[2]);

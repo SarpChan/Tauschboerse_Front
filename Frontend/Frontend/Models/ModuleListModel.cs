@@ -82,6 +82,9 @@ namespace Frontend
         public List<ModuleDummy> ModuleList { get { return _moduleList; } }
     }
 
+    /// <summary>
+    /// Dummy Model für eine Module
+    /// </summary>
     public class ModuleDummy
     {
         public enum ModuleType {Vorlesung,Übung,Praktikum,Tutorium};

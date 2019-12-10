@@ -36,6 +36,9 @@ namespace Frontend.Models
         public List<DayModel> DayList { get { return _dayList; } }
     }
 
+    /// <summary>
+    /// Dummy Model für einen Tag
+    /// </summary>
     public class DayModel
     {
         public String Name { get; set; }

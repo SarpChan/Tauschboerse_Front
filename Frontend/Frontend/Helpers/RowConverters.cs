@@ -14,6 +14,15 @@ namespace Frontend.Helpers
     /// </summary>
     public class RowHeightConverter : IMultiValueConverter
     {
+        /// <summary>
+        /// Berechnet die Höhe einer Spalte
+        /// </summary>
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Komplette Höhe, Höhe des Headers mit den Wochentagen</param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Höhe einer Spalte in Pixel</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             double totalHeight = System.Convert.ToDouble(values[0]);
@@ -27,7 +36,15 @@ namespace Frontend.Helpers
             throw new NotImplementedException();
         }
     }
-
+    /// <summary>
+    /// Berechnet die Y Position einer Spalte
+    /// </summary>
+    /// <param name="value">Array mit benötigten Werten zum Umrechnen
+    /// Hier: Komplette Höhe, Spaltenindex</param>
+    /// <param name="targetType">n/a</param>
+    /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+    /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+    /// <returns>Y Pos einer Spalte in Pixel</returns>
     public class RowPositionConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -46,6 +63,9 @@ namespace Frontend.Helpers
         }
     }
 
+    /// <summary>
+    /// Warum auch immer ist headerHeight nicht von nöten
+    /// </summary>
     public class SeperatorHeightConverters : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -81,6 +101,15 @@ namespace Frontend.Helpers
 
     public class RowLineColorConverter : IMultiValueConverter
     {
+        /// <summary>
+        /// Berechnet die Farbe eines Seperators
+        /// </summary>
+        /// <param name="value">Array mit benötigten Werten zum Umrechnen
+        /// Hier: Spaltenindex</param>
+        /// <param name="targetType">n/a</param>
+        /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
+        /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
+        /// <returns>Hintergrundfarbe als SolidColorBrush.</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int columnIndex = System.Convert.ToInt32(values[0]);

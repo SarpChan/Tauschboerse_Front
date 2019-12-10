@@ -12,6 +12,7 @@
              x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1000">
+    <!-- Import aller Converter als Static Resource -->
     <UserControl.Resources>
         <Helpers:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
         <Helpers:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
@@ -51,19 +52,32 @@
             Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
             />
 
+        <!--
+        https://stackoverflow.com/questions/42711237/how-to-get-height-of-an-control-in-viewmodel
+        
+        Actual Height sollte nicht genommen werden???
+        -->
 
-
+        
         <Canvas Grid.Row="1">
             <!-- 
                 For loop: Rows
-             -->
+                
+                Wie im Wiki beschrieben sind Item Controls sowas wie for each Schleifen. In diesem Fall ist es also
+                for x:RowModel in RowList
+            -->
             <ItemsControl ItemsSource="{Binding RowList}">
+                <!-- ItemTemplate legt fest, wie jeder einzelne Eintrag auszusehen hat-->
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:RowModel}">
                         <DataTemplate.Resources>
+                            <!-- Style Setter um die Attribute der Template Items zu binden -->
                             <Style TargetType="Rectangle">
                                 <Setter Property="Canvas.Top">
                                     <Setter.Value>
+                                        <!-- Canvas.Top wird mit den Werten ActualHeight des gesamten Timetables und dem RowIndex des Elementes gebunden
+                                             Die Werte werden durch den RowPositionConverter dann zu einem Wert verrechnet, welcher für Canvas.Top angegeben werden kann
+                                        -->
                                         <MultiBinding Converter="{StaticResource RowPositionConverter}">
                                             <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="RowIndex"/>
@@ -115,13 +129,16 @@
                                 </Setter>
                             </Style>
                         </DataTemplate.Resources>
+                        <!-- Canvas mit Größe 0x0 als Wrapper-->
                         <Canvas>
+                            <!-- Zeitlabel -->
                             <Label 
                                 Content="{Binding Time}"
                                 FontSize="12px"
                                 Panel.ZIndex="10" 
                                 Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
                                 HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
+                            <!-- Linie (Ob diese gezeichnet werden soll, wird mit dem RowLineColorConverter oben anhand des Index berechnet -->
                             <Separator
                                 Panel.ZIndex="1"
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" Margin="0" 
@@ -140,6 +157,7 @@
 
             <!-- 
                 For loop: Modules
+                ...Gleiches Prinzip wie oben...
              -->
 
             <ItemsControl ItemsSource="{Binding ModuleList}">
@@ -192,7 +210,8 @@
             </ItemsControl>
         </Canvas>
         <!-- 
-        For loop: Days & Seperators
+            For loop: Days & Seperators
+            ...Gleiches Prinzip wie oben...
         -->
         <ItemsControl ItemsSource="{Binding DayList}">
             <ItemsControl.ItemTemplate>
