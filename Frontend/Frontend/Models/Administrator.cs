@@ -10,7 +10,7 @@ namespace Frontend.Models
     /// The Administrator class models an administrator.
     /// An administrator is a role with administrative permissions.
     /// </summary>
-    public class Administrator
+    public class Administrator : Role
     {
         public int Priviledge { get; set; }
     }

@@ -4,7 +4,7 @@ namespace Frontend.Models
 {
     /// <summary>
     /// The Group class models a group. A group belongs to one term, one course component and one room.
-    /// A group is hold by one lecturer and consists of many students.
+    /// A group is hold by one lecturer and consists of many std
     /// </summary>
     public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
     public class Group
@@ -20,7 +20,7 @@ namespace Frontend.Models
         public Lecturer Lecturer { get; set; }
         public Room Room { get; set; }
         public HashSet<Student> Students { get; set; }
-        public HashSet<PrioritizeGroups> PrioritizeGroups { get; set; }
+        public HashSet<StudentPrioritizesGroup> StudentPrioritizesGroups { get; set; }
 
     }
 }
