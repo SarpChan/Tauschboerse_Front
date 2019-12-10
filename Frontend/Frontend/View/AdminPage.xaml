@@ -6,19 +6,46 @@
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Admin">
+    
+    <Page.Resources>
+        <!--Margin Rectangle -->
+        <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
+        
+        <Style TargetType="{x:Type Rectangle}" x:Key="rectangle">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="{StaticResource RectangleMargin}"/>
+        </Style>
+    </Page.Resources>
+    
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <!-- Grid Definition-->
     <Grid Width="1640" Height="1000" Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="1550"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="77"/>
-            <RowDefinition Height="113"/>
-            <RowDefinition Height="137"/>
-            <RowDefinition Height="593"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Admin Page" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-        <Canvas x:Name="canvas_timetable" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1460" Background="#FFD2E7EB" Grid.Column="1" Grid.Row="3">
-        </Canvas>
-    </Grid>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition  Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        
+            <Canvas Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                <Line  Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
+                <DockPanel Canvas.Top="50"  >
+                    <Rectangle Fill="{StaticResource CD_DarkTeal}" Style="{StaticResource rectangle}" />
+                    <TextBlock Text="= Ausgewähltes Semester" Style="{StaticResource TextTextblock}"/>
+                    <Rectangle Fill="{StaticResource CD_GreyBrown}" Style="{StaticResource rectangle}" />
+                    <TextBlock Text="= Stundenplan vorhanden" Style="{StaticResource TextTextblock}" />
+                    <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
+                    <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
+                </DockPanel>
+            </Canvas>
+        </Grid>
+    </ScrollViewer>
 </Page>
