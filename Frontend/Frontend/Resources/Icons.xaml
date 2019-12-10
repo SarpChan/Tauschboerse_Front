@@ -27,4 +27,9 @@
             <GeometryDrawing Brush="{StaticResource CD_GreyBrown}" Geometry="M4.23529 13.7647H10.5882V7.41177H14.8235L7.41177 0L0 7.41177H4.23529V13.7647ZM0 15.8824H14.8235V18H0V15.8824Z "/>
         </DrawingBrush.Drawing>
     </DrawingBrush>
+    <DrawingBrush x:Key="upload_hover_b" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource CD_DarkTeal}" Geometry="M4.23529 13.7647H10.5882V7.41177H14.8235L7.41177 0L0 7.41177H4.23529V13.7647ZM0 15.8824H14.8235V18H0V15.8824Z "/>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
 </ResourceDictionary>

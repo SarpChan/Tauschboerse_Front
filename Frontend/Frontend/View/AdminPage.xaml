@@ -7,66 +7,86 @@
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Admin">
-    
+
     <Page.Resources>
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
+        <!-- margin canvas -->
+        <Thickness  x:Key="CanvasMargin" Right="30" Left="30" />
+        <!-- margin text -->
+        <Thickness  x:Key="TextMargin" Right="10" />
+
         <!-- caption rectangle -->
         <Style TargetType="{x:Type Rectangle}" x:Key="rectangle">
             <Setter Property="Width" Value="60"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="Margin" Value="{StaticResource RectangleMargin}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        
+            
         </Style>
-
+        <!-- upload button style -->
         <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource adminButton}">
-            <Setter Property="Width" Value="400"/>
             <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
-                        <DockPanel>
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                            <DockPanel>
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Rectangle Name="Upload" Width="25" Height="25" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
-                                <TextBlock VerticalAlignment="Center">Neuen Studenplan hochladen</TextBlock>
-                        </DockPanel>
+                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" >Neuen Studenplan hochladen</TextBlock>
+                            </DockPanel>
 
-                    </Border>
-                    <!--Triggers for switching on hover -->
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
-                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
-                                <!--<Setter TargetName="Upload" Property="Source" Value="{StaticResource save_hover_b}" /> -->
+                        </Border>
+                        <!--Triggers for switching on hover -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
                             </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style TargetType="{x:Type ComboBox}" x:Key="comboBox" >
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30" />
+        </Style>
     </Page.Resources>
-    
-    
-    <ScrollViewer HorizontalScrollBarVisibility="Auto">
-    <!-- grid definition-->
-    <Grid Width="1640" Height="1000" Background="White">
-        <Grid.RowDefinitions>
+
+    <ScrollViewer>
+        <!-- grid definition -->
+        <Grid Background="White">
+            <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition  Width="0.5*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition  Width="0.5*"/>
+            </Grid.ColumnDefinitions>
 
-            <Canvas Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+
+            <Canvas Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3">
                 <Line  Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                 <!-- caption-->
-                <DockPanel Canvas.Top="50"  >
+                <DockPanel Canvas.Top="50">
+                    <ComboBox Style="{StaticResource comboBox}">
+                        <ComboBoxItem IsSelected="True">Test1</ComboBoxItem>
+                        <ComboBoxItem>Test2</ComboBoxItem>
+                    </ComboBox>
+                </DockPanel>
+                <DockPanel Canvas.Top="100"  >
                     <Rectangle  Fill="{StaticResource CD_DarkTeal}" Style="{StaticResource rectangle}" />
                     <TextBlock Text="= Ausgewähltes Semester" Style="{StaticResource TextTextblock}"/>
                     <Rectangle Fill="{StaticResource CD_GreyBrown}" Style="{StaticResource rectangle}" />
@@ -74,12 +94,11 @@
                     <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
                     <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                 </DockPanel>
-                <DockPanel Canvas.Top="100">
+                <DockPanel Canvas.Top="150">
                     <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" />
                 </DockPanel>
-                <DockPanel Canvas.Top="200">
+                <DockPanel Canvas.Top="250">
                     <Button Style="{StaticResource Uploadbutton}"/>
-                    
                 </DockPanel>
             </Canvas>
         </Grid>

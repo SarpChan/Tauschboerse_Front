@@ -318,8 +318,5 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\save_hover_b.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Icons\upload.svg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
