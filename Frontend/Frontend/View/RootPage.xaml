@@ -5,6 +5,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:user_controls="clr-namespace:Frontend.UserControls"
       mc:Ignorable="d"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root"
@@ -136,10 +137,15 @@
                 <Button Tag="Tauschboerse" Click="SharingServiceButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Stammdaten" Click="PersonalDataButton_Click" Style="{StaticResource MenuButton}"/>
                 <Button Tag="Admin" Click="AdminButton_Click" Style="{StaticResource MenuButton}"/>
+                <!--
+                <user_controls:SelectionBarElement SBE_Tag="Test" Grid.Row="1" Grid.Column="1"/>
+                <user_controls:SelectionBar AmountOfElements="5" Grid.Row="1" Grid.Column="1"/>
+                -->
             </StackPanel>
         </Grid>
         
         <!--MainFrame-->
+        
         <Frame x:Name="MainFrame" Source="HomePage.xaml" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>
