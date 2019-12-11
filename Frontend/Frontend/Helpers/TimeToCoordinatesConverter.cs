@@ -32,7 +32,7 @@ namespace Frontend.Helpers
 
             double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions) + Globals.RowPadding;
             TimeSpan timeFromStart = ModuleStartTime - Globals.StartTime;
-            return (timeFromStart.TotalMinutes/Globals.Subdivisions) * heightPerRow;
+            return (timeFromStart.TotalMinutes / Globals.Subdivisions) * heightPerRow;
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
@@ -42,7 +42,7 @@ namespace Frontend.Helpers
 
         #endregion
     }
-    
+
     public class TimeToXCoordinatesConverter : IMultiValueConverter
     {
         #region IValueConverter Members
@@ -58,6 +58,7 @@ namespace Frontend.Helpers
         /// <returns>Pixel für die X-Koordniate</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
+
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             int weekday = System.Convert.ToInt32(value[2]);
@@ -87,15 +88,25 @@ namespace Frontend.Helpers
         /// <returns>Pixelbreite</returns>
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            double totalWidth = System.Convert.ToDouble(value[0]);
-            double timeWidth = System.Convert.ToDouble(value[1]);
+
+            int divider = ConverterHelper.getModuleWidthDivider((ModuleDummy)value[0],(IList<ModuleDummy>)value[1]);
+
+            double totalWidth = System.Convert.ToDouble(value[2]);
+            double timeWidth = System.Convert.ToDouble(value[3]);
             double width = ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
+            width /= divider;
+
             return width < 0 ? 0 : width;
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        private int TimeStringToInt(String time)
+        {
+            return System.Convert.ToInt32(time.Split(':')[0]) * 60 + System.Convert.ToInt32(time.Split(':')[1]);
         }
 
         #endregion
@@ -135,5 +146,39 @@ namespace Frontend.Helpers
         }
 
         #endregion
+    }
+
+    class ConverterHelper
+    {
+        public static int getModuleWidthDivider(ModuleDummy module, IList<ModuleDummy> moduleList)
+        {
+
+            int divider = 0;
+
+            var startTime = TimeStringToInt(module.StartTime as String);
+            var endTime = TimeStringToInt(module.EndTime as String);
+
+            foreach (ModuleDummy cmp in moduleList)
+            {
+                if (module.Day.Equals(cmp.Day))
+                {
+                    var s2 = TimeStringToInt(cmp.StartTime as String);
+                    var e2 = TimeStringToInt(cmp.EndTime as String);
+
+                    if ((startTime <= s2 && endTime >= s2) || (startTime <= e2 && endTime >= e2))
+                    {
+                        divider++;
+                    }
+
+                }
+            }
+
+            return divider;
+        }
+
+        private static int TimeStringToInt(String time)
+        {
+            return System.Convert.ToInt32(time.Split(':')[0]) * 60 + System.Convert.ToInt32(time.Split(':')[1]);
+        }
     }
 }

@@ -24,6 +24,17 @@ namespace Frontend
             });
             AddModule(new ModuleDummy()
             {
+                ID = "69",
+                StartTime = "10:00",
+                EndTime = "11:30",
+                Day = "1",
+                PersonName = "Marc",
+                RoomNumber = "D42",
+                CourseName = "VS Code für anfänger",
+                Color = "#FFF4A233"
+            });
+            AddModule(new ModuleDummy()
+            {
                 ID = "1",
                 StartTime = "08:15",
                 EndTime = "15:45",

@@ -160,7 +160,7 @@
                 ...Gleiches Prinzip wie oben...
              -->
 
-            <ItemsControl ItemsSource="{Binding ModuleList}">
+            <ItemsControl ItemsSource="{Binding ModuleList}" Name="ModuleList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type project:ModuleDummy}">
                         <DataTemplate.Resources>
@@ -185,6 +185,8 @@
                                 <Setter Property="Width">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ItemWidthConverter}">
+                                            <Binding Path="."/>
+                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
                                         </MultiBinding>
@@ -206,8 +208,8 @@
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
             </ItemsControl>
+
         </Canvas>
         <!-- 
             For loop: Days & Seperators
