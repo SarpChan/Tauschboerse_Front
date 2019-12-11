@@ -32,6 +32,9 @@
             <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap">
                 <Run Text="{Binding Module.CourseName, ElementName=TimeTableItem}"/>
             </TextBlock>
+            <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" LastChildFill="False">
+                <TextBlock x:Name="Text_GroupChar" Text="{Binding Module.GroupChar,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="36" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,0,0,10"/>
+            </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" LastChildFill="False">
                 <TextBlock x:Name="Text_Room" Text="{Binding Module.RoomNumber,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,0,0,10"/>
                 <TextBlock x:Name="Text_Person" Text="{Binding Module.PersonName,ElementName=TimeTableItem}" DockPanel.Dock="Right" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" HorizontalAlignment="Right" Margin="10,0,10,10"/>
