@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Frontend.Helpers
@@ -63,8 +64,12 @@ namespace Frontend.Helpers
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             int weekday = System.Convert.ToInt32(value[2]);
+            int rowPos = ConverterHelper.getModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int divder = ConverterHelper.getModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
-            return timeWidth + (weekday) * widthPerItem;
+
+            return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem/divder)*(rowPos-1));
         }
 
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
@@ -103,11 +108,6 @@ namespace Frontend.Helpers
         public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-
-        private int TimeStringToInt(String time)
-        {
-            return System.Convert.ToInt32(time.Split(':')[0]) * 60 + System.Convert.ToInt32(time.Split(':')[1]);
         }
 
         #endregion
@@ -175,6 +175,35 @@ namespace Frontend.Helpers
             }
 
             return divider;
+        }
+
+        public static int getModuleRowPosition(ModuleDummy module, IList<ModuleDummy> moduleList)
+        {
+            int pos = 1;
+
+            var startTime = TimeStringToInt(module.StartTime as String);
+            var endTime = TimeStringToInt(module.EndTime as String);
+
+            foreach (ModuleDummy cmp in moduleList)
+            {
+                if (module.Day.Equals(cmp.Day))
+                {
+                    var s2 = TimeStringToInt(cmp.StartTime as String);
+                    var e2 = TimeStringToInt(cmp.EndTime as String);
+
+                    if ((startTime <= s2 && endTime >= s2) || (startTime <= e2 && endTime >= e2))
+                    {
+
+                        if (System.Convert.ToInt64(module.ID) > System.Convert.ToInt64(cmp.ID))
+                        {
+                            pos++;
+                        }
+                    }
+
+                }
+            }
+
+            return pos;
         }
 
         private static int TimeStringToInt(String time)

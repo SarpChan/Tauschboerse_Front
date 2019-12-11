@@ -15,7 +15,7 @@ namespace Frontend
             {
                 ID = "69",
                 StartTime = "10:00",
-                EndTime = "11:30",
+                EndTime = "12:30",
                 Day = "1",
                 PersonName = "Lukas",
                 RoomNumber = "D14",
@@ -25,7 +25,7 @@ namespace Frontend
             });
             AddModule(new ModuleDummy()
             {
-                ID = "69",
+                ID = "17",
                 StartTime = "10:00",
                 EndTime = "11:30",
                 Day = "1",

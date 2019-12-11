@@ -59,7 +59,7 @@
         -->
 
         
-        <Canvas Grid.Row="1">
+        <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
             <!-- 
                 For loop: Rows
                 
@@ -160,7 +160,7 @@
                 ...Gleiches Prinzip wie oben...
              -->
 
-            <ItemsControl ItemsSource="{Binding ModuleList}" Name="ModuleList">
+            <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type project:ModuleDummy}">
                         <DataTemplate.Resources>
@@ -179,6 +179,9 @@
                                             <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
                                             <Binding Path="Day"/>
+                                            <Binding Path="."/>
+                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
+                                            <Binding ElementName="ModuleList" Mode="OneWay"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -189,7 +192,6 @@
                                             <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
-                                            <Binding Path="Style" ElementName="TimeTableItem"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
