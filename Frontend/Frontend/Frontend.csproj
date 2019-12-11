@@ -62,9 +62,55 @@
     <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\TypeToIconConverter.cs" />
     <Compile Include="Helpers\WidthPercentageConverter.cs" />
+    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseComponent.cs" />
+    <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\DayListModel.cs" />
+    <Compile Include="Models\ExamRegulation.cs" />
+    <Compile Include="Models\FieldOfStudy.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Lecturer.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\ModuleInCurriculum.cs" />
     <Compile Include="Models\ModuleListModel.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentAttendsCourse.cs" />
+    <Compile Include="Models\StudentPassedExam.cs" />
+    <Compile Include="Models\StudentPrioritizesGroup.cs" />
+    <Compile Include="Models\StudyProgram.cs" />
+    <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableRowListModel.cs" />
+    <Compile Include="Models\University.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="UserControls\SB_AdminButton.xaml.cs">
+      <DependentUpon>SB_AdminButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
+      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_PersonalDataButton.xaml.cs">
+      <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_SharingServiceButton.xaml.cs">
+      <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
+      <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
+      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TB_LogoButton.xaml.cs">
+      <DependentUpon>TB_LogoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
+      <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
@@ -106,6 +152,54 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_AdminButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_HomeButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_PersonalDataButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_SharingServiceButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SB_TimetableButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SelectionBarElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TB_LogoButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TB_LogoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

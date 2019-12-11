@@ -189,6 +189,7 @@
                                             <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
+                                            <Binding Path="Style" ElementName="TimeTableItem"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>

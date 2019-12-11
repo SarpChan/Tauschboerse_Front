@@ -31,7 +31,6 @@ namespace Frontend
         }
 
         #region Properties
-
         private ObservableCollection<ModuleDummy> _ModuleList = new ObservableCollection<ModuleDummy>();
         public ObservableCollection<ModuleDummy> ModuleList
         {
@@ -50,6 +49,35 @@ namespace Frontend
             get { return _DayList; }
         }
 
+        private int _itemsOnPosition;
+
+        public int ItemsOnPosition
+        {
+            get { return _itemsOnPosition; }
+            set
+            {
+                if(_itemsOnPosition != value)
+                {
+                    _itemsOnPosition = value;
+                    OnPropertyChanged("ItemsOnPosition");
+                }
+            }
+        }
+
+        private int _itemPosition;
+
+        public int ItemPosition
+        {
+            get { return _itemPosition; }
+            set
+            {
+                if (_itemPosition != value)
+                {
+                    _itemPosition = value;
+                    OnPropertyChanged("ItemPosition");
+                }
+            }
+        }
 
         #endregion
     }

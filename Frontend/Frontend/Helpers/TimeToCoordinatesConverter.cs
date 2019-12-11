@@ -8,6 +8,7 @@ using System.Windows.Data;
 
 namespace Frontend.Helpers
 {
+
     public class TimeToYCoordinatesConverter : IMultiValueConverter
     {
         #region IValueConverter Members
