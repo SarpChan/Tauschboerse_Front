@@ -79,7 +79,9 @@
             </Grid>
         </ControlTemplate>
 
-        
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+            <Border Background="{TemplateBinding Background}" />
+        </ControlTemplate>
 
         <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
