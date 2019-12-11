@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Frontend.Helpers;
+using System.Windows.Controls;
+
 
 namespace Frontend.View
 {
@@ -10,6 +12,12 @@ namespace Frontend.View
         public AdminPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            JsonFileDialog jfd = new JsonFileDialog();
+            jfd.GetJsonFromFile();
         }
     }
 }
