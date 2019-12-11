@@ -20,6 +20,7 @@ namespace Frontend
                 PersonName = "Lukas",
                 RoomNumber = "D14",
                 CourseName = "EIBO",
+                GroupChar = 'B',
                 Color = "#FFF4A233"
             });
             AddModule(new ModuleDummy()
@@ -31,6 +32,7 @@ namespace Frontend
                 PersonName = "Olli",
                 RoomNumber = "D17",
                 CourseName = "Programmieren 3",
+                GroupChar = 'C',
                 Color = "#FFA8EEDD"
             });
             AddModule(new ModuleDummy()
@@ -42,6 +44,7 @@ namespace Frontend
                 PersonName = "Nicklas",
                 RoomNumber = "D11",
                 CourseName = "Programmieren 3",
+                GroupChar = 'H',
                 Color = "#FFA16C17"
             });
             AddModule(new ModuleDummy()
@@ -53,6 +56,7 @@ namespace Frontend
                 PersonName = "Sonntag",
                 RoomNumber = "D8",
                 CourseName = "Programmieren 4",
+                GroupChar = 'A',
                 Color = "#FFABCDEF"
             });
             AddModule(new ModuleDummy()
@@ -64,6 +68,7 @@ namespace Frontend
                 PersonName = "Sanja",
                 RoomNumber = "D17",
                 CourseName = "Programmieren 1",
+                GroupChar = 'A',
                 Color = "#FF99AA88"
             });
         }
@@ -94,6 +99,7 @@ namespace Frontend
         public string RoomNumber { get; set; }
         public string PersonName { get; set; }
         public string CourseName { get; set; }
+        public char GroupChar { get; set; }
         public string Color { get; set; }
         public string Day { get; set; }
         public ModuleType Type { get; set; }
