@@ -19,11 +19,10 @@ namespace Frontend.ViewModel
      */
 
     class MainViewModel : ViewModelBase
-        //TODO: Mockup vom server in MockupModel speichern und von dort aus anzeigen
     {
         public MainViewModel()
         {
-            MM = "EMPTY";
+            MyModule = null;
             ActivePage = new HomePage();
             IsLoading = false;
         }
@@ -61,17 +60,17 @@ namespace Frontend.ViewModel
         }
         
         //Nur zum testen bis Model exisitiert
-        private string _mm;
-        public string MM
+        private Module _myModule;
+        public Module MyModule
         {
-            get { return _mm; }
+            get { return _myModule; }
             set
             {
-                if (_mm != value)
+                if (_myModule != value)
                 {
-                    _mm = value;
-                    OnPropertyChanged("MM");
-                    Console.WriteLine("MM CHANGED TO: " + _mm);
+                    _myModule = value;
+                    OnPropertyChanged("MyModule");
+                    Console.WriteLine("MyModule CHANGED TO: " + _myModule);
                 }
             }
         }
@@ -211,29 +210,22 @@ namespace Frontend.ViewModel
         public async Task RequestTimetableFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/module/read", Method.GET); //REST Path
-            //var request = new RestRequest("rest/timetable", Method.GET); //REST Path
+            var request = new RestRequest("/rest/lists/timetable", Method.GET); //REST Path
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber); //Adds "?moduleID='EnrolementNumber'" to Path
-            request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
 
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
-            //Zum Testen
+            //test
             string jsonFileString;
-            StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
+            StreamReader streamReader = File.OpenText("..\\..\\Models\\timetable_1112.json");
             jsonFileString = streamReader.ReadToEnd();
-            Timetable timetable = JsonConvert.DeserializeObject<Timetable>(jsonFileString);
-            //Console.WriteLine(response.Content);
-            if ((string)response.Content != "")
-            {
-                MM = (string)response.Content; 
-            }
-            Console.WriteLine(timetable);
-            //Zum Testen
-
+            //test
+            MyModule = JsonConvert.DeserializeObject<Module>(jsonFileString);
+            Console.WriteLine(MyModule);
+            streamReader.Dispose();
             cancellationTokenSource.Dispose();
         }
         #endregion
