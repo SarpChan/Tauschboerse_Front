@@ -188,10 +188,10 @@
                                 <Setter Property="Width">
                                     <Setter.Value>
                                         <MultiBinding Converter="{StaticResource ItemWidthConverter}">
-                                            <Binding Path="."/>
-                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
+                                            <Binding Path="."/>
+                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>

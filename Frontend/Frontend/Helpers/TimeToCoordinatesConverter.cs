@@ -64,8 +64,8 @@ namespace Frontend.Helpers
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             int weekday = System.Convert.ToInt32(value[2]);
-            int rowPos = ConverterHelper.getModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
-            int divder = ConverterHelper.getModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int rowPos = ConverterHelper.CalculateModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int divder = ConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
 
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
@@ -87,7 +87,7 @@ namespace Frontend.Helpers
         /// Berechnet die Breite pro Spalte
         /// </summary>
         /// <param name="value">Array mit benötigten Werten zum Umrechnen
-        /// Hier: Komplette Breite, Breite der Zeitspalte</param>
+        /// Hier: Komplette Breite, Breite der Zeitspalte,act. Groups, List aller Groups</param>
         /// <param name="targetType">n/a</param>
         /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
         /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
@@ -95,10 +95,10 @@ namespace Frontend.Helpers
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            int divider = ConverterHelper.getModuleWidthDivider((ModuleDummy)value[0],(IList<ModuleDummy>)value[1]);
+            int divider = ConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[2],(IList<ModuleDummy>)value[3]);
 
-            double totalWidth = System.Convert.ToDouble(value[2]);
-            double timeWidth = System.Convert.ToDouble(value[3]);
+            double totalWidth = System.Convert.ToDouble(value[0]);
+            double timeWidth = System.Convert.ToDouble(value[1]);
             double width = ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
             width /= divider;
 
@@ -151,7 +151,14 @@ namespace Frontend.Helpers
 
     class ConverterHelper
     {
-        public static int getModuleWidthDivider(ModuleDummy module, IList<ModuleDummy> moduleList)
+
+        /// <summary>
+        /// Brechnet wie viele Module neben dem untersuchten Modul liegen
+        /// </summary>
+        /// <param name="module">das untersuchte Module</param>
+        /// <param name="moduleList">Liste aller Module</param>
+        /// <returns>Anzahl der Module neben dem u. Module ink. u. Module</returns>
+        public static int CalculateModuleWidthDivider(ModuleDummy module, IList<ModuleDummy> moduleList)
         {
 
             int divider = 0;
@@ -177,7 +184,13 @@ namespace Frontend.Helpers
             return divider;
         }
 
-        public static int getModuleRowPosition(ModuleDummy module, IList<ModuleDummy> moduleList)
+        /// <summary>
+        /// Berechnet (auf grund der Id) an welcher Postion einer Splate das Module liegen muss 
+        /// </summary>
+        /// <param name="module">das untersuchte Module</param>
+        /// <param name="moduleList">Liste aller Module</param>
+        /// <returns>SplatenPostion des Modules</returns>
+        public static int CalculateModuleRowPosition(ModuleDummy module, IList<ModuleDummy> moduleList)
         {
             int pos = 1;
 
