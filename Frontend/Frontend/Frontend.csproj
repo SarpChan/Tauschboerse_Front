@@ -56,6 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\ModuleSelectionButton.xaml.cs">
+      <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ModuleSelectionElement.xaml.cs">
+      <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SB_AdminButton.xaml.cs">
       <DependentUpon>SB_AdminButton.xaml</DependentUpon>
     </Compile>
@@ -71,6 +77,18 @@
     <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModuleSelectionButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModuleSelectionElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SelectionBarElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +102,8 @@
     <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
       <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\StudentModuleViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

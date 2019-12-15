@@ -1,5 +1,4 @@
-﻿using Frontend.Helpers;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -65,7 +64,10 @@ namespace Frontend.View
         [Obsolete]
         private void PersonalDataButton_Click(object sender, RoutedEventArgs e)
         {
-            PersonalDataPage personalDataPage = new PersonalDataPage();
+            //PersonalDataPage personalDataPage = new PersonalDataPage();
+            //MainFrame.NavigationService.Navigate(personalDataPage);
+
+            StudentModulePage personalDataPage = new StudentModulePage();
             MainFrame.NavigationService.Navigate(personalDataPage);
         }
 

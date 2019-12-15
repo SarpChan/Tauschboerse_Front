@@ -4,9 +4,8 @@
     "\\Frontend",
     "\\Frontend\\Frontend",
     "\\Frontend\\Frontend\\Resources",
-    "\\Frontend\\Frontend\\UserControls",
     "\\Frontend\\Frontend\\View"
   ],
-  "SelectedNode": "\\Frontend\\Frontend\\Resources\\Fonts.xaml",
+  "SelectedNode": "\\Frontend\\Frontend.sln",
   "PreviewInSolutionExplorer": false
 }
