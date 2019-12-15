@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
+
 namespace Frontend.View
 {
     
@@ -23,6 +24,12 @@ namespace Frontend.View
             subjectComboBox.ItemsSource = subject;
 
 
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            JsonFileDialog jfd = new JsonFileDialog();
+            jfd.GetJsonFromFile();
         }
     }
 }

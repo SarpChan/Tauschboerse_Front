@@ -277,7 +277,7 @@
 
                 </DockPanel>
                 <DockPanel Canvas.Top="250">
-                    <Button Style="{StaticResource Uploadbutton}"/>
+                    <Button Style="{StaticResource Uploadbutton}" Click="Button_Click"/>
                 </DockPanel>
             </Canvas>
         </Grid>

@@ -74,6 +74,7 @@
     <Compile Include="Helpers\ActionCommand.cs" />
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\JsonFileDialog.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Models\Building.cs" />
