@@ -4,6 +4,7 @@
     <BitmapImage x:Key="edit_b" UriSource="/Resources/Icons/edit_b.png"/>
     <BitmapImage x:Key="exercise_b" UriSource="/Resources/Icons/exercise_b.png"/>
     <BitmapImage x:Key="exercise_w" UriSource="/Resources/Icons/exercise_w.png"/>
+    <BitmapImage x:Key="info" UriSource="/Resources/Icons/info.png"/>
     <BitmapImage x:Key="lecture_b" UriSource="/Resources/Icons/lecture_b.png"/>
     <BitmapImage x:Key="lecture_w" UriSource="/Resources/Icons/lecture_w.png"/>
     <BitmapImage x:Key="left_arrow_b" UriSource="/Resources/Icons/left_arrow_b.png"/>
@@ -14,11 +15,13 @@
     <BitmapImage x:Key="pdf_b" UriSource="/Resources/Icons/pdf_b.png"/>
     <BitmapImage x:Key="practicum_b" UriSource="/Resources/Icons/practicum_b.png"/>
     <BitmapImage x:Key="practicum_w" UriSource="/Resources/Icons/practicum_w.png"/>
+    <BitmapImage x:Key="save" UriSource="/Resources/Icons/save.png"/>
     <BitmapImage x:Key="save_b" UriSource="/Resources/Icons/save_b.png"/>
     <BitmapImage x:Key="stupla_logo" UriSource="/Resources/Icons/stupla_logo.png"/>
     <BitmapImage x:Key="stupla_logo_big" UriSource="/Resources/Icons/stupla_logo_big.png"/>
     <BitmapImage x:Key="stupla_logo_icon" UriSource="/Resources/Icons/stupla_logo_icon.png"/>
+    <BitmapImage x:Key="times" UriSource="/Resources/Icons/times.png"/>
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
-    <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
+    <BitmapImage x:Key="delete" UriSource="/Resources/Icons/delete.png"/>
 </ResourceDictionary>
