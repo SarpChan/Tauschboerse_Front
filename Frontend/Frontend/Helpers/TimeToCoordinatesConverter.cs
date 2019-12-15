@@ -66,7 +66,6 @@ namespace Frontend.Helpers
             int weekday = System.Convert.ToInt32(value[2]);
             int rowPos = ConverterHelper.CalculateModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
             int divder = ConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
-
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
             return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem/divder)*(rowPos-1));
@@ -173,7 +172,7 @@ namespace Frontend.Helpers
                     var s2 = TimeStringToInt(cmp.StartTime as String);
                     var e2 = TimeStringToInt(cmp.EndTime as String);
 
-                    if ((startTime <= s2 && endTime >= s2) || (startTime <= e2 && endTime >= e2))
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
                         divider++;
                     }
@@ -204,7 +203,7 @@ namespace Frontend.Helpers
                     var s2 = TimeStringToInt(cmp.StartTime as String);
                     var e2 = TimeStringToInt(cmp.EndTime as String);
 
-                    if ((startTime <= s2 && endTime >= s2) || (startTime <= e2 && endTime >= e2))
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
 
                         if (System.Convert.ToInt64(module.ID) > System.Convert.ToInt64(cmp.ID))
