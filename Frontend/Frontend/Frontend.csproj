@@ -74,20 +74,28 @@
     <Compile Include="Helpers\ActionCommand.cs" />
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\DayConverters.cs" />
+    <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
+    <Compile Include="Helpers\RowConverters.cs" />
+    <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
+    <Compile Include="Helpers\TypeToIconConverter.cs" />
+    <Compile Include="Helpers\WidthPercentageConverter.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseComponent.cs" />
     <Compile Include="Models\Curriculum.cs" />
+    <Compile Include="Models\DayListModel.cs" />
     <Compile Include="Models\ExamRegulation.cs" />
     <Compile Include="Models\FieldOfStudy.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\ModuleInCurriculum.cs" />
+    <Compile Include="Models\ModuleListModel.cs" />
     <Compile Include="Models\PersonalData.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Room.cs" />
@@ -98,6 +106,7 @@
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableData.cs" />
+    <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="UserControls\SelectionBarElement.xaml.cs">
@@ -124,8 +133,15 @@
     <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TimeTable.xaml.cs">
+      <DependentUpon>TimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TimetableItem.xaml.cs">
+      <DependentUpon>TimetableItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -206,6 +222,14 @@
     <Page Include="UserControls\SB_TimetableButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TimeTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TimetableItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
