@@ -4,9 +4,8 @@
     "\\Frontend",
     "\\Frontend\\Frontend",
     "\\Frontend\\Frontend\\Resources",
-    "\\Frontend\\Frontend\\Resources\\Icons",
     "\\Frontend\\Frontend\\View"
   ],
-  "SelectedNode": "\\.gitattributes",
+  "SelectedNode": "\\Frontend\\Frontend.sln",
   "PreviewInSolutionExplorer": false
 }
