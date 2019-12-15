@@ -7,15 +7,14 @@ using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
+    /// <summary>
+    /// The StudentPassedExam class models a student and a course component as well as the grade the student received in that course component.
+    /// </summary>
     public class StudentPassedExam
     {
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("grade")]
         public float Grade { get; set; }
-        [JsonProperty("student")]
-        public long StudentId { get; set; }
-        [JsonProperty("courseComponents")]
-        public List<long> CourseComponents { get; set; }
+        public Student Student { get; set; }
+        public CourseComponent CourseComponent { get; set; }
     }
 }
