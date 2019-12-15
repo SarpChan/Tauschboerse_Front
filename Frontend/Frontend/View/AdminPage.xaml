@@ -11,10 +11,14 @@
     <Page.Resources>
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
+        <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
         <!-- margin canvas -->
         <Thickness  x:Key="CanvasMargin" Right="30" Left="30" />
-        <!-- margin text -->
+        <!-- margin Header -->
         <Thickness  x:Key="TextMargin" Right="10" />
+        <!-- margin Header-->
+        <Thickness  x:Key="HeaderMargin" Top="20" />
+        
 
         <!-- caption rectangle -->
         <Style TargetType="{x:Type Rectangle}" x:Key="rectangle">
@@ -32,9 +36,9 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
                             <DockPanel>
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Rectangle Name="Upload" Width="25" Height="25" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
-                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" >Neuen Studenplan hochladen</TextBlock>
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
                             </DockPanel>
 
                         </Border>
@@ -51,99 +55,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
-          
-        <!-- ToggleButton ComboBox 
-        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="20" />
-                </Grid.ColumnDefinitions>
-                <Border Name="Border" Grid.ColumnSpan="2" Background="White" BorderBrush="{StaticResource CD_DarkTeal}" BorderThickness="1" />
-                <Path x:Name="Arrow" Grid.Column="1" Fill="{StaticResource CD_DarkTeal}" HorizontalAlignment="Center"
-                  VerticalAlignment="Center" Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" />
-            </Grid>
-        </ControlTemplate>
-        
-        TextBox ComboBox
-       <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
-            <Border Background="{TemplateBinding Background}" />
-        </ControlTemplate> 
 
-        <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
-            <Setter Property="OverridesDefaultStyle" Value="true"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto" />
-            <Setter Property="Foreground" Value="White"/>
+        <!-- delete button style -->
+        <Style TargetType="{x:Type Button}" x:Key="Deletebutton" BasedOn="{StaticResource adminButton}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ComboBox}">
-                        <Grid>
-                            <ToggleButton Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
-                            <ContentPresenter Name="ContentSite"  Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <TextBox Name="PART_EditableTextBox" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" PopupAnimation="Slide">
-                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border x:Name="DropDownBorder" Background="White" BorderThickness="1" BorderBrush="{StaticResource CD_DarkTeal}"/>
-                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
-                                </Grid>
-                            </Popup>
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                            <DockPanel>
+                                <Rectangle Name="Upload" Width="25" Height="25" Margin="{StaticResource IconMargin}" Fill="{StaticResource bin_b }"/>
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
+                            </DockPanel>
+
+                        </Border>
+                        <!--Triggers for switching on hover -->
                         <ControlTemplate.Triggers>
-                            <Trigger Property="HasItems" Value="false">
-                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
-                            </Trigger>
-                            <Trigger Property="IsGrouping" Value="true">
-                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                            </Trigger>
-                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
-                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
-                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
-                            </Trigger>
-                            <Trigger Property="IsEditable"  Value="true">
-                                <Setter Property="IsTabStop" Value="false"/>
-                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource CD_Red}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource bin_hover_b}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-            </Style.Triggers>
         </Style>
 
-         ComboBoxItem 
-        <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
-             <Setter Property="SnapsToDevicePixels" Value="true"/>
-     
-            <Setter Property="OverridesDefaultStyle" Value="true"/> 
-            <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
-            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                        <Border Name="Border">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsHighlighted" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style> -->
 
         <!-- ComboBox -->
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#d2e7eb"/>
-        
-
+     
         <Style TargetType="ComboBoxItem">
             <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
             <Setter Property="Background" Value="White"/>
@@ -258,26 +201,35 @@
 
 
             <Canvas Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3">
-                <Line  Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
-                <!-- caption-->
-                <DockPanel Canvas.Top="50">
-                    <ComboBox  Style="{StaticResource ComboBoxStyle}" Name="subjectComboBox" Width="120" Height="22" ItemsSource="{Binding}" />
-                </DockPanel>
-                <DockPanel Canvas.Top="100"  >
-                    <Rectangle  Fill="{StaticResource CD_DarkTeal}" Style="{StaticResource rectangle}" />
-                    <TextBlock Text="= Ausgewähltes Semester" Style="{StaticResource TextTextblock}"/>
-                    <Rectangle Fill="{StaticResource CD_GreyBrown}" Style="{StaticResource rectangle}" />
-                    <TextBlock Text="= Stundenplan vorhanden" Style="{StaticResource TextTextblock}" />
-                    <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
-                    <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
-                </DockPanel>
-                <DockPanel Canvas.Top="150">
+                <StackPanel>
+                    <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
+                    <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
+                    <DockPanel  Margin="{StaticResource HeaderMargin}">
+                        <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"/>
+                        <Button Style="{StaticResource Deletebutton}" Content="Alle Stundenpläne löschen"/>
+                    </DockPanel>
+                    <Line Stroke="{StaticResource CD_LightGrey}"  Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
+
+                    <!-- caption-->
+                    <DockPanel Margin="{StaticResource HeaderMargin}">
+                        <ComboBox Style="{StaticResource ComboBoxStyle}"  Name="subjectComboBox" SelectionChanged="subjectComboBox_SelectionChanged" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" />
+                        <ComboBox  Style="{StaticResource ComboBoxStyle}" Name="poComboBox" ItemsSource="{Binding}" />
+                    </DockPanel>
+
+                    <DockPanel Margin="{StaticResource HeaderMargin}">
+                        <Rectangle  Fill="{StaticResource CD_DarkTeal}" Style="{StaticResource rectangle}" Margin="{StaticResource firstRectangleMargin}" />
+                        <TextBlock Text="= Ausgewähltes Semester" Style="{StaticResource TextTextblock}"/>
+                        <Rectangle Fill="{StaticResource CD_GreyBrown}" Style="{StaticResource rectangle}" />
+                        <TextBlock Text="= Stundenplan vorhanden" Style="{StaticResource TextTextblock}" />
+                        <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
+                        <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
+                    </DockPanel>
+                </StackPanel>
+                <DockPanel Canvas.Top="280">
                     <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" />
-
-
                 </DockPanel>
-                <DockPanel Canvas.Top="250">
-                    <Button Style="{StaticResource Uploadbutton}" Click="Button_Click"/>
+                <DockPanel Canvas.Top="380">
+                    <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen" Click="Button_Click"/>
                 </DockPanel>
             </Canvas>
         </Grid>
