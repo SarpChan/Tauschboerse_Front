@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Frontend.Models
 {
+    /**
+     * Diese Klasse enthaelt alle ModelDaten betreffend der Eigenen Daten
+     */
     class PersonalData : INotifyPropertyChanged
     {
-
+        //TODO: Singleton PersonalData?
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

@@ -68,7 +68,7 @@
                 <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
             </StackPanel>
         </Grid>
-        <TextBlock Text="{Binding ActivePage}" TextAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1"/>
+        <!--<TextBlock Text="{Binding ActivePage}" TextAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1"/>-->
         <!--MainFrame-->
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">
             <Frame.Source>

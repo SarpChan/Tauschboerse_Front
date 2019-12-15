@@ -12,7 +12,7 @@ namespace Frontend.View
     public partial class RootPage : Page
     {
         /*
-        //TODO: TTP Singleton sinnvoll?? Wenn ja, wie? private Constructor wirft fehler
+        //TODO: RootPage Singleton sinnvoll?? Wenn ja, wie? private Constructor wirft fehler
         private static readonly Lazy<RootPage> lazyRootPageSingleton =
             new Lazy<RootPage>(() => new RootPage());
 

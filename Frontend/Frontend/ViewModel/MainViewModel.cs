@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
@@ -8,27 +7,27 @@ using System.Threading.Tasks;
 using System.Threading;
 using Frontend.Models;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace Frontend.ViewModel
 {
     /**
      * <summary>
-     * Haupt ViewModel. Hat alle Properties, ICommands und Methoden
+     * RootPage ViewModel. Hat alle Properties, ICommands und Methoden fuer die View RootPage. Benennung historisch bedingt.
+     * TODO: Refactor to 'RootPageViewModel'
      * </summary>
      */
 
     class MainViewModel : ViewModelBase
     {
         public PersonalData personalData;
-        public Timetable timetable;
+        public TimetableData timetableData;
 
         public MainViewModel()
         {
             ActivePage = new HomePage();
             IsLoading = false;
             personalData = new PersonalData();
-            timetable = new Timetable();
+            timetableData = new TimetableData();
             
         }
 
@@ -148,7 +147,7 @@ namespace Frontend.ViewModel
 
         #region methods
         /*
-         * Handled das Page-Switchen
+         * Handled das Page-Switchen inkl. asynchroner Anfrage an den Server und anzeigen des Loading Screens
          */
         private async void SwitchActivePageAsync(Page newActivePage)
         {
@@ -198,7 +197,7 @@ namespace Frontend.ViewModel
         }
 
         /*
-         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
          */
         public async Task RequestTimetableFromServerAsync()
@@ -212,7 +211,7 @@ namespace Frontend.ViewModel
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
-            timetable.CurrentCurriulum = JsonConvert.DeserializeObject<Curriculum>(response.Content.ToString());
+            timetableData.CurrentCurriulum = JsonConvert.DeserializeObject<Curriculum>(response.Content.ToString());
 
             /*Zum Testen
             string jsonFileString;
@@ -223,6 +222,10 @@ namespace Frontend.ViewModel
             cancellationTokenSource.Dispose();
         }
 
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
         private async Task RequestNewsFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
@@ -239,6 +242,11 @@ namespace Frontend.ViewModel
             cancellationTokenSource.Dispose();
         }
 
+
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
         private async Task RequestSharingDataFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
@@ -255,6 +263,11 @@ namespace Frontend.ViewModel
             cancellationTokenSource.Dispose();
         }
 
+
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
         private async Task RequestPersonalDataFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
@@ -271,6 +284,11 @@ namespace Frontend.ViewModel
             cancellationTokenSource.Dispose();
         }
 
+
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
         private async Task RequestAdminDataFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL

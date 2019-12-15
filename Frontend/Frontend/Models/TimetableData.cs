@@ -1,13 +1,14 @@
-﻿using Frontend.Helpers.JsonConverters;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Frontend.Models
 {
-    class Timetable: INotifyPropertyChanged
-    {
 
+    /**
+     * Diese Klasse enthaelt alle ModelDaten betreffend Stundenplan
+     */
+    class TimetableData: INotifyPropertyChanged
+    {
+        //TODO: Singleton TimetableData?
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -27,7 +28,6 @@ namespace Frontend.Models
                 }
             }
         }
-
 
         /*
         [JsonConverter(typeof(JsonToGroupListConverter))]
