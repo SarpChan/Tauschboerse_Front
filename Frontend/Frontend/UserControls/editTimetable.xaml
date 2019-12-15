@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Frontend.TT"
+             xmlns:local="clr-namespace:Frontend.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="200">
     <StackPanel>
@@ -112,7 +112,7 @@
             </Button>
         </UserControl>
         <UserControl x:Name="tt_delete_button">
-            <Button Tag="TTDetailButton" Command="{Binding TT_DeleteButtonCommand,ElementName=tt_delete_button}" Click="Button_Click">
+            <Button Tag="TTDetailButton" Command="{Binding TT_DeleteButtonCommand,ElementName=tt_delete_button}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="VerticalAlignment" Value="Center" />

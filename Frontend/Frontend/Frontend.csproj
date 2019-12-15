@@ -109,6 +109,9 @@
     <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="UserControls\EditTimetable.xaml.cs">
+      <DependentUpon>EditTimetable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,7 @@
     <Compile Include="UserControls\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
@@ -204,6 +208,10 @@
     <Page Include="Resources\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EditTimetable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ModuleSelectionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
