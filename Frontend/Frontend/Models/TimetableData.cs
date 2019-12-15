@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Frontend.Models
 {
@@ -15,34 +16,18 @@ namespace Frontend.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private Curriculum _currentCurriulum = new Curriculum();
-        public Curriculum CurrentCurriulum
+        private List<Module> _timetable = new List<Module>();
+        public List<Module> Timetable
         {
-            get { return _currentCurriulum; }
+            get { return _timetable; }
             set
             {
-                if (value != _currentCurriulum)
+                if (value != _timetable)
                 {
-                    _currentCurriulum = value;
-                    OnPropertyChanged("CurrentCurriculum");
+                    _timetable = value;
+                    OnPropertyChanged("Timetable");
                 }
             }
         }
-
-        /*
-        [JsonConverter(typeof(JsonToGroupListConverter))]
-        public List<Group> GroupList
-        {
-            get { return _groupList; }
-            set {
-                if (value != _groupList)
-                {
-                    _groupList = value;
-                    OnPropertyChanged("GroupList");
-                }
-            }
-        }
-        private List<Group> _groupList = new List<Group>();
-        */
     }
 }

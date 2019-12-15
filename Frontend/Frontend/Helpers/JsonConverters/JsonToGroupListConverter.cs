@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace Frontend.Helpers.JsonConverters
 {
+    [Obsolete("Wird nicht mehr benoetigt")]
     class JsonToGroupListConverter : JsonConverter
     {
         public override bool CanRead => true;

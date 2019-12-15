@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using Frontend.Models;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Frontend.ViewModel
 {
@@ -28,7 +31,6 @@ namespace Frontend.ViewModel
             IsLoading = false;
             personalData = new PersonalData();
             timetableData = new TimetableData();
-            
         }
 
         #region properties
@@ -202,22 +204,26 @@ namespace Frontend.ViewModel
          */
         public async Task RequestTimetableFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/lists/timetable", Method.GET); //REST Path
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("/rest/lists/timetable", Method.POST);
+            var cancellationTokenSource = new CancellationTokenSource();
+
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
-
-            var cancellationTokenSource = new CancellationTokenSource();
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
-            timetableData.CurrentCurriulum = JsonConvert.DeserializeObject<Curriculum>(response.Content.ToString());
+            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(response.Content.ToString());
 
             /*Zum Testen
             string jsonFileString;
-            StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
+            StreamReader streamReader = File.OpenText("..\\..\\Models\\timetable_stupla.json");
             jsonFileString = streamReader.ReadToEnd();
-            Zum Testen*/
+            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(jsonFileString);
+            Console.WriteLine("response from server: " + response.Content);
+            //Zum Testen*/
 
             cancellationTokenSource.Dispose();
         }
@@ -228,17 +234,18 @@ namespace Frontend.ViewModel
          */
         private async Task RequestNewsFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/lists/news", Method.GET); //REST Path
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("/rest/lists/timetable", Method.POST);
+            var cancellationTokenSource = new CancellationTokenSource();
+
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
-            var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-
             //TODO: NEWS VOM SERVER JSON-SERIALISIEREN
-
+            
             cancellationTokenSource.Dispose();
         }
 
@@ -249,16 +256,17 @@ namespace Frontend.ViewModel
          */
         private async Task RequestSharingDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/lists/sharingData", Method.GET); //REST Path
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("/rest/lists/timetable", Method.POST);
+            var cancellationTokenSource = new CancellationTokenSource();
+
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
-            var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-
-            //TODO: SHARINGDATA VOM SERVER JSON-SERIALISIEREN (response.Content)
+            //TODO: SHARING_DATA VOM SERVER JSON-SERIALISIEREN
 
             cancellationTokenSource.Dispose();
         }
@@ -270,20 +278,20 @@ namespace Frontend.ViewModel
          */
         private async Task RequestPersonalDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/lists/personalData", Method.GET); //REST Path
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("/rest/lists/timetable", Method.POST);
+            var cancellationTokenSource = new CancellationTokenSource();
+
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
-            var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-
-            //TODO: PERSONAL_DATA VOM SERVER JSON-SERIALISIEREN (response.Content)
+            //TODO: PERSONAL_DATA VOM SERVER JSON-SERIALISIEREN
 
             cancellationTokenSource.Dispose();
         }
-
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
@@ -291,16 +299,17 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/lists/adminData", Method.GET); //REST Path
+            var client = new RestClient("http://localhost:8080/");
+            var request = new RestRequest("/rest/lists/timetable", Method.POST);
+            var cancellationTokenSource = new CancellationTokenSource();
+
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
-            var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-
-            //TODO: ADMIN_DATA VOM SERVER JSON-SERIALISIEREN (response.Content)
+            //TODO: ADMIN_DATA VOM SERVER JSON-SERIALISIEREN
 
             cancellationTokenSource.Dispose();
         }
