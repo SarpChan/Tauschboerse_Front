@@ -1,0 +1,44 @@
+﻿<UserControl x:Name="TimeTableItem" x:Class="Frontend.UserControls.TimetableItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Frontend.View"
+             xmlns:converters="clr-namespace:Frontend.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Module.Color,ElementName=TimeTableItem}" BorderThickness="3"
+             >
+    <UserControl.Resources>
+        <converters:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
+        <converters:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
+        <converters:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
+        <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
+    </UserControl.Resources>
+    <Grid x:Name="Grid_Main" Margin="0" 
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="Grid_Header" Height="33" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{Binding Module.Color,ElementName=TimeTableItem}" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="Text_Number" Text="{Binding Module.ID,ElementName=TimeTableItem}" Background="{Binding Module.Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" Foreground="White" Padding="10,0,0,0"/>
+            <Rectangle x:Name="Icon" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="32" Height="33" Margin="0" Fill="{DynamicResource Icon}" />
+        </Grid>
+        <DockPanel HorizontalAlignment="Stretch" x:Name="DockPanel_Content"  LastChildFill="False" Grid.Row="1">
+            <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap">
+                <Run Text="{Binding Module.CourseName, ElementName=TimeTableItem}"/>
+            </TextBlock>
+            <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" LastChildFill="False">
+                <TextBlock x:Name="Text_Room" Text="{Binding Module.RoomNumber,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,0,0,10"/>
+                <TextBlock x:Name="Text_Person" Text="{Binding Module.PersonName,ElementName=TimeTableItem}" DockPanel.Dock="Right" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" HorizontalAlignment="Right" Margin="10,0,10,10"/>
+            </DockPanel>
+
+        </DockPanel>
+
+    </Grid>
+
+</UserControl>
