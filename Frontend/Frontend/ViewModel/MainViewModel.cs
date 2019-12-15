@@ -19,13 +19,17 @@ namespace Frontend.ViewModel
      */
 
     class MainViewModel : ViewModelBase
-        //TODO: Mockup vom server in MockupModel speichern und von dort aus anzeigen
     {
+        public PersonalData personalData;
+        public Timetable timetable;
+
         public MainViewModel()
         {
-            MM = "EMPTY";
             ActivePage = new HomePage();
             IsLoading = false;
+            personalData = new PersonalData();
+            timetable = new Timetable();
+            
         }
 
         #region properties
@@ -39,7 +43,6 @@ namespace Frontend.ViewModel
                 {
                     _isLoading = value;
                     OnPropertyChanged("IsLoading");
-                    Console.WriteLine("IS LOADING = " + IsLoading);
                 }
             }
         }
@@ -55,27 +58,9 @@ namespace Frontend.ViewModel
                 {
                     _activePage = value;
                     OnPropertyChanged("ActivePage");
-                    Console.WriteLine("ACTIVE PAGE = " + ActivePage);
                 }
             }
         }
-        
-        //Nur zum testen bis Model exisitiert
-        private string _mm;
-        public string MM
-        {
-            get { return _mm; }
-            set
-            {
-                if (_mm != value)
-                {
-                    _mm = value;
-                    OnPropertyChanged("MM");
-                    Console.WriteLine("MM CHANGED TO: " + _mm);
-                }
-            }
-        }
-
         #endregion
 
         #region commands
@@ -169,7 +154,9 @@ namespace Frontend.ViewModel
         {
             if (newActivePage.GetType().Equals(typeof(HomePage)))
             {
-                IsLoading = false;
+                SwitchIsLoading();
+                await RequestNewsFromServerAsync();
+                SwitchIsLoading();
             }
             else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
             {
@@ -179,15 +166,21 @@ namespace Frontend.ViewModel
             }
             else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
             {
-                IsLoading = false;
+                SwitchIsLoading();
+                await RequestSharingDataFromServerAsync();
+                SwitchIsLoading();
             }
             else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
             {
-                IsLoading = false;
+                SwitchIsLoading();
+                await RequestPersonalDataFromServerAsync();
+                SwitchIsLoading();
             }
             else if (newActivePage.GetType().Equals(typeof(AdminPage)))
             {
-                IsLoading = false;
+                SwitchIsLoading();
+                await RequestAdminDataFromServerAsync();
+                SwitchIsLoading();
             }
             else
             {
@@ -211,28 +204,85 @@ namespace Frontend.ViewModel
         public async Task RequestTimetableFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/module/read", Method.GET); //REST Path
-            //var request = new RestRequest("rest/timetable", Method.GET); //REST Path
+            var request = new RestRequest("/rest/lists/timetable", Method.GET); //REST Path
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
-            //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber); //Adds "?moduleID='EnrolementNumber'" to Path
-            request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
+            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
 
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
-            //Zum Testen
+            timetable.CurrentCurriulum = JsonConvert.DeserializeObject<Curriculum>(response.Content.ToString());
+
+            /*Zum Testen
             string jsonFileString;
             StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
             jsonFileString = streamReader.ReadToEnd();
-            Timetable timetable = JsonConvert.DeserializeObject<Timetable>(jsonFileString);
-            //Console.WriteLine(response.Content);
-            if ((string)response.Content != "")
-            {
-                MM = (string)response.Content; 
-            }
-            Console.WriteLine(timetable);
-            //Zum Testen
+            Zum Testen*/
+
+            cancellationTokenSource.Dispose();
+        }
+
+        private async Task RequestNewsFromServerAsync()
+        {
+            var client = new RestClient("http://localhost:8080/"); //Base-URL
+            var request = new RestRequest("/rest/lists/news", Method.GET); //REST Path
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+            //TODO: NEWS VOM SERVER JSON-SERIALISIEREN
+
+            cancellationTokenSource.Dispose();
+        }
+
+        private async Task RequestSharingDataFromServerAsync()
+        {
+            var client = new RestClient("http://localhost:8080/"); //Base-URL
+            var request = new RestRequest("/rest/lists/sharingData", Method.GET); //REST Path
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+            //TODO: SHARINGDATA VOM SERVER JSON-SERIALISIEREN (response.Content)
+
+            cancellationTokenSource.Dispose();
+        }
+
+        private async Task RequestPersonalDataFromServerAsync()
+        {
+            var client = new RestClient("http://localhost:8080/"); //Base-URL
+            var request = new RestRequest("/rest/lists/personalData", Method.GET); //REST Path
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+            //TODO: PERSONAL_DATA VOM SERVER JSON-SERIALISIEREN (response.Content)
+
+            cancellationTokenSource.Dispose();
+        }
+
+        private async Task RequestAdminDataFromServerAsync()
+        {
+            var client = new RestClient("http://localhost:8080/"); //Base-URL
+            var request = new RestRequest("/rest/lists/adminData", Method.GET); //REST Path
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("studentID", personalData.ActiveStudent.EnrolementNumber); //Adds "?studentID='EnrolementNumber'" to Path
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+            //TODO: ADMIN_DATA VOM SERVER JSON-SERIALISIEREN (response.Content)
 
             cancellationTokenSource.Dispose();
         }

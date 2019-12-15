@@ -85,9 +85,9 @@
     <Compile Include="Models\FieldOfStudy.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lecturer.cs" />
-    <Compile Include="Models\MockupData.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\ModulesInCurriculum.cs" />
+    <Compile Include="Models\PersonalData.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Student.cs" />
@@ -253,7 +253,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Design\projectGuides.guides" />
-    <None Include="Models\GroupListFromServer.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

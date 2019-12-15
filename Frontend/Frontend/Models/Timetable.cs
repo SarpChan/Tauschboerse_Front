@@ -7,7 +7,6 @@ namespace Frontend.Models
 {
     class Timetable: INotifyPropertyChanged
     {
-        string TimetableName { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -15,6 +14,22 @@ namespace Frontend.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private Curriculum _currentCurriulum = new Curriculum();
+        public Curriculum CurrentCurriulum
+        {
+            get { return _currentCurriulum; }
+            set
+            {
+                if (value != _currentCurriulum)
+                {
+                    _currentCurriulum = value;
+                    OnPropertyChanged("CurrentCurriculum");
+                }
+            }
+        }
+
+
+        /*
         [JsonConverter(typeof(JsonToGroupListConverter))]
         public List<Group> GroupList
         {
@@ -28,5 +43,6 @@ namespace Frontend.Models
             }
         }
         private List<Group> _groupList = new List<Group>();
+        */
     }
 }
