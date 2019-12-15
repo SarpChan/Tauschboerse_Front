@@ -25,6 +25,10 @@ namespace Frontend.View
             List<int> test = new List<int>();
             test = test2.FieldsOfStudies;*/
 
+            University university = new University();
+            HashSet<FieldOfStudy> fieldOfStudies= university.FieldOfStudies;
+
+            fieldofStudyComboBox.ItemsSource = fieldOfStudies;
 
             subject.Add("Medieninformatik");
             subject.Add("Informatik");
@@ -41,6 +45,12 @@ namespace Frontend.View
         {
             object selectedSubject =(subjectComboBox.SelectedItem as PropertyInfo).GetValue(null, null);
             this.Background = new SolidColorBrush(Color.FromRgb(55,100, 5));
+        }
+
+        private void fieldoStudyComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            object selectedSubject = (subjectComboBox.SelectedItem as PropertyInfo).GetValue(null, null);
+            this.Background = new SolidColorBrush(Color.FromRgb(55, 100, 5));
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

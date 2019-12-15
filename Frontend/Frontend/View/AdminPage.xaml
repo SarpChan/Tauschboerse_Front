@@ -36,7 +36,7 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
                             <DockPanel>
-                                <Rectangle Name="Upload" Width="25" Height="25" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
+                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
                             </DockPanel>
@@ -58,12 +58,13 @@
 
         <!-- delete button style -->
         <Style TargetType="{x:Type Button}" x:Key="Deletebutton" BasedOn="{StaticResource adminButton}">
+            <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
                             <DockPanel>
-                                <Rectangle Name="Upload" Width="25" Height="25" Margin="{StaticResource IconMargin}" Fill="{StaticResource bin_b }"/>
+                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource bin_b }"/>
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
                             </DockPanel>
@@ -118,7 +119,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <Style x:Key="ComboBoxStyle"  TargetType="{x:Type ComboBox}">
+        <Style TargetType="{x:Type ComboBox}">
             <Setter Property="MinWidth" Value="150"/>
             <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
             <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
@@ -212,8 +213,9 @@
 
                     <!-- caption-->
                     <DockPanel Margin="{StaticResource HeaderMargin}">
-                        <ComboBox Style="{StaticResource ComboBoxStyle}"  Name="subjectComboBox" SelectionChanged="subjectComboBox_SelectionChanged" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" />
-                        <ComboBox  Style="{StaticResource ComboBoxStyle}" Name="poComboBox" ItemsSource="{Binding}" />
+                        <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding}" Margin="{StaticResource TextMargin}" SelectionChanged="fieldoStudyComboBox_SelectionChanged"/>
+                        <ComboBox Name="subjectComboBox" SelectionChanged="subjectComboBox_SelectionChanged" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" />
+                        <ComboBox Name="poComboBox" ItemsSource="{Binding}" />
                     </DockPanel>
 
                     <DockPanel Margin="{StaticResource HeaderMargin}">
