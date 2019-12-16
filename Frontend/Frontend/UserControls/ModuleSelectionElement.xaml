@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="1550">
-    <Grid>
+             d:DesignHeight="70" d:DesignWidth="1550">
+    <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*"/>
             <ColumnDefinition Width="1*"/>
@@ -25,8 +25,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center">3 CP</TextBlock>
-            <TextBlock Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center">Programmieren 3</TextBlock>
+            <TextBlock Name="Credits" Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding CreditPoints}">3 CP</TextBlock>
+            <TextBlock Name="ModuleName" Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding Title}">Programmieren 3</TextBlock>
             <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center"/>
         </Grid>
         <CheckBox Grid.Column="1" FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">

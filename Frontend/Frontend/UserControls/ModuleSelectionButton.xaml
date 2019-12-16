@@ -14,5 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Tag="{Binding MS_Tag,ElementName=ModuleSelection}" Command="{Binding ModuleSelectionCommand,ElementName=ModuleSelection}" Content="{Binding Term.number, ElementName=ModuleSelection}" Style="{StaticResource SelectionBarButton}"/>
+    <Button Tag="{Binding MS_Tag,ElementName=ModuleSelectionButton}" Command="{Binding ModuleSelectionCommand,ElementName=ModuleSelectionButton}" Style="{StaticResource SelectionBarButton}">
+        <TextBlock></TextBlock>
+    </Button>
 </UserControl>

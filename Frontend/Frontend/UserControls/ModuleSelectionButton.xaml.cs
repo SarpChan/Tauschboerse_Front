@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace Frontend.UserControls
 {
     /// <summary>
-    /// Interaktionslogik für ModuleSelection.xaml
+    /// Interaktionslogik für ModuleSelectionButton.xaml
     /// </summary>
-    public partial class ModuleSelection : UserControl
+    public partial class ModuleSelectionButton : UserControl
     {
-        public ModuleSelection()
+        public ModuleSelectionButton()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }

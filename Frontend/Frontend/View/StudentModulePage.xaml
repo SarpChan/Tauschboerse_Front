@@ -5,10 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Frontend.View"
       xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
+      xmlns:project ="clr-namespace:Frontend"
+      xmlns:project1="clr-namespace:Frontend.ViewModel"
+      xmlns:models="clr-namespace:Frontend.Models" 
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="StudentModulePage">
-
+    <Page.DataContext>
+        <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
+    </Page.DataContext>
     <StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid Width="1640" Height="2000" Background="White">
@@ -56,54 +61,49 @@
                     </WrapPanel>
                     <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Termin nicht möglich x</TextBlock>
                 </Grid>
-                
-                <!--Semesterauswahl-->
+
                 <StackPanel Grid.Column="1" Grid.Row="3">
-                    <ItemsControl VerticalAlignment="Top" Padding="0,50,0,0">
+                    <!--Semesterauswahl-->
+                    <ItemsControl ItemsSource="{Binding numberOfSemesters}" VerticalAlignment="Top" Padding="0,50,0,0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate DataType="int">
                                 <DataTemplate.Resources>
-                                    <Style TargetType="usercontrols:ModuleSelection">
+                                    <Style TargetType="usercontrols:ModuleSelectionButton">
                                         <Setter Property="Width" Value="200"/>
                                     </Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Text" Value="{Binding }"/>
+                                    </Style>
                                 </DataTemplate.Resources>
-                                <usercontrols:ModuleSelection/>
+                                <usercontrols:ModuleSelectionButton/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">1</Button>
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">2</Button>
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">3</Button>
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">4</Button>
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">5</Button>
-                        <Button Style="{StaticResource SelectionBarButton}" Width="200">6</Button>
                     </ItemsControl>
 
                     <!--Module-->
-                    <ItemsControl>
+                    <ItemsControl ItemsSource="{Binding modules}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate DataType="{x:Type models:Module}">
                                 <DataTemplate.Resources>
                                     <Style TargetType="usercontrols:ModuleSelectionElement">
-
+                                        <Setter Property="Height" Value="70"/>
                                     </Style>
                                 </DataTemplate.Resources>
-                                <usercontrols:ModuleSelection/>
+                                <usercontrols:ModuleSelectionElement/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-
-                        <CheckBox Style="{StaticResource checkBox}"></CheckBox>
                     </ItemsControl>
+                    
                 </StackPanel>
             </Grid>
         </ScrollViewer>
