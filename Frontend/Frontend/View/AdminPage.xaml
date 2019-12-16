@@ -200,7 +200,6 @@
                 <ColumnDefinition  Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-
             <Canvas Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3">
                 <StackPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
@@ -213,7 +212,7 @@
 
                     <!-- caption-->
                     <DockPanel Margin="{StaticResource HeaderMargin}">
-                        <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding}" Margin="{StaticResource TextMargin}" SelectionChanged="fieldoStudyComboBox_SelectionChanged"/>
+                        <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding MyItems}" Margin="{StaticResource TextMargin}" SelectedItem="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <ComboBox Name="subjectComboBox" SelectionChanged="subjectComboBox_SelectionChanged" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" />
                         <ComboBox Name="poComboBox" ItemsSource="{Binding}" />
                     </DockPanel>

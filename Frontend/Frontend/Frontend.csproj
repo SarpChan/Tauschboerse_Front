@@ -123,6 +123,7 @@
     <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AdminpageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
