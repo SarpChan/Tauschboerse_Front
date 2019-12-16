@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 using Frontend.Models;
+using Frontend.Helpers;
 
 namespace Frontend.View
 {
@@ -55,8 +56,8 @@ namespace Frontend.View
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           // JsonFileDialog jfd = new JsonFileDialog();
-            //jfd.GetJsonFromFile();
+            JsonFileDialog jfd = new JsonFileDialog();
+            jfd.GetJsonFromFile();
         }
     }
 }

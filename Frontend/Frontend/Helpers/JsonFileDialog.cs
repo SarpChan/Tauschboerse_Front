@@ -53,14 +53,15 @@ namespace Frontend.Helpers
 
         public void SendJsonFile(String jsonText)
         {
-            var restserverurl = "localhost:8080";
+            var restserverurl = "http://localhost:8080";
             var client = new RestClient(restserverurl);
 
             Console.WriteLine("*** REST-Service ist " + restserverurl + " ***\n");
 
 
             var requestTimeTableJson = new RestRequest("/rest/university/create", Method.POST);
-            requestTimeTableJson.AddParameter(jsonText, ParameterType.UrlSegment);
+            //requestTimeTableJson.AddParameter(jsonText, ParameterType.RequestBody);
+            requestTimeTableJson.AddJsonBody(jsonText);
             requestTimeTableJson.RequestFormat = RestSharp.DataFormat.Json;
 
             var respstadtpostjson = client.Execute(requestTimeTableJson);
