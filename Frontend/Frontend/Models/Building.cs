@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace Timetable
+namespace Frontend.Models
 {
+    /// <summary>
+    /// The Building class models a building.
+    /// A building is located on and references one campus.
+    /// One building has many rooms.
+    /// </summary>
     public class Building
     {
-        public long id { get; set; }
-        public string name { get; set; }
-        public Campus campus { get; set; }
-        public List<Room> rooms { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public long CampusId { get; set; }
+        public HashSet<Room> Rooms { get; set; }
     }
 
+     
 }
 
