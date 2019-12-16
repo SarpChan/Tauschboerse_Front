@@ -55,8 +55,8 @@ namespace Frontend.View
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           // JsonFileDialog jfd = new JsonFileDialog();
-            //jfd.GetJsonFromFile();
+           Helpers.JsonFileDialog jsonFileDialog = new Helpers.JsonFileDialog();
+           jsonFileDialog.GetJsonFromFile();
         }
     }
 }
