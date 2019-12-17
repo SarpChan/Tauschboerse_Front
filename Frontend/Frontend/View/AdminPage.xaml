@@ -134,9 +134,9 @@
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Regelskript"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}">
-                        <TextBlock Text="Aktuelle Datei" Style="{StaticResource TextTextCenterBlock}" Margin="0,0,20,0" />
-                        <TextBlock Text="Placeholder.py" Style="{StaticResource TextTextCenterBlock}" />
-                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen"/>
+                        <TextBlock Text="Aktuelle Datei:" Style="{StaticResource TextTextCenterBlock}"  Margin="{StaticResource TextMargin}" />
+                        <TextBlock Text="Placeholder.py" Style="{StaticResource TextTextCenterBlock}" FontWeight="Bold"/>
+                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0"/>
                     </DockPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}" Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
@@ -162,10 +162,10 @@
                         <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                     </DockPanel>
                 </StackPanel>
-                <DockPanel Canvas.Top="380">
+                <DockPanel Canvas.Top="430">
                     <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" />
                 </DockPanel>
-                <DockPanel Canvas.Top="480">
+                <DockPanel Canvas.Top="510">
                     <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
