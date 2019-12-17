@@ -135,8 +135,8 @@
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Regelskript"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}">
                         <TextBlock Text="Aktuelle Datei:" Style="{StaticResource TextTextCenterBlock}"  Margin="{StaticResource TextMargin}" />
-                        <TextBlock Text="Placeholder.py" Style="{StaticResource TextTextCenterBlock}" FontWeight="Bold"/>
-                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0"/>
+                        <TextBlock Text="" Style="{StaticResource TextTextCenterBlock}" FontWeight="Bold" x:Name="filenameRules"/>
+                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0" x:Name="uploadRules" Click="upload_rules"/>
                     </DockPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}" Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
