@@ -151,6 +151,44 @@ namespace Frontend.Helpers
     class ConverterHelper
     {
 
+        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day,ModuleDummy module, ModuleDummy[] items)
+        {
+
+            for (int i = index; i < items.Length; i++)
+            {
+                if (items[i].Day.Equals(day) && !items[i].Equals(module))
+                {
+
+                    var s2 = TimeStringToInt(items[i].StartTime as String);
+                    var e2 = TimeStringToInt(items[i].EndTime as String);
+
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
+                    {
+
+                        var founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime,s2),Math.Min(endTime,e2), day, module, items);
+
+                        int behinde = 0;
+                        if (e2 < endTime)
+                        {
+                            behinde = CalculateModuleWidthDivider(counter, 1 + i, e2, endTime, day, module, items);
+                        }
+
+                        int before = 0;
+                        if (startTime < s2)
+                        {
+                            before = CalculateModuleWidthDivider(counter, 1 + i, startTime, s2, day, module, items);
+                        }
+
+                        return Math.Max(Math.Max(founded, behinde), before);
+
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+
         /// <summary>
         /// Brechnet wie viele Module neben dem untersuchten Modul liegen
         /// </summary>
@@ -160,27 +198,56 @@ namespace Frontend.Helpers
         public static int CalculateModuleWidthDivider(ModuleDummy module, IList<ModuleDummy> moduleList)
         {
 
-            int divider = 0;
+            int divider = 1;
 
             var startTime = TimeStringToInt(module.StartTime as String);
             var endTime = TimeStringToInt(module.EndTime as String);
 
-            foreach (ModuleDummy cmp in moduleList)
+
+            divider =  CalculateModuleWidthDivider(divider, 0, startTime, endTime, module.Day,module, moduleList.ToArray());
+
+            Console.WriteLine("Module: " + module.CourseName + "Div :" + divider);
+            return divider;
+        }
+
+        private static int CalculateModuleRowPosition(int counter, int index, int startTime, int endTime,long id,String day,ModuleDummy module,ModuleDummy[] items)
+        {
+
+            for(int i =index; i<items.Length;i++)
             {
-                if (module.Day.Equals(cmp.Day))
+                if (items[i].Day.Equals(day) && !items[i].Equals(module))
                 {
-                    var s2 = TimeStringToInt(cmp.StartTime as String);
-                    var e2 = TimeStringToInt(cmp.EndTime as String);
+
+                    var s2 = TimeStringToInt(items[i].StartTime as String);
+                    var e2 = TimeStringToInt(items[i].EndTime as String);
 
                     if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
-                        divider++;
-                    }
+                        if (id > System.Convert.ToInt64(items[i].ID))
+                        {
 
+                            var founded = CalculateModuleRowPosition(1+counter, 1+i, Math.Min(startTime, s2), Math.Min(endTime, e2), id, day,module, items);
+                            int behinde = 0;
+                            if (e2 < endTime)
+                            {
+                                behinde = CalculateModuleRowPosition(counter, 1 + i, e2, endTime, id, day,module, items);
+                            }
+
+                            int before = 0;
+                            if (startTime < s2)
+                            {
+                                before = CalculateModuleRowPosition(counter, 1+i, startTime, s2, id, day,module, items);
+                            }
+
+                            Console.WriteLine("founde:", founded, "behinde: ", behinde, "before", before);
+
+                            return Math.Max(Math.Max(founded, behinde),before);
+                           
+                        }
+                    }
                 }
             }
-
-            return divider;
+            return counter;
         }
 
         /// <summary>
@@ -195,26 +262,10 @@ namespace Frontend.Helpers
 
             var startTime = TimeStringToInt(module.StartTime as String);
             var endTime = TimeStringToInt(module.EndTime as String);
+           
+            pos = CalculateModuleRowPosition(pos, 0, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day,module, moduleList.ToArray());
 
-            foreach (ModuleDummy cmp in moduleList)
-            {
-                if (module.Day.Equals(cmp.Day))
-                {
-                    var s2 = TimeStringToInt(cmp.StartTime as String);
-                    var e2 = TimeStringToInt(cmp.EndTime as String);
-
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
-                    {
-
-                        if (System.Convert.ToInt64(module.ID) > System.Convert.ToInt64(cmp.ID))
-                        {
-                            pos++;
-                        }
-                    }
-
-                }
-            }
-
+            Console.WriteLine("Module: "+module.CourseName+"Pos :" + pos);
             return pos;
         }
 

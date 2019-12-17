@@ -37,7 +37,31 @@ namespace Frontend
 
             AddModule(new ModuleDummy()
             {
+                ID = "70",
+                StartTime = "10:00",
+                EndTime = "12:30",
+                Day = "1",
+                PersonName = "Dude",
+                RoomNumber = "D21",
+                CourseName = "EIBO 2",
+                GroupChar = 'B',
+                Color = "#FFF4A233"
+            });
+
+            AddModule(new ModuleDummy()
+            {
                 ID = "64",
+                StartTime = "11:30",
+                EndTime = "15:00",
+                Day = "1",
+                PersonName = "Marc",
+                RoomNumber = "D42",
+                CourseName = "Computergrafik",
+                Color = "#FFF4A233"
+            });
+            AddModule(new ModuleDummy()
+            {
+                ID = "65",
                 StartTime = "11:30",
                 EndTime = "15:00",
                 Day = "1",
@@ -60,7 +84,7 @@ namespace Frontend
             });
             AddModule(new ModuleDummy()
             {
-                ID = "1",
+                ID = "7",
                 StartTime = "08:15",
                 EndTime = "09:45",
                 Day = "0",
@@ -72,7 +96,7 @@ namespace Frontend
             });
             AddModule(new ModuleDummy()
             {
-                ID = "1",
+                ID = "14",
                 StartTime = "09:15",
                 EndTime = "11:45",
                 Day = "4",
@@ -84,7 +108,7 @@ namespace Frontend
             });
             AddModule(new ModuleDummy()
             {
-                ID = "1",
+                ID = "89",
                 StartTime = "12:00",
                 EndTime = "15:00",
                 Day = "2",
