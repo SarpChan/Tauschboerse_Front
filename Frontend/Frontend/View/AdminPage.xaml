@@ -15,7 +15,7 @@
         <!-- margin canvas -->
         <Thickness  x:Key="CanvasMargin" Right="30" Left="30" />
         <!-- margin Header -->
-        <Thickness  x:Key="TextMargin" Right="10" />
+        <Thickness  x:Key="TextMargin" Right="20" />
         <!-- margin Header-->
         <Thickness  x:Key="HeaderMargin" Top="20" />
         
@@ -133,9 +133,9 @@
                 <StackPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
-                    <DockPanel  Margin="{StaticResource HeaderMargin}">
-                        <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"/>
-                        <Button Style="{StaticResource Deletebutton}" Content="Alle Stundenpläne löschen"/>
+                    <DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
+                        <Button Style="{StaticResource Deletebutton}"  Content="Alle Stundenpläne löschen"/>
                     </DockPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}"  Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
 
