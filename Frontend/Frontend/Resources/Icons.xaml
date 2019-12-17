@@ -42,6 +42,17 @@
             <GeometryDrawing Brush="White" Geometry="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"/>
         </DrawingBrush.Drawing>
     </DrawingBrush>
+    <DrawingBrush x:Key="add_hover_b" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource CD_DarkTeal}" Geometry="M22 12.5714H12.5714V22H9.42857V12.5714H0V9.42857H9.42857V0H12.5714V9.42857H22V12.5714Z"/>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+    <DrawingBrush x:Key="add_b" Stretch="Uniform">
+            <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource CD_GreyBrown}" Geometry="M22 12.5714H12.5714V22H9.42857V12.5714H0V9.42857H9.42857V0H12.5714V9.42857H22V12.5714Z"/>
+            </DrawingBrush.Drawing>
+        
+    </DrawingBrush>
 
 
 

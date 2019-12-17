@@ -13,9 +13,13 @@ namespace Frontend.ViewModel
     {
         private ObservableCollection<string> myItems = new ObservableCollection<string>() { 
         "one", "two","three" };
+
+        private University university = new University();
+      
+
         public AdminpageViewModel()
         {
-            University university = new University();
+            //University university = new University();
             HashSet<FieldOfStudy> fieldOfStudies = university.FieldOfStudies;
 
             //fieldofStudyComboBox.ItemsSource = fieldOfStudies;
