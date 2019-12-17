@@ -189,10 +189,10 @@
                         <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                     </DockPanel>
                 </StackPanel>
-                <DockPanel Canvas.Top="500">
+                <DockPanel Canvas.Top="415">
                     <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" />
                 </DockPanel>
-                <DockPanel Canvas.Top="600">
+                <DockPanel Canvas.Top="500">
                     <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
