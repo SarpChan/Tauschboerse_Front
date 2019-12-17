@@ -131,6 +131,33 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="DataGridDeletebutton" BasedOn="{StaticResource adminButton}">
+            <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <DockPanel>
+                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource bin_b }"/>
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
+                            </DockPanel>
+
+                        </Border>
+                        <!--Triggers for switching on hover -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource CD_Red}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource bin_hover_b}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <ScrollViewer>
@@ -158,6 +185,24 @@
                         <Button Style="{StaticResource MenuAdminButton}" Content="Stammdaten" x:Name="Stammdaten"/>
                     </DockPanel>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Aktuelle Regeln"/>
+              
+                    <DataGrid Name="DataGridRules" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Beschreibung" Binding="{Binding Beschreibung}" />
+                            <DataGridTextColumn Header="Regel" Binding="{Binding Regel}" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <Button Style="{StaticResource DataGridDeletebutton}" Content="Löschen" Margin="{StaticResource TextMargin}"/>
+                                            <Button Style="{StaticResource DataGridDeletebutton}" Content="Bearbeiten" Margin="{StaticResource TextMargin}"/>
+                                        </DockPanel>
+                                        
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Regelskript"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}">

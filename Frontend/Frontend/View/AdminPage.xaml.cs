@@ -25,7 +25,16 @@ namespace Frontend.View
         {
             InitializeComponent();
             Stundenplan.Focus();
-           
+ 
+            List<Rule> rules = new List<Rule>(); //only for testing purposes
+            rules.Add(new Rule() { Id = 1, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?"});
+            rules.Add(new Rule() { Id = 2, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?" });
+            rules.Add(new Rule() { Id = 3, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?" });
+
+
+
+            DataGridRules.ItemsSource = rules;
+
         }
 
         private void subjectComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
