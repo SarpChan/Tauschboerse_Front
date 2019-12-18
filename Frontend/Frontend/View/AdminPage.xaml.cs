@@ -18,38 +18,21 @@ namespace Frontend.View
     public partial class AdminPage : Page
     {
        
-
         public AdminPage()
         {
             InitializeComponent();
-           
+
+            ObservableCollection<string> po = new ObservableCollection<string>();
+            po.Add("PO 2019");
+            po.Add("PO 2018");
+            poComboBox.ItemsSource = po;
+            fieldofStudyComboBox.ItemsSource = po;
+
         }
 
-        private void subjectComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void OnfieldoStudyComboBoxChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (subjectComboBox.SelectedItem != null)
-            {
-                //object selectedSubject = (subjectComboBox.SelectedItem as PropertyInfo).GetValue(null, null);
-                //this.Background = new SolidColorBrush(Color.FromRgb(55, 100, 5));
-            }
-        }
-
-        private void fieldoStudyComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (subjectComboBox.SelectedItem != null)
-            {
-                object selectedSubject = (subjectComboBox.SelectedItem as PropertyInfo).GetValue(null, null);
-                this.Background = new SolidColorBrush(Color.FromRgb(55, 100, 5));
-            }
-        }
-
-        private void poComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (subjectComboBox.SelectedItem != null)
-            {
-                object selectedSubject = (subjectComboBox.SelectedItem as PropertyInfo).GetValue(null, null);
-                this.Background = new SolidColorBrush(Color.FromRgb(55, 100, 5));
-            }
+            
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

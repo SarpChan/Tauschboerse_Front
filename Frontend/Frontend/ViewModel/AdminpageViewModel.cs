@@ -6,21 +6,38 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Frontend.ViewModel
 {
     class AdminpageViewModel: ViewModelBase
     {
-        private ObservableCollection<string> myItems = new ObservableCollection<string>() { 
-        "one", "two","three" };
+        private FieldOfStudy fieldOfStudy = new FieldOfStudy() { Title = "Informatik" };
+        private HashSet<FieldOfStudy> fieldsOfStudy = new HashSet<FieldOfStudy>();
 
-        private University university = new University();
-      
+
+        private ObservableCollection<FieldOfStudy> _MyItems = new ObservableCollection<FieldOfStudy>();
+        public ObservableCollection<FieldOfStudy> MyItems
+        {
+            get { return _MyItems; }
+        }
+
+
 
         public AdminpageViewModel()
         {
+            fieldsOfStudy.Add(fieldOfStudy);
+            University university = new University() { FieldOfStudies = fieldsOfStudy };
+
+
+            foreach (FieldOfStudy ding in fieldsOfStudy)
+            {
+                _MyItems.Add(ding);
+            }
+
+
             //University university = new University();
-            HashSet<FieldOfStudy> fieldOfStudies = university.FieldOfStudies;
+            //HashSet<FieldOfStudy> fieldOfStudies = university.FieldOfStudies;
 
             //fieldofStudyComboBox.ItemsSource = fieldOfStudies;
 
@@ -29,10 +46,10 @@ namespace Frontend.ViewModel
             //subject.Add("Informatik");
             //subjectComboBox.ItemsSource = subject;
 
-            ObservableCollection<string> po = new ObservableCollection<string>();
-            po.Add("PO 2019");
-            po.Add("PO 2018");
-           // poComboBox.ItemsSource = po;
+            
         }
+
+       
+        
     }
 }
