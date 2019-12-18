@@ -5,7 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
+             xmlns:project1="clr-namespace:Frontend.ViewModel"
              d:DesignHeight="70" d:DesignWidth="1550">
+    <UserControl.DataContext>
+        <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
+    </UserControl.DataContext>
     <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*"/>

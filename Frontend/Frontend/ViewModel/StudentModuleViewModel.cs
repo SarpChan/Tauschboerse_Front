@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Frontend.Helpers;
 using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using Frontend.Models;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
+using System.Collections.Specialized;
+using RestSharp;
 
 namespace Frontend.ViewModel
 {
-    class StudentModuleViewModel: Helpers.ViewModelBase
+    class StudentModuleViewModel : Helpers.ViewModelBase
     {
-        CurriculumDummy curriculum = new CurriculumDummy() {Terms = 7};
+        CurriculumDummy curriculum = new CurriculumDummy() { Terms = 7 };
 
-        
+
 
         private ObservableCollection<int> _numberOfSemesters = new ObservableCollection<int>();
         public ObservableCollection<int> numberOfSemesters
@@ -29,15 +31,10 @@ namespace Frontend.ViewModel
             get { return _modules; }
         }
 
-        static HttpClient client = new HttpClient();
+        static RestClient client = new RestClient("http://localhost:8080/");
 
         public StudentModuleViewModel()
         {
-            client.BaseAddress = new Uri("http://localhost:1818/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
             for (int i = 1; i <= curriculum.Terms; i++)
             {
                 _numberOfSemesters.Add(i);
@@ -46,18 +43,38 @@ namespace Frontend.ViewModel
         }
 
 
-        static async Task<ObservableCollection<Module>> GetProductAsync(string path)
+        private ICommand _SwitchTermCommand;
+        public ICommand SwitchTermCommand
         {
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
+            get
             {
-                _modules = response.Content.ReadAsAsync<ObservableCollection<Module>>().Result;
+                if (_SwitchTermCommand == null)
+                {
+                    // 1. Argument: Kommando-Effekt (Execute), 2. Argument: Bedingung "Kommando aktiv?" (CanExecute)
+                    _SwitchTermCommand = new ActionCommand(dummy => this.SwitchTerm());
+                }
+                return _SwitchTermCommand;
             }
-            return _modules;
         }
 
 
+        // Hilfsmethode für SwitchTermCommand
+        private void SwitchTerm()
+        {
+            Console.WriteLine("KLICK");
+            var request = new RestRequest("rest/lists/timetable}", Method.GET);
+            //request.AddParameter("stadtname", "vollradisroda", ParameterType.UrlSegment);
 
+            var m = client.Execute< ObservableCollection<Module>>(request);
+
+            _modules = m.Data;
+
+            Console.WriteLine(_modules.Count);
+            foreach (Module mod in _modules){
+                
+                Console.WriteLine(mod.Title);
+            }
+        }
     }
 
     public class CurriculumDummy
