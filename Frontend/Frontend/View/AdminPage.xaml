@@ -109,8 +109,55 @@
             </Setter>
         </Style>
 
+        <!-- menu admin button style -->
+        <Style TargetType="{x:Type Button}" x:Key="MenuAdminButton">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+            <Setter Property="Background" Value="{StaticResource CD_Grey}"/>
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Width" Value="260" />
+            <Setter Property="Height" Value="52" />
+            <Setter Property="Margin" Value="0,0,5,0"/>
+           
+            <!--Triggers for switching the MenuAdminButton Background on hover and focus-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <Style TargetType="{x:Type Button}" x:Key="DataGridDeletebutton" BasedOn="{StaticResource adminButton}">
+            <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <DockPanel>
+                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource bin_b }"/>
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
+                            </DockPanel>
 
+                        </Border>
+                        <!--Triggers for switching on hover -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource CD_Red}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource bin_hover_b}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <ScrollViewer>
@@ -130,8 +177,40 @@
             </Grid.ColumnDefinitions>
 
             <Canvas Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3">
-                <StackPanel>
-                    <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
+                <StackPanel Canvas.Top="-142">
+                    <DockPanel>
+                        <Button Style="{StaticResource MenuAdminButton}" Content="Benutzerverwaltung" x:Name="Benutzerverwaltung"/>
+                        <Button Style="{StaticResource MenuAdminButton}" Content="LV-Evaluation" x:Name="LVEvaluation"/>
+                        <Button Style="{StaticResource MenuAdminButton}" Content="Stundenplan" x:Name="Stundenplan"/>
+                        <Button Style="{StaticResource MenuAdminButton}" Content="Stammdaten" x:Name="Stammdaten"/>
+                    </DockPanel>
+                    <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Aktuelle Regeln"/>
+              
+                    <DataGrid Name="DataGridRules" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Beschreibung" Binding="{Binding Beschreibung}" />
+                            <DataGridTextColumn Header="Regel" Binding="{Binding Regel}" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <Button Style="{StaticResource DataGridDeletebutton}" Content="Löschen" Margin="{StaticResource TextMargin}"/>
+                                            <Button Style="{StaticResource DataGridDeletebutton}" Content="Bearbeiten" Margin="{StaticResource TextMargin}"/>
+                                        </DockPanel>
+                                        
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
+                    <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Regelskript"/>
+                    <DockPanel  Margin="{StaticResource HeaderMargin}">
+                        <TextBlock Text="Aktuelle Datei:" Style="{StaticResource TextTextCenterBlock}"  Margin="{StaticResource TextMargin}" />
+                        <TextBlock Text="" Style="{StaticResource TextTextCenterBlock}" FontWeight="Bold" x:Name="filenameRules"/>
+                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0" x:Name="uploadRules" Click="upload_rules"/>
+                    </DockPanel>
+                    <Line Stroke="{StaticResource CD_LightGrey}" Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                         <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
@@ -155,10 +234,10 @@
                         <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                     </DockPanel>
                 </StackPanel>
-                <DockPanel Canvas.Top="280">
+                <DockPanel Canvas.Top="415">
                     <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" />
                 </DockPanel>
-                <DockPanel Canvas.Top="380">
+                <DockPanel Canvas.Top="500">
                     <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
