@@ -123,7 +123,7 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
-                    <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
                 </Trigger>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
@@ -176,8 +176,8 @@
                 <ColumnDefinition  Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-            <Canvas Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3">
-                <StackPanel Canvas.Top="-142">
+            <Canvas Grid.Row="0"  Grid.Column="1" Grid.ColumnSpan="3">
+                <StackPanel Margin="{StaticResource HeaderMargin}">
                     <DockPanel>
                         <Button Style="{StaticResource MenuAdminButton}" Content="Benutzerverwaltung" x:Name="Benutzerverwaltung"/>
                         <Button Style="{StaticResource MenuAdminButton}" Content="LV-Evaluation" x:Name="LVEvaluation"/>
@@ -233,16 +233,17 @@
                         <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
                         <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                     </DockPanel>
+                
+                    
+                      <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
+                    
+                    <DockPanel Margin="{StaticResource HeaderMargin}">
+                        <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
+                        <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
+                        <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
+                        <Button Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen"/>
+                    </DockPanel>
                 </StackPanel>
-                <DockPanel Canvas.Top="415">
-                    <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" />
-                </DockPanel>
-                <DockPanel Canvas.Top="500">
-                    <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
-                    <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
-                    <Button Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen"/>
-                </DockPanel>
             </Canvas>
         </Grid>
     </ScrollViewer>

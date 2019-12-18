@@ -34,8 +34,6 @@ namespace Frontend.View
 
             DataGridRules.ItemsSource = rules;
 
-        }
-
             ObservableCollection<string> po = new ObservableCollection<string>();
             po.Add("PO 2019");
             po.Add("PO 2018");
@@ -43,6 +41,8 @@ namespace Frontend.View
             fieldofStudyComboBox.ItemsSource = po;
 
         }
+
+        
 
         private void OnfieldoStudyComboBoxChanged(object sender, SelectionChangedEventArgs e)
         {
