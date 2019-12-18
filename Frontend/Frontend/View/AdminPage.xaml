@@ -98,9 +98,9 @@
                         <!--Triggers for switching on hover -->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" Value="{StaticResource CD_Red}"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
                                 <Setter TargetName="Upload" Property="Fill" Value="{StaticResource add_hover_b}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
