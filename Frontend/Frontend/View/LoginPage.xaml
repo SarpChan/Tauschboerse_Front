@@ -4,11 +4,54 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Frontend.View"
+      xmlns:user_controls="clr-namespace:Frontend.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Height="{Binding WindowSettings.Height,Mode=TwoWay}"
+      Width="{Binding WindowSettings.Width, Mode=TwoWay}"
       Title="LoginPage">
-
-    <Grid>
-        
+    <Page.DataContext>
+        <viewmodel:LoginPageViewModel x:Name="LoginPageViewModel"/>
+    </Page.DataContext>
+    <Page.Resources>
+        <Style TargetType="{x:Type Grid}" x:Key="LoadingPage" >
+            <Setter Property="Background" Value="{StaticResource CD_Teal_Alpha}"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsLoggedIn}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsLoggedIn}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="{StaticResource CD_White}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="5" Width="585*"/>
+                <ColumnDefinition Width="750"/>
+                <ColumnDefinition MinWidth="5" Width="585*"/>
+        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="160" />
+                <RowDefinition Height="160" />
+                <RowDefinition Height="160" />
+                <RowDefinition Height="250" />
+        </Grid.RowDefinitions>
+        <!--Empty Row -->
+        <!--LoginTitle-->
+        <user_controls:Login_HeadText Grid.Row="1" Grid.Column="1"/>
+        <!--UsernameInput-->
+        <user_controls:Login_UsernameInput Grid.Row="2" Grid.Column="1"/>
+        <!--PasswordInput-->
+        <user_controls:Login_PasswordInput Grid.Row="3" Grid.Column="1"/>
+        <!--LoginButton-->
+        <user_controls:Login_LoginButton Grid.Row="4" Grid.Column="1"/>
+        <!--ToastArea-->
+        <Label Grid.Row="5" Grid.Column="1"/>
     </Grid>
 </Page>

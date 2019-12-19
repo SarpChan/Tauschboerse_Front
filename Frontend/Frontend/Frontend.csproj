@@ -112,6 +112,18 @@
     <Compile Include="UserControls\EditTimetable.xaml.cs">
       <DependentUpon>EditTimetable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Login_HeadText.xaml.cs">
+      <DependentUpon>Login_HeadText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login_LoginButton.xaml.cs">
+      <DependentUpon>Login_LoginButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login_PasswordInput.xaml.cs">
+      <DependentUpon>Login_PasswordInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login_UsernameInput.xaml.cs">
+      <DependentUpon>Login_UsernameInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
@@ -216,6 +228,22 @@
     <Page Include="UserControls\EditTimetable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Login_HeadText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login_LoginButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login_PasswordInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login_UsernameInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ModuleSelectionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -385,6 +413,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\save_hover_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\delete.png" />
+    <Resource Include="Resources\Icons\info.png" />
+    <Resource Include="Resources\Icons\save.png" />
+    <Resource Include="Resources\Icons\times.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -175,9 +175,9 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border BorderBrush="{StaticResource CD_Grey}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}">
                         <DockPanel>
-                           <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                           <TextBlock Padding="0,12,0,0" Height="52" Text="{TemplateBinding Tag}" TextAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
-                        </DockPanel>        
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Padding="0,12,0,0" Height="52" Text="{TemplateBinding Tag}" TextAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                        </DockPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -195,7 +195,57 @@
                 <Setter Property="Background" Value="{StaticResource CD_White}"/>
                 <Setter Property="Foreground" Value="{StaticResource CD_Grey}"/>
             </Trigger>
-            
+
         </Style.Triggers>
     </Style>
+
+
+    <!--Login UserInput-->
+    <Style TargetType="{x:Type Button}" x:Key="UsernameInput">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Width" Value="750" />
+        <Setter Property="Height" Value="80" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
+                        <!-- Contains Horizontal StackPanel:[IMAGE] [TEXT] -->
+                        <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Image Name="Arrow" Source="{StaticResource left_arrow_b}" Width="80" Height="80" Stretch="Uniform" VerticalAlignment="Center" />
+                            <TextBox>
+
+                            </TextBox>
+                        </StackPanel>
+                    </Border>
+                    <!--Triggers for switching the arrow image. black to white on hover and focus-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_t}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_w}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
