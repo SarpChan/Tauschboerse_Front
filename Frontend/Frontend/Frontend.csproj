@@ -149,6 +149,7 @@
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\EditTTViewModel.cs" />
+    <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
@@ -161,6 +162,9 @@
     </Compile>
     <Compile Include="View\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PersonalDataPage.xaml.cs">
       <DependentUpon>PersonalDataPage.xaml</DependentUpon>
@@ -272,6 +276,10 @@
     <Page Include="View\LoadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PersonalDataPage.xaml">
       <SubType>Designer</SubType>
