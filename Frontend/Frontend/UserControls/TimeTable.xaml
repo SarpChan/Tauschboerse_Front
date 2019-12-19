@@ -45,7 +45,7 @@
             x:Name="text_zeit" 
             Content="Zeit" 
             FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
-            FontSize="32" 
+            FontSize="15pt" 
             Background="#FF7D7E7E" 
             Grid.Row="0" 
             Grid.Column="0" 
@@ -130,25 +130,34 @@
                             </Style>
                         </DataTemplate.Resources>
                         <!-- Canvas mit Größe 0x0 als Wrapper-->
-                        <Canvas>
-                            <!-- Zeitlabel -->
-                            <Label 
-                                Content="{Binding Time}"
-                                FontSize="12px"
-                                Panel.ZIndex="10" 
-                                Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
-                                HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
+                        <Canvas x:Name="TimeView" Margin="0">
+                            
+                            
                             <!-- Linie (Ob diese gezeichnet werden soll, wird mit dem RowLineColorConverter oben anhand des Index berechnet -->
                             <Separator
-                                Panel.ZIndex="1"
-                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" Margin="0" 
+                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"
+                                Panel.ZIndex="3"
                                 />
                             <Rectangle 
-                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}" 
+                                Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"                            
                                 Fill="{Binding Color}" 
-                                Panel.ZIndex="0"
+                                Panel.ZIndex="1"
+                                Margin="0"
                                 />
                             
+                            <!-- Zeitlabel -->
+                            <Label
+                                Panel.ZIndex="3"
+                                Content="{Binding Time}"
+                                Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
+                                FontSize="6pt"
+                                Height="auto"
+                                Margin="0"
+                                Padding="1"
+                                HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
+
+
+
 
                         </Canvas>
                     </DataTemplate>
@@ -240,7 +249,10 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="Content">
+                            
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text">
                                 <Setter.Value>
                                     <Binding Path="Name"/>
                                 </Setter.Value>
@@ -262,8 +274,8 @@
                     <Canvas>
                         <Label 
                             FontFamily="/Frontend;component/Resources/Fonts/#Kiona" 
-                            FontSize="32" 
-                            Background="#FF7D7E7E"  
+                            FontSize="15pt" 
+                            Background="#FF7D7E7E"
                             Padding="0" 
                             Foreground="White" 
                             Grid.Row="0" 
@@ -271,7 +283,12 @@
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             Height="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}"
-                            />
+                            >
+                            <TextBlock TextTrimming="CharacterEllipsis"/>
+                           
+                        </Label>
+
+
                         <!-- TODO: Bind to Global Variable -->
                         <Rectangle
                             Fill="#FF716C6C" 

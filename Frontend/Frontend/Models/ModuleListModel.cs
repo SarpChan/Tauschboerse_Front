@@ -50,17 +50,6 @@ namespace Frontend
 
             AddModule(new ModuleDummy()
             {
-                ID = "64",
-                StartTime = "11:30",
-                EndTime = "15:00",
-                Day = "1",
-                PersonName = "Marc",
-                RoomNumber = "D42",
-                CourseName = "Computergrafik",
-                Color = "#FFF4A233"
-            });
-            AddModule(new ModuleDummy()
-            {
                 ID = "65",
                 StartTime = "11:30",
                 EndTime = "15:00",
@@ -69,18 +58,6 @@ namespace Frontend
                 RoomNumber = "D42",
                 CourseName = "Computergrafik",
                 Color = "#FFF4A233"
-            });
-            AddModule(new ModuleDummy()
-            {
-                ID = "1",
-                StartTime = "08:15",
-                EndTime = "15:45",
-                Day = "3",
-                PersonName = "Olli",
-                RoomNumber = "D17",
-                CourseName = "Programmieren 3",
-                GroupChar = 'C',
-                Color = "#FFA8EEDD"
             });
             AddModule(new ModuleDummy()
             {

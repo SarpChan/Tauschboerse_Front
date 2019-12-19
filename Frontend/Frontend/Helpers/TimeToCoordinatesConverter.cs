@@ -165,7 +165,7 @@ namespace Frontend.Helpers
                     if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
 
-                        var founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime,s2),Math.Min(endTime,e2), day, module, items);
+                        int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime,s2),Math.Min(endTime,e2), day, module, items);
 
                         int behinde = 0;
                         if (e2 < endTime)
@@ -226,7 +226,7 @@ namespace Frontend.Helpers
                         if (id > System.Convert.ToInt64(items[i].ID))
                         {
 
-                            var founded = CalculateModuleRowPosition(1+counter, 1+i, Math.Min(startTime, s2), Math.Min(endTime, e2), id, day,module, items);
+                            var found = CalculateModuleRowPosition(1+counter, 1+i, Math.Min(startTime, s2), Math.Min(endTime, e2), id, day,module, items);
                             int behinde = 0;
                             if (e2 < endTime)
                             {
@@ -239,9 +239,9 @@ namespace Frontend.Helpers
                                 before = CalculateModuleRowPosition(counter, 1+i, startTime, s2, id, day,module, items);
                             }
 
-                            Console.WriteLine("founde:", founded, "behinde: ", behinde, "before", before);
+                            Console.WriteLine("founde:", found, "behinde: ", behinde, "before", before);
 
-                            return Math.Max(Math.Max(founded, behinde),before);
+                            return Math.Max(Math.Max(found, behinde),before);
                            
                         }
                     }
