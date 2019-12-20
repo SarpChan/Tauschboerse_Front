@@ -6,7 +6,7 @@ namespace Frontend.Models
     /// <summary>
     /// The Student class models a student and inherits from the class role.
     /// </summary>
-    public class Student : Role
+    public class Student : User
     {
         public long EnrollmentNumber { get; set; }
         public string Mail { get; set; }

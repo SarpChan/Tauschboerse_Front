@@ -31,6 +31,7 @@ namespace Frontend.Models
         public PersonalData()
         {
             ActiveStudent = new Student();
+            ActiveStudent.EnrollmentNumber = 1001337;
         }
     }
 }
