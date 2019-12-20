@@ -79,6 +79,7 @@
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Helpers\RowConverters.cs" />
+    <Compile Include="Helpers\SHA256Gen.cs" />
     <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\TypeToIconConverter.cs" />
     <Compile Include="Helpers\WidthPercentageConverter.cs" />
@@ -117,6 +118,9 @@
     </Compile>
     <Compile Include="UserControls\Login_LoginButton.xaml.cs">
       <DependentUpon>Login_LoginButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login_Page.xaml.cs">
+      <DependentUpon>Login_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Login_PasswordInput.xaml.cs">
       <DependentUpon>Login_PasswordInput.xaml</DependentUpon>
@@ -175,9 +179,6 @@
     <Compile Include="View\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\PersonalDataPage.xaml.cs">
       <DependentUpon>PersonalDataPage.xaml</DependentUpon>
     </Compile>
@@ -225,6 +226,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Icons\login_user.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\password.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\EditTimetable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -234,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Login_LoginButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,10 +317,6 @@
     <Page Include="View\LoadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PersonalDataPage.xaml">
       <SubType>Designer</SubType>
@@ -392,6 +401,12 @@
     <PackageReference Include="RestSharp">
       <Version>106.6.10</Version>
     </PackageReference>
+    <PackageReference Include="ToastNotifications">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="ToastNotifications.Messages">
+      <Version>2.5.1</Version>
+    </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>1.4.18</Version>
     </PackageReference>
@@ -419,6 +434,10 @@
     <Resource Include="Resources\Icons\info.png" />
     <Resource Include="Resources\Icons\save.png" />
     <Resource Include="Resources\Icons\times.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\login_user.png" />
+    <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

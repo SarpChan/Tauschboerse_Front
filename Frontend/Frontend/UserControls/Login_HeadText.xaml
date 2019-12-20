@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="750">
+             d:DesignHeight="60" d:DesignWidth="750">
 
     <!--LoginHeadTextBox-->
     <UserControl.Resources>
@@ -24,9 +24,9 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                             <!--LoginHeadTextBox contains Vertical StackPanel:  [TEXT] [LINE]-->
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <TextBlock Width="750" MinWidth="200" Height="30" Text="{TemplateBinding Tag}" TextAlignment="Center" Style="{StaticResource LoginHeadTextBlock}"/>
+                                    <TextBlock Width="750" MinWidth="200" Height="50" Text="{TemplateBinding Tag}" TextAlignment="Center" Style="{StaticResource LoginHeadTextBlock}"/>
                                     <Canvas Width="750" Height="10">
-                                    <Line X1='280' X2='470' Y1='5' Y2='5' Stroke="{StaticResource CD_Teal}" StrokeThickness='2' />
+                                    <Line X1='250' X2='500' Y1='8' Y2='8' Stroke="{StaticResource CD_Teal}" StrokeThickness='2' />
                                 </Canvas>
                             </StackPanel>
                     </ControlTemplate>

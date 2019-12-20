@@ -25,12 +25,23 @@ namespace Frontend.ViewModel
         public PersonalData personalData;
         public TimetableData timetableData;
 
+        private static MainViewModel _instance;
+        public static MainViewModel Instance { get { return _instance; } }
+
+        Random generator = new Random();
+        int myID;
+
         public MainViewModel()
         {
+            
             ActivePage = new HomePage();
             IsLoading = false;
+            IsLoggedIn = false;
             personalData = new PersonalData();
             timetableData = new TimetableData();
+            myID = (int)(generator.NextDouble() * 9999) + 1;
+            Console.WriteLine("NEW MAINVIEWMODEL " + myID);
+            _instance = this;
         }
 
         #region properties
@@ -59,6 +70,20 @@ namespace Frontend.ViewModel
                 {
                     _activePage = value;
                     OnPropertyChanged("ActivePage");
+                }
+            }
+        }
+
+        private bool _isLoggedIn;
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set
+            {
+                if (_isLoggedIn != value)
+                {
+                    _isLoggedIn = value;
+                    OnPropertyChanged("IsLoggedIn");
                 }
             }
         }
@@ -95,7 +120,7 @@ namespace Frontend.ViewModel
         }
 
         private ICommand _SwitchToSharingServicePageCommand;
-        public ICommand SwitchToSharingServicePage
+        public ICommand SwitchToSharingServicePageCommand
         {
             get
             {
@@ -140,7 +165,7 @@ namespace Frontend.ViewModel
             {
                 if (_LogoutCommand == null)
                 {
-                    _LogoutCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new HomePage()));
+                    _LogoutCommand = new ActionCommand(dummy => this.Logout());
                 }
                 return _LogoutCommand;
             }
@@ -155,33 +180,33 @@ namespace Frontend.ViewModel
         {
             if (newActivePage.GetType().Equals(typeof(HomePage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestNewsFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestTimetableFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestSharingDataFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestPersonalDataFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(AdminPage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestAdminDataFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else
             {
@@ -190,13 +215,17 @@ namespace Frontend.ViewModel
             ActivePage = newActivePage;
         }
 
-        /*
-         * Simple Methode zum ändern des IsLoading-Zustands
-         */
-        private void SwitchIsLoading()
+        private void Logout()
         {
-            IsLoading = !IsLoading;
+            //this.SwitchActivePageAsync(new HomePage());
+            Console.WriteLine("LOGOUT METHOD IN MAINVM TRIGGERED");
+            personalData.ActiveStudent = new Student();
+            this.IsLoggedIn = false; //TODO herausfinden wie man von vm zu vm binded
+            
+            LoginPageViewModel.Instance.IsLoggedIn = true; //TODO Funktioniert nicht???
+            LoginPageViewModel.Instance.IsLoggedIn = false;
         }
+       
 
         /*
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen

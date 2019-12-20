@@ -10,10 +10,9 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:helpers="clr-namespace:Frontend.Helpers"
       xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+      xmlns:view="clr-namespace:Frontend.View"
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="Root"
-      Height="{Binding WindowSettings.Height,Mode=TwoWay}"
-      Width="{Binding WindowSettings.Width, Mode=TwoWay}">
+      Title="Root">
     <Page.DataContext>
         <viewmodel:MainViewModel x:Name="MainViewModel"/>
     </Page.DataContext>
@@ -33,8 +32,10 @@
         </Style>
     </Page.Resources>
         
+
+        
     <!--RootPage Grid-->
-    <Grid x:Name="MainGrid" Width="{Binding WindowSettings.Width, Mode=TwoWay}" Height="{Binding WindowSettings.Height,Mode=TwoWay}" Background="{StaticResource CD_White}">
+    <Grid x:Name="MainGrid" Background="{StaticResource CD_White}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"/>
             <ColumnDefinition MinWidth="450" Width="1640*"/>
@@ -46,8 +47,8 @@
  
         <!--Topbar-->
         <Border Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1"/>
-        <user_controls:TB_LogoButton TB_LogoButtonCommand="{Binding SwitchToTimetablePage}" Grid.Column="0"/>
-        <user_controls:TB_LogoutButton TB_LogoutButtonCommand="{Binding SwitchToTimetablePage}" Grid.Column="1"/>
+        <user_controls:TB_LogoButton TB_LogoButtonCommand="{Binding SwitchToHomePageCommand}" Grid.Column="0"/>
+        <user_controls:TB_LogoutButton TB_LogoutButtonCommand="{Binding LogoutCommand}" Grid.Column="1"/>
 
         <!--Sidebar-->
         <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,0"/>
@@ -64,11 +65,12 @@
                 <user_controls:SB_HomeButton SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"/>
                 <user_controls:SB_TimetableButton SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
                 <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToPersonalDataPageCommand}"/>
-                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePage}"/>
+                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
                 <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
             </StackPanel>
         </Grid>
         <!--<TextBlock Text="{Binding ActivePage}" TextAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1"/>-->
+        
         <!--MainFrame-->
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">
             <Frame.Source>
@@ -81,5 +83,18 @@
             </Grid.Visibility>
             <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
         </Grid>
+        
+            <!--Login Page Grid-->
+        <user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+    <!--<Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Grid.Visibility>
+            <Binding Path="IsLoggedIn" Converter="{helpers:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}" UpdateSourceTrigger="PropertyChanged"/>
+        </Grid.Visibility>
+        <Frame Grid.Row="0" Grid.Column="0" x:Name="LoginFrame" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged" Source="LoginPage.xaml">
+            <Frame.Visibility>
+                <Binding Path="IsLoggedIn" Converter="{helpers:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}" UpdateSourceTrigger="PropertyChanged"/>
+            </Frame.Visibility>
+        </Frame>
+    </Grid>-->
     </Grid>
 </Page>

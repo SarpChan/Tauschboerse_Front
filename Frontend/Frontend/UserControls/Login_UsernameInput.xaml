@@ -6,5 +6,12 @@
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="750">
-    <Button Style="{StaticResource UsernameInput}" Tag="Username"/>
+    <UserControl.Resources>
+        <!--Login UserInput-->
+        <Style TargetType="{x:Type Grid}" x:Key="UsernameInput">
+        </Style>
+    </UserControl.Resources>
+    
+    
+    <Grid Style="{StaticResource UsernameInput}" Tag="Username"/>
 </UserControl>
