@@ -46,7 +46,15 @@
 
         <!--UsernameInput
         <user_controls:Login_UsernameInput Grid.Row="2" Grid.Column="1"/>-->
-        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+            <Border.Effect>
+                <DropShadowEffect
+                    ShadowDepth="4"
+                    Direction="330"
+                    Color="Black"
+                    Opacity="0.5"
+                    BlurRadius="4" />  
+            </Border.Effect>
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
@@ -58,14 +66,21 @@
                 <Border Background="{StaticResource CD_Teal_Alpha}">
                     <Image Name="LoginUserIcon" Source="{StaticResource login_user}" Width="24" Height="26" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </Border>
-                <TextBox Name="UsernameInput" GotMouseCapture="UsernameInput_GotMouseCapture" GotFocus="UsernameInput_GotFocus" Grid.Column="1" FontSize="24" Text="{Binding Username}" BorderThickness="0" Foreground="{StaticResource CD_Grey}" FontFamily="/Resources/Fonts/#Roboto Lt" Margin="50,0,0,0" VerticalContentAlignment="Center"/>
+                <TextBox Name="UsernameInput" GotMouseCapture="UsernameInput_GotMouseCapture" GotFocus="UsernameInput_GotFocus" Grid.Column="1" FontSize="24" Text="{Binding Username}" BorderThickness="0" Foreground="{StaticResource CD_Grey}" FontFamily="/Resources/Fonts/#Roboto Lt" Padding="50,0,0,0" VerticalContentAlignment="Center"/>
             </Grid>
         </Border>
 
         <!--PasswordInput
         <user_controls:Login_PasswordInput Grid.Row="3" Grid.Column="1"/>-->
-        <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
-            <Grid >
+        <Border BorderBrush="{StaticResource CD_Black}"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
+            <Border.Effect>
+                <DropShadowEffect
+                    ShadowDepth="4"
+                    Color="Black"
+                    Opacity="0.5"
+                    BlurRadius="4" />
+            </Border.Effect>
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="670"/>
@@ -76,10 +91,9 @@
                 <Border Background="{StaticResource CD_Teal_Alpha}">
                     <Image Name="PasswordIcon" Source="{StaticResource password}" Width="24" Height="26" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </Border>
-                <TextBox Name="PasswordInput" GotMouseCapture="PasswordInput_GotMouseCapture" GotFocus="PasswordInput_GotFocus" Grid.Column="1" FontSize="24" Text="{Binding Password}" BorderThickness="0" Foreground="{StaticResource CD_Grey}" FontFamily="/Resources/Fonts/#Roboto Lt" Margin="50,0,0,0" VerticalContentAlignment="Center"/>
+                <TextBox Name="PasswordInput" GotMouseCapture="PasswordInput_GotMouseCapture" GotFocus="PasswordInput_GotFocus" Grid.Column="1" FontSize="24" Text="{Binding Password}" BorderThickness="0" Foreground="{StaticResource CD_Grey}" FontFamily="/Resources/Fonts/#Roboto Lt" Padding="50,0,0,0" VerticalContentAlignment="Center"/>
             </Grid>
         </Border>
-
         <!--LoginButton-->
         <user_controls:Login_LoginButton Grid.Row="4" Grid.Column="1" LoginButtonCommand="{Binding LoginCommand}"/>
         <!--ToastArea-->

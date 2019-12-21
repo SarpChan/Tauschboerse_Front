@@ -33,7 +33,6 @@ namespace Frontend.ViewModel
 
         public MainViewModel()
         {
-            
             ActivePage = new HomePage();
             IsLoading = false;
             IsLoggedIn = false;
