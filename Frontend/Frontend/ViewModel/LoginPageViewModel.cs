@@ -96,16 +96,16 @@ namespace Frontend.ViewModel
                     MainViewModel.Instance.personalData.ActiveStudent.Firstname = "Dude";
                     MainViewModel.Instance.IsLoggedIn = true; //TODO ViewModel.LPVM: Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
                     IsLoggedIn = true;
-                    App.notifier.ShowSuccess("Login succesful");
+                    App.notifier.ShowSuccess("Einloggen erfolgreich");
                 } 
                 else
                 {
-                    App.notifier.ShowError("Wrong password");
+                    App.notifier.ShowError("Falsches Passwort");
                 }
             }
             else
             {
-                App.notifier.ShowWarning("Wrong username");
+                App.notifier.ShowWarning("Unbekannter Benutzername");
             }
         }
         #endregion

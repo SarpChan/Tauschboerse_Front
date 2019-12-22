@@ -218,7 +218,7 @@ namespace Frontend.ViewModel
             personalData.ActiveStudent = new Student();
             this.IsLoggedIn = false; //TODO ViewModel.MVM: von VM zu VM binden? -> Besser: sowas im Model speichern
             LoginPageViewModel.Instance.IsLoggedIn = false;
-            App.notifier.ShowSuccess("Logout succesful");
+            App.notifier.ShowSuccess("Ausloggen erfolgreich");
         }
        
         /*
