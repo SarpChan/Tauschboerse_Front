@@ -210,7 +210,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="Border" BorderBrush="{StaticResource CD_Teal}" BorderThickness="1.5" Background="{TemplateBinding Background}">
-
                         <TextBlock Text="{TemplateBinding Tag}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto"/>
                     </Border>
                     <!--Triggers for switching on hover -->

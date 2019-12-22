@@ -6,12 +6,22 @@
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="750">
-    <UserControl.Resources>
-        <!--Login UserInput-->
-        <Style TargetType="{x:Type Grid}" x:Key="UsernameInput">
-        </Style>
-    </UserControl.Resources>
-    
-    
-    <Grid Style="{StaticResource UsernameInput}" Tag="Username"/>
+    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="4" Direction="330" Color="Black" Opacity="0.5" BlurRadius="4" />
+        </Border.Effect>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="670"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource CD_Teal_Alpha}">
+                <Image Name="LoginUserIcon" Source="{StaticResource login_user}" Width="24" Height="26" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+            <TextBox Name="UsernameInput" GotMouseCapture="UsernameInput_GotMouseCapture" GotFocus="UsernameInput_GotFocus" Grid.Column="1" FontSize="24" Text="{Binding Username}" BorderThickness="0" Foreground="{StaticResource CD_Grey}" FontFamily="/Resources/Fonts/#Roboto Lt" Padding="50,0,0,0" VerticalContentAlignment="Center"/>
+        </Grid>
+    </Border>
 </UserControl>

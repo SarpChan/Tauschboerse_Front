@@ -10,7 +10,6 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:helpers="clr-namespace:Frontend.Helpers"
       xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
-      xmlns:view="clr-namespace:Frontend.View"
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Root">
     <Page.DataContext>
@@ -31,8 +30,6 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-        
-
         
     <!--RootPage Grid-->
     <Grid x:Name="MainGrid" Background="{StaticResource CD_White}">
@@ -69,7 +66,6 @@
                 <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
             </StackPanel>
         </Grid>
-        <!--<TextBlock Text="{Binding ActivePage}" TextAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1"/>-->
         
         <!--MainFrame-->
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">
@@ -83,18 +79,7 @@
             </Grid.Visibility>
             <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
         </Grid>
-        
-            <!--Login Page Grid-->
+        <!--Login Page Grid-->
         <user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-    <!--<Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-        <Grid.Visibility>
-            <Binding Path="IsLoggedIn" Converter="{helpers:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}" UpdateSourceTrigger="PropertyChanged"/>
-        </Grid.Visibility>
-        <Frame Grid.Row="0" Grid.Column="0" x:Name="LoginFrame" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged" Source="LoginPage.xaml">
-            <Frame.Visibility>
-                <Binding Path="IsLoggedIn" Converter="{helpers:BoolToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}" UpdateSourceTrigger="PropertyChanged"/>
-            </Frame.Visibility>
-        </Frame>
-    </Grid>-->
     </Grid>
 </Page>

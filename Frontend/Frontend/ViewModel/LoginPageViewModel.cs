@@ -2,9 +2,6 @@
 using Frontend.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -15,7 +12,9 @@ namespace Frontend.ViewModel
 {
     class LoginPageViewModel : ViewModelBase
     {
-
+        /*
+         * Notifier fuer die Toast-Benachrichtigungen
+         */
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -23,13 +22,13 @@ namespace Frontend.ViewModel
                 corner: Corner.BottomCenter,
                 offsetX: 10,
                 offsetY: 10);
-
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                notificationLifetime: TimeSpan.FromSeconds(3),
-                maximumNotificationCount: MaximumNotificationCount.FromCount(3));
-
+                notificationLifetime: TimeSpan.FromSeconds(3), // Leben 3 Sekunden
+                maximumNotificationCount: MaximumNotificationCount.FromCount(3)); // Maximal 3 auf einmal
+            cfg.DisplayOptions.Width = 750;
             cfg.Dispatcher = App.Current.Dispatcher;
         });
+
 
         private Dictionary<string, string> userPass = new Dictionary<string, string>();
 
@@ -39,10 +38,8 @@ namespace Frontend.ViewModel
         Random generator = new Random();
         int myID;
         
-
         public LoginPageViewModel()
         {
-            
             IsLoggedIn = false;
             Username = "Nutzername";
             Password = "Passwort";
@@ -134,7 +131,6 @@ namespace Frontend.ViewModel
             {
                 notifier.ShowWarning("Wrong username");
             }
-            
         }
         #endregion
     }

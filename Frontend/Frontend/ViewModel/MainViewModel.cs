@@ -9,7 +9,6 @@ using Frontend.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Frontend.ViewModel
 {
@@ -225,7 +224,6 @@ namespace Frontend.ViewModel
             LoginPageViewModel.Instance.IsLoggedIn = false;
         }
        
-
         /*
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
@@ -277,7 +275,6 @@ namespace Frontend.ViewModel
             cancellationTokenSource.Dispose();
         }
 
-
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
@@ -298,7 +295,6 @@ namespace Frontend.ViewModel
 
             cancellationTokenSource.Dispose();
         }
-
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
