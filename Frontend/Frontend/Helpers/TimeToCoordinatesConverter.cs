@@ -64,8 +64,8 @@ namespace Frontend.Helpers
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
             int weekday = System.Convert.ToInt32(value[2]);
-            int rowPos = ConverterHelper.CalculateModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
-            int divder = ConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int rowPos = TimeConverterHelper.CalculateModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int divder = TimeConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
             return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem/divder)*(rowPos-1));
@@ -94,7 +94,7 @@ namespace Frontend.Helpers
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            int divider = ConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[2],(IList<ModuleDummy>)value[3]);
+            int divider = TimeConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[2],(IList<ModuleDummy>)value[3]);
 
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
@@ -148,7 +148,7 @@ namespace Frontend.Helpers
         #endregion
     }
 
-    class ConverterHelper
+    class TimeConverterHelper
     {
 
         private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day,ModuleDummy module, ModuleDummy[] items)

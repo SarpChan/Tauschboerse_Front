@@ -26,6 +26,8 @@
         <Helpers:SeperatorHeightConverters x:Key="SeperatorHeightConverters"/>
         <Helpers:SeperatorPositionConverter x:Key="SeperatorPositionConverter"/>
         <Helpers:RowLineColorConverter x:Key="RowLineColorConverter"/>
+        <Helpers:RowTimeTextVisiblityConverter x:Key="RowTimeTextVisiblityConverter"/>
+        <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>
@@ -113,15 +115,16 @@
                             <Style TargetType="Label">
                                 <Setter Property="Canvas.Top">
                                     <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource RowPositionConverter}">
+                                        <MultiBinding Converter="{StaticResource RowTimeTextPositionConverter}">
                                             <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="RowIndex"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Height">
+                                <Setter Property="Visibility">
                                     <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource RowHeightConverter}">
+                                        <MultiBinding Converter="{StaticResource RowTimeTextVisiblityConverter}">
+                                            <Binding Path="RowIndex"/>
                                             <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="ActualHeight" ElementName="HeaderBackground" Mode="OneWay"/>
                                         </MultiBinding>
@@ -136,8 +139,10 @@
                             <!-- Linie (Ob diese gezeichnet werden soll, wird mit dem RowLineColorConverter oben anhand des Index berechnet -->
                             <Separator
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"
+                                Margin="0"
                                 Panel.ZIndex="3"
                                 />
+                            
                             <Rectangle 
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"                            
                                 Fill="{Binding Color}" 
@@ -146,18 +151,16 @@
                                 />
                             
                             <!-- Zeitlabel -->
-                            <Label
+                            <Label x:Name="TimeLabel"
                                 Panel.ZIndex="3"
                                 Content="{Binding Time}"
                                 Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
-                                FontSize="6pt"
+                                FontSize="12pt"
+                                Padding="-1"
                                 Height="auto"
                                 Margin="0"
-                                Padding="1"
-                                HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
-
-
-
+                                HorizontalContentAlignment="Center" VerticalAlignment="Top"
+                                />
 
                         </Canvas>
                     </DataTemplate>
