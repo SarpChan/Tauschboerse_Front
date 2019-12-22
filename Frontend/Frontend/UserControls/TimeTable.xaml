@@ -60,7 +60,14 @@
         Actual Height sollte nicht genommen werden???
         -->
 
-        
+        <!--Popup was ein grosser Version des TimetableItems zeigt-->
+        <Popup x:Name="popUp" AllowsTransparency="True">
+            <Viewbox>
+                
+            </Viewbox>
+        </Popup>
+
+
         <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
             <!-- 
                 For loop: Rows
@@ -132,17 +139,18 @@
                                 </Setter>
                             </Style>
                         </DataTemplate.Resources>
+
                         <!-- Canvas mit Größe 0x0 als Wrapper-->
                         <Canvas x:Name="TimeView" Margin="0">
-                            
-                            
+
+
                             <!-- Linie (Ob diese gezeichnet werden soll, wird mit dem RowLineColorConverter oben anhand des Index berechnet -->
                             <Separator
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"
                                 Margin="0"
                                 Panel.ZIndex="3"
                                 />
-                            
+
                             <Rectangle 
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"                            
                                 Fill="{Binding Color}" 
@@ -151,7 +159,7 @@
                                 ToolTip="{Binding Time}"
                                 Margin="0"
                                 />
-                            
+
                             <!-- Zeitlabel -->
                             <Label x:Name="TimeLabel"
                                 Panel.ZIndex="3"
@@ -174,7 +182,7 @@
                 ...Gleiches Prinzip wie oben...
              -->
 
-            <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
+                <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type project:ModuleDummy}">
                         <DataTemplate.Resources>
@@ -221,7 +229,9 @@
                             </Style>
                         </DataTemplate.Resources>
                         <Canvas>
-                            <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" />
+                            <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
+                                                        MouseEnter="TimetableItem_MouseEnter"
+                                                        MouseLeave="TimetableItem_MouseLeave"/>
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
