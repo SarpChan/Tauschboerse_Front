@@ -308,7 +308,7 @@
                         <!-- TODO: Bind to Global Variable -->
                         <Rectangle
                             Fill="#FF716C6C" 
-                            Width="2"
+                            Width="1pt"
                             Grid.Row="1"
                             Grid.Column="1" 
                             Canvas.Top="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}" 

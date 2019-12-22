@@ -98,7 +98,7 @@ namespace Frontend.Helpers
 
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
-            double width = ((totalWidth - timeWidth) / Globals.weekdays) - Globals.Space;
+            double width = ((totalWidth - timeWidth) / Globals.weekdays) -  PixelCalculator.PointsToPixels(Globals.Space);
             width /= divider;
 
             return width < 0 ? 0 : width;

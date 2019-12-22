@@ -34,7 +34,7 @@ namespace Frontend
         {
             return (EndTime - StartTime).TotalMinutes;
         }
-        public static double Space = 2;
+        public static double Space = 1;
         public static double TimeTextFontSize = 12;
         public static double RowPadding = 0;
 
