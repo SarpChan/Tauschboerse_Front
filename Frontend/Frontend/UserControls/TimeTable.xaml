@@ -60,7 +60,8 @@
         Actual Height sollte nicht genommen werden???
         -->
 
-        <!--Popup was ein grosser Version des TimetableItems zeigt-->
+        <!--Popup was ein grosser Version des TimetableItems zeigt
+        wird gefuehlt durch die Code Behind-->
         <Popup x:Name="popUp" AllowsTransparency="True">
             <Viewbox>
                 

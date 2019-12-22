@@ -122,7 +122,7 @@ namespace Frontend.Helpers
 
             Console.WriteLine("RowIndex : " + rowIndex + " RowHeight : " + height + " Amount :" + Globals.RowSeperatorAmount);
 
-            if (height <= Globals.TimeTextFontSize)
+            if (height <= PixelCalculator.PointsToPixels(Globals.TimeTextFontSize))
             {
                 if (rowIndex % Globals.RowSeperatorAmount == Globals.RowSeperatorAmount - 1)
                 {
@@ -157,7 +157,7 @@ namespace Frontend.Helpers
             double totalHeight = System.Convert.ToDouble(values[0]);
             int rowIndex = System.Convert.ToInt32(values[1]);
 
-            return RowConvertersHelper.CaluclateRowPosition(totalHeight, rowIndex) - Globals.TimeTextFontSize;
+            return RowConvertersHelper.CaluclateRowPosition(totalHeight, rowIndex) - PixelCalculator.PointsToPixels(Globals.TimeTextFontSize);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

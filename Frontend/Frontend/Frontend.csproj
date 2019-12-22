@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\DayConverters.cs" />
     <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\ResultionConvertes.cs" />
     <Compile Include="Helpers\RowConverters.cs" />
     <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\TypeToIconConverter.cs" />
