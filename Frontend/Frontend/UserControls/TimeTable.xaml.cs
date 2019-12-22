@@ -45,8 +45,6 @@ namespace Frontend.UserControls
             };
             viewbox.Child = timetableItem;
             popUp.Child = viewbox;
-            
-            popUp.Width =250;
             popUp.IsOpen = true;
         }
 
