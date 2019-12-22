@@ -147,6 +147,8 @@
                                 Width ="{Binding ActualWidth, ElementName=Timetable, Mode=OneWay}"                            
                                 Fill="{Binding Color}" 
                                 Panel.ZIndex="1"
+                                ToolTipService.ShowDuration="12000"
+                                ToolTip="{Binding Time}"
                                 Margin="0"
                                 />
                             
