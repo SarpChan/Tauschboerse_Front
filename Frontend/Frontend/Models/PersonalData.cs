@@ -7,7 +7,7 @@ namespace Frontend.Models
      */
     class PersonalData : INotifyPropertyChanged
     {
-        //TODO: Singleton PersonalData?
+        //TODO Model.PD: Singleton PersonalData?
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

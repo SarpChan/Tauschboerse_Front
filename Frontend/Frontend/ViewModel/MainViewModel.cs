@@ -9,13 +9,13 @@ using Frontend.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using ToastNotifications.Messages;
 
 namespace Frontend.ViewModel
 {
     /**
      * <summary>
      * RootPage ViewModel. Hat alle Properties, ICommands und Methoden fuer die View RootPage. Benennung historisch bedingt.
-     * TODO: Refactor to 'RootPageViewModel'
      * </summary>
      */
 
@@ -24,11 +24,10 @@ namespace Frontend.ViewModel
         public PersonalData personalData;
         public TimetableData timetableData;
 
+        private int thisID;
+
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
-
-        Random generator = new Random();
-        int myID;
 
         public MainViewModel()
         {
@@ -37,8 +36,8 @@ namespace Frontend.ViewModel
             IsLoggedIn = false;
             personalData = new PersonalData();
             timetableData = new TimetableData();
-            myID = (int)(generator.NextDouble() * 9999) + 1;
-            Console.WriteLine("NEW MAINVIEWMODEL " + myID);
+            thisID = (int)(new Random().NextDouble() * 9999) + 1;
+            Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
             _instance = this;
         }
 
@@ -215,13 +214,11 @@ namespace Frontend.ViewModel
 
         private void Logout()
         {
-            //this.SwitchActivePageAsync(new HomePage());
-            Console.WriteLine("LOGOUT METHOD IN MAINVM TRIGGERED");
+            this.SwitchActivePageAsync(new HomePage());
             personalData.ActiveStudent = new Student();
-            this.IsLoggedIn = false; //TODO herausfinden wie man von vm zu vm binded
-            
-            LoginPageViewModel.Instance.IsLoggedIn = true; //TODO Funktioniert nicht???
+            this.IsLoggedIn = false; //TODO ViewModel.MVM: von VM zu VM binden? -> Besser: sowas im Model speichern
             LoginPageViewModel.Instance.IsLoggedIn = false;
+            App.notifier.ShowSuccess("Logout succesful");
         }
        
         /*
@@ -270,8 +267,8 @@ namespace Frontend.ViewModel
             request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO: NEWS VOM SERVER JSON-SERIALISIEREN
-            
+            //TODO ViewModel.MVM: NEWS vom Server in JSON Serialisieren
+
             cancellationTokenSource.Dispose();
         }
 
@@ -291,7 +288,7 @@ namespace Frontend.ViewModel
             request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO: SHARING_DATA VOM SERVER JSON-SERIALISIEREN
+            //TODO ViewModel.MVM: SHARING_DATA vom Server in JSON Serialisieren
 
             cancellationTokenSource.Dispose();
         }
@@ -312,7 +309,7 @@ namespace Frontend.ViewModel
             request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO: PERSONAL_DATA VOM SERVER JSON-SERIALISIEREN
+            //TODO ViewModel.MVM: PERSONAL_DATA vom Server in JSON Serialisieren
 
             cancellationTokenSource.Dispose();
         }
@@ -333,7 +330,7 @@ namespace Frontend.ViewModel
             request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO: ADMIN_DATA VOM SERVER JSON-SERIALISIEREN
+            //TODO ViewModel.MVM: ADMIN_DATA vom Server in JSON Serialisieren
 
             cancellationTokenSource.Dispose();
         }

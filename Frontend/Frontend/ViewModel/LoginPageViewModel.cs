@@ -3,50 +3,27 @@ using Frontend.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using ToastNotifications;
-using ToastNotifications.Lifetime;
-using ToastNotifications.Position;
 using ToastNotifications.Messages;
 
 namespace Frontend.ViewModel
 {
     class LoginPageViewModel : ViewModelBase
     {
-        /*
-         * Notifier fuer die Toast-Benachrichtigungen
-         */
-        Notifier notifier = new Notifier(cfg =>
-        {
-            cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: App.Current.MainWindow,
-                corner: Corner.BottomCenter,
-                offsetX: 10,
-                offsetY: 10);
-            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                notificationLifetime: TimeSpan.FromSeconds(3), // Leben 3 Sekunden
-                maximumNotificationCount: MaximumNotificationCount.FromCount(3)); // Maximal 3 auf einmal
-            cfg.DisplayOptions.Width = 750;
-            cfg.Dispatcher = App.Current.Dispatcher;
-        });
-
-
+        private int thisID;
         private Dictionary<string, string> userPass = new Dictionary<string, string>();
 
         private static LoginPageViewModel _instance;
         public static LoginPageViewModel Instance { get { return _instance; } } 
 
-        Random generator = new Random();
-        int myID;
-        
         public LoginPageViewModel()
         {
             IsLoggedIn = false;
             Username = "Nutzername";
             Password = "Passwort";
-            userPass.Add("Test", SHA256Gen.ComputeSha256Hash("Test"));
-            myID = (int)(generator.NextDouble() * 9999 ) + 1;
-            Console.WriteLine("NEW LOGINPAGEVIEWMODEL " + myID);
-            _instance = this; //TODO: klaeren wie das sonst gedacht ist. ohne gleiche instance geht das halt nicht mit login/logout etc...
+            userPass.Add("user", SHA256Gen.ComputeSha256Hash("login"));
+            thisID = (int)(new Random().NextDouble() * 9999 ) + 1;
+            Console.WriteLine("\"new LoginPageViewModel()\" InstanceID: " + thisID);
+            _instance = this; //TODO ViewModel.LPVM: Klaeren wie das sonst gedacht ist. Ohne gleiche Instance geht das halt nicht mit login/logout etc...
         }
 
         #region commands
@@ -103,7 +80,6 @@ namespace Frontend.ViewModel
                 {
                     _isLoggedIn = value;
                     OnPropertyChanged("IsLoggedIn");
-                    Console.WriteLine("LOGGED IN == " + value);
                 }
             }
         }
@@ -118,18 +94,18 @@ namespace Frontend.ViewModel
                 {
                     MainViewModel.Instance.personalData.ActiveStudent = new Student();
                     MainViewModel.Instance.personalData.ActiveStudent.Firstname = "Dude";
-                    MainViewModel.Instance.IsLoggedIn = true; //TODO -> Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
+                    MainViewModel.Instance.IsLoggedIn = true; //TODO ViewModel.LPVM: Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
                     IsLoggedIn = true;
-                    notifier.ShowSuccess("Login succesful");
+                    App.notifier.ShowSuccess("Login succesful");
                 } 
                 else
                 {
-                    notifier.ShowError("Wrong password");
+                    App.notifier.ShowError("Wrong password");
                 }
             }
             else
             {
-                notifier.ShowWarning("Wrong username");
+                App.notifier.ShowWarning("Wrong username");
             }
         }
         #endregion

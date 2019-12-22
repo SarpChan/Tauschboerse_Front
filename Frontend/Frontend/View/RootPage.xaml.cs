@@ -11,14 +11,6 @@ namespace Frontend.View
     */
     public partial class RootPage : Page
     {
-        /*
-        //TODO: RootPage Singleton sinnvoll?? Wenn ja, wie? private Constructor wirft fehler
-        private static readonly Lazy<RootPage> lazyRootPageSingleton =
-            new Lazy<RootPage>(() => new RootPage());
-
-        public static RootPage Instance { get { return lazyRootPageSingleton.Value; } }
-        */
-
         /* <summary>
         * Konstruktor der RootPage : Page
         * </summary>

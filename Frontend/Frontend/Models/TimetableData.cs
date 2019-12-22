@@ -9,7 +9,7 @@ namespace Frontend.Models
      */
     class TimetableData: INotifyPropertyChanged
     {
-        //TODO: Singleton TimetableData?
+        //TODO Model.TD: Singleton TimetableData?
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
