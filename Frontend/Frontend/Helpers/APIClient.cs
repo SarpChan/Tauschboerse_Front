@@ -1,4 +1,6 @@
 using RestSharp;
+using RestSharp.Authenticators;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,6 +26,26 @@ namespace Frontend.Helpers
             {
                 return instance;
             }
+        }
+
+        public async Task<bool> SendLogin(string username, string password)
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            request = new RestRequest("/authenticate", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            List<string> list = new List<string> { username, password };
+            request.AddJsonBody(list);
+
+            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            cancellationTokenSource.Dispose();
+
+            if (response.IsSuccessful)
+            {
+                client.Authenticator = new JwtAuthenticator(response.Content);
+                return true;
+            }
+            return false;
         }
 
         public async Task<IRestResponse> NewPOSTRequest(string restEndpoint, object jsonBody)
