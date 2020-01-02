@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\DayConverters.cs" />
+    <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\ResultionConvertes.cs" />
     <Compile Include="Helpers\RowConverters.cs" />
@@ -273,6 +275,7 @@
     <Content Include="Models\.gitignore" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
+    <Resource Include="Resources\Icons\left_arrow_t.png" />
     <Content Include="ViewModel\.gitignore" />
     <Resource Include="Resources\Icons\left_arrow_b.png" />
     <Resource Include="Resources\Icons\left_arrow_w.png" />
