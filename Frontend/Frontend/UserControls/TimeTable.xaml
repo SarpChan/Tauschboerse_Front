@@ -28,6 +28,7 @@
         <Helpers:RowLineColorConverter x:Key="RowLineColorConverter"/>
         <Helpers:RowTimeTextVisiblityConverter x:Key="RowTimeTextVisiblityConverter"/>
         <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
+        <Helpers:TypeToIconConverter x:Key="TypeToIconConverter"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <project:TimetableViewModel x:Name="TimetableViewModel"/>

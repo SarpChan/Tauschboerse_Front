@@ -14,6 +14,10 @@ namespace Frontend.Helpers.Generators
 
         static MD5 Md5Hash = MD5.Create();
 
+        /// <summary>
+        /// generiert fuer das moduleDummy eine Farbe mit der in der App.config festgelegten Methode
+        /// </summary>
+        /// <param name="moduleDummy"></param>
         public static void generateColor(ModuleDummy moduleDummy)
         {
             string mode = ConfigurationManager.AppSettings.Get("colorgenerator.mode");

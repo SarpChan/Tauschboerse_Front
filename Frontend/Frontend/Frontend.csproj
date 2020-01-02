@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -274,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\.gitignore" />
+    <Resource Include="Resources\Icons\save_hover_b.png" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />
     <Resource Include="Resources\Icons\left_arrow_t.png" />

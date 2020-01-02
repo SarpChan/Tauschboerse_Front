@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <converters:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
         <converters:TimeToYCoordinatesConverter x:Key="TimeToYCoordinatesConverter"/>
+        <converters:TypeToIconConverter x:Key="TypeToIconConverter"/>
         <converters:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
@@ -18,7 +19,7 @@
 
         <DockPanel DockPanel.Dock="Top" x:Name="Grid_Header" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{Binding Module.Color,ElementName=TimeTableItem}">
             <TextBlock DockPanel.Dock="Left" x:Name="Text_Number" Text="{Binding Module.ID,ElementName=TimeTableItem}" Background="{Binding Module.Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" Foreground="White" Padding="10,0,0,0"/>
-            <Rectangle x:Name="Icon" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="15" Height="15pt" Margin="0" Fill="{DynamicResource Icon}" />
+            <Rectangle x:Name="Icon" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="15" Height="15pt" Margin="0" Fill="{Binding Module.Type,ElementName=TimeTableItem,Converter={StaticResource TypeToIconConverter}}" />
         </DockPanel>
 
         <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" LastChildFill="False">
