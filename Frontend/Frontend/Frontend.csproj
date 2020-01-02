@@ -57,14 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\DayConverters.cs" />
+    <Compile Include="Helpers\Converters\DayConverters.cs" />
+    <Compile Include="Helpers\Converters\RowConverters.cs" />
+    <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
-    <Compile Include="Helpers\ResultionConvertes.cs" />
-    <Compile Include="Helpers\RowConverters.cs" />
-    <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
-    <Compile Include="Helpers\TypeToIconConverter.cs" />
-    <Compile Include="Helpers\WidthPercentageConverter.cs" />
+    <Compile Include="Helpers\Converters\ResultionConvertes.cs" />
+    <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
+    <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
@@ -259,6 +259,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Design\projectGuides.guides" />
+    <None Include="hsrm_medieninformatik.json" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -271,7 +273,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Helpers\.gitignore" />
     <Content Include="Models\.gitignore" />
     <Resource Include="Resources\Icons\stupla_logo_big.png" />
     <Resource Include="Resources\Icons\stupla_logo_icon.png" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +29,11 @@ namespace Frontend
         public static int Subdivisions = 15;
         public static int RowSeperatorAmount = 4;
         public static TimeSpan TimeSubdivision = new TimeSpan(0, 15, 0);
-        public static string[] RowColors = { "#FFD2E7EB", "#FFFFFFFF" };
-        public static string RowSeperatorColor = "#FF7D7E7E";
+        public static string[] RowColors = { 
+            ConfigurationManager.AppSettings.Get("timetable.color.row1"),
+            ConfigurationManager.AppSettings.Get("timetable.color.row2")
+        };
+        public static string RowSeperatorColor = ConfigurationManager.AppSettings.Get("timetable.color.rowseperator");
         public static double GetDuration()
         {
             return (EndTime - StartTime).TotalMinutes;
