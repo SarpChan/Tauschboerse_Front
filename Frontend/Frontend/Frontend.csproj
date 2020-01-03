@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\ActionCommand.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />

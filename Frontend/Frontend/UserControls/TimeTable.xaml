@@ -29,9 +29,7 @@
         <Helpers:RowTimeTextVisiblityConverter x:Key="RowTimeTextVisiblityConverter"/>
         <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <project:TimetableViewModel x:Name="TimetableViewModel"/>
-    </UserControl.DataContext>
+    
     <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>

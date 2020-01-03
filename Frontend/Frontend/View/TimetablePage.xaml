@@ -9,7 +9,10 @@
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+    <Page.DataContext>
+        <project:TimetableViewModel x:Name="TimetableViewModel"/>
+    </Page.DataContext>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontSize="32" >
         <Grid Height="auto" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
@@ -75,7 +78,7 @@
 
                 <usercontrols:TimeTable BorderBrush="Black" Margin="0,0,77.4,0.2"/>
             </Grid>
-
+            <Button Command="{Binding AddModuleCommand, Mode=OneWay}" Grid.Column="1" Grid.Row="4">Hello</Button>
         </Grid>
 
     </ScrollViewer>
