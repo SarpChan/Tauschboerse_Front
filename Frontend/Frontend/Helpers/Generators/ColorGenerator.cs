@@ -13,13 +13,19 @@ namespace Frontend.Helpers.Generators
     {
 
         static MD5 Md5Hash = MD5.Create();
+        static Random Rnd = new Random();
 
+        /// <summary>
+        /// generiert fuer das moduleDummy eine Farbe mit der in der App.config festgelegten Methode
+        /// </summary>
+        /// <param name="moduleDummy"></param>
         public static void generateColor(ModuleDummy moduleDummy)
         {
             string mode = ConfigurationManager.AppSettings.Get("colorgenerator.mode");
 
             switch(mode){
                 case "hash": moduleDummy.Color = GenerateHashColor(moduleDummy); break;
+                case "chaos": moduleDummy.Color = generateRandomColor();break;
                 default: moduleDummy.Color = generateFixColorByType(moduleDummy); break;
             }
 
@@ -66,6 +72,15 @@ namespace Frontend.Helpers.Generators
 
             }
 
+        }
+
+        static String generateRandomColor()
+        {
+            byte [] numbers = new byte[3];
+
+            Rnd.NextBytes(numbers);
+
+            return Color.FromRgb(numbers[0], numbers[1], numbers[2]).ToString();
         }
     }
 }
