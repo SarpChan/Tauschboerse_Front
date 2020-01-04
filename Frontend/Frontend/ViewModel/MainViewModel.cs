@@ -136,7 +136,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToAdminPageCommand == null)
                 {
-                    _SwitchToAdminPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new AdminPage()));
+                    _SwitchToAdminPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new PythonUpload()));
                 }
                 return _SwitchToAdminPageCommand;
             }
@@ -186,7 +186,7 @@ namespace Frontend.ViewModel
                 await RequestPersonalDataFromServerAsync();
                 SwitchIsLoading();
             }
-            else if (newActivePage.GetType().Equals(typeof(AdminPage)))
+            else if (newActivePage.GetType().Equals(typeof(PythonUpload)))
             {
                 SwitchIsLoading();
                 await RequestAdminDataFromServerAsync();

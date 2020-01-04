@@ -29,5 +29,10 @@ namespace Frontend.View
         {
 
         }
+
+        private void UploadPythonscriptButton_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
