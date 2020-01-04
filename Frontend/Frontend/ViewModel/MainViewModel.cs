@@ -68,6 +68,15 @@ namespace Frontend.ViewModel
         /*
          * Alle ICommands für die Button-Funktionen
          */
+
+        private ICommand pythonscriptUpload_ButtonCommand;
+
+        public ICommand UploadPythonscriptCommand
+        {
+            get { return pythonscriptUpload_ButtonCommand; }
+            set { pythonscriptUpload_ButtonCommand = value; }
+        }
+
         private ICommand _SwitchToHomePageCommand;
         public ICommand SwitchToHomePageCommand
         {
