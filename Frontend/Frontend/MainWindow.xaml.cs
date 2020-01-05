@@ -9,6 +9,7 @@ namespace Frontend
     {
         public MainWindow()
         {
+            //DataContext = new TimetableViewModel();
             InitializeComponent();
             this.ShowsNavigationUI = false;
         }
