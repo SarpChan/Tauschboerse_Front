@@ -13,5 +13,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Content="Pythonskript hochladen" Command="{Binding UploadPythonscriptButtonCommand,ElementName=upload_pythonscript_button}" Style="{StaticResource AdminButton}" Width="307" Height="42"/>
+    <Button Content="Pythonskript hochladen" Command="{Binding UploadPythonscriptButtonCommand,ElementName=upload_pythonscript_button}" Style="{StaticResource AdminButton}" Width="307" Height="42" />
 </UserControl>
