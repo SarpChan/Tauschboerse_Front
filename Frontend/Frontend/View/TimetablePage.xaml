@@ -78,7 +78,6 @@
 
                 <usercontrols:TimeTable BorderBrush="Black" Margin="0,0,77.4,0.2"/>
             </Grid>
-            <Button Command="{Binding AddModuleCommand, Mode=OneWay}" Grid.Column="1" Grid.Row="4">Hello</Button>
         </Grid>
 
     </ScrollViewer>
