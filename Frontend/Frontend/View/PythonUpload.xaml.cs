@@ -28,18 +28,6 @@ namespace Frontend.View
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty TextBlProperty =
-        DependencyProperty.RegisterAttached("TextBl", typeof(string), typeof(Extensions), new PropertyMetadata(default(string)));
-        public static void SetTextBl(UIElement element, string value)
-        {
-            element.SetValue(TextBlProperty, value);
-            filenameScript.Text = value;
-        }
-        
-        public static string GetTextBl(UIElement element)
-        {
-            return (string)element.GetValue(TextBlProperty);
-        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 

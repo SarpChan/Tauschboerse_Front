@@ -11,18 +11,32 @@ using System.Windows.Input;
 
 namespace Frontend.ViewModel
 {
-    public class PythonUploadViewModel
+    class PythonUploadViewModel : ViewModelBase
     {
         public PythonUploadViewModel()
         {
             //TT_SaveButtonCommand = new ICommand(new Action<object>(ShowMessage));
         }
 
+        private string textBlockValue;
+        public string TextBlockValue
+        {
+            get { return textBlockValue; }
+            set
+            {
+                if (textBlockValue != value)
+                {
+                    textBlockValue = value;
+                    OnPropertyChanged("TextBlockValue");
+                }
+            }
+        }
+
         private ICommand pythonscriptUpload_ButtonCommand;
 
         public ICommand UploadPythonscriptCommand
         {
-            get { return pythonscriptUpload_ButtonCommand = new ActionCommand(dummy => this.upload_script()); 
+            get { return pythonscriptUpload_ButtonCommand = new ActionCommand(dummy => this.Upload_script()); 
             }
             set { pythonscriptUpload_ButtonCommand = value; }
         }
@@ -34,8 +48,8 @@ namespace Frontend.ViewModel
             set { pythoncodeSave_ButtonCommand = value; }
         }
 
-
-        public void upload_script()
+      
+        public void Upload_script()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"c:";
@@ -44,10 +58,12 @@ namespace Frontend.ViewModel
             {
                 using (StreamReader stream = new StreamReader(openFileDialog.FileName))
                 {
-                    View.PythonUpload.SetTextBl(null, openFileDialog.SafeFileName);
+                    this.TextBlockValue = openFileDialog.SafeFileName;
                 }
             }
         }
+
+        
 
     }
 }
