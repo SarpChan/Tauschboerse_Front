@@ -64,7 +64,7 @@
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
-    <Compile Include="Helpers\Converters\ResultionConvertes.cs" />
+    <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Models\Administrator.cs" />
@@ -138,9 +138,6 @@
     </Compile>
     <Compile Include="UserControls\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TimetablePage _ALT.xaml.cs">
-      <DependentUpon>TimetablePage _ALT.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
@@ -232,10 +229,6 @@
     <Page Include="UserControls\TimetableItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TimetablePage _ALT.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\TimetablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
