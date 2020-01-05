@@ -22,6 +22,13 @@ namespace Frontend.ViewModel
             get { return pythonscriptUpload_ButtonCommand; }
             set { pythonscriptUpload_ButtonCommand = value; }
         }
+        private ICommand pythoncodeSave_ButtonCommand;
+
+        public ICommand SavePythonCodeCommand
+        {
+            get { return pythoncodeSave_ButtonCommand; }
+            set { pythoncodeSave_ButtonCommand = value; }
+        }
 
     }
 }

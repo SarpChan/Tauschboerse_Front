@@ -24,7 +24,7 @@
         <TextBlock DockPanel.Dock="Top" Margin="0,30,0,0" Text="Pythonskript erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource SecondHeadlineTextBlock}" RenderTransformOrigin="-3.553,-0.544" Height="42" Width="383"/>
         <TextBox  DockPanel.Dock="Top" Margin="0,20,0,0" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Foreground="{StaticResource CD_Grey}" FontSize="15"/>
         <TextBox  DockPanel.Dock="Top" Margin="0,8,0,0" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" Text="Eigener Code ..." VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Background="{StaticResource CD_LightTeal}" Foreground="{StaticResource CD_Grey}" TextChanged="TextBox_TextChanged" FontSize="15" />
-        <Button  DockPanel.Dock="Top" Margin="0,15,0,0" Content="Neuer Pythoncode hochladen" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="341" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Style="{StaticResource AdminButton}"/>
+        <user_controls:SavePythonCodeButton DockPanel.Dock="Top" Margin="10,30,0,0" HorizontalAlignment="Left" SavePythonCodeButtonCommand ="{Binding SavePythonCodeCommand}" Loaded="SavePythonCodeButton_Loaded" />
         <Rectangle Fill="{StaticResource CD_Grey}" Margin="0,41,0,0" DockPanel.Dock="Top" HorizontalAlignment="Center" Height="1" Stroke="{StaticResource CD_Grey}" VerticalAlignment="Top" Width="1288" />
 
     </DockPanel>

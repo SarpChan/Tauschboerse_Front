@@ -118,6 +118,9 @@
     <Compile Include="UserControls\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SavePythonCodeButton.xaml.cs">
+      <DependentUpon>SavePythonCodeButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UploadPythonscriptButton.xaml.cs">
       <DependentUpon>UploadPythonscriptButton.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,10 @@
     <Page Include="UserControls\ModuleSelectionElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SavePythonCodeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UploadPythonscriptButton.xaml">
       <SubType>Designer</SubType>
