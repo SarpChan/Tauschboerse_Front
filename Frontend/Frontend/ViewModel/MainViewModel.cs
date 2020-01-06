@@ -271,9 +271,16 @@ namespace Frontend.ViewModel
 
         public async Task RequestTimetableFromServerAsync()
         {
+            List<TimetableModule> tempTable = new List<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });//EcamRegualtion ID. Es wird mit TimetableModules geantwortet aber diese können nicht deserializiert werden
-            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(response.Content.ToString());            
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            {
+                tm.Day = dayValues[tm.Day];
+
+            }
+            timetableModuleList.SetList(tempTable);
 
         }
 
