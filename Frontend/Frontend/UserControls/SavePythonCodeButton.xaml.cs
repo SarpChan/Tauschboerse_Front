@@ -14,5 +14,21 @@ namespace Frontend.UserControls
         }
         public static readonly DependencyProperty SavePythonCodeButtonCommandProperty =
             DependencyProperty.Register("SavePythonCodeButtonCommand", typeof(ICommand), typeof(SavePythonCodeButton), new UIPropertyMetadata(null));
+       
+        private void save_script(object sender, RoutedEventArgs e)
+        {
+            string codename = textblockName.Text;
+            string codeblock = textblockCode.Text;
+            string path = "D:\\";
+            path += codename + ".py";
+            
+
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@path))
+            {
+                file.Write(codeblock);
+            }
+
+        }
     }
 }

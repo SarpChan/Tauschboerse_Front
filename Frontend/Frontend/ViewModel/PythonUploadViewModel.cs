@@ -36,7 +36,7 @@ namespace Frontend.ViewModel
 
         public ICommand UploadPythonscriptCommand
         {
-            get { return pythonscriptUpload_ButtonCommand = new ActionCommand(dummy => this.Upload_script()); 
+            get { return pythonscriptUpload_ButtonCommand; 
             }
             set { pythonscriptUpload_ButtonCommand = value; }
         }
@@ -48,22 +48,6 @@ namespace Frontend.ViewModel
             set { pythoncodeSave_ButtonCommand = value; }
         }
 
-      
-        public void Upload_script()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"c:";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                using (StreamReader stream = new StreamReader(openFileDialog.FileName))
-                {
-                    this.TextBlockValue = openFileDialog.SafeFileName;
-                }
-            }
-        }
-
-        
 
     }
 }

@@ -43,18 +43,5 @@ namespace Frontend.View
 
         }
 
-        private void upload_script(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"c:";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                using (StreamReader stream = new StreamReader(openFileDialog.FileName))
-                {
-                    filenameScript.Text = openFileDialog.SafeFileName;
-                }
-            }
-        }
     }
 }

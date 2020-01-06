@@ -18,15 +18,11 @@
         <TextBlock DockPanel.Dock="Top" Text="Pythonskript hochladen" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource SecondHeadlineTextBlock}" Height="50" Width="383" />
         <DockPanel DockPanel.Dock="Top" Margin="0,20,0,0">
             <Label DockPanel.Dock="Left" Content="Aktuelle Datei:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Height="24" Width="107" FontSize="15"/>
-            <TextBlock DockPanel.Dock="Left" Tag="TextBl1" Text="{}" Margin="0,10,0,0" FontWeight="Bold" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" FontSize="15" x:Name="filenameScript"/>
-            <Button DockPanel.Dock="Left" Content="Test" Click="upload_script"/>
             <user_controls:UploadPythonscriptButton DockPanel.Dock="Right" Margin="170,0,0,0" HorizontalAlignment="Left" UploadPythonscriptButtonCommand="{Binding UploadPythonscriptCommand}" Loaded="UploadPythonscriptButton_Loaded" />
             <!--Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0" x:Name="uploadScript" Click="upload_script"/-->
         </DockPanel>
         <Rectangle DockPanel.Dock="Top" Margin="0,30,0,0" Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="1"  Stroke="{StaticResource CD_Grey}" VerticalAlignment="Top" Width="1288" />
         <TextBlock DockPanel.Dock="Top" Margin="0,30,0,0" Text="Pythonskript erstellen" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource SecondHeadlineTextBlock}" RenderTransformOrigin="-3.553,-0.544" Height="42" Width="383"/>
-        <TextBox  DockPanel.Dock="Top" Margin="0,20,0,0" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Foreground="{StaticResource CD_Grey}" FontSize="15"/>
-        <TextBox  DockPanel.Dock="Top" Margin="0,8,0,0" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" Text="Eigener Code ..." VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Background="{StaticResource CD_LightTeal}" Foreground="{StaticResource CD_Grey}" TextChanged="TextBox_TextChanged" FontSize="15" />
         <user_controls:SavePythonCodeButton DockPanel.Dock="Top" Margin="10,30,0,0" HorizontalAlignment="Left" SavePythonCodeButtonCommand ="{Binding SavePythonCodeCommand}" Loaded="SavePythonCodeButton_Loaded" />
         <Rectangle Fill="{StaticResource CD_Grey}" Margin="0,41,0,0" DockPanel.Dock="Top" HorizontalAlignment="Center" Height="1" Stroke="{StaticResource CD_Grey}" VerticalAlignment="Top" Width="1288" />
 

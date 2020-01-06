@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Microsoft.Win32;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -14,5 +16,20 @@ namespace Frontend.UserControls
         }
         public static readonly DependencyProperty UploadPythonscriptButtonCommandProperty =
             DependencyProperty.Register("UploadPythonscriptButtonCommand", typeof(ICommand), typeof(UploadPythonscriptButton), new UIPropertyMetadata(null));
+
+        private void upload_script(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = @"c:";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                using (StreamReader stream = new StreamReader(openFileDialog.FileName))
+                {
+                    filenameScript.Text = openFileDialog.SafeFileName;
+                }
+            }
+        }
+    
     }
 }
