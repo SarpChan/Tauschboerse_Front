@@ -86,7 +86,7 @@ namespace Frontend.ViewModel
         #endregion
 
         #region methods
-        private void ProcessLogin()
+        /*private void ProcessLogin()
         {
            if(userPass.ContainsKey(Username))
             {
@@ -107,6 +107,11 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowWarning("Unbekannter Benutzername");
             }
+        }*/
+        private void ProcessLogin()
+        {
+            APIClient apiClient = APIClient.Instance;
+            apiClient.SendLogin("testUser", "test");
         }
         #endregion
     }

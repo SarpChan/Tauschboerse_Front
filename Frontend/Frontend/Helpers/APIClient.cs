@@ -31,11 +31,9 @@ namespace Frontend.Helpers
         public async Task<bool> SendLogin(string username, string password)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            request = new RestRequest("/authenticate", Method.POST);
-            request.AddHeader("Accept", "application/json");
+            request = new RestRequest("authentication/login", Method.POST);
             request.AddHeader("Content-Type", "application/json");
-            List<string> list = new List<string> { username, password };
-            request.AddJsonBody(list);
+            request.AddParameter("application/json", request.AddJsonBody(new { username = username, password = password }), ParameterType.RequestBody);
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
@@ -47,6 +45,7 @@ namespace Frontend.Helpers
             }
             return false;
         }
+
 
         public async Task<IRestResponse> NewPOSTRequest(string restEndpoint, object jsonBody)
         {
