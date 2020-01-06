@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,19 @@ namespace Frontend.Models
     public class TimetableModule
     {
         public enum ModuleType { Vorlesung, Übung, Praktikum, Tutorium };
-        [Newtonsoft.Json.JsonProperty("groupID")] 
+        [JsonProperty("groupID")] 
         public string ID { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public string RoomNumber { get; set; }
-        [Newtonsoft.Json.JsonProperty("lecturerName")]
+        [JsonProperty("lecturerName")]
         public string PersonName { get; set; }
-        [Newtonsoft.Json.JsonProperty("moduleTitle")]
+        [JsonProperty("moduleTitle")]
         public string CourseName { get; set; }
         public char GroupChar { get; set; }
+        [JsonIgnore]
         public string Color { get; set; }
-        [Newtonsoft.Json.JsonProperty("dayOfWeek")]
+        [JsonProperty("dayOfWeek")]
         public string Day { get; set; }
         //[Newtonsoft.Json.JsonProperty("courseType")]
         public ModuleType Type { get; set; }//TODO: braucht noch anpassung fuer json parser 

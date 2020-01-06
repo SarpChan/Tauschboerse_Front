@@ -25,12 +25,22 @@ namespace Frontend.ViewModel
         public ModuleListModel timetableModuleList;
 
         private int thisID;
+        private Dictionary<string, string> dayValues = new Dictionary<string, string>();
+        
+
 
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
 
         public MainViewModel()
         {
+            dayValues.Add("MONDAY", "1");
+            dayValues.Add("TUESDAY", "2");
+            dayValues.Add("WEDNESDAY", "3");
+            dayValues.Add("THURSDAY", "4");
+            dayValues.Add("FRIDAY", "5");
+            dayValues.Add("SATURDAY", "6");
+            dayValues.Add("SUNDAY", "7");
             ActivePage = new HomePage();
             IsLoading = false;
             IsLoggedIn = false;
@@ -230,21 +240,24 @@ namespace Frontend.ViewModel
             var client = new RestClient("http://localhost:8080/");
             var request = new RestRequest("/rest/lists/timetable", Method.POST);
             var cancellationTokenSource = new CancellationTokenSource();
-
+            List<TimetableModule> tempTable = new List<TimetableModule>();
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             //request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-            request.AddJsonBody(new { id = 43 });
+            request.AddJsonBody(new { id = 43 }); //ExamRegulation ID -> temp hardcoded
             
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             Console.WriteLine(response.Content);
-            timetableModuleList.SetList(JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString()));
-            foreach (TimetableModule tm in timetableModuleList.ModuleList)
+
+            
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
-                Console.WriteLine(tm.Day + tm.Color + tm.CourseName + tm.EndTime + tm.GroupChar + tm.StartTime + tm.RoomNumber);
+                tm.Day = dayValues[tm.Day];
 
             }
+            timetableModuleList.SetList(tempTable);
             /*Zum Testen
             string jsonFileString;
             StreamReader streamReader = File.OpenText("..\\..\\Models\\timetable_stupla.json");
