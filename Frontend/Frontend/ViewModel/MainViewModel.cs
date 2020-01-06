@@ -22,7 +22,7 @@ namespace Frontend.ViewModel
     class MainViewModel : ViewModelBase
     {
         public PersonalData personalData;
-        public TimetableData timetableData;
+        public ModuleListModel timetableModuleList;
 
         private int thisID;
 
@@ -35,7 +35,7 @@ namespace Frontend.ViewModel
             IsLoading = false;
             IsLoggedIn = false;
             personalData = PersonalData.Instance;
-            timetableData = new TimetableData();
+            timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
             Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
             _instance = this;
@@ -234,12 +234,17 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
+            //request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
+            request.AddJsonBody(new { id = 43 });
             
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            Console.WriteLine(response.Content);
+            timetableModuleList.SetList(JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString()));
+            foreach (TimetableModule tm in timetableModuleList.ModuleList)
+            {
+                Console.WriteLine(tm.Day + tm.Color + tm.CourseName + tm.EndTime + tm.GroupChar + tm.StartTime + tm.RoomNumber);
 
-            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(response.Content.ToString());
-
+            }
             /*Zum Testen
             string jsonFileString;
             StreamReader streamReader = File.OpenText("..\\..\\Models\\timetable_stupla.json");

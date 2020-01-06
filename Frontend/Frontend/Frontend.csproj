@@ -108,6 +108,7 @@
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableData.cs" />
+    <Compile Include="Models\TimetableModule.cs" />
     <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />

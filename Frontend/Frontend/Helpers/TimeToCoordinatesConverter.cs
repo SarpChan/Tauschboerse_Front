@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -63,9 +64,10 @@ namespace Frontend.Helpers
 
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
+            Console.WriteLine(value[2]);
             int weekday = System.Convert.ToInt32(value[2]);
-            int rowPos = TimeConverterHelper.CalculateModuleRowPosition((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
-            int divder = TimeConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[3], (IList<ModuleDummy>)value[4]);
+            int rowPos = TimeConverterHelper.CalculateModuleRowPosition((TimetableModule)value[3], (IList<TimetableModule>)value[4]);
+            int divder = TimeConverterHelper.CalculateModuleWidthDivider((TimetableModule)value[3], (IList<TimetableModule>)value[4]);
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
             return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem/divder)*(rowPos-1));
@@ -94,7 +96,7 @@ namespace Frontend.Helpers
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            int divider = TimeConverterHelper.CalculateModuleWidthDivider((ModuleDummy)value[2],(IList<ModuleDummy>)value[3]);
+            int divider = TimeConverterHelper.CalculateModuleWidthDivider((TimetableModule)value[2],(IList<TimetableModule>)value[3]);
 
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
@@ -151,7 +153,7 @@ namespace Frontend.Helpers
     class TimeConverterHelper
     {
 
-        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day,ModuleDummy module, ModuleDummy[] items)
+        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableModule module, TimetableModule[] items)
         {
 
             for (int i = index; i < items.Length; i++)
@@ -195,7 +197,7 @@ namespace Frontend.Helpers
         /// <param name="module">das untersuchte Module</param>
         /// <param name="moduleList">Liste aller Module</param>
         /// <returns>Anzahl der Module neben dem u. Module ink. u. Module</returns>
-        public static int CalculateModuleWidthDivider(ModuleDummy module, IList<ModuleDummy> moduleList)
+        public static int CalculateModuleWidthDivider(TimetableModule module, IList<TimetableModule> moduleList)
         {
 
             int divider = 1;
@@ -210,7 +212,7 @@ namespace Frontend.Helpers
             return divider;
         }
 
-        private static int CalculateModuleRowPosition(int counter, int index, int startTime, int endTime,long id,String day,ModuleDummy module,ModuleDummy[] items)
+        private static int CalculateModuleRowPosition(int counter, int index, int startTime, int endTime,long id,String day, TimetableModule module, TimetableModule[] items)
         {
 
             for(int i =index; i<items.Length;i++)
@@ -256,7 +258,7 @@ namespace Frontend.Helpers
         /// <param name="module">das untersuchte Module</param>
         /// <param name="moduleList">Liste aller Module</param>
         /// <returns>SplatenPostion des Modules</returns>
-        public static int CalculateModuleRowPosition(ModuleDummy module, IList<ModuleDummy> moduleList)
+        public static int CalculateModuleRowPosition(TimetableModule module, IList<TimetableModule> moduleList)
         {
             int pos = 1;
 

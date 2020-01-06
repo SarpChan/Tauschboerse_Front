@@ -185,7 +185,7 @@
 
                 <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type project:ModuleDummy}">
+                    <DataTemplate DataType="{x:Type models:TimetableModule}">
                         <DataTemplate.Resources>
                             <Style TargetType="usercontrols:TimetableItem">
                                 <Setter Property="Canvas.Top">
