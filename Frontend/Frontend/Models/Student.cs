@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Frontend.Models
 {
     /// <summary>
     /// The Student class models a student and inherits from the class role.
     /// </summary>
-    public class Student : User
+    public class Student : Role
     {
         public long EnrollmentNumber { get; set; }
         public string Mail { get; set; }

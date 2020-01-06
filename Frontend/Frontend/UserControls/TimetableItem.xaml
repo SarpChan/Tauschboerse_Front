@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Frontend.View"
              xmlns:converters="clr-namespace:Frontend.Helpers"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Module.Color,ElementName=TimeTableItem}" BorderThickness="3"
+             d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Module.Color,ElementName=TimeTableItem}" BorderThickness="1pt,0,1pt,1pt"
              >
     <UserControl.Resources>
         <converters:WidthPercentageConverter x:Key="WidthPercentageConverter"/>
@@ -14,31 +14,27 @@
         <converters:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
-    <Grid x:Name="Grid_Main" Margin="0" 
-          >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="Grid_Header" Height="33" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{Binding Module.Color,ElementName=TimeTableItem}" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition Width="0.2*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="Text_Number" Text="{Binding Module.ID,ElementName=TimeTableItem}" Background="{Binding Module.Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" Foreground="White" Padding="10,0,0,0"/>
-            <Rectangle x:Name="Icon" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="32" Height="33" Margin="0" Fill="{DynamicResource Icon}" />
-        </Grid>
-        <DockPanel HorizontalAlignment="Stretch" x:Name="DockPanel_Content"  LastChildFill="False" Grid.Row="1">
-            <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap">
-                <Run Text="{Binding Module.CourseName, ElementName=TimeTableItem}"/>
-            </TextBlock>
-            <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" LastChildFill="False">
-                <TextBlock x:Name="Text_Room" Text="{Binding Module.RoomNumber,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,0,0,10"/>
-                <TextBlock x:Name="Text_Person" Text="{Binding Module.PersonName,ElementName=TimeTableItem}" DockPanel.Dock="Right" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="24" ToolTip="Beschreibung des Faches" Foreground="Black" HorizontalAlignment="Right" Margin="10,0,10,10"/>
-            </DockPanel>
+    <DockPanel x:Name="Grid_Main" Margin="0" Width="auto" Height="auto">
 
+        <DockPanel DockPanel.Dock="Top" x:Name="Grid_Header" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{Binding Module.Color,ElementName=TimeTableItem}">
+            <TextBlock DockPanel.Dock="Left" x:Name="Text_Number" Text="{Binding Module.ID,ElementName=TimeTableItem}" Background="{Binding Module.Color,ElementName=TimeTableItem}" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" Foreground="White" Padding="10,0,0,0"/>
+            <Rectangle x:Name="Icon" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="15" Height="15pt" Margin="0" Fill="{DynamicResource Icon}" />
         </DockPanel>
 
-    </Grid>
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" LastChildFill="False">
+            <TextBlock x:Name="Text_Room" Text="{Binding Module.RoomNumber,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"  FontSize="12pt" FontWeight="Bold" ToolTip="Beschreibung des Faches" TextTrimming="CharacterEllipsis" Foreground="Black" Margin="10,0,0,10"/>
+            <TextBlock x:Name="Text_Person" Text="{Binding Module.PersonName,ElementName=TimeTableItem}" DockPanel.Dock="Right" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" FontWeight="Bold" ToolTip="Beschreibung des Faches" TextTrimming="CharacterEllipsis" Foreground="Black" HorizontalAlignment="Right" Margin="10,0,10,10"/>
+        </DockPanel>
+
+        <DockPanel Name="ItemBody">
+            <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap" MaxHeight="{Binding ActualHeight, ElementName=DockPanel_Content, Mode=OneWay}">
+                        <Run Text="{Binding Module.CourseName, ElementName=TimeTableItem}"/>
+            </TextBlock>
+            <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" LastChildFill="False">
+                <TextBlock x:Name="Text_GroupChar" Text="{Binding Module.GroupChar,ElementName=TimeTableItem}" DockPanel.Dock="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt"  ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,0,0,10"/>
+            </DockPanel>
+        </DockPanel>
+
+    </DockPanel>
 
 </UserControl>

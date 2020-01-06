@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,26 +24,23 @@ namespace Frontend.UserControls
         public TimetableItem()
         {
             InitializeComponent();
-            /*
-             * 
-             * 
-             */
+            
         }
 
         #region properties
 
-        public ModuleDummy Module
+        public TimetableModule Module
         {
             get
             {
-                return (ModuleDummy)GetValue(ModuleProperty);
+                return (TimetableModule)GetValue(ModuleProperty);
             }
             set
             {
                 SetValue(ModuleProperty, value);
             }
         }
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(ModuleDummy), typeof(TimetableItem), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(TimetableItem), new UIPropertyMetadata(null));
 
         
        

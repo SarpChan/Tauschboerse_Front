@@ -1,17 +1,12 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend
 {
     class TimetableViewModel : ViewModelBase
     {
-        private ModuleListModel moduleListModel = new ModuleListModel();
+        private ModuleListModel moduleListModel = ModuleListModel.Instance;
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
         private DayListModel dayListModel = new DayListModel();
 
@@ -32,9 +27,8 @@ namespace Frontend
         }
 
         #region Properties
-
-        private ObservableCollection<ModuleDummy> _ModuleList = new ObservableCollection<ModuleDummy>();
-        public ObservableCollection<ModuleDummy> ModuleList
+        private ObservableCollection<TimetableModule> _ModuleList = new ObservableCollection<TimetableModule>();
+        public ObservableCollection<TimetableModule> ModuleList
         {
             get { return _ModuleList;  }
         }
@@ -50,7 +44,6 @@ namespace Frontend
         {
             get { return _DayList; }
         }
-
 
         #endregion
     }

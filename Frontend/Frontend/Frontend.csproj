@@ -79,6 +79,7 @@
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
+    <Compile Include="Helpers\ResultionConvertes.cs" />
     <Compile Include="Helpers\RowConverters.cs" />
     <Compile Include="Helpers\SHA256Gen.cs" />
     <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableData.cs" />
+    <Compile Include="Models\TimetableModule.cs" />
     <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\User.cs" />

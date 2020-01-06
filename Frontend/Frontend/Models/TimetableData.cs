@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Frontend.Models
 {
 
+[Obsolete("brauchen gemeinsame klasse")]
     /**
      * Diese Klasse enthaelt alle ModelDaten betreffend Stundenplan
      */
