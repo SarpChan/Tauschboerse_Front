@@ -34,7 +34,7 @@ namespace Frontend.ViewModel
             ActivePage = new HomePage();
             IsLoading = false;
             IsLoggedIn = false;
-            personalData = new PersonalData();
+            personalData = PersonalData.Instance;
             timetableData = new TimetableData();
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
             Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
@@ -215,7 +215,7 @@ namespace Frontend.ViewModel
         private void Logout()
         {
             this.SwitchActivePageAsync(new HomePage());
-            personalData.ActiveStudent = new Student();
+            personalData.LogoutUser();
             this.IsLoggedIn = false; //TODO ViewModel.MVM: von VM zu VM binden? -> Besser: sowas im Model speichern
             LoginPageViewModel.Instance.IsLoggedIn = false;
             App.notifier.ShowSuccess("Ausloggen erfolgreich");
@@ -234,7 +234,7 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
             
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
@@ -264,7 +264,7 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             //TODO ViewModel.MVM: NEWS vom Server in JSON Serialisieren
@@ -285,7 +285,7 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             //TODO ViewModel.MVM: SHARING_DATA vom Server in JSON Serialisieren
@@ -306,7 +306,7 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             //TODO ViewModel.MVM: PERSONAL_DATA vom Server in JSON Serialisieren
@@ -327,7 +327,7 @@ namespace Frontend.ViewModel
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
+            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
 
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
             //TODO ViewModel.MVM: ADMIN_DATA vom Server in JSON Serialisieren

@@ -92,8 +92,7 @@ namespace Frontend.ViewModel
             {
                 if (userPass[Username].Equals(SHA256Gen.ComputeSha256Hash(Password)))
                 {
-                    MainViewModel.Instance.personalData.ActiveStudent = new Student();
-                    MainViewModel.Instance.personalData.ActiveStudent.Firstname = "Dude";
+                    MainViewModel.Instance.personalData.LoginUser(Username, SHA256Gen.ComputeSha256Hash(Password),"Dude");
                     MainViewModel.Instance.IsLoggedIn = true; //TODO ViewModel.LPVM: Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
                     IsLoggedIn = true;
                     App.notifier.ShowSuccess("Einloggen erfolgreich");
