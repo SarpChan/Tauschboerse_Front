@@ -108,10 +108,18 @@ namespace Frontend.ViewModel
                 App.notifier.ShowWarning("Unbekannter Benutzername");
             }
         }*/
-        private void ProcessLogin()
+        private async void ProcessLogin()
         {
             APIClient apiClient = APIClient.Instance;
-            apiClient.SendLogin("testUser", "test");
+            IsLoggedIn = await apiClient.SendLogin(_username, _password);
+            if (IsLoggedIn)
+            {
+                App.notifier.ShowSuccess("Einloggen erfolgreich");
+            }
+            else
+            {
+                App.notifier.ShowError("Invalid Credentials");
+            }
         }
         #endregion
     }

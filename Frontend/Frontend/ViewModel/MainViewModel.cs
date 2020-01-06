@@ -225,7 +225,7 @@ namespace Frontend.ViewModel
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
          */
-        public async Task RequestTimetableFromServerAsync()
+        /*public async Task RequestTimetableFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/");
             var request = new RestRequest("/rest/lists/timetable", Method.POST);
@@ -236,8 +236,6 @@ namespace Frontend.ViewModel
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(new { EnrollmentNumber = personalData.ActiveStudent.EnrollmentNumber });
             
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-
             timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(response.Content.ToString());
 
             /*Zum Testen
@@ -246,10 +244,20 @@ namespace Frontend.ViewModel
             jsonFileString = streamReader.ReadToEnd();
             timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(jsonFileString);
             Console.WriteLine("response from server: " + response.Content);
-            //Zum Testen*/
+            //Zum Testen
 
-            cancellationTokenSource.Dispose();
+            //cancellationTokenSource.Dispose();
+        }*/
+
+        public async Task RequestTimetableFromServerAsync()
+        {
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });//EcamRegualtion ID. Es wird mit TimetableModules geantwortet aber diese können nicht deserializiert werden
+            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(response.Content.ToString());            
+
         }
+
+
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
