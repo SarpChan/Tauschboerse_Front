@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
@@ -14,6 +13,6 @@ namespace Frontend.Models
         public string Lastname { get; set; }
         public string Loginname { get; set; }
         public string Password { get; set; }
-        //public HashSet<Role> Roles { get; set; }
+        public HashSet<Role> Roles { get; set; }
     }
 }

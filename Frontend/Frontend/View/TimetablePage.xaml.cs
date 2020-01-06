@@ -31,5 +31,10 @@ namespace Frontend.View
         {
 
         }
+
+        private void TimeTable_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

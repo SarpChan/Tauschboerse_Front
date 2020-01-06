@@ -10,74 +10,74 @@
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
-        <Grid Height="2000" Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"/>
-            <ColumnDefinition Width="0.95*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.03*"/>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.04*"/>
-            <RowDefinition Height="0.4*"/>
-            <RowDefinition Height="0.05*"/>
-
-            </Grid.RowDefinitions>
-        <TextBlock x:Name="Titel" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-        <Grid x:Name="Legende" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
+        <Grid Height="auto" Background="White">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="220"/> 
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.95*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="58"/>
+                <RowDefinition Height="0.03*"/>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition Height="0.04*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.05*"/>
+
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Legende:" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
-            <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="../Resources/Icons/lecture_b.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vorlesung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-            <Rectangle Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="../Resources/Icons/exercise_b.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <TextBlock Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Uebung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-            <Rectangle Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="../Resources/Icons/tutorial_b.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <TextBlock Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tutorium" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-            <Rectangle Grid.Column="7" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="../Resources/Icons/practicum_b.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
-        </Grid>
+            <TextBlock x:Name="Titel" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihr persoenlicher Stundenplan" VerticalAlignment="Top" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
+            <Grid x:Name="Legende" Height="137" Background="White" Grid.Column="1" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="58*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Legende:" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona"/>
+                <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="../Resources/Icons/lecture_b.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vorlesung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+                <Rectangle Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="../Resources/Icons/exercise_b.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Uebung" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+                <Rectangle Grid.Column="5" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="../Resources/Icons/tutorial_b.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tutorium" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+                <Rectangle Grid.Column="7" Grid.Row="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="../Resources/Icons/practicum_b.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="8" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Praktikum" VerticalAlignment="Center" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Margin="20,0,0,0"/>
+            </Grid>
             <Grid x:Name="TimetableWrapper" Grid.Row="3" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.95*"/>
-                    <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
 
-                <usercontrols:TimeTable BorderBrush="Black"/>
+                <usercontrols:TimeTable BorderBrush="Black" Margin="0,0,77.4,0.2"/>
             </Grid>
 
         </Grid>
 
     </ScrollViewer>
 </Page>
+

@@ -32,7 +32,6 @@ namespace Frontend
         }
 
         #region Properties
-
         private ObservableCollection<ModuleDummy> _ModuleList = new ObservableCollection<ModuleDummy>();
         public ObservableCollection<ModuleDummy> ModuleList
         {
@@ -50,7 +49,6 @@ namespace Frontend
         {
             get { return _DayList; }
         }
-
 
         #endregion
     }

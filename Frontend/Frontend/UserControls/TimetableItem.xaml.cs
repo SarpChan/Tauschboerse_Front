@@ -23,10 +23,7 @@ namespace Frontend.UserControls
         public TimetableItem()
         {
             InitializeComponent();
-            /*
-             * 
-             * 
-             */
+            
         }
 
         #region properties

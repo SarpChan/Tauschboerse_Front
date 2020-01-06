@@ -34,11 +34,23 @@ namespace Frontend.UserControls
             
         }
 
-      
+        private void TimetableItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("MouseEnter TimeTableItem");
+            popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
+            Viewbox viewbox = new Viewbox();
+            TimetableItem timetableItem = new TimetableItem
+            {
+                Module = ((TimetableItem)sender).Module
+            };
+            viewbox.Child = timetableItem;
+            popUp.Child = viewbox;
+            popUp.IsOpen = true;
+        }
 
-
-
-
-
+        public void TimetableItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popUp.IsOpen = false;
+        }
     }
 }
