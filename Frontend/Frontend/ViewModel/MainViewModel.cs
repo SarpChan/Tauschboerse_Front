@@ -2,9 +2,7 @@
 using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
-using RestSharp;
 using System.Threading.Tasks;
-using System.Threading;
 using Frontend.Models;
 using Newtonsoft.Json;
 using System;
@@ -27,8 +25,6 @@ namespace Frontend.ViewModel
         private int thisID;
         private Dictionary<string, string> dayValues = new Dictionary<string, string>();
         
-
-
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
 
@@ -43,7 +39,6 @@ namespace Frontend.ViewModel
             dayValues.Add("SUNDAY", "7");
             ActivePage = new HomePage();
             IsLoading = false;
-            IsLoggedIn = false;
             personalData = PersonalData.Instance;
             timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
@@ -77,20 +72,6 @@ namespace Frontend.ViewModel
                 {
                     _activePage = value;
                     OnPropertyChanged("ActivePage");
-                }
-            }
-        }
-
-        private bool _isLoggedIn;
-        public bool IsLoggedIn
-        {
-            get { return _isLoggedIn; }
-            set
-            {
-                if (_isLoggedIn != value)
-                {
-                    _isLoggedIn = value;
-                    OnPropertyChanged("IsLoggedIn");
                 }
             }
         }
@@ -172,7 +153,7 @@ namespace Frontend.ViewModel
             {
                 if (_LogoutCommand == null)
                 {
-                    _LogoutCommand = new ActionCommand(dummy => this.Logout());
+                    _LogoutCommand = new ActionCommand(dummy => this.Logout(1));
                 }
                 return _LogoutCommand;
             }
@@ -222,69 +203,42 @@ namespace Frontend.ViewModel
             ActivePage = newActivePage;
         }
 
-        private void Logout()
+        /*
+         * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
+         */
+        public void Logout(int type)
         {
             this.SwitchActivePageAsync(new HomePage());
             personalData.LogoutUser();
-            this.IsLoggedIn = false; //TODO ViewModel.MVM: von VM zu VM binden? -> Besser: sowas im Model speichern
             LoginPageViewModel.Instance.IsLoggedIn = false;
-            App.notifier.ShowSuccess("Ausloggen erfolgreich");
+            if (type == 1)
+            {
+                App.notifier.ShowSuccess("Ausloggen erfolgreich");
+            } else if (type == 2)
+            {
+                App.notifier.ShowError("Der Authentifizierungs-Token ist nicht mehr gueltig");
+            }
         }
        
         /*
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
          */
-        /*public async Task RequestTimetableFromServerAsync()
-        {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("/rest/lists/timetable", Method.POST);
-            var cancellationTokenSource = new CancellationTokenSource();
-            List<TimetableModule> tempTable = new List<TimetableModule>();
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            //request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-            request.AddJsonBody(new { id = 43 }); //ExamRegulation ID -> temp hardcoded
-            
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            Console.WriteLine(response.Content);
-
-            
-            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
-            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
-            {
-                tm.Day = dayValues[tm.Day];
-
-            }
-            timetableModuleList.SetList(tempTable);
-            /*Zum Testen
-            string jsonFileString;
-            StreamReader streamReader = File.OpenText("..\\..\\Models\\timetable_stupla.json");
-            jsonFileString = streamReader.ReadToEnd();
-            timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(jsonFileString);
-            Console.WriteLine("response from server: " + response.Content);
-            //Zum Testen
-
-            //cancellationTokenSource.Dispose();
-        }*/
-
         public async Task RequestTimetableFromServerAsync()
         {
             List<TimetableModule> tempTable = new List<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 35 });//ExamRegualtion ID. Es wird mit TimetableModules geantwortet aber diese können nicht deserializiert werden
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = dayValues[tm.Day];
-
+                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             timetableModuleList.SetList(tempTable);
-
         }
-
-
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
@@ -292,19 +246,12 @@ namespace Frontend.ViewModel
          */
         private async Task RequestNewsFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("/rest/lists/timetable", Method.POST);
-            var cancellationTokenSource = new CancellationTokenSource();
-
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO ViewModel.MVM: NEWS vom Server in JSON Serialisieren
-
-            cancellationTokenSource.Dispose();
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/news", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //newsList.SetList(tempTable);
         }
 
         /*
@@ -313,19 +260,12 @@ namespace Frontend.ViewModel
          */
         private async Task RequestSharingDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("/rest/lists/timetable", Method.POST);
-            var cancellationTokenSource = new CancellationTokenSource();
-
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO ViewModel.MVM: SHARING_DATA vom Server in JSON Serialisieren
-
-            cancellationTokenSource.Dispose();
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/sharingdata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //sharingdataList.SetList(tempTable);
         }
 
         /*
@@ -334,19 +274,12 @@ namespace Frontend.ViewModel
          */
         private async Task RequestPersonalDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("/rest/lists/timetable", Method.POST);
-            var cancellationTokenSource = new CancellationTokenSource();
-
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO ViewModel.MVM: PERSONAL_DATA vom Server in JSON Serialisieren
-
-            cancellationTokenSource.Dispose();
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/personaldata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //personaldata.SetList(tempTable);
         }
 
         /*
@@ -355,19 +288,12 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/");
-            var request = new RestRequest("/rest/lists/timetable", Method.POST);
-            var cancellationTokenSource = new CancellationTokenSource();
-
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new { EnrollmentNumber = personalData.getEnrollmentNumber() });
-
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
-            //TODO ViewModel.MVM: ADMIN_DATA vom Server in JSON Serialisieren
-
-            cancellationTokenSource.Dispose();
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/admindata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //admindata.SetList(tempTable);
         }
         #endregion
     }

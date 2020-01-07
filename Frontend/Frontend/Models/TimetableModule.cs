@@ -14,6 +14,7 @@ namespace Frontend.Models
         public string ID { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        [JsonProperty("roomID")]
         public string RoomNumber { get; set; }
         [JsonProperty("lecturerName")]
         public string PersonName { get; set; }

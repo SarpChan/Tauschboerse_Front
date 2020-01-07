@@ -1,3 +1,4 @@
+using Frontend.ViewModel;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
@@ -56,6 +57,10 @@ namespace Frontend.Helpers
             _request.AddJsonBody(jsonBody);
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
+            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            {
+                MainViewModel.Instance.Logout(2);
+            }
             cancellationTokenSource.Dispose();
             return response;
         }
