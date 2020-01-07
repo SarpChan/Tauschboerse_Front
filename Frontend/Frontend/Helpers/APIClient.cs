@@ -47,6 +47,11 @@ namespace Frontend.Helpers
             return false;
         }
 
+        public void Logout()
+        {
+            _client = new RestClient("http://localhost:8080/");
+        }
+
 
         public async Task<IRestResponse> NewPOSTRequest(string restEndpoint, object jsonBody)
         {

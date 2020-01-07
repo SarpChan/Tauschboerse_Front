@@ -219,6 +219,10 @@ namespace Frontend.ViewModel
                 App.notifier.ShowError("Der Authentifizierungs-Token ist nicht mehr gueltig");
             }
         }
+            APIClient apiClient = APIClient.Instance;
+            apiClient.Logout();
+            App.notifier.ShowSuccess("Ausloggen erfolgreich");
+        }
        
         /*
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
