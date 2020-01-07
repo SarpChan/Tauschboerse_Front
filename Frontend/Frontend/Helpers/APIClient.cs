@@ -9,8 +9,8 @@ namespace Frontend.Helpers
     public sealed class APIClient
     {
         private static readonly APIClient instance = new APIClient();
-        private RestClient client;
-        private RestRequest request;
+        private RestClient _client;
+        private RestRequest _request;
 
         static APIClient()
         {
@@ -18,7 +18,7 @@ namespace Frontend.Helpers
         }
         private APIClient()
         {
-            client = new RestClient("http://localhost:8080/");
+            _client = new RestClient("http://localhost:8080/");
         }
         public static APIClient Instance
         {
@@ -31,32 +31,31 @@ namespace Frontend.Helpers
         public async Task<bool> SendLogin(string username, string password)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            request = new RestRequest("/authenticate", Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            List<string> list = new List<string> { username, password };
-            request.AddJsonBody(list);
+            _request = new RestRequest("authentication/login", Method.POST);
+            _request.AddHeader("Content-Type", "application/json");
+            _request.AddParameter("application/json", _request.AddJsonBody(new { username = username, password = password }), ParameterType.RequestBody);
 
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
 
             if (response.IsSuccessful)
             {
-                client.Authenticator = new JwtAuthenticator(response.Content);
+                _client.Authenticator = new JwtAuthenticator(response.Content);
                 return true;
             }
             return false;
         }
 
+
         public async Task<IRestResponse> NewPOSTRequest(string restEndpoint, object jsonBody)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            request = new RestRequest(restEndpoint, Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(jsonBody);
+            _request = new RestRequest(restEndpoint, Method.POST);
+            _request.AddHeader("Accept", "application/json");
+            _request.AddHeader("Content-Type", "application/json");
+            _request.AddJsonBody(jsonBody);
 
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
             return response;
         }
@@ -64,11 +63,11 @@ namespace Frontend.Helpers
         public async Task<IRestResponse> NewGETRequest(string restEndpoint)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            request = new RestRequest(restEndpoint, Method.GET);
-            request.AddHeader("Accept", "application/json");
+            _request = new RestRequest(restEndpoint, Method.GET);
+            _request.AddHeader("Accept", "application/json");
             //request.AddHeader("Content-Type", "application/json");
 
-            var response =  await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+            var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
 
             return response;

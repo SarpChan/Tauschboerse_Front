@@ -4,7 +4,8 @@
     "\\Frontend",
     "\\Frontend\\Frontend",
     "\\Frontend\\Frontend\\Helpers",
-    "\\Frontend\\Frontend\\Helpers\\JsonConverters"
+    "\\Frontend\\Frontend\\Resources",
+    "\\Frontend\\Frontend\\View"
   ],
   "SelectedNode": "\\Frontend\\Frontend.sln",
   "PreviewInSolutionExplorer": false

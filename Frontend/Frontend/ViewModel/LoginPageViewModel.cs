@@ -10,8 +10,8 @@ namespace Frontend.ViewModel
     class LoginPageViewModel : ViewModelBase
     {
         private int thisID;
-        private Dictionary<string, string> userPass = new Dictionary<string, string>(); //TODO ViewModel.LPVM: JWT
-        private APIClient apiClient = APIClient.Instance;
+        private Dictionary<string, string> userPass = new Dictionary<string, string>();
+
         private static LoginPageViewModel _instance;
         public static LoginPageViewModel Instance { get { return _instance; } } 
 
@@ -20,7 +20,7 @@ namespace Frontend.ViewModel
             IsLoggedIn = false;
             Username = "Nutzername";
             Password = "Passwort";
-            userPass.Add("user", SHA256Gen.ComputeSha256Hash("login"));//TODO ViewModel.LPVM: JWT
+            userPass.Add("user", SHA256Gen.ComputeSha256Hash("login"));
             thisID = (int)(new Random().NextDouble() * 9999 ) + 1;
             Console.WriteLine("\"new LoginPageViewModel()\" InstanceID: " + thisID);
             _instance = this; //TODO ViewModel.LPVM: Klaeren wie das sonst gedacht ist. Ohne gleiche Instance geht das halt nicht mit login/logout etc...
@@ -86,25 +86,7 @@ namespace Frontend.ViewModel
         #endregion
 
         #region methods
-
-        private async void ProcessLogin()
-        {
-            bool loginSuccessful = await apiClient.SendLogin(Username, Password);
-            if (loginSuccessful)
-            {
-                MainViewModel.Instance.personalData.LoginUser(Username, SHA256Gen.ComputeSha256Hash(Password), "Dude");
-                MainViewModel.Instance.IsLoggedIn = true; //TODO ViewModel.LPVM: Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
-                IsLoggedIn = true;
-                App.notifier.ShowSuccess("Einloggen erfolgreich");
-            }
-            else
-            {
-                App.notifier.ShowError("Falsches Passwort oder Falscher Benutzername"); //TODO ViewModel.LPVM: Errorcode anwenden benutzername/passwort
-            }
-        }
- 
-    [Obsolete("alt, ohne jwt")]
-    private void ProcessLogin_OLD()
+        /*private void ProcessLogin()
         {
            if(userPass.ContainsKey(Username))
             {
@@ -123,6 +105,20 @@ namespace Frontend.ViewModel
             else
             {
                 App.notifier.ShowWarning("Unbekannter Benutzername");
+            }
+        }*/
+        private async void ProcessLogin()
+        {
+            APIClient apiClient = APIClient.Instance;
+            IsLoggedIn = await apiClient.SendLogin(_username, _password);
+            if (IsLoggedIn)
+            {
+                MainViewModel.Instance.IsLoggedIn = true; //TODO ViewModel.LPVM: Herausfinden wie man von VM zu VM binded! Oder wie man das richtig macht! will ich ein new MainViewModel?
+                App.notifier.ShowSuccess("Einloggen erfolgreich");
+            }
+            else
+            {
+                App.notifier.ShowError("Ungueltiges Passwort oder ungueltiger Benutzername");
             }
         }
         #endregion

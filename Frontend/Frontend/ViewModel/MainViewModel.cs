@@ -235,7 +235,7 @@ namespace Frontend.ViewModel
          * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
          */
-        public async Task RequestTimetableFromServerAsync()
+        /*public async Task RequestTimetableFromServerAsync()
         {
             var client = new RestClient("http://localhost:8080/");
             var request = new RestRequest("/rest/lists/timetable", Method.POST);
@@ -264,10 +264,27 @@ namespace Frontend.ViewModel
             jsonFileString = streamReader.ReadToEnd();
             timetableData.Timetable = JsonConvert.DeserializeObject<List<Module>>(jsonFileString);
             Console.WriteLine("response from server: " + response.Content);
-            //Zum Testen*/
+            //Zum Testen
 
-            cancellationTokenSource.Dispose();
+            //cancellationTokenSource.Dispose();
+        }*/
+
+        public async Task RequestTimetableFromServerAsync()
+        {
+            List<TimetableModule> tempTable = new List<TimetableModule>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 35 });//ExamRegualtion ID. Es wird mit TimetableModules geantwortet aber diese können nicht deserializiert werden
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            {
+                tm.Day = dayValues[tm.Day];
+
+            }
+            timetableModuleList.SetList(tempTable);
+
         }
+
+
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
