@@ -218,7 +218,7 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowError("Der Authentifizierungs-Token ist nicht mehr gueltig");
             }
-        }
+        
             APIClient apiClient = APIClient.Instance;
             apiClient.Logout();
             App.notifier.ShowSuccess("Ausloggen erfolgreich");
