@@ -73,6 +73,10 @@ namespace Frontend.Helpers
             //request.AddHeader("Content-Type", "application/json");
 
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
+            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            {
+                MainViewModel.Instance.Logout(2);
+            }
             cancellationTokenSource.Dispose();
 
             return response;
