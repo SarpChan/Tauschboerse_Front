@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Frontend
 {
@@ -29,6 +30,54 @@ namespace Frontend
                 _DayList.Add(day);
             }
         }
+
+        #region Commands
+
+        private ICommand _AddModuleCommand;
+        public ICommand AddModuleCommand
+        {
+            get
+            {
+                if (_AddModuleCommand == null)
+                {
+                    // 1. Argument: Kommando-Effekt (Execute), 2. Argument: Bedingung "Kommando aktiv?" (CanExecute)
+                    _AddModuleCommand = new ActionCommand(dummy => this.AddModule(), null);
+                }
+                return _AddModuleCommand;
+            }
+        }
+
+        // Hilfsmethode für AddEinkaufCommand
+        private void AddModule()
+        {
+
+
+            /*
+             * Annahme: Model ist nicht "observer-fähig" (z.B: Datenbank)
+             * daher synchrone Pflege von Model UND ViewModel hier - besser: 
+             * Model mit INotifyPropertyChanged und Änderungen observieren,
+             * Anpassung des ViewModels bei Änderungsmitteilung vom Model
+             */
+            Console.WriteLine("I was here");
+            ModuleDummy add = new ModuleDummy()
+            {
+                ID = "420",
+                StartTime = "08:15",
+                EndTime = "12:30",
+                Day = "4",
+                PersonName = "Nicky",
+                RoomNumber = "D40",
+                CourseName = "TEST",
+                GroupChar = 'Z',
+                Color = "#FFF4A233"
+            };
+            moduleListModel.AddModule(add);
+            ModuleList.Add(add);
+
+        }
+
+        #endregion
+
 
         #region Properties
         private ObservableCollection<ModuleDummy> _ModuleList = new ObservableCollection<ModuleDummy>();

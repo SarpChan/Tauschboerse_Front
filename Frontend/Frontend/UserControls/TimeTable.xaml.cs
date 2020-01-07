@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Frontend.Helpers;
 
 namespace Frontend.UserControls
 {
@@ -52,5 +53,9 @@ namespace Frontend.UserControls
         {
             popUp.IsOpen = false;
         }
+
+       
+
+
     }
 }
