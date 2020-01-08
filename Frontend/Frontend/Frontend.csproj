@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,16 +76,17 @@
     <Compile Include="Helpers\APIClient.cs" />
     <Compile Include="Helpers\BoolToValueConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
-    <Compile Include="Helpers\DayConverters.cs" />
+    <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
+    <Compile Include="Helpers\Converters\DayConverters.cs" />
+    <Compile Include="Helpers\Converters\RowConverters.cs" />
+    <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
+    <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
+    <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
+    <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
-    <Compile Include="Helpers\ResultionConvertes.cs" />
-    <Compile Include="Helpers\RowConverters.cs" />
     <Compile Include="Helpers\SHA256Gen.cs" />
-    <Compile Include="Helpers\TimeToCoordinatesConverter.cs" />
-    <Compile Include="Helpers\TypeToIconConverter.cs" />
-    <Compile Include="Helpers\WidthPercentageConverter.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
@@ -108,7 +110,6 @@
     <Compile Include="Models\StudentPrioritizesGroup.cs" />
     <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Term.cs" />
-    <Compile Include="Models\TimetableData.cs" />
     <Compile Include="Models\TimetableModule.cs" />
     <Compile Include="Models\TimetableRowListModel.cs" />
     <Compile Include="Models\University.cs" />

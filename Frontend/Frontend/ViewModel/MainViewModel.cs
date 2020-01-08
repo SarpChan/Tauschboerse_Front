@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using ToastNotifications.Messages;
+using Frontend.Helpers.Generators;
 
 namespace Frontend.ViewModel
 {
@@ -239,6 +240,7 @@ namespace Frontend.ViewModel
             {
                 tm.Day = dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+                ColorGenerator.generateColor(tm);
             }
             timetableModuleList.SetList(tempTable);
         }

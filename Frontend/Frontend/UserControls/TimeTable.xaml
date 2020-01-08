@@ -8,6 +8,7 @@
              xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
+            xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              x:Name="Timetable"
              x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
@@ -30,7 +31,9 @@
         <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
         <Helpers:TypeToIconConverter x:Key="TypeToIconConverter"/>
     </UserControl.Resources>
-    
+    <UserControl.DataContext>
+        <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
+    </UserControl.DataContext>
     <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>

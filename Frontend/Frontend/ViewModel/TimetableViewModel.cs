@@ -2,7 +2,7 @@
 using Frontend.Models;
 using System.Collections.ObjectModel;
 
-namespace Frontend
+namespace Frontend.ViewModel
 {
     class TimetableViewModel : ViewModelBase
     {
