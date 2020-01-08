@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Helpers.Generators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +72,7 @@ namespace Frontend.Models
                 EndTime = "11:30",
                 Day = "1",
                 PersonName = "Marc",
+                Type = ModuleDummy.ModuleType.Tutorium,
                 RoomNumber = "D42",
                 CourseName = "VS Code für anfänger",
                 Color = "#FFF4A233"
@@ -85,6 +87,7 @@ namespace Frontend.Models
                 PersonName = "Dude",
                 RoomNumber = "D21",
                 CourseName = "EIBO 2",
+                Type = ModuleDummy.ModuleType.Vorlesung,
                 GroupChar = 'B',
                 Color = "#FFF4A233"
             });
@@ -98,6 +101,7 @@ namespace Frontend.Models
                 PersonName = "Marc",
                 RoomNumber = "D42",
                 CourseName = "Computergrafik",
+                Type = ModuleDummy.ModuleType.Übung,
                 Color = "#FFF4A233"
             });
             AddModule(new ModuleDummy()

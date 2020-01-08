@@ -36,5 +36,10 @@ namespace Frontend.View
         {
 
         }
+
+        private void TestAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
