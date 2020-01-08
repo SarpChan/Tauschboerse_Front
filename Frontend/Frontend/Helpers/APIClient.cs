@@ -64,7 +64,8 @@ namespace Frontend.Helpers
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
             {
-                MainViewModel.Instance.Logout(2,response.Content);
+                MainViewModel.Instance.Logout((int)response.StatusCode);
+                this.Logout();
             }
             cancellationTokenSource.Dispose();
             return response;
@@ -80,7 +81,8 @@ namespace Frontend.Helpers
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
             {
-                MainViewModel.Instance.Logout(2,response.Content);
+                MainViewModel.Instance.Logout((int)response.StatusCode);
+                this.Logout();
             }
             cancellationTokenSource.Dispose();
 

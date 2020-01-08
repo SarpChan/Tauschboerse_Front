@@ -153,7 +153,7 @@ namespace Frontend.ViewModel
             {
                 if (_LogoutCommand == null)
                 {
-                    _LogoutCommand = new ActionCommand(dummy => this.Logout(1,""));
+                    _LogoutCommand = new ActionCommand(dummy => this.Logout(200));
                 }
                 return _LogoutCommand;
             }
@@ -206,17 +206,17 @@ namespace Frontend.ViewModel
         /*
          * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
          */
-        public void Logout(int type,string error)
+        public void Logout(int code)
         {
             this.SwitchActivePageAsync(new HomePage());
             personalData.LogoutUser();
             LoginPageViewModel.Instance.IsLoggedIn = false;
-            if (type == 1)
+            if (code == 200)
             {
                 App.notifier.ShowSuccess("Ausloggen erfolgreich");
-            } else if (type == 2)
+            } else if (code >= 400)
             {
-                App.notifier.ShowError(error);
+                App.notifier.ShowError("Der Authentifizierungstoken ist nicht mehr gueltig");
             }
         
             APIClient apiClient = APIClient.Instance;
