@@ -29,7 +29,7 @@
         </Style>
         
         <!-- upload button style -->
-        <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource adminButton}">
+        <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource AdminButton}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -47,7 +47,7 @@
                                 <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
                                 <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource Upload_Hover_b }" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -56,7 +56,7 @@
         </Style>
 
         <!-- delete button style -->
-        <Style TargetType="{x:Type Button}" x:Key="Deletebutton" BasedOn="{StaticResource adminButton}">
+        <Style TargetType="{x:Type Button}" x:Key="Deletebutton" BasedOn="{StaticResource AdminButton}">
             <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -95,6 +95,7 @@
                                 <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
                             </DockPanel>
                         </Border>
+                        
                         <!--Triggers for switching on hover -->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -204,13 +205,6 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
-                    <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Regelskript"/>
-                    <DockPanel  Margin="{StaticResource HeaderMargin}">
-                        <TextBlock Text="Aktuelle Datei:" Style="{StaticResource TextTextCenterBlock}"  Margin="{StaticResource TextMargin}" />
-                        <TextBlock Text="" Style="{StaticResource TextTextCenterBlock}" FontWeight="Bold" x:Name="filenameRules"/>
-                        <Button Style="{StaticResource Uploadbutton}" Content="Neues Regelskript hochladen" HorizontalAlignment="Left" Margin="80,0,0,0" x:Name="uploadRules" Click="upload_rules"/>
-                    </DockPanel>
-                    <Line Stroke="{StaticResource CD_LightGrey}" Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                         <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>

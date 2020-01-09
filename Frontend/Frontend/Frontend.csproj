@@ -450,6 +450,8 @@
     <Resource Include="Resources\Icons\login_user.png" />
     <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UserControls\Admin\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

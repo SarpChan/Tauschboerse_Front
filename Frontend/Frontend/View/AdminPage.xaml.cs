@@ -56,7 +56,7 @@ namespace Frontend.View
 
         private void upload_rules(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            /*OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"c:";
 
             if (openFileDialog.ShowDialog() == true)
@@ -66,6 +66,7 @@ namespace Frontend.View
                     filenameRules.Text = openFileDialog.SafeFileName;
                 }
             }
+            */
         }
     }
 }
