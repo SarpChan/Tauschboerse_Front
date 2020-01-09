@@ -29,7 +29,7 @@
         </Style>
         
         <!-- upload button style -->
-        <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource AdminButton}">
+        <Style TargetType="{x:Type Button}" x:Key="UploadButton" BasedOn="{StaticResource AdminButton}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -47,7 +47,7 @@
                                 <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
                                 <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource Upload_Hover_b }" />
+                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -84,7 +84,7 @@
         </Style>
 
         <!-- add modul button style -->
-        <Style TargetType="{x:Type Button}" x:Key="AddModulebutton" BasedOn="{StaticResource Uploadbutton}">
+        <Style TargetType="{x:Type Button}" x:Key="AddModulebutton" BasedOn="{StaticResource UploadButton}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -95,7 +95,6 @@
                                 <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
                             </DockPanel>
                         </Border>
-                        
                         <!--Triggers for switching on hover -->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -133,7 +132,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="{x:Type Button}" x:Key="DataGridDeletebutton" BasedOn="{StaticResource adminButton}">
+        <Style TargetType="{x:Type Button}" x:Key="DataGridDeletebutton" BasedOn="{StaticResource AdminButton}">
             <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -207,7 +206,7 @@
                     <Line Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
                     <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
                     <DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                        <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
+                        <Button Style="{StaticResource UploadButton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
                         <Button Style="{StaticResource Deletebutton}"  Content="Alle Stundenpläne löschen"/>
                     </DockPanel>
                     <Line Stroke="{StaticResource CD_LightGrey}"  Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="1000" Y2="10" StrokeThickness="1"/>
@@ -229,12 +228,12 @@
                     </DockPanel>
                 
                     
-                      <user_controls:SelectionBarElement SelectionBarElementCommand="{Binding SwitchToTimetablePage}" Width="200" Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
+                      <user_controls:SelectionBarElement Width="200" Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
                     
                     <DockPanel Margin="{StaticResource HeaderMargin}">
                         <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                         <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
-                        <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
+                        <Button Style="{StaticResource UploadButton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
                         <Button Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen"/>
                     </DockPanel>
                 </StackPanel>
