@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
-    public class ModulesInCurriculum
+    /// <summary>
+    /// The ModuleInCurriculum class models a curriculum and its appendant modules for one term period.
+    /// </summary>
+
+    public class ModuleInCurriculum
     {
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("termPeriod")]
         public int Term { get; set; }
-        [JsonProperty("curriculum")]
-        public long Curriculum { get; set; }
-        [JsonProperty("module")]
+        public Curriculum Curriculum { get; set; }
         public HashSet<Module> Modules { get; set; }
     }            
 }

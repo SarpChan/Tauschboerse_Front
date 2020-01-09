@@ -1,20 +1,17 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
     /// <summary>
     /// The Curriculum class models a course curriculum.
+    /// A curriculum belongs to one term and one exam regulations.
+    /// One curriculum consists of many modules.
     /// </summary>
     public class Curriculum
     {
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("termPeriod")] 
         public int Term { get; set; }
-        [JsonProperty("examRegulation")]
-        public long ExamRegulationId { get; set; }
-        [JsonProperty("modulesInCurriculum")] 
-        public HashSet<ModulesInCurriculum> ModulesInCurriculum { get; set; }
+        public long ExamRegulationId { get; set; } 
+        public HashSet<ModuleInCurriculum> ModulesInCurriculum { get; set; }
     }
 }

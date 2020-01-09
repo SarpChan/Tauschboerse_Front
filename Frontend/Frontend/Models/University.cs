@@ -1,22 +1,17 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
     /// <summary>
-    /// The University class models a university.
+    /// The University class models a university. 
+    /// One univerty has many campuses and field of studies.
     /// </summary>
     public class University
     {
-        [JsonProperty("id")]
         public long Id { get; set; }
-        [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("address")]
         public string Address { get; set; }
-        [JsonProperty("campuses")]
         public HashSet<Campus> Campuses { get; set; }
-        [JsonProperty("fieldsOfStudy")]
         public HashSet<FieldOfStudy> FieldOfStudies { get; set; }
     }
 }

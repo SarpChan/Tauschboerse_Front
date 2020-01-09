@@ -1,28 +1,26 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Frontend.Helpers;
+using System;
 namespace Frontend.Models
 {
     /// <summary>
-    /// The Group class models a group.
+    /// The Group class models a group. A group belongs to one term, one course component and one room.
+    /// A group is hold by one lecturer and consists of many std
     /// </summary>
     public enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
-
     public class Group
     {
         public long Id { get; set; }
-        public long TermId { get; set; }
-        public long CourseComponentId { get; set; }
-        public long RoomId { get; set; }
-        public long Slots { get; set; }
+        public int Slots { get; set; }
         public char GroupChar { get; set; }
-        public Dictionary<string, int> StartTime { get; set; } //warum dictionary? was fuer ein string soll denn da als key stehen?
-        public Dictionary<string, int> EndTime { get; set; }
-        //public Lecturer Lecturer { get; set; }
-        public string Lecturer { get; set; }
         public DayOfWeek Day { get; set; }
-        //public List<int> PrioritizeGroups { get; set; } was ist das?-> null!
-        public HashSet<Student> Students { get; set; } //was ist das? -> null!
+        public DateTime StartTime { get; set; } 
+        public DateTime EndTime { get; set; }
+        public Term Term { get; set; }
+        public CourseComponent CourseComponent { get; set; }
+        public Lecturer Lecturer { get; set; }
+        public Room Room { get; set; }
+        public HashSet<Student> Students { get; set; }
+        public HashSet<StudentPrioritizesGroup> StudentPrioritizesGroups { get; set; }
 
     }
 }

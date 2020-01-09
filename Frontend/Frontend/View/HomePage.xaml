@@ -8,16 +8,13 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Home">
     <Page.Resources>
-        <Style TargetType="{x:Type Image}" x:Key="imgB" BasedOn="{StaticResource imageButton}">
-            <Setter Property="Source" Value="{StaticResource save_b}" />
-            </Style>
-   
+     
         <!--Margin Icons -->
-        <Thickness  x:Key="buttonMargin" Left="10" Right="10" Top="10" Bottom="10" />
+        <Thickness  x:Key="ButtonMargin" Left="10" Right="10" Top="10" Bottom="10" />
         <!--Margin Headline -->
-        <Thickness  x:Key="headlineMargin" Left="150" Right="0" Top="80" Bottom="0" />
+        <Thickness  x:Key="HeadlineMargin" Left="150" Right="0" Top="80" Bottom="0" />
         <!--Margin Headline Stupla -->
-        <Thickness  x:Key="stuplaMargin" Left="0" Right="0" Top="80" Bottom="0" />
+        <Thickness  x:Key="StuplaMargin" Left="0" Right="0" Top="80" Bottom="0" />
 
         <!--Style link Buttons-->
         <Style TargetType="{x:Type Button}" x:Key="HomescreenButton">
@@ -25,11 +22,11 @@
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="Background" Value="{StaticResource CD_Grey}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="{StaticResource buttonMargin}" />
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -39,31 +36,32 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#D2E7EB"/>
                     <Setter Property="Foreground" Value="#FF265B65"/>
-                    
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Page.Resources>
     
     <!-- Grid Definition-->
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition  Width="0.5*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Text=" - Das StudenplanVerwaltungssystem" Margin="{StaticResource headlineMargin}" Style="{StaticResource HeadlineTextBlock}" />
-        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Margin="{StaticResource stuplaMargin}" Style="{StaticResource HeadlineTextBlock}" FontWeight="Bold" Text="StuPla" Foreground="{StaticResource CD_DarkTeal}"/>
-        <Button x:Name="Home" Content="Home" Grid.Column="1" Grid.Row="1"  Style="{StaticResource HomescreenButton}"  Foreground="White" Background="{StaticResource CD_DarkTeal}"/>
-        <Button x:Name="Stundenplan" Content="Stundenplan"  Grid.Column="2" Grid.Row="1"  Click="TimetableButton_Click" Style="{StaticResource HomescreenButton}"/>
-        <Button x:Name="Tauschboerse" Content="Tauschbörse"  Grid.Column="1" Grid.Row="2" Style="{StaticResource HomescreenButton}"/>
-        <Button x:Name="Stammdaten"  Content="Stammdaten"  Grid.Column="2" Grid.Row="2" Style="{StaticResource HomescreenButton}"/>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition  Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Text=" - Das StudenplanVerwaltungssystem" Margin="{StaticResource HeadlineMargin}" Style="{StaticResource HeadlineTextBlock}" />
+            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  Margin="{StaticResource StuplaMargin}" Style="{StaticResource HeadlineTextBlock}" FontWeight="Bold" Text="StuPla" Foreground="{StaticResource CD_DarkTeal}"/>
+            <Button x:Name="Home" Content="Home" Grid.Column="1" Grid.Row="1"  Style="{StaticResource HomescreenButton}"  Foreground="White" Background="{StaticResource CD_DarkTeal}"/>
+            <Button x:Name="Stundenplan" Content="Stundenplan"  Grid.Column="2" Grid.Row="1"  Click="TimetableButton_Click" Style="{StaticResource HomescreenButton}"/>
+            <Button x:Name="Tauschboerse" Content="Tauschbörse"  Grid.Column="1" Grid.Row="2" Style="{StaticResource HomescreenButton}"/>
+            <Button x:Name="Stammdaten"  Content="Stammdaten"  Grid.Column="2" Grid.Row="2" Style="{StaticResource HomescreenButton}"/>
+        </Grid>
+    </ScrollViewer>
 </Page>
