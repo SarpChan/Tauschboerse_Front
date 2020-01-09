@@ -156,8 +156,18 @@ namespace Frontend.Helpers
         {
             double totalHeight = System.Convert.ToDouble(values[0]);
             int rowIndex = System.Convert.ToInt32(values[1]);
+            double headerHeight = System.Convert.ToDouble(values[2]);
 
-            return RowConvertersHelper.CaluclateRowPosition(totalHeight, rowIndex) - PixelCalculator.PointsToPixels(Globals.TimeTextFontSize);
+            int rowAmount = (int)Globals.GetDuration() / Globals.Subdivisions;
+            double height = (totalHeight - headerHeight) / rowAmount + Globals.RowPadding;
+
+            double pos = RowConvertersHelper.CaluclateRowPosition(totalHeight, rowIndex);
+            if (height <= PixelCalculator.PointsToPixels(Globals.TimeTextFontSize))
+            {
+                return pos - PixelCalculator.PointsToPixels(Globals.TimeTextFontSize);
+            }
+
+            return pos;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
