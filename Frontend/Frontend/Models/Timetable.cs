@@ -1,4 +1,4 @@
-﻿using Frontend.Helpers.JsonConverters;
+﻿/*using Frontend.Helpers.JsonConverters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,3 +30,4 @@ namespace Frontend.Models
         private List<Group> _groupList = new List<Group>();
     }
 }
+*/

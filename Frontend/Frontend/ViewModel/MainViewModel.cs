@@ -221,7 +221,7 @@ namespace Frontend.ViewModel
             var cancellationTokenSource = new CancellationTokenSource();
             var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
 
-            //Zum Testen
+            /*//Zum Testen
             string jsonFileString;
             StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
             jsonFileString = streamReader.ReadToEnd();
@@ -232,7 +232,7 @@ namespace Frontend.ViewModel
                 MM = (string)response.Content; 
             }
             Console.WriteLine(timetable);
-            //Zum Testen
+            //Zum Testen*/
 
             cancellationTokenSource.Dispose();
         }
