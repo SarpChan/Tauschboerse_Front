@@ -104,6 +104,7 @@
     <Compile Include="Models\PersonalData.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Rule.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentAttendsCourse.cs" />
     <Compile Include="Models\StudentPassedExam.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="UserControls\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AdminpageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

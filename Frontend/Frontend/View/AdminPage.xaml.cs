@@ -51,8 +51,7 @@ namespace Frontend.View
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           Helpers.JsonFileDialog jsonFileDialog = new Helpers.JsonFileDialog();
-           jsonFileDialog.GetJsonFromFile();
+           //TODO
         }
 
         private void upload_rules(object sender, RoutedEventArgs e)
