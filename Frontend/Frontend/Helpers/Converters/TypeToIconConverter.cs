@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
@@ -17,22 +18,22 @@ namespace Frontend.Helpers
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            ModuleDummy.ModuleType type;
+            TimetableModule.ModuleType type;
 
             if (value != null)
             {
-                type = (ModuleDummy.ModuleType)value;
+                type = (TimetableModule.ModuleType)value;
             }
             else
             {
-                type = ModuleDummy.ModuleType.Vorlesung;
+                type = TimetableModule.ModuleType.Vorlesung;
             }
 
             switch (type)
             {
-                case ModuleDummy.ModuleType.Praktikum: return LoadIcon("timetabel.item.icon.practicaltraining");
-                case ModuleDummy.ModuleType.Tutorium: return LoadIcon("timetabel.item.icon.tutorial");
-                case ModuleDummy.ModuleType.Übung: return LoadIcon("timetabel.item.icon.exercise");
+                case TimetableModule.ModuleType.Praktikum: return LoadIcon("timetabel.item.icon.practicaltraining");
+                case TimetableModule.ModuleType.Tutorium: return LoadIcon("timetabel.item.icon.tutorial");
+                case TimetableModule.ModuleType.Übung: return LoadIcon("timetabel.item.icon.exercise");
                 default: return LoadIcon("timetabel.item.icon.lecture");
             }
         }

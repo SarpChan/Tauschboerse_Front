@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:Frontend.View"
         xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
         xmlns:project ="clr-namespace:Frontend"
+        xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+
         mc:Ignorable="d"
         d:DesignHeight="1000" d:DesignWidth="1640"
         Title="Timetable">
     <Page.DataContext>
-        <project:TimetableViewModel x:Name="TimetableViewModel"/>
+        <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </Page.DataContext>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontSize="32" >
         <Grid Height="auto" Background="White">

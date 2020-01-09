@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg847" Width="24" Height="26">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: metadata-->
+  <!--Unknown tag: sodipodi:namedview-->
+  <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path843" StrokeThickness="2" Stroke="#FF57514D" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M22.241 24.9258V22.3679C22.241 21.011 21.702 19.7098 20.7426 18.7504C19.7832 17.791 18.4819 17.252 17.1251 17.252H6.89326C5.53643 17.252 4.23518 17.791 3.27576 18.7504C2.31634 19.7098 1.77734 21.011 1.77734 22.3679V24.9258"/>
+  <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path845" StrokeThickness="2" Stroke="#FF57514D" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M12.0026 12.1381C14.8281 12.1381 17.1185 9.84761 17.1185 7.02217C17.1185 4.19672 14.8281 1.90625 12.0026 1.90625C9.17719 1.90625 6.88672 4.19672 6.88672 7.02217C6.88672 9.84761 9.17719 12.1381 12.0026 12.1381Z"/>
+</Canvas>

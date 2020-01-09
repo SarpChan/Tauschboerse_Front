@@ -7,7 +7,7 @@ namespace Frontend.Models
     /// </summary>
     public class Student : Role
     {
-        public long EnrolmentNumber { get; set; }
+        public long EnrollmentNumber { get; set; }
         public string Mail { get; set; }
         public ExamRegulation ExamRegulation { get; set; }
         public Term EnrolementTerm { get; set; }

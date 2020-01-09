@@ -61,7 +61,7 @@
         </SolidColorBrush.Color>
     </SolidColorBrush>
     <!--#c45a41-->
-    <SolidColorBrush x:Key="CD:OrangeBrown">
+    <SolidColorBrush x:Key="CD_OrangeBrown">
         <SolidColorBrush.Color>
             <Color A="255" R="196" G="90" B="65"/>
         </SolidColorBrush.Color>

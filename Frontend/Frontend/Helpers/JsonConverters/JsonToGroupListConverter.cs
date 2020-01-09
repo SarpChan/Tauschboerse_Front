@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace Frontend.Helpers.JsonConverters
 {
+    [Obsolete("Wird nicht mehr benoetigt")]
     class JsonToGroupListConverter : JsonConverter
     {
         public override bool CanRead => true;
@@ -27,14 +28,14 @@ namespace Frontend.Helpers.JsonConverters
                 serializer.Populate(json.CreateReader(), group); 
                 groupList.Add(group);
             }
-            //lllllll
+            /*
             foreach (Group g in groupList)
             {
                 string start = new List<string>(g.StartTime.Keys)[0];
                 string end = new List<string>(g.EndTime.Keys)[0];
                 Console.WriteLine("group " + g.Id + " starts at " + start + " ends at " + g.EndTime.Keys);
             }
-           //lllllllll
+           */
             return groupList;
         }
 

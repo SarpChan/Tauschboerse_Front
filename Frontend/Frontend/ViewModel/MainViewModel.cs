@@ -1,31 +1,50 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Frontend.Helpers;
 using System.Windows.Controls;
 using Frontend.View;
-using RestSharp;
 using System.Threading.Tasks;
-using System.Threading;
 using Frontend.Models;
 using Newtonsoft.Json;
-using System.IO;
+using System;
+using System.Collections.Generic;
+using ToastNotifications.Messages;
+using Frontend.Helpers.Generators;
 
 namespace Frontend.ViewModel
 {
     /**
      * <summary>
-     * Haupt ViewModel. Hat alle Properties, ICommands und Methoden
+     * RootPage ViewModel. Hat alle Properties, ICommands und Methoden fuer die View RootPage. Benennung historisch bedingt.
      * </summary>
      */
 
     class MainViewModel : ViewModelBase
-        //TODO: Mockup vom server in MockupModel speichern und von dort aus anzeigen
     {
+        public PersonalData personalData;
+        public ModuleListModel timetableModuleList;
+
+        private int thisID;
+        private Dictionary<string, string> dayValues = new Dictionary<string, string>();
+        
+        private static MainViewModel _instance;
+        public static MainViewModel Instance { get { return _instance; } }
+
         public MainViewModel()
         {
-            MM = "EMPTY";
+            dayValues.Add("MONDAY", "1");
+            dayValues.Add("TUESDAY", "2");
+            dayValues.Add("WEDNESDAY", "3");
+            dayValues.Add("THURSDAY", "4");
+            dayValues.Add("FRIDAY", "5");
+            dayValues.Add("SATURDAY", "6");
+            dayValues.Add("SUNDAY", "7");
             ActivePage = new HomePage();
             IsLoading = false;
+            personalData = PersonalData.Instance;
+            timetableModuleList = ModuleListModel.Instance;
+            thisID = (int)(new Random().NextDouble() * 9999) + 1;
+            Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
+            _instance = this;
         }
 
         #region properties
@@ -39,7 +58,6 @@ namespace Frontend.ViewModel
                 {
                     _isLoading = value;
                     OnPropertyChanged("IsLoading");
-                    Console.WriteLine("IS LOADING = " + IsLoading);
                 }
             }
         }
@@ -55,27 +73,9 @@ namespace Frontend.ViewModel
                 {
                     _activePage = value;
                     OnPropertyChanged("ActivePage");
-                    Console.WriteLine("ACTIVE PAGE = " + ActivePage);
                 }
             }
         }
-        
-        //Nur zum testen bis Model exisitiert
-        private string _mm;
-        public string MM
-        {
-            get { return _mm; }
-            set
-            {
-                if (_mm != value)
-                {
-                    _mm = value;
-                    OnPropertyChanged("MM");
-                    Console.WriteLine("MM CHANGED TO: " + _mm);
-                }
-            }
-        }
-
         #endregion
 
         #region commands
@@ -109,7 +109,7 @@ namespace Frontend.ViewModel
         }
 
         private ICommand _SwitchToSharingServicePageCommand;
-        public ICommand SwitchToSharingServicePage
+        public ICommand SwitchToSharingServicePageCommand
         {
             get
             {
@@ -154,7 +154,7 @@ namespace Frontend.ViewModel
             {
                 if (_LogoutCommand == null)
                 {
-                    _LogoutCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new HomePage()));
+                    _LogoutCommand = new ActionCommand(dummy => this.Logout(200));
                 }
                 return _LogoutCommand;
             }
@@ -163,30 +163,38 @@ namespace Frontend.ViewModel
 
         #region methods
         /*
-         * Handled das Page-Switchen
+         * Handled das Page-Switchen inkl. asynchroner Anfrage an den Server und anzeigen des Loading Screens
          */
         private async void SwitchActivePageAsync(Page newActivePage)
         {
             if (newActivePage.GetType().Equals(typeof(HomePage)))
             {
+                IsLoading = true;
+                await RequestNewsFromServerAsync();
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
             {
-                SwitchIsLoading();
+                IsLoading = true;
                 await RequestTimetableFromServerAsync();
-                SwitchIsLoading();
+                IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
             {
+                IsLoading = true;
+                await RequestSharingDataFromServerAsync();
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
             {
+                IsLoading = true;
+                await RequestPersonalDataFromServerAsync();
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(AdminPage)))
             {
+                IsLoading = true;
+                await RequestAdminDataFromServerAsync();
                 IsLoading = false;
             }
             else
@@ -197,44 +205,100 @@ namespace Frontend.ViewModel
         }
 
         /*
-         * Simple Methode zum ändern des IsLoading-Zustands
+         * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
          */
-        private void SwitchIsLoading()
+        public void Logout(int code)
         {
-            IsLoading = !IsLoading;
+            this.SwitchActivePageAsync(new HomePage());
+            personalData.LogoutUser();
+            LoginPageViewModel.Instance.IsLoggedIn = false;
+            if (code == 200)
+            {
+                App.notifier.ShowSuccess("Ausloggen erfolgreich");
+            } else if (code >= 400)
+            {
+                App.notifier.ShowError("Der Authentifizierungstoken ist nicht mehr gueltig");
+            }
+        
+            APIClient apiClient = APIClient.Instance;
+            apiClient.Logout();
+        }
+       
+        /*
+         * Request an REST-Schnittstelle des Servers fuer Stundenplan senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
+        public async Task RequestTimetableFromServerAsync()
+        {
+            List<TimetableModule> tempTable = new List<TimetableModule>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content);
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            {
+                tm.Day = dayValues[tm.Day];
+                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+                ColorGenerator.generateColor(tm);
+            }
+            timetableModuleList.SetList(tempTable);
         }
 
         /*
          * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
          * verwendet RestSharp
          */
-        public async Task RequestTimetableFromServerAsync()
+        private async Task RequestNewsFromServerAsync()
         {
-            var client = new RestClient("http://localhost:8080/"); //Base-URL
-            var request = new RestRequest("/rest/module/read", Method.GET); //REST Path
-            //var request = new RestRequest("rest/timetable", Method.GET); //REST Path
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Accept", "application/json");
-            //request.AddParameter("studentID", ActiveStudent.EnrolemenNumber); //Adds "?moduleID='EnrolementNumber'" to Path
-            request.AddParameter("moduleID", "1001337"); //Adds "?moduleID=1001337" to Path
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/news", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //newsList.SetList(tempTable);
+        }
 
-            var cancellationTokenSource = new CancellationTokenSource();
-            var response = await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
+        private async Task RequestSharingDataFromServerAsync()
+        {
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/sharingdata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //sharingdataList.SetList(tempTable);
+        }
 
-            /*//Zum Testen
-            string jsonFileString;
-            StreamReader streamReader = File.OpenText("..\\..\\Models\\GroupListFromServer.json");
-            jsonFileString = streamReader.ReadToEnd();
-            Timetable timetable = JsonConvert.DeserializeObject<Timetable>(jsonFileString);
-            //Console.WriteLine(response.Content);
-            if ((string)response.Content != "")
-            {
-                MM = (string)response.Content; 
-            }
-            Console.WriteLine(timetable);
-            //Zum Testen*/
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
+        private async Task RequestPersonalDataFromServerAsync()
+        {
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/personaldata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //personaldata.SetList(tempTable);
+        }
 
-            cancellationTokenSource.Dispose();
+        /*
+         * Request an REST-Schnittstelle des Servers senden und erhaltenes JSON in Objekt parsen
+         * verwendet RestSharp
+         */
+        private async Task RequestAdminDataFromServerAsync()
+        {
+            List<string> tempTable = new List<string>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/admindata", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //admindata.SetList(tempTable);
         }
         #endregion
     }
