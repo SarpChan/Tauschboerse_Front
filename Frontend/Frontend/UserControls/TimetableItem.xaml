@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.View"
              xmlns:converters="clr-namespace:Frontend.Helpers"
+             xmlns:UserControl="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Module.Color,ElementName=TimeTableItem}" BorderThickness="1pt,0,1pt,1pt"
              >
@@ -15,6 +16,7 @@
         <converters:TimeToXCoordinatesConverter x:Key="TimeToXCoordinatesConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="../Resources/Icons/practicum_w.png" Stretch="Uniform"/>
     </UserControl.Resources>
+    <StackPanel>
     <DockPanel x:Name="Grid_Main" Margin="0" Width="auto" Height="auto">
 
         <DockPanel DockPanel.Dock="Top" x:Name="Grid_Header" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{Binding Module.Color,ElementName=TimeTableItem}">
@@ -37,5 +39,7 @@
         </DockPanel>
 
     </DockPanel>
+        <UserControl:TT_SwapButton x:Name="SwapButton"></UserControl:TT_SwapButton>
+    </StackPanel>
 
 </UserControl>

@@ -32,4 +32,6 @@ namespace Frontend.UserControls
         public static readonly DependencyProperty TT_SwapButtonCommandProperty =
             DependencyProperty.Register("TT_SwapButtonCommand", typeof(ICommand), typeof(TT_SwapButton), new UIPropertyMetadata(null));
     }
+
+
 }

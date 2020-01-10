@@ -66,11 +66,7 @@
                 
             </Viewbox>
         </Popup>
-        <usercontrols:TT_SwapButton x:Name="swapButton">
-            <Viewbox>
-                
-            </Viewbox>
-        </usercontrols:TT_SwapButton>
+       
 
         <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
             <!-- 
@@ -235,9 +231,8 @@
                         <Canvas>
                             <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
                                                         MouseEnter="TimetableItem_MouseEnter"
-                                                        MouseLeave="TimetableItem_MouseLeave"
-                                                        
                                                         />
+                           
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

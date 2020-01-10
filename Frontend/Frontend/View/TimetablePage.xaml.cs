@@ -21,6 +21,8 @@ namespace Frontend.View
             TimetablePage timetablePage = new TimetablePage();
             this.NavigationService.Navigate(timetablePage);
         }
+
+
         private void Home_Button_Click(object sender, RoutedEventArgs e)
         {
             HomePage homePage = new HomePage();
