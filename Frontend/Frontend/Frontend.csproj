@@ -140,7 +140,7 @@
     <Compile Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
+    <Compile Include="UserControls\Admin\SelectionBarElement.xaml.cs">
       <DependentUpon>SelectionBarElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Taskbar\TB_LogoButton.xaml.cs">
@@ -277,7 +277,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SelectionBarElement.xaml">
+    <Page Include="UserControls\Admin\SelectionBarElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -450,8 +450,6 @@
     <Resource Include="Resources\Icons\login_user.png" />
     <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
