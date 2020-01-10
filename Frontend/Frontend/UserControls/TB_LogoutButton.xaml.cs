@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class TB_LogoutButton : UserControl
     {
         public TB_LogoutButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand TB_LogoutButtonCommand
         {
             get { return (ICommand)GetValue(TB_LogoutButtonCommandProperty); }

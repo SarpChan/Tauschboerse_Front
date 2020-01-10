@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d"
              x:Name="sb_sharing_service_button">
     <UserControl.Resources>
@@ -14,5 +13,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Tag="Tauschboerse" Command="{Binding SB_SharingServiceButtonCommand,ElementName=sb_sharing_service_button}" Style="{StaticResource MenuButton}"/>
+    <Button Tag="Tauschbörse" Command="{Binding SB_SharingServiceButtonCommand,ElementName=sb_sharing_service_button}" Style="{StaticResource MenuButton}"/>
 </UserControl>

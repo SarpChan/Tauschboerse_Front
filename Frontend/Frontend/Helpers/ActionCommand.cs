@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Frontend
+namespace Frontend.Helpers
 {
-    /*
-     * Standard-Basisklasse für Action-Commands
-     */
     class ActionCommand : ICommand
     {
         private readonly Action<object> _exec;
@@ -18,11 +11,7 @@ namespace Frontend
         public ActionCommand(Action<object> exec) : this(exec, null) { }
         public ActionCommand(Action<object> exec, Predicate<object> canExec)
         {
-            if (exec == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
-            _exec = exec;
+            _exec = exec ?? throw new ArgumentNullException("execute");
             _canExec = canExec;
         }
 

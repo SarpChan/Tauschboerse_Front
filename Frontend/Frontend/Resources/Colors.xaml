@@ -42,6 +42,12 @@
             <Color A="255" R="76" G="184" B="202"/>
         </SolidColorBrush.Color>
     </SolidColorBrush>
+    <!--#4cb8ca-->
+    <SolidColorBrush x:Key="CD_Teal_Alpha">
+        <SolidColorBrush.Color>
+            <Color A="155" R="76" G="184" B="202"/>
+        </SolidColorBrush.Color>
+    </SolidColorBrush>
     <!--#265b65-->
     <SolidColorBrush x:Key="CD_DarkTeal">
         <SolidColorBrush.Color>
@@ -55,7 +61,7 @@
         </SolidColorBrush.Color>
     </SolidColorBrush>
     <!--#c45a41-->
-    <SolidColorBrush x:Key="CD:OrangeBrown">
+    <SolidColorBrush x:Key="CD_OrangeBrown">
         <SolidColorBrush.Color>
             <Color A="255" R="196" G="90" B="65"/>
         </SolidColorBrush.Color>

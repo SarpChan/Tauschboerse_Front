@@ -11,6 +11,8 @@
                 <ResourceDictionary  Source="Resources/Icons.xaml"/>
                 <ResourceDictionary  Source="Resources/Fonts.xaml"/>
                 <ResourceDictionary  Source="Resources/Buttons.xaml"/>
+                <ResourceDictionary  Source="Resources/Controls.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
