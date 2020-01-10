@@ -45,17 +45,17 @@ namespace Frontend.UserControls
             {
                 Module = ((TimetableItem)sender).Module
             };
+
+            timetableItem.MouseLeave += TimetableItem_MouseLeave;
             viewbox.Child = timetableItem;
             popUp.Child = viewbox;
             popUp.IsOpen = true;
 
         }
 
-       
-
-       
-       
-
-
+        private void TimetableItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popUp.IsOpen = false;
+        }
     }
 }

@@ -40,7 +40,6 @@ namespace Frontend.UserControls
             SO_Dialog swapDialog = new SO_Dialog();
             swapDialog.Show();
             swapDialog.Topmost = true;
-
         }
 
         private void SwapButton_MouseLeave(object sender, MouseEventArgs m)
