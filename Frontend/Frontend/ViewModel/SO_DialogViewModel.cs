@@ -9,12 +9,14 @@ namespace Frontend.ViewModel
 {
     class SO_DialogViewModel
     {
-        private ICommand openDialogCommand = null;
-        public ICommand OpenDialogCommand
+        private ICommand _DialogClose_ButtonCommand;
+        public ICommand DialogCloseCommand
         {
-            get { return this.openDialogCommand; }
-            set { this.openDialogCommand = value;
-                    }
+            get
+            {
+                return _DialogClose_ButtonCommand;
+            }
+            set { _DialogClose_ButtonCommand = value; }
         }
     }
 }

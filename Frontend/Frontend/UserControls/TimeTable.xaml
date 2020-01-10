@@ -232,7 +232,6 @@
                             <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
                                                         MouseEnter="TimetableItem_MouseEnter"
                                                         />
-                           
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

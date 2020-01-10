@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="Frontend.View.SO_Dialog"
         mc:Ignorable="d"
-   Title="Neues Tauschangebot erstellen" Name="myDialog" WindowStartupLocation="CenterScreen"
+   Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="550" MaxWidth="700"
     >
     <Window.Resources>
         <!--Combobox  Style-->
@@ -108,7 +108,7 @@
     </Window.Resources>
 
    
-                <Grid Background="{StaticResource CD_White}" Margin="15">
+                <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -158,8 +158,8 @@
                     </StackPanel>
 
                     <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 80 0 0">
-                        <Button x:Name="D_SaveButton" IsDefault="True" Style="{StaticResource DialogButtonFocused}" />
-                        <Button x:Name="D_CancelButton" IsCancel="True" Style="{StaticResource CancelButton}" Margin="80 0 0 0 " TextBlock.TextAlignment="Center" Content="Cancel"/>
+                        <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" />
+                        <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Margin="80 0 0 0 " TextBlock.TextAlignment="Center" Command="{Binding D_CancelButtonCommand,ElementName=myDialog}" Click="CloseDialog"/>
                     </WrapPanel>
 
                 </Grid>

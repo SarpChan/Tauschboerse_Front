@@ -24,6 +24,21 @@ namespace Frontend.View
             InitializeComponent();
         }
 
-       
+        public ICommand D_CancelButtonCommand
+        {
+            get { return (ICommand)GetValue(D_CancelButtonCommandProperty); }
+            set { SetValue(D_CancelButtonCommandProperty, value); }
+        }
+        public static readonly DependencyProperty D_CancelButtonCommandProperty =
+            DependencyProperty.Register("D_CancelButtonCommand", typeof(ICommand), typeof(SO_Dialog), new UIPropertyMetadata(null));
+
+
+        private void CloseDialog(object sender, RoutedEventArgs e)
+        {
+            
+            this.Close();
+        }
+
+     
     }
 }
