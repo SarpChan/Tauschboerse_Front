@@ -180,15 +180,17 @@
 
 
             <StackPanel Grid.Column="1" Grid.Row="1" Width="auto">
-                <DockPanel>
+
+                <DockPanel Margin="{StaticResource HeaderMargin}" >
                     <Button Style="{StaticResource MenuAdminButton}" Content="Benutzerverwaltung" x:Name="Benutzerverwaltung"/>
                     <Button Style="{StaticResource MenuAdminButton}" Content="LV-Evaluation" x:Name="LVEvaluation"/>
                     <Button Style="{StaticResource MenuAdminButton}" Content="Stundenplan" x:Name="Stundenplan"/>
                     <Button Style="{StaticResource MenuAdminButton}" Content="Stammdaten" x:Name="Stammdaten"/>
                 </DockPanel>
+                
                 <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Aktuelle Regeln"/>
 
-                <DataGrid Name="DataGridRules" AutoGenerateColumns="False">
+                <DataGrid Name="DataGridRules" AutoGenerateColumns="False" Margin="{StaticResource HeaderMargin}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Beschreibung" Binding="{Binding Beschreibung}" />
                         <DataGridTextColumn Header="Regel" Binding="{Binding Regel}" />
@@ -196,7 +198,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
-                                        <Button Style="{StaticResource DataGridDeletebutton}" Content="Löschen" Margin="{StaticResource TextMargin}"/>
+                                        <Button Style="{StaticResource DataGridDeletebutton}" Content="Löschen" FontSize="12pt" Margin="{StaticResource TextMargin}"/>
                                         <Button Style="{StaticResource DataGridDeletebutton}" Content="Bearbeiten" Margin="{StaticResource TextMargin}"/>
                                     </DockPanel>
 
@@ -210,17 +212,17 @@
 
 
                 <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
-                <DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
+                <!--<DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                     <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
                     <Button Style="{StaticResource Deletebutton}"  Content="Alle Stundenpläne löschen"/>
                 </DockPanel>
                 <Line x:Name="line" Stroke="{StaticResource CD_LightGrey}"  Margin="{StaticResource HeaderMargin}" X1="0" Y1="10" X2="{Binding ActualWidth, ElementName=line, Mode=OneWay}" Y2="10" StrokeThickness="1"/>
-
+                -->
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                    <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding}" SelectionChanged="OnfieldoStudyComboBoxChanged"  Margin="{StaticResource TextMargin}" />
-                    <ComboBox Name="subjectComboBox"  Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" />
-                    <ComboBox Name="poComboBox" ItemsSource="{Binding}" Width="50"/>
+                    <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding}" SelectionChanged="OnfieldoStudyComboBoxChanged"  Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="subjectComboBox"  Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="poComboBox" ItemsSource="{Binding}" Width="50" Style="{StaticResource UniversalComboBox}"/>
                 </DockPanel>
                 <!-- caption-->
                 <DockPanel Margin="{StaticResource HeaderMargin}">
@@ -242,7 +244,7 @@
                     <Button Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen"/>
                 </DockPanel>
 
-                <user_controls:TimeTable BorderBrush="Black" Height="500"/>
+                <user_controls:TimeTable BorderBrush="Black" Height="500" Margin="{StaticResource HeaderMargin}"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

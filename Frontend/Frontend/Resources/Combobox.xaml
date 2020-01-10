@@ -35,7 +35,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style TargetType="{x:Type ComboBox}">
+    <Style TargetType="{x:Type ComboBox}" x:Key="UniversalComboBox">
         <Setter Property="MinWidth" Value="150"/>
         <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
         <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
