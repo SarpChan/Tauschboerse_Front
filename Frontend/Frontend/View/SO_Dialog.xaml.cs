@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Frontend.UserControls
+namespace Frontend.View
 {
     /// <summary>
-    /// Interaction logic for SO_DialogService.xaml
+    /// Interaction logic for SO_Dialog.xaml
     /// </summary>
-    public partial class SO_DialogService : UserControl
+    public partial class SO_Dialog : Window
     {
-        public SO_DialogService()
+        public SO_Dialog()
         {
             InitializeComponent();
-
         }
-
-           }
+    }
 }

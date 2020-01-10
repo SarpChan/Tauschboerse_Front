@@ -24,9 +24,25 @@
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
     </Style>
-    
+
+    <!-- small headline bold-->
+    <Style TargetType="TextBlock" x:Key="secondHeadlineLableBold">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+    </Style>
+
     <!-- text -->
     <Style TargetType="Label" x:Key="TextTextblock">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+    </Style>
+
+
+    <!--Textblock-->
+    <Style TargetType="TextBlock" x:Key="Textblock">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>

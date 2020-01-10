@@ -195,4 +195,55 @@
             
         </Style.Triggers>
     </Style>
+
+    <!--DialogButtonFocused-->
+    <Style TargetType="{x:Type Button}" x:Key="DialogButtonFocused" BasedOn="{StaticResource UniversalButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_DarkTeal}" BorderThickness="1.5" Background="{StaticResource CD_DarkTeal}">
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource CD_White}" HorizontalAlignment="Center" VerticalAlignment="Center">Erstellen</TextBlock>
+                        </DockPanel>
+
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_GreyBrown}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_GreyBrown}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--CancelButton-->
+    <Style TargetType="{x:Type Button}" x:Key="CancelButton" BasedOn="{StaticResource UniversalButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1.5" Background="{StaticResource CD_White}">
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource CD_Red}" HorizontalAlignment="Center" VerticalAlignment="Center">Abbrechen</TextBlock>
+                        </DockPanel>
+
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_Red}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
