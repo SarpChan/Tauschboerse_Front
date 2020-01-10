@@ -13,7 +13,8 @@ namespace Frontend.ViewModel
         public ICommand OpenDialogCommand
         {
             get { return this.openDialogCommand; }
-            set { this.openDialogCommand = value; }
+            set { this.openDialogCommand = value;
+                    }
         }
     }
 }

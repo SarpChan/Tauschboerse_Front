@@ -120,6 +120,7 @@
       <DependentUpon>TT_SwapButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\SO_DialogViewModel.cs" />
+    <Compile Include="ViewModel\TimetabeItem.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminPage.xaml.cs">

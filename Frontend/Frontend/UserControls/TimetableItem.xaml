@@ -39,7 +39,7 @@
         </DockPanel>
 
     </DockPanel>
-        <UserControl:TT_SwapButton x:Name="SwapButton"></UserControl:TT_SwapButton>
+        <UserControl:TT_SwapButton x:Name="SwapButton" TT_SwapButtonCommand="{Binding DialogOpenCommand}" MouseLeave="SwapButton_MouseLeave"></UserControl:TT_SwapButton>
     </StackPanel>
 
 </UserControl>

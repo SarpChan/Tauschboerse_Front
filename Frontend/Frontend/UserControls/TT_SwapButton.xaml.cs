@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Frontend.View;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +33,18 @@ namespace Frontend.UserControls
         }
         public static readonly DependencyProperty TT_SwapButtonCommandProperty =
             DependencyProperty.Register("TT_SwapButtonCommand", typeof(ICommand), typeof(TT_SwapButton), new UIPropertyMetadata(null));
-    }
 
+
+        private void openDialog(object sender, RoutedEventArgs e)
+        {
+            SO_Dialog swapDialog = new SO_Dialog();
+            swapDialog.Show();
+        }
+
+        private void SwapButton_MouseLeave(object sender, MouseEventArgs m)
+        {
+            
+        }
+    }
 
 }

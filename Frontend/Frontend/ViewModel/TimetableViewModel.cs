@@ -1,4 +1,5 @@
 ﻿using Frontend.Models;
+using Frontend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace Frontend
         private ModuleListModel moduleListModel = new ModuleListModel();
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
         private DayListModel dayListModel = new DayListModel();
+        private SO_Dialog dialog = new SO_Dialog();
 
         public TimetableViewModel()
         {
@@ -46,6 +48,8 @@ namespace Frontend
                 return _AddModuleCommand;
             }
         }
+
+     
 
         // Hilfsmethode für AddEinkaufCommand
         private void AddModule()

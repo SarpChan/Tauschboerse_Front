@@ -24,9 +24,6 @@ namespace Frontend.View
             InitializeComponent();
         }
 
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -22,7 +22,7 @@ namespace Frontend.View
             this.NavigationService.Navigate(timetablePage);
         }
 
-
+      
         private void Home_Button_Click(object sender, RoutedEventArgs e)
         {
             HomePage homePage = new HomePage();

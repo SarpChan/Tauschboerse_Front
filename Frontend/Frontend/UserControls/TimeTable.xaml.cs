@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Frontend.Helpers;
+using Frontend.View;
 
 namespace Frontend.UserControls
 {
@@ -52,9 +53,7 @@ namespace Frontend.UserControls
 
        
 
-        public void TimetableItem_SwapButton(object sender, MouseEventArgs e)
-        {
-        }
+       
        
 
 
