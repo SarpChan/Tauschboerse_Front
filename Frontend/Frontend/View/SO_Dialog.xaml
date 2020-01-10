@@ -161,7 +161,7 @@
 
                     <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 80 0 0">
                         <Button x:Name="D_SaveButton" IsDefault="True" Style="{StaticResource DialogButtonFocused}" />
-                        <Button x:Name="D_CancelButton" IsCancel="True"  Click="CloseWindow" Style="{StaticResource CancelButton}" Margin="80 0 0 0 " TextBlock.TextAlignment="Center" Content="Cancel"/>
+                        <Button x:Name="D_CancelButton" IsCancel="True" Style="{StaticResource CancelButton}" Margin="80 0 0 0 " TextBlock.TextAlignment="Center" Content="Cancel"/>
                     </WrapPanel>
 
                 </Grid>

@@ -47,6 +47,8 @@ namespace Frontend.UserControls
             viewbox.Child = timetableItem;
             popUp.Child = viewbox;
             popUp.IsOpen = true;
+
+            swapButton.Visibility = Visibility.Visible;
         }
 
         public void TimetableItem_MouseLeave(object sender, MouseEventArgs e)
@@ -54,6 +56,9 @@ namespace Frontend.UserControls
             popUp.IsOpen = false;
         }
 
+        public void TimetableItem_SwapButton(object sender, MouseEventArgs e)
+        {
+        }
        
 
 

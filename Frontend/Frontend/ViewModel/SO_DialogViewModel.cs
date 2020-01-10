@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Frontend.ViewModel
 {
-    class SO_DialogViewModel 
+    class SO_DialogViewModel
     {
         private ICommand openDialogCommand = null;
-        public ICommand OpenDialogCommand { get { return this.openDialogCommand; }
+        public ICommand OpenDialogCommand
+        {
+            get { return this.openDialogCommand; }
             set { this.openDialogCommand = value; }
         }
-     
+    }
 }
