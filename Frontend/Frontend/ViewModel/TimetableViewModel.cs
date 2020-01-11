@@ -39,25 +39,28 @@ namespace Frontend.ViewModel
              * Model mit INotifyPropertyChanged und Änderungen observieren,
              * Anpassung des ViewModels bei Änderungsmitteilung vom Model
              */
-            Console.WriteLine("I was here");
-            ModuleDummy add = new ModuleDummy()
-            {
-                ID = "420",
-                StartTime = "08:15",
-                EndTime = "12:30",
-                Day = "4",
-                PersonName = "Nicky",
-                RoomNumber = "D40",
-                CourseName = "TEST",
-                GroupChar = 'Z',
-                Color = "#FFF4A233"
-            };
-            moduleListModel.AddModule(add);
-            ModuleList.Add(add);
+            /**
+             * Console.WriteLine("I was here");
+             ModuleDummy add = new ModuleDummy()
+             {
+                 ID = "420",
+                 StartTime = "08:15",
+                 EndTime = "12:30",
+                 Day = "4",
+                 PersonName = "Nicky",
+                 RoomNumber = "D40",
+                 CourseName = "TEST",
+                 GroupChar = 'Z',
+                 Color = "#FFF4A233"
+             };
+             moduleListModel.AddModule(add);
+             ModuleList.Add(add);
 
+         }
+                 #endregion
+     */
         }
 
-        #endregion
 
 
         #region Properties
