@@ -16,34 +16,25 @@ namespace Frontend.ViewModel
 {
     class StudentModuleViewModel : Helpers.ViewModelBase
     {
-        CurriculumDummy curriculum = new CurriculumDummy() { Terms = 7 };
-
-
-
-        private ObservableCollection<int> _numberOfSemesters = new ObservableCollection<int>();
-        public ObservableCollection<int> numberOfSemesters
-        {
-            get { return _numberOfSemesters; }
-        }
-
-        private static ObservableCollection<Module> _modules = new ObservableCollection<Module>();
-        public ObservableCollection<Module> modules
-        {
-            get { return _modules; }
-        }
-
+        private CurriculumDummy curriculum = new CurriculumDummy() { Terms = 7 };
+        private ModuleListModel moduleListModel = ModuleListModel.Instance;
         static RestClient client = new RestClient("http://localhost:8080/");
 
         public StudentModuleViewModel()
         {
+            foreach (var module in moduleListModel.ModuleList)
+            {
+                _modules.Add(module);
+            }
             for (int i = 1; i <= curriculum.Terms; i++)
             {
                 _numberOfSemesters.Add(i);
-                Console.WriteLine(numberOfSemesters);
+                Console.WriteLine(NumberOfSemesters);
             }
+            Console.WriteLine(NumberOfSemesters);
         }
 
-
+        #region ICommands
         private ICommand _SwitchTermCommand;
         public ICommand SwitchTermCommand
         {
@@ -57,6 +48,7 @@ namespace Frontend.ViewModel
                 return _SwitchTermCommand;
             }
         }
+        #endregion
 
 
         // Hilfsmethode für SwitchTermCommand
@@ -66,16 +58,30 @@ namespace Frontend.ViewModel
             var request = new RestRequest("rest/lists/timetable}", Method.GET);
             //request.AddParameter("stadtname", "vollradisroda", ParameterType.UrlSegment);
 
-            var m = client.Execute< ObservableCollection<Module>>(request);
+            var m = client.Execute< ObservableCollection<TimetableModule>>(request);
 
             _modules = m.Data;
 
             Console.WriteLine(_modules.Count);
-            foreach (Module mod in _modules){
+            foreach (TimetableModule mod in _modules){
                 
-                Console.WriteLine(mod.Title);
+                Console.WriteLine(mod.CourseName);
             }
         }
+
+        #region properties
+        private ObservableCollection<int> _numberOfSemesters = new ObservableCollection<int>();
+        public ObservableCollection<int> NumberOfSemesters
+        {
+            get { return _numberOfSemesters; }
+        }
+
+        private static ObservableCollection<TimetableModule> _modules = new ObservableCollection<TimetableModule>();
+        public ObservableCollection<TimetableModule> Modules
+        {
+            get { return _modules; }
+        }
+        #endregion
     }
 
     public class CurriculumDummy
@@ -83,5 +89,5 @@ namespace Frontend.ViewModel
         public int Terms { get; set; }
 
     }
-
+    
 }

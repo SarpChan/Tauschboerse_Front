@@ -5,14 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Frontend.View"
       xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
-      xmlns:project ="clr-namespace:Frontend"
-      xmlns:project1="clr-namespace:Frontend.ViewModel"
+      xmlns:project ="clr-namespace:Frontend.ViewModel"
       xmlns:models="clr-namespace:Frontend.Models" 
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="StudentModulePage">
     <Page.DataContext>
-        <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
+        <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
     </Page.DataContext>
     <StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -64,7 +63,7 @@
 
                 <StackPanel Grid.Column="1" Grid.Row="3">
                     <!--Semesterauswahl-->
-                    <ItemsControl ItemsSource="{Binding numberOfSemesters}" VerticalAlignment="Top" Padding="0,50,0,0" AlternationCount="100">
+                    <ItemsControl ItemsSource="{Binding NumberOfSemesters}" VerticalAlignment="Top" Padding="0,50,0,0" AlternationCount="100">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
@@ -88,7 +87,7 @@
                     </ItemsControl>
 
                     <!--Module-->
-                    <ItemsControl ItemsSource="{Binding modules}">
+                    <ItemsControl ItemsSource="{Binding Modules}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel/>

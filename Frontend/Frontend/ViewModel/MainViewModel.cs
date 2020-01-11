@@ -127,7 +127,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToPersonalDataPageCommand == null)
                 {
-                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new PersonalDataPage()));
+                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new StudentModulePage()));
                 }
                 return _SwitchToPersonalDataPageCommand;
             }
@@ -196,12 +196,21 @@ namespace Frontend.ViewModel
                 await RequestAdminDataFromServerAsync();
                 IsLoading = false;
             }
+            else if (newActivePage.GetType().Equals(typeof(StudentModulePage)))
+            {
+                IsLoading = true;
+                await RequesModuleDataFromServerAsync();
+                IsLoading = false;
+            }
+
             else
             {
                 return;
             }
             ActivePage = newActivePage;
         }
+
+        
 
         /*
          * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
@@ -297,6 +306,22 @@ namespace Frontend.ViewModel
             if ((int)response.StatusCode >= 400) return;
             tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //admindata.SetList(tempTable);
+        }
+
+        private async Task RequesModuleDataFromServerAsync()
+        {
+            List<TimetableModule> tempTable = new List<TimetableModule>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content);
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            {
+                tm.Day = dayValues[tm.Day];
+                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+            }
+            timetableModuleList.SetList(tempTable);
         }
         #endregion
     }
