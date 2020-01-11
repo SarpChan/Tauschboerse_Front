@@ -121,19 +121,22 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 10 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
+                    <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 10 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
                     <StackPanel Grid.Column="0" Grid.Row="1">
                         <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
                         <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                            <TextBlock x:Name="CourseBox" Width="250" HorizontalAlignment="Left" Text="Prog2" Style="{StaticResource Textblock}" Padding="10 15" />
-                        </Border>
+                <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
+                    
+                    <Run  Text="{Binding Module.CourseName, ElementName=myDialog}"></Run>
+                </TextBlock>
+            </Border>
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
                         <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
                         <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                            <TextBlock  x:Name="TargetCourse" Text="Prog2" Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
+                            <TextBlock  x:Name="TargetCourse" Text="{Binding Module.CourseName, ElementName=myDialog}"  Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
                         </Border>
 
 
@@ -143,12 +146,12 @@
                     <StackPanel Grid.Column="0" Grid.Row="2">
                         <TextBlock x:Name="From" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0"><Run Text="Von Gruppe"/></TextBlock>
                         <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                            <TextBlock x:Name="GroupBox" Width="250" HorizontalAlignment="Left" Padding="10 15" Style="{StaticResource Textblock}" Text="Gruppe A"/>
+                            <TextBlock x:Name="GroupBox" Width="250" HorizontalAlignment="Left" Padding="10 15" Style="{StaticResource Textblock}" Text="{Binding Module.GroupChar, ElementName=myDialog}"/>
                         </Border>
 
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right">
+                    <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
                         <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
                         <ComboBox x:Name="ToGroupCombo" Width="250" Height="50" HorizontalAlignment="Left">
                             <ComboBoxItem IsSelected="True" Content="Gruppe B"/>
@@ -159,7 +162,7 @@
 
                     <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 80 0 0">
                         <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" />
-                        <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Margin="80 0 0 0 " TextBlock.TextAlignment="Center" Command="{Binding D_CancelButtonCommand,ElementName=myDialog}" Click="CloseDialog"/>
+                        <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Margin="50 0 0 0 " TextBlock.TextAlignment="Center" Command="{Binding D_CancelButtonCommand,ElementName=myDialog}" Click="CloseDialog"/>
                     </WrapPanel>
 
                 </Grid>

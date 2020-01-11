@@ -50,7 +50,7 @@ namespace Frontend.UserControls
             viewbox.Child = timetableItem;
             popUp.Child = viewbox;
             popUp.IsOpen = true;
-
+            
         }
 
         private void TimetableItem_MouseLeave(object sender, MouseEventArgs e)

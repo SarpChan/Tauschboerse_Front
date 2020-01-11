@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,17 @@ namespace Frontend.View
     /// </summary>
     public partial class SO_Dialog : Window
     {
+
+        
         public SO_Dialog()
         {
             InitializeComponent();
+            FillDialog();
+        }
+
+        private void FillDialog()
+        {
+            throw new NotImplementedException();
         }
 
         public ICommand D_CancelButtonCommand
@@ -39,6 +49,17 @@ namespace Frontend.View
             this.Close();
         }
 
-     
+        #region properties
+       public void FillDialog(object sender, RoutedEventArgs e)
+        {
+            TimetableItem timetableItem = new TimetableItem
+            {
+                Module = ((TimetableItem)sender).Module
+            };
+
+            TextBlock courseName = new TextBlock();
+            courseName.Text = timetableItem.Module.CourseName;
+        }
+        #endregion
     }
 }
