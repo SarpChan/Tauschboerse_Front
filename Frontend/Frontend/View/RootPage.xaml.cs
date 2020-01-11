@@ -1,6 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Frontend.View
 {
@@ -19,78 +19,35 @@ namespace Frontend.View
         {
             InitializeComponent();
         }
+        
+        #region MainFrame DataContext to Pages
+        
+         /* 
+          * Benoetigt um DataContext an Pages in Frame weiter zu geben.
+         */
 
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf HomeButton" 
-        * </summary>
-        */
-        //TODO: RP Alle Button_Clicks durch ICommands ersetzen
-        [Obsolete]
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private void FrameDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            HomePage homePage = new HomePage();
-            MainFrame.NavigationService.Navigate(homePage);
-            
+            UpdateFrameDataContext(sender, e);
         }
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf TimetableButton" 
-        * </summary>
-        */
-        [Obsolete]
-        private void TimetableButton_Click(object sender, RoutedEventArgs e)
+        private void FrameLoadCompleted(object sender, NavigationEventArgs e)
         {
-            TimetablePage timetablePage = TimetablePage.Instance;
-            MainFrame.NavigationService.Navigate(timetablePage);
-       
+            UpdateFrameDataContext(sender, e);
         }
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf SharingServiceButton" 
-        * </summary>
-        */
-        [Obsolete]
-        private void SharingServiceButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateFrameDataContext(object sender, NavigationEventArgs e)
         {
-            SharingServicePage sharingServicePage = new SharingServicePage();
-            MainFrame.NavigationService.Navigate(sharingServicePage);
+            var content = MainFrame.Content as FrameworkElement;
+            if (content == null)
+                return;
+            content.DataContext = MainFrame.DataContext;
         }
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf PersonalDataButton" 
-        * </summary>
-        */
-        [Obsolete]
-        private void PersonalDataButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateFrameDataContext(object sender, DependencyPropertyChangedEventArgs e)
         {
-            //PersonalDataPage personalDataPage = new PersonalDataPage();
-            //MainFrame.NavigationService.Navigate(personalDataPage);
-
-            StudentModulePage personalDataPage = new StudentModulePage();
-            MainFrame.NavigationService.Navigate(personalDataPage);
+            var content = MainFrame.Content as FrameworkElement;
+            if (content == null)
+                return;
+            content.DataContext = MainFrame.DataContext;
         }
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf AdminButton" 
-        * </summary>
-        */
-        [Obsolete]
-        private void AdminButton_Click(object sender, RoutedEventArgs e)
-        {
-            AdminPage adminPage = new AdminPage();
-            MainFrame.NavigationService.Navigate(adminPage);
-        }
-
-        /* <summary>
-        * Methode fuer Eventhandling "Click auf LogoutButton" 
-        * </summary>
-        */
-        [Obsolete]
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            HomePage homePage = new HomePage();
-            MainFrame.NavigationService.Navigate(homePage);
-        }
+        #endregion
     }
 }

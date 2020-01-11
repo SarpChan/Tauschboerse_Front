@@ -1,52 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using Frontend.Helpers;
 using Frontend.Models;
-using HttpUtils;
-using Newtonsoft.Json;
-using Timetable;
+using System.Collections.ObjectModel;
 
-namespace Frontend.Helpers
+namespace Frontend
 {
-    /**
-     * <summary>
-     * Verwaltet die "Verbindung" von der Stundenplan View (TimetablePage) und Model (.Models)
-     * Fragt Server nach Stundenplan an und fuellt Model mit erhaltenen Daten
-     * </summary>
-     */
-
-    class TimetableViewModel: ViewModelBase
+    class TimetableViewModel : ViewModelBase
     {
-        //Liste der Gruppen = Stundenplan -> AUSLAGERN IN MODELS? Timetable.cs ?
-        private List<Group> GroupList { get; set; }
-        MockupModels mm;
+        private ModuleListModel moduleListModel = ModuleListModel.Instance;
+        private TimetableRowListModel rowListModel = new TimetableRowListModel();
+        private DayListModel dayListModel = new DayListModel();
 
-        //Konstruktor
         public TimetableViewModel()
         {
-            this.GroupList = new List<Group>();
-            mm = new MockupModels();
+            foreach( var ding in moduleListModel.ModuleList)
+            {
+                _ModuleList.Add(ding);
+            }
+            foreach (var row in rowListModel.RowList)
+            {
+                _RowList.Add(row);
+            }
+            foreach (var day in dayListModel.DayList)
+            {
+                _DayList.Add(day);
+            }
         }
 
-        /**
-        * <summary>
-        * Fragt Stundenplan per HttpRequest an entsprechender REST-Schnittstelle vom Server ab
-        * </summary>
-        */
-        public void RequestTimetableFromServer()
+        #region Properties
+        private ObservableCollection<TimetableModule> _ModuleList = new ObservableCollection<TimetableModule>();
+        public ObservableCollection<TimetableModule> ModuleList
         {
-            string restUri = @"http://localhost:8080/" + mm.ActiveStudent.EnrolementNumber + "/timetable";
-            var restClient = new RestClient(endpoint: restUri, method: HttpVerb.GET);
-            var json = restClient.MakeRequest();
-            LoadJsonIntoModel(json);
+            get { return _ModuleList;  }
         }
 
-        /**
-        * <summary>
-        * Laedt vom Server erhaltene JSON in Model
-        * </summary>
-        */
-    public void LoadJsonIntoModel(string json)
+        private ObservableCollection<RowModel> _RowList = new ObservableCollection<RowModel>();
+        public ObservableCollection<RowModel> RowList
         {
-            GroupList = JsonConvert.DeserializeObject<List<Group>>(json);
+            get { return _RowList; }
         }
+
+        private ObservableCollection<DayModel> _DayList = new ObservableCollection<DayModel>();
+        public ObservableCollection<DayModel> DayList
+        {
+            get { return _DayList; }
+        }
+
+        #endregion
     }
 }

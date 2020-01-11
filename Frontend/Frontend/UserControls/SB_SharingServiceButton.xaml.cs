@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class SB_SharingServiceButton : UserControl
     {
         public SB_SharingServiceButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand SB_SharingServiceButtonCommand
         {
             get { return (ICommand)GetValue(SB_SharingServiceButtonCommandProperty); }

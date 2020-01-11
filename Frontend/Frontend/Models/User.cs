@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-//using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
@@ -9,6 +9,16 @@ namespace Frontend.Models
     /// </summary>
     public class User
     {
+        public User()
+        {
+            Id = (int)(new Random().NextDouble() * 999) + 1;
+            Firstname = "";
+            Lastname = "";
+            Loginname = "";
+            Password = "";
+            Roles = new HashSet<Role>();
+        }
+
         public long Id { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

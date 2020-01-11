@@ -3,7 +3,6 @@ using System.Windows.Input;
 
 namespace Frontend.Helpers
 {
-
     class ActionCommand : ICommand
     {
         private readonly Action<object> _exec;

@@ -3,6 +3,7 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
+    "\\Frontend\\Frontend\\Helpers",
     "\\Frontend\\Frontend\\Resources",
     "\\Frontend\\Frontend\\Resources\\Icons",
     "\\Frontend\\Frontend\\View"

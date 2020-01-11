@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class SB_HomeButton : UserControl
     {
         public SB_HomeButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand SB_HomeButtonCommand
         {
             get { return (ICommand)GetValue(SB_HomeButtonCommandProperty); }

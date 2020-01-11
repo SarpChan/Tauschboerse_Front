@@ -6,9 +6,8 @@ using System.Windows.Markup;
 namespace Frontend.Helpers
 {
     /// <summary>
-    /// Use as the base class for BoolToXXX style converters
+    /// Basis Klasse fuer Bool Konvertierungen
     /// </summary>
-    /// <typeparam name="T"></typeparam>    
     public abstract class BoolToValueConverter<T> : MarkupExtension, IValueConverter
     {
         protected BoolToValueConverter()
