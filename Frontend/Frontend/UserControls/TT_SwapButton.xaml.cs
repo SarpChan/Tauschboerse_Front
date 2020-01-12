@@ -42,6 +42,10 @@ namespace Frontend.UserControls
             swapDialog.Show();
             swapDialog.Topmost = true;
 
+           
+            
+          
+
         }
 
 

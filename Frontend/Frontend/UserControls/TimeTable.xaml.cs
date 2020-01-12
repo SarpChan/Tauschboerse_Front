@@ -29,7 +29,7 @@ namespace Frontend.UserControls
      */
     public partial class TimeTable : UserControl
     {
-
+        
         public TimeTable()
         {
             InitializeComponent();

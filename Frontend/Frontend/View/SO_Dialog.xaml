@@ -125,18 +125,17 @@
                     <StackPanel Grid.Column="0" Grid.Row="1">
                         <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
                         <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
-                    
-                    <Run  Text="{Binding Module.CourseName, ElementName=myDialog}"></Run>
-                </TextBlock>
-            </Border>
+                            <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
+                                   <Run  Text="{Binding Module.CourseName}"></Run>
+                            </TextBlock>
+                        </Border>
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
                         <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
                         <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                            <TextBlock  x:Name="TargetCourse" Text="{Binding Module.CourseName, ElementName=myDialog}"  Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
+                            <TextBlock  x:Name="TargetCourse"  Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
                         </Border>
 
 
@@ -146,7 +145,7 @@
                     <StackPanel Grid.Column="0" Grid.Row="2">
                         <TextBlock x:Name="From" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0"><Run Text="Von Gruppe"/></TextBlock>
                         <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                            <TextBlock x:Name="GroupBox" Width="250" HorizontalAlignment="Left" Padding="10 15" Style="{StaticResource Textblock}" Text="{Binding Module.GroupChar, ElementName=myDialog}"/>
+                            <TextBlock x:Name="GroupBox" Width="250" HorizontalAlignment="Left" Padding="10 15" Style="{StaticResource Textblock}" />
                         </Border>
 
                     </StackPanel>

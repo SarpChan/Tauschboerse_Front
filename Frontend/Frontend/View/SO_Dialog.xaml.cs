@@ -26,14 +26,10 @@ namespace Frontend.View
         public SO_Dialog()
         {
             InitializeComponent();
-            FillDialog();
+           
         }
 
-        private void FillDialog()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public ICommand D_CancelButtonCommand
         {
             get { return (ICommand)GetValue(D_CancelButtonCommandProperty); }
@@ -60,6 +56,21 @@ namespace Frontend.View
             TextBlock courseName = new TextBlock();
             courseName.Text = timetableItem.Module.CourseName;
         }
+
+        public TimetableModule Module
+        {
+            get
+            {
+                return (TimetableModule)GetValue(ModuleProperty);
+            }
+            set
+            {
+                SetValue(ModuleProperty, value);
+            }
+        }
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(SO_Dialog), new UIPropertyMetadata(null));
+
+       
         #endregion
     }
 }
