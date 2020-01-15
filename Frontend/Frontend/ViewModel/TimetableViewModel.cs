@@ -149,7 +149,10 @@ namespace Frontend.ViewModel
 
         private void CalculateInitialValues()
         {
-
+            foreach(TimetableViewModelModule ttvmm in _ModuleList)
+            {
+                //Do great stuff
+            }
         }
 
         private void OnStartTimeChange()
