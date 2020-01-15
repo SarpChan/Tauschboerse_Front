@@ -79,7 +79,7 @@
             </Grid.Visibility>
             <Image gif:ImageBehavior.AnimatedSource="../Resources/Icons/loading_anim.gif" Stretch="None" />
         </Grid>
-        <!--Login Page Grid-->
-        <user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <!--Login Page Grid
+        <user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>-->
     </Grid>
 </Page>
