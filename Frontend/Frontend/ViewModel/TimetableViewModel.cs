@@ -48,13 +48,13 @@ namespace Frontend.ViewModel
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
-                        OnModuleAdd();
+                        OnModuleAdd(sender, e);
                         break;
                     case NotifyCollectionChangedAction.Remove:
-                        OnModuleRemove();
+                        OnModuleRemove(sender, e);
                     break;
                     case NotifyCollectionChangedAction.Reset:
-                        OnModuleClear();
+                        OnModuleClear(sender, e);
                     break;
                     default:
                         throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
@@ -157,71 +157,35 @@ namespace Frontend.ViewModel
             }
         }
 
-        private void OnStartTimeChange()
+        private void OnStartTimeChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnEndTimeChange()
+        private void OnEndTimeChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnDayChange()
+        private void OnDayChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnNameChange()
-        {
-
-        // Hilfsmethode für AddEinkaufCommand
-
-        void AddModule()
-        {
-
-
-            /*
-             * Annahme: Model ist nicht "observer-fähig" (z.B: Datenbank)
-             * daher synchrone Pflege von Model UND ViewModel hier - besser: 
-             * Model mit INotifyPropertyChanged und Änderungen observieren,
-             * Anpassung des ViewModels bei Änderungsmitteilung vom Model
-             */
-            /**
-             * Console.WriteLine("I was here");
-             ModuleDummy add = new ModuleDummy()
-             {
-                 ID = "420",
-                 StartTime = "08:15",
-                 EndTime = "12:30",
-                 Day = "4",
-                 PersonName = "Nicky",
-                 RoomNumber = "D40",
-                 CourseName = "TEST",
-                 GroupChar = 'Z',
-                 Color = "#FFF4A233"
-             };
-             moduleListModel.AddModule(add);
-             ModuleList.Add(add);
-
-         }
-                 #endregion
-     */
-        }
-
-
-
-        }
-        private void OnTypeChange()
+        private void OnNameChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnModuleAdd()
+        private void OnTypeChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnModuleRemove()
+        private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
-        private void OnModuleClear()
+        private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e)
+        {
+
+        }
+        private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
         {
 
         }
@@ -272,7 +236,7 @@ namespace Frontend.ViewModel
         #endregion
     }
 
-    class TimetableViewModelModule
+    public class TimetableViewModelModule
     {
         public double X { get; set; }
         public double Y { get; set; }
