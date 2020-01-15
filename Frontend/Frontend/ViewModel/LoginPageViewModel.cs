@@ -1,5 +1,6 @@
 ﻿using Frontend.Helpers;
 using System;
+using System.Configuration;
 using System.Windows.Input;
 using ToastNotifications.Messages;
 
@@ -9,11 +10,21 @@ namespace Frontend.ViewModel
     {
         private int thisID;
         private static LoginPageViewModel _instance;
-        public static LoginPageViewModel Instance { get { return _instance; } } 
+        public static LoginPageViewModel Instance { get { return _instance; } }
+
+        string mode = ConfigurationManager.AppSettings.Get("login.mode");
 
         public LoginPageViewModel()
         {
-            IsLoggedIn = false; //TODO ViewModel.LPVM: Besser in PersonalData?
+            switch(mode) {
+                case "debug":
+                    IsLoggedIn = true; //TODO ViewModel.LPVM: Besser in PersonalData?
+                    break;
+
+                case "normal":
+                    IsLoggedIn = false; //TODO ViewModel.LPVM: Besser in PersonalData?
+                    break;
+            }
             Username = "Nutzername";
             Password = "Passwort";
             thisID = (int)(new Random().NextDouble() * 9999 ) + 1;
