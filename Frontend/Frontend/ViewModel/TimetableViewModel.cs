@@ -12,10 +12,15 @@ namespace Frontend.ViewModel
 
         public TimetableViewModel()
         {
-            foreach( var ding in moduleListModel.ModuleList)
+            foreach( var module in moduleListModel.ModuleList)
             {
-                _ModuleList.Add(ding);
+                _ModuleList.Add(new TimetableViewModelModule { 
+                    Module = module,
+                });
             }
+
+            CalculateInitialValues();
+
             foreach (var row in rowListModel.RowList)
             {
                 _RowList.Add(row);
@@ -26,9 +31,50 @@ namespace Frontend.ViewModel
             }
         }
 
+        #region Methods
+
+        private void CalculateInitialValues()
+        {
+
+        }
+
+        private void OnStartTimeChange()
+        {
+
+        }
+        private void OnEndTimeChange()
+        {
+
+        }
+        private void OnDayChange()
+        {
+
+        }
+        private void OnNameChange()
+        {
+
+        }
+        private void OnTypeChange()
+        {
+
+        }
+        private void OnModuleAdd()
+        {
+
+        }
+        private void OnModuleRemove()
+        {
+
+        }
+        private void OnModuleClear()
+        {
+
+        }
+        #endregion
+
         #region Properties
-        private ObservableCollection<TimetableModule> _ModuleList = new ObservableCollection<TimetableModule>();
-        public ObservableCollection<TimetableModule> ModuleList
+        private ObservableCollection<TimetableViewModelModule> _ModuleList = new ObservableCollection<TimetableViewModelModule>();
+        public ObservableCollection<TimetableViewModelModule> ModuleList
         {
             get { return _ModuleList;  }
         }
@@ -47,4 +93,16 @@ namespace Frontend.ViewModel
 
         #endregion
     }
+
+    class TimetableViewModelModule
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public string Color { get; set; }
+        public TimetableModule Module { get; set; }
+
+    }
+
 }

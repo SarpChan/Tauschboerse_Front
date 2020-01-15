@@ -21,8 +21,6 @@ namespace Frontend.Models
         [JsonProperty("moduleTitle")]
         public string CourseName { get; set; }
         public char GroupChar { get; set; }
-        [JsonIgnore]
-        public string Color { get; set; }
         [JsonProperty("dayOfWeek")]
         public string Day { get; set; }
         //[Newtonsoft.Json.JsonProperty("courseType")]
