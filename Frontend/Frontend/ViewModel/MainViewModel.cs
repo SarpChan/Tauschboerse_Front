@@ -24,6 +24,7 @@ namespace Frontend.ViewModel
         public PersonalData personalData;
         public ModuleListModel timetableModuleList;
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
+        private SwapOfferCommunication soCommunication = new SwapOfferCommunication();
 
         private int thisID;
         private Dictionary<string, string> dayValues = new Dictionary<string, string>();

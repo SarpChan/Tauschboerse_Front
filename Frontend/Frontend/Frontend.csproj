@@ -90,6 +90,7 @@
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\SwapOfferCommunication.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseComponent.cs" />
     <Compile Include="Models\Curriculum.cs" />
@@ -416,6 +417,9 @@
     <Resource Include="Resources\Icons\tutorial_w.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Apache.NMS.ActiveMQ">
+      <Version>1.7.2</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
