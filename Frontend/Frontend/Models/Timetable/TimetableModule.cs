@@ -11,7 +11,7 @@ namespace Frontend.Models
     public class TimetableModule : INotifyPropertyChanged
     {
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged ;
 
         [JsonIgnore]
         ModuleType _Type;

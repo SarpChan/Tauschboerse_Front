@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -153,32 +154,48 @@ namespace Frontend.ViewModel
         {
             foreach(TimetableViewModelModule ttvmm in _ModuleList)
             {
-                //Do great stuff
+                Inititalize_TimetableViewModelModule(ttvmm);
             }
         }
 
-        private void Inititalize_TimetableViewModelModule(TimetableModule ttvm)
+        private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-            ttvm.CourseName.
-        }
-
-        private void OnStartTimeChange(object sender, NotifyCollectionChangedEventArgs e)
-        {
-
-        }
-        private void OnEndTimeChange(object sender, NotifyCollectionChangedEventArgs e)
-        {
-
-        }
-        private void OnDayChange(object sender, NotifyCollectionChangedEventArgs e)
-        {
-
-        }
-        private void OnNameChange(object sender, NotifyCollectionChangedEventArgs e)
-        {
+            if(ttvmm.Module != null)
+            {
+                ttvmm.Module.PropertyChanged += OnModuleChange;
+            }
             
         }
-        private void OnTypeChange(object sender, NotifyCollectionChangedEventArgs e)
+
+        private void OnModuleChange(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "Name": OnNameChange(sender, e);break;
+                case "StartTime": OnStartTimeChange(sender, e);break;
+                case "EndTime": OnEndTimeChange(sender, e);break;
+                case "Day": OnDayChange(sender, e); break;
+                case "Type": OnTypeChange(sender, e); break;
+            }
+        }
+
+        private void OnNameChange(object sender, PropertyChangedEventArgs e)
+        {
+            Console.WriteLine("Change Name");
+        }
+        private void OnStartTimeChange(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+        private void OnEndTimeChange(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+        private void OnDayChange(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+        private void OnTypeChange(object sender, PropertyChangedEventArgs e)
         {
 
         }

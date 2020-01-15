@@ -279,7 +279,6 @@ namespace Frontend.ViewModel
             {
                 tm.Day = dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
-                ColorGenerator.generateColor(tm);
             }
             timetableModuleList.SetList(tempTable);
         }
@@ -342,7 +341,6 @@ namespace Frontend.ViewModel
             {
                 tm.Day = dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
-                ColorGenerator.generateColor(tm);
             }
             timetableModuleList.SetList(tempTable);
         }

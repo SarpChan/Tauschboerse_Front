@@ -68,7 +68,7 @@
         <Popup x:Name="popUp" AllowsTransparency="True">
             <StackPanel x:Name="stack">
                 <usercontrols:TimetableItem x:Name="item"/>
-                <usercontrols:TT_SwapButton TT_SwapButtonCommand="{Binding DialogOpenCommand}"></usercontrols:TT_SwapButton>
+                <!--<usercontrols:TT_SwapButton TT_SwapButtonCommand="{Binding DialogOpenCommand}"></usercontrols:TT_SwapButton>-->
 
                 <Viewbox></Viewbox>
             </StackPanel>
