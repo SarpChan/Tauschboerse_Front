@@ -157,6 +157,11 @@ namespace Frontend.ViewModel
             }
         }
 
+        private void Inititalize_TimetableViewModelModule(TimetableModule ttvm)
+        {
+            ttvm.CourseName.
+        }
+
         private void OnStartTimeChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
@@ -171,7 +176,7 @@ namespace Frontend.ViewModel
         }
         private void OnNameChange(object sender, NotifyCollectionChangedEventArgs e)
         {
-
+            
         }
         private void OnTypeChange(object sender, NotifyCollectionChangedEventArgs e)
         {
