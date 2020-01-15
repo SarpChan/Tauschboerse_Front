@@ -153,7 +153,8 @@ namespace Frontend.ViewModel
         {
             foreach(TimetableViewModelModule ttvmm in _ModuleList)
             {
-                //Do great stuff
+                TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
+                //ttvmm.X = timeToYCoordinatesConverter.Convert()
             }
         }
 
