@@ -140,6 +140,11 @@ namespace Frontend.ViewModel
 
         }
 
+        
+
+
+        #endregion
+        
         #region Methods
 
         private void CalculateInitialValues()
@@ -180,10 +185,6 @@ namespace Frontend.ViewModel
 
         }
         #endregion
-
-
-        #endregion
-
 
         #region Properties
         private ObservableCollection<TimetableViewModelModule> _ModuleList = new ObservableCollection<TimetableViewModelModule>();
