@@ -4,6 +4,8 @@ using Frontend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -168,7 +170,8 @@ namespace Frontend.ViewModel
         {
 
         // Hilfsmethode für AddEinkaufCommand
-        private void AddModule()
+
+        void AddModule()
         {
 
 

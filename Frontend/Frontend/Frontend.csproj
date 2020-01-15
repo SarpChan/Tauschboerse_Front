@@ -176,7 +176,9 @@
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
+    <Compile Include="ViewModel\TimetabeItem.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -195,6 +197,9 @@
     </Compile>
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SO_Dialog.xaml.cs">
+      <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StudentModulePage.xaml.cs">
       <DependentUpon>StudentModulePage.xaml</DependentUpon>
@@ -341,6 +346,10 @@
     <Page Include="View\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SO_Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\StudentModulePage.xaml">
       <Generator>MSBuild:Compile</Generator>
