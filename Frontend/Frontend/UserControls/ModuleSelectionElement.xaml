@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              xmlns:project1="clr-namespace:Frontend.ViewModel"
              d:DesignHeight="70" d:DesignWidth="1550">
-    <UserControl.DataContext>
+    <!--UserControl.DataContext>
         <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
-    </UserControl.DataContext>
+    </-->
     <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*"/>

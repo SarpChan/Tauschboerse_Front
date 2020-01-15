@@ -10,28 +10,54 @@ using Frontend.Models;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Collections.Specialized;
+
 using RestSharp;
 
 namespace Frontend.ViewModel
 {
-    class StudentModuleViewModel : Helpers.ViewModelBase
+    class StudentModuleViewModel : ViewModelBase
     {
-        private CurriculumDummy curriculum = new CurriculumDummy() { Terms = 7 };
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
-        static RestClient client = new RestClient("http://localhost:8080/");
+        
 
         public StudentModuleViewModel()
         {
-            foreach (var module in moduleListModel.ModuleList)
+            ModuleItem moduleItem1 = new ModuleItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
+            ModuleItem moduleItem2 = new ModuleItem(2, "prog17", 5, 1, moduleListModel.ModuleList);
+            moduleListModel.ModuleItemList.Add(moduleItem1);
+            moduleListModel.ModuleItemList.Add(moduleItem2);
+
+
+            List<int> tempSemesterList = new List<int>();
+            foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
-                _modules.Add(module);
-            }
-            for (int i = 1; i <= curriculum.Terms; i++)
+                _modules.Add(moduleItem);
+                Boolean found = false;
+                foreach(var semester in tempSemesterList)
+                {
+                    if(moduleItem.semester == semester)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    //NumberOfSemesters.Add(moduleItem.semester);
+                    tempSemesterList.Add(moduleItem.semester);
+                }
+               
+         }
+            tempSemesterList = tempSemesterList.OrderBy(i => i).ToList();
+            
+            
+            for(int i = 0;i<tempSemesterList.Count;i++)
             {
-                _numberOfSemesters.Add(i);
-                Console.WriteLine(NumberOfSemesters);
+                NumberOfSemesters.Add(tempSemesterList[i]);
             }
-            Console.WriteLine(NumberOfSemesters);
+
+            Console.WriteLine(NumberOfSemesters); 
+            
         }
 
         #region ICommands
@@ -54,7 +80,7 @@ namespace Frontend.ViewModel
         // Hilfsmethode für SwitchTermCommand
         private void SwitchTerm()
         {
-            Console.WriteLine("KLICK");
+            /*Console.WriteLine("KLICK");
             var request = new RestRequest("rest/lists/timetable}", Method.GET);
             //request.AddParameter("stadtname", "vollradisroda", ParameterType.UrlSegment);
 
@@ -66,7 +92,7 @@ namespace Frontend.ViewModel
             foreach (TimetableModule mod in _modules){
                 
                 Console.WriteLine(mod.CourseName);
-            }
+            }*/
         }
 
         #region properties
@@ -76,8 +102,8 @@ namespace Frontend.ViewModel
             get { return _numberOfSemesters; }
         }
 
-        private static ObservableCollection<TimetableModule> _modules = new ObservableCollection<TimetableModule>();
-        public ObservableCollection<TimetableModule> Modules
+        private static ObservableCollection<ModuleItem> _modules = new ObservableCollection<ModuleItem>();
+        public ObservableCollection<ModuleItem> Modules
         {
             get { return _modules; }
         }

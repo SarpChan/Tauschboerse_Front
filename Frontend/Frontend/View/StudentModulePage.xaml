@@ -61,50 +61,9 @@
                     <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Termin nicht möglich x</TextBlock>
                 </Grid>
 
-                <StackPanel Grid.Column="1" Grid.Row="3">
-                    <!--Semesterauswahl-->
-                    <ItemsControl ItemsSource="{Binding NumberOfSemesters}" VerticalAlignment="Top" Padding="0,50,0,0" AlternationCount="100">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="int">
-                                <DataTemplate.Resources>
-                                    <Style TargetType="{x:Type Button}">
-                                        <Setter Property="Width" Value="200"/>
-                                    </Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Text" Value="{Binding }"/>
-                                    </Style>
-                                </DataTemplate.Resources>
-                                <Button Command="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.SwitchTermCommand}" Style="{StaticResource SelectionBarButton}" Width="200">
-                                    <TextBlock></TextBlock>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                    <!--Module-->
-                    <ItemsControl ItemsSource="{Binding Modules}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type models:Module}">
-                                <DataTemplate.Resources>
-                                    <Style TargetType="usercontrols:ModuleSelectionElement">
-                                        <Setter Property="Height" Value="70"/>
-                                    </Style>
-                                </DataTemplate.Resources>
-                                <usercontrols:ModuleSelectionElement/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    
+                <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+                    <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
+                    <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

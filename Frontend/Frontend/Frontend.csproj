@@ -98,6 +98,7 @@
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\ModuleInCurriculum.cs" />
+    <Compile Include="Models\ModuleItem.cs" />
     <Compile Include="Models\ModuleListModel.cs" />
     <Compile Include="Models\PersonalData.cs" />
     <Compile Include="Models\Role.cs" />
@@ -131,11 +132,17 @@
     <Compile Include="UserControls\Login_UsernameInput.xaml.cs">
       <DependentUpon>Login_UsernameInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ModuleChooser.xaml.cs">
+      <DependentUpon>ModuleChooser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ModuleSemsterChooser.xaml.cs">
+      <DependentUpon>ModuleSemsterChooser.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SelectionBarElement.xaml.cs">
       <DependentUpon>SelectionBarElement.xaml</DependentUpon>
@@ -261,6 +268,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ModuleChooser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ModuleSelectionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -268,6 +279,10 @@
     <Page Include="UserControls\ModuleSelectionElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ModuleSemsterChooser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SelectionBarElement.xaml">
       <Generator>MSBuild:Compile</Generator>
