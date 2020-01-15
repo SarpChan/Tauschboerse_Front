@@ -27,7 +27,7 @@ namespace Frontend
         public static TimeSpan StartTime = new TimeSpan(8,15,0);
         public static TimeSpan EndTime = new TimeSpan(19, 15, 0);
         public static int Subdivisions = 15;
-        public static int RowSeperatorAmount = 4;
+        public static int RowSeperatorAmount = Convert.ToInt32(ConfigurationManager.AppSettings.Get("timetable.row.seperator.amount"));
         public static TimeSpan TimeSubdivision = new TimeSpan(0, 15, 0);
         public static string[] RowColors = { 
             ConfigurationManager.AppSettings.Get("timetable.color.row1"),

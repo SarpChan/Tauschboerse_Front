@@ -6,10 +6,9 @@
         mc:Ignorable="d"
         Title="StuPla" d:DesignHeight="2000" d:DesignWidth="1980"
         MinWidth="730" MinHeight="480"
-        Source="View/AdminPage.xaml"
+        Source="View/RootPage.xaml"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Icon="{StaticResource stupla_logo_icon}"
         WindowStyle="SingleBorderWindow"
         ShowsNavigationUI="False">
-    <!--TODO: Bitte wieder auf Rootpage stellen nur fuers Testen wurd es Auf Admin gestellt-->
 </NavigationWindow>

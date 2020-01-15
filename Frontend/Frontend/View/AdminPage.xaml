@@ -9,11 +9,8 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Admin">
 
-    <Page.DataContext>
-        <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
-    </Page.DataContext>
-    
     <Page.Resources>
+        <viewmodel:TimetableViewModel x:Name="TimetableViewModel" x:Key="TimetableViewModel"/>
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
         <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
@@ -165,7 +162,7 @@
         </Style>
     </Page.Resources>
 
-    <ScrollViewer>
+    <ScrollViewer DataContext="{StaticResource TimetableViewModel}">
         <!-- grid definition -->
         <Grid Background="White">
             <Grid.RowDefinitions>
@@ -188,6 +185,7 @@
                     <Button Style="{StaticResource MenuAdminButton}" Content="Stammdaten" x:Name="Stammdaten"/>
                 </DockPanel>
                 
+                <!-- Erstmal Auskommentier da das Feature Regelskript Hochladen noch nicht existiert
                 <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Aktuelle Regeln"/>
 
                 <DataGrid Name="DataGridRules" AutoGenerateColumns="False" Margin="{StaticResource HeaderMargin}">
@@ -208,7 +206,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Line x:Name="line1" Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="{Binding ActualWidth, ElementName=line1, Mode=OneWay}" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
-
+                -->
 
 
                 <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
@@ -220,10 +218,11 @@
                 -->
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                    <ComboBox Name="fieldofStudyComboBox" ItemsSource="{Binding}" SelectionChanged="OnfieldoStudyComboBoxChanged"  Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"/>
-                    <ComboBox Name="subjectComboBox"  Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" Style="{StaticResource UniversalComboBox}"/>
-                    <ComboBox Name="poComboBox" ItemsSource="{Binding}" Width="50" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" ItemsSource="{Binding}" SelectionChanged="OnfieldoStudyComboBoxChanged" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="ExamRegulationComboBox" Text="PO" ItemsSource="{Binding}" Width="50" Style="{StaticResource UniversalComboBox}"/>
                 </DockPanel>
+                
                 <!-- caption-->
                 <DockPanel Margin="{StaticResource HeaderMargin}">
                     <Rectangle  Fill="{StaticResource CD_DarkTeal}" Style="{StaticResource rectangle}" Margin="{StaticResource firstRectangleMargin}" />
@@ -235,16 +234,16 @@
                 </DockPanel>
 
 
-                <user_controls:SelectionBarElement Width="200" Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
+                <user_controls:SelectionBarElement Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
 
                 <DockPanel Margin="{StaticResource HeaderMargin}">
-                    <Button Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
-                    <TextBlock Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
-                    <Button Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen"/>
+                    <Button DockPanel.Dock="Left" Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
+                    <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
+                    <Button DockPanel.Dock="Left" Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
+                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right" Click="Button_Click" Command="{Binding AddModuleCommand, Mode=OneWay}" />
                 </DockPanel>
 
-                <user_controls:TimeTable BorderBrush="Black" Height="500" Margin="{StaticResource HeaderMargin}"/>
+                <user_controls:TimeTable BorderBrush="Black" Height="500pt" Margin="{StaticResource HeaderMargin}"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>
