@@ -22,8 +22,9 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
-            ModuleItem moduleItem1 = new ModuleItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
-            ModuleItem moduleItem2 = new ModuleItem(2, "prog17", 5, 1, moduleListModel.ModuleList);
+            Console.WriteLine(this.GetHashCode().ToString());
+            ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
+            ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, moduleListModel.ModuleList);
             moduleListModel.ModuleItemList.Add(moduleItem1);
             moduleListModel.ModuleItemList.Add(moduleItem2);
 
@@ -102,8 +103,8 @@ namespace Frontend.ViewModel
             get { return _numberOfSemesters; }
         }
 
-        private static ObservableCollection<ModuleItem> _modules = new ObservableCollection<ModuleItem>();
-        public ObservableCollection<ModuleItem> Modules
+        private static ObservableCollection<ModuleSelectionItem> _modules = new ObservableCollection<ModuleSelectionItem>();
+        public ObservableCollection<ModuleSelectionItem> Modules
         {
             get { return _modules; }
         }

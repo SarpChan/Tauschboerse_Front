@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    class ModuleItem
+    class ModuleSelectionItem
     {
         public long Id { get; set; }
         public string Title { get; set; }
@@ -14,7 +14,7 @@ namespace Frontend.Models
         public int semester { get; set; }
         public List<TimetableModule> timetableModules { get; set; }
 
-        public ModuleItem(long id, string title, int creditPoints, int semester, List<TimetableModule> timetableModules)
+        public ModuleSelectionItem(long id, string title, int creditPoints, int semester, List<TimetableModule> timetableModules)
         {
             Id = id;
             Title = title;

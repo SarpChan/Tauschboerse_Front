@@ -10,9 +10,9 @@ namespace Frontend.Models
     class ModuleListModel
     {
         private List<TimetableModule> _moduleList = new List<TimetableModule>();
-        private List<ModuleItem> _moduleItemList = new List<ModuleItem>();
+        private List<ModuleSelectionItem> _moduleItemList = new List<ModuleSelectionItem>();
         public List<TimetableModule> ModuleList { get { return _moduleList; } }
-        public List<ModuleItem> ModuleItemList { get { return _moduleItemList; } }
+        public List<ModuleSelectionItem> ModuleItemList { get { return _moduleItemList; } }
 
         private static ModuleListModel _instance;
         public static ModuleListModel Instance
@@ -50,17 +50,17 @@ namespace Frontend.Models
             _moduleList = moduleList;
         }
 
-        public void SetList(List<ModuleItem> moduleItems)
+        public void SetList(List<ModuleSelectionItem> moduleItems)
         {
             _moduleItemList = moduleItems;
         }
 
-        public void AddModuleItem(ModuleItem m)
+        public void AddModuleItem(ModuleSelectionItem m)
         {
             _moduleItemList.Add(m);
         }
 
-        public void RemoveModuleItem(ModuleItem m)
+        public void RemoveModuleItem(ModuleSelectionItem m)
         {
             _moduleItemList.Remove(m);
         }

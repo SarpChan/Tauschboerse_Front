@@ -329,8 +329,8 @@ namespace Frontend.ViewModel
         private async void RequestModuleDataDummy()
         {
             await RequestTimetableFromServerAsync();
-            ModuleItem moduleItem1 = new ModuleItem(1, "prog3", 5, 3, ModuleList.ModuleList);
-            ModuleItem moduleItem2 = new ModuleItem(2, "prog17", 5, 1, ModuleList.ModuleList);
+            ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, ModuleList.ModuleList);
+            ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, ModuleList.ModuleList);
             ModuleList.ModuleItemList.Add(moduleItem1);
             ModuleList.ModuleItemList.Add(moduleItem2);
             Console.WriteLine("");

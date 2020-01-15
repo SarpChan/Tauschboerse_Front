@@ -98,7 +98,7 @@
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\ModuleInCurriculum.cs" />
-    <Compile Include="Models\ModuleItem.cs" />
+    <Compile Include="Models\ModuleSelectionItem.cs" />
     <Compile Include="Models\ModuleListModel.cs" />
     <Compile Include="Models\PersonalData.cs" />
     <Compile Include="Models\Role.cs" />
