@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using ToastNotifications.Messages;
 using Frontend.Helpers.Generators;
+using System.Collections.ObjectModel;
 
 namespace Frontend.ViewModel
 {
@@ -230,12 +231,12 @@ namespace Frontend.ViewModel
          */
         public async Task RequestTimetableFromServerAsync()
         {
-            List<TimetableModule> tempTable = new List<TimetableModule>();
+            ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
             Console.WriteLine(response.Content);
-            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = dayValues[tm.Day];
@@ -293,13 +294,12 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-            List<TimetableModule> tempTable = new List<TimetableModule>();
+            ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
-            //admindata.SetList(tempTable);
-            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            
+            tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = dayValues[tm.Day];

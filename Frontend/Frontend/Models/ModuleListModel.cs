@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers.Generators;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,8 @@ namespace Frontend.Models
     
     class ModuleListModel
     {
-        private List<TimetableModule> _moduleList = new List<TimetableModule>();
-        public List<TimetableModule> ModuleList { get { return _moduleList; } }
+        private ObservableCollection<TimetableModule> _moduleList = new ObservableCollection<TimetableModule>();
+        public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
 
         private static ModuleListModel _instance;
         public static ModuleListModel Instance
@@ -44,9 +45,12 @@ namespace Frontend.Models
             _moduleList.Remove(m);
         }
 
-        public void SetList(List<TimetableModule> moduleList)
+        public void SetList(ObservableCollection<TimetableModule> moduleList)
         {
-            _moduleList = moduleList;
+            _moduleList.Clear();
+            foreach( var x in moduleList){
+                _moduleList.Add(x);
+            }
         }
     }
 }

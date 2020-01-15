@@ -9,11 +9,8 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Admin">
 
-    <Page.DataContext>
-        <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
-    </Page.DataContext>
-    
     <Page.Resources>
+        <viewmodel:TimetableViewModel x:Name="TimetableViewModel" x:Key="TimetableViewModel"/>
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
         <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
@@ -165,7 +162,7 @@
         </Style>
     </Page.Resources>
 
-    <ScrollViewer>
+    <ScrollViewer DataContext="{StaticResource TimetableViewModel}">
         <!-- grid definition -->
         <Grid Background="White">
             <Grid.RowDefinitions>
@@ -243,7 +240,7 @@
                     <Button DockPanel.Dock="Left" Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button DockPanel.Dock="Left" Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
-                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right"/>
+                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right" Click="Button_Click" Command="{Binding AddModuleCommand, Mode=OneWay}" />
                 </DockPanel>
 
                 <user_controls:TimeTable BorderBrush="Black" Height="500pt" Margin="{StaticResource HeaderMargin}"/>

@@ -22,8 +22,6 @@ namespace Frontend.ViewModel
             get { return _MyItems; }
         }
 
-
-
         public AdminpageViewModel()
         {
             fieldsOfStudy.Add(fieldOfStudy);
