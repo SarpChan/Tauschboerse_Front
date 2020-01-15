@@ -21,29 +21,24 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Die Tauschbörse" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource HeadlineBoldTextBlock}}"/>
-            <Button Tag="TTSaveButton" HorizontalAlignment="Right" Margin="0,0,20,0">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
-                        <Setter Property="Background" Value="{StaticResource CD_White}"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                                            <Image Name="Save" Source="{DynamicResource reload}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                            <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Speichern" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
-                                        </StackPanel>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
+         
+            <Button Width="180pt" HorizontalAlignment="Right" Margin="0,0,50,0" Style="{Binding Mode=OneWay, Source={StaticResource AdminButton}}">
+                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
+                    <Image Name="Save" Source="{StaticResource reload}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Aktualisieren" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                </DockPanel>
             </Button>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Ihre öffentlichen Tauschangebote" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" Margin="0,20,0,0" />
-            <DataGrid x:Name="DG_OWN" ItemsSource="{Binding SwapListOwn}" AutoGenerateColumns="False" CanUserAddRows="False" Background="{x:Null}">
+            <DataGrid 
+                x:Name="DG_OWN" 
+                ItemsSource="{Binding SwapListOwn}" 
+                AutoGenerateColumns="False" 
+                CanUserAddRows="False" 
+                Background="{x:Null}" 
+                MinRowHeight="50" 
+                VerticalAlignment="Top" 
+                VerticalContentAlignment="Center"
+                CellStyle="{StaticResource Body_Content_DataGrid_Centering}" UseLayoutRounding="False">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Kurs" Binding="{Binding CourseName}" />

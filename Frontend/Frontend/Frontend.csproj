@@ -464,5 +464,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\trade_w.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\reload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
