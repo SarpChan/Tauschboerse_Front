@@ -15,31 +15,5 @@ namespace Frontend.View
         {
             InitializeComponent();
         }
-
-        private void Timetable_Button_Click(object sender, RoutedEventArgs e)
-        {
-            TimetablePage timetablePage = new TimetablePage();
-            this.NavigationService.Navigate(timetablePage);
-        }
-        private void Home_Button_Click(object sender, RoutedEventArgs e)
-        {
-            HomePage homePage = new HomePage();
-            this.NavigationService.Navigate(homePage);
-        }
-
-        private void TimetableItem_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TimeTable_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TestAddBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

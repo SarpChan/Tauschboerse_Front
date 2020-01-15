@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using ToastNotifications.Messages;
 using Frontend.Helpers.Generators;
+using System.Configuration;
 using System.Collections.ObjectModel;
 
 namespace Frontend.ViewModel
@@ -23,6 +24,7 @@ namespace Frontend.ViewModel
     {
         public PersonalData personalData;
         public ModuleListModel timetableModuleList;
+        string mode = ConfigurationManager.AppSettings.Get("login.mode");
 
         private int thisID;
         private Dictionary<string, string> dayValues = new Dictionary<string, string>();
@@ -171,31 +173,67 @@ namespace Frontend.ViewModel
             if (newActivePage.GetType().Equals(typeof(HomePage)))
             {
                 IsLoading = true;
-                await RequestNewsFromServerAsync();
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestNewsFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
             {
+
                 IsLoading = true;
-                await RequestTimetableFromServerAsync();
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestTimetableFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
             {
                 IsLoading = true;
-                await RequestSharingDataFromServerAsync();
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestSharingDataFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
             {
                 IsLoading = true;
-                await RequestPersonalDataFromServerAsync();
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestPersonalDataFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
             else if (newActivePage.GetType().Equals(typeof(AdminPage)))
             {
                 IsLoading = true;
-                await RequestAdminDataFromServerAsync();
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestAdminDataFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
             else
