@@ -10,14 +10,6 @@ namespace Frontend.ViewModel
 {
     class TimetabeItem : ViewModelBase
     {
-        private ICommand _DialogOpen_ButtonCommand;
-        public ICommand DialogOpenCommand
-        {
-            get
-            {
-                return _DialogOpen_ButtonCommand;
-            }
-            set { _DialogOpen_ButtonCommand = value; }
-        }
+        
     }
 }

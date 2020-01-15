@@ -65,9 +65,15 @@
         <!--Popup was ein grosser Version des TimetableItems zeigt
         wird gefuehlt durch die Code Behind-->
         <Popup x:Name="popUp" AllowsTransparency="True">
-            <Viewbox>
-                
-            </Viewbox>
+            <StackPanel x:Name="stack">
+                <usercontrols:TimetableItem x:Name="item"/>
+                <usercontrols:TT_SwapButton TT_SwapButtonCommand="{Binding DialogOpenCommand}"></usercontrols:TT_SwapButton>
+
+                <Viewbox></Viewbox>
+            </StackPanel>
+          
+             
+            
         </Popup>
        
 
@@ -234,6 +240,7 @@
                         <Canvas>
                             <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
                                                         MouseEnter="TimetableItem_MouseEnter"
+                                                        
                                                         />
                         </Canvas>
                     </DataTemplate>

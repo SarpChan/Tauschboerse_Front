@@ -40,15 +40,11 @@ namespace Frontend.UserControls
         {
             Console.WriteLine("MouseEnter TimeTableItem");
             popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
-            Viewbox viewbox = new Viewbox();
-            TimetableItem timetableItem = new TimetableItem
-            {
-                Module = ((TimetableItem)sender).Module
-            };
+          
+            item.Module= ((TimetableItem)sender).Module;
 
-            timetableItem.MouseLeave += TimetableItem_MouseLeave;
-            viewbox.Child = timetableItem;
-            popUp.Child = viewbox;
+
+            stack.MouseLeave += TimetableItem_MouseLeave;
             popUp.IsOpen = true;
             
         }

@@ -57,18 +57,18 @@ namespace Frontend.View
             courseName.Text = timetableItem.Module.CourseName;
         }
 
-        public TimetableModule Module
+        public TimetableItem Item
         {
             get
             {
-                return (TimetableModule)GetValue(ModuleProperty);
+                return (TimetableItem)GetValue(ModuleProperty);
             }
             set
             {
                 SetValue(ModuleProperty, value);
             }
         }
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(SO_Dialog), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Item", typeof(TimetableItem), typeof(SO_Dialog), new UIPropertyMetadata(null));
 
        
         #endregion

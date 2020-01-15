@@ -8,10 +8,10 @@ namespace Frontend.Models
 {
     class SwapOffer
     {
-        public long id;
-        public DateTime date;
-        public Student student;
-        public Group fromGroup;
-        public Group toGroup;
+       // public long id;
+       
+        //public Student student;
+        //public Group fromGroup;
+        //public Group toGroup;
     }
 }

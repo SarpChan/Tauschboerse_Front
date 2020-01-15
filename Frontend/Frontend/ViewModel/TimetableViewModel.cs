@@ -1,8 +1,11 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
+using Frontend.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Frontend.ViewModel
 {
@@ -80,6 +83,29 @@ namespace Frontend.ViewModel
         public ObservableCollection<DayModel> DayList
         {
             get { return _DayList; }
+        }
+
+        private ICommand _DialogOpen_ButtonCommand;
+        public ICommand DialogOpenCommand
+        {
+            get
+            {
+                if(_DialogOpen_ButtonCommand == null)
+                {
+                    _DialogOpen_ButtonCommand = new ActionCommand(dummy => this.OpenDialog());
+                }
+                return _DialogOpen_ButtonCommand;
+            }
+        }
+
+     
+        //Hilfsmethode fuer OpenDialogCommand
+        private void OpenDialog()
+        {
+            SO_Dialog swapDialog = new SO_Dialog();
+            swapDialog.Show();
+            swapDialog.Topmost = true;
+
         }
 
         #endregion

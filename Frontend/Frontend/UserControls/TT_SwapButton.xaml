@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="tt_swap_button">
     <Grid>
-        <Button Style="{StaticResource UniversalButton}" Background="{StaticResource CD_GreyBrown}"  Command="{Binding TT_SwapButtonCommand,ElementName=tt_swap_button}" Click="OpenDialog">
+        <Button Style="{StaticResource UniversalButton}" Background="{StaticResource CD_GreyBrown}"  Command="{Binding TT_SwapButtonCommand,ElementName=tt_swap_button}" >
             <DockPanel >
                 <Image Style="{StaticResource ImageButton}" Source="{StaticResource trade_w}" Width="30" Height="30"></Image>
                 <TextBlock Foreground="{StaticResource CD_White}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="20">Tauschen</TextBlock>

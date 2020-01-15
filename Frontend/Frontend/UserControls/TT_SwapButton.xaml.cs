@@ -36,19 +36,6 @@ namespace Frontend.UserControls
             DependencyProperty.Register("TT_SwapButtonCommand", typeof(ICommand), typeof(TT_SwapButton), new UIPropertyMetadata(null));
 
 
-        private void OpenDialog(object sender, RoutedEventArgs e)
-        {
-            SO_Dialog swapDialog = new SO_Dialog();
-            swapDialog.Show();
-            swapDialog.Topmost = true;
-
-           
-            
-          
-
-        }
-
-
     }
 
 }
