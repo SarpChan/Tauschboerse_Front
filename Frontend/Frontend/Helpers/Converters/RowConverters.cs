@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -118,18 +119,13 @@ namespace Frontend.Helpers
             double headerHeight = System.Convert.ToDouble(values[2]);
             int rowAmount = (int)Globals.GetDuration() / Globals.Subdivisions;
             double height = (totalHeight - headerHeight) / rowAmount + Globals.RowPadding;
-        
 
             //Console.WriteLine("RowIndex : " + rowIndex + " RowHeight : " + height + " Amount :" + Globals.RowSeperatorAmount);
 
             if (height <= PixelCalculator.PointsToPixels(Globals.TimeTextFontSize))
             {
-                if (rowIndex % Globals.RowSeperatorAmount == Globals.RowSeperatorAmount - 1)
-                {
-                    return Visibility.Visible;
-                }
-
-                return Visibility.Hidden;
+                int sectionIndex = rowIndex % Globals.RowSeperatorAmount;
+                return VisibilityByLastTime(sectionIndex);
             }
 
             return Visibility.Visible;
@@ -138,6 +134,16 @@ namespace Frontend.Helpers
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        private Visibility VisibilityByLastTime(int sectionIndex)
+        {
+            if (sectionIndex == Globals.RowSeperatorAmount - 1)
+            {
+                return Visibility.Visible;
+            }
+
+            return Visibility.Hidden;
         }
     }
 
@@ -164,7 +170,16 @@ namespace Frontend.Helpers
             double pos = RowConvertersHelper.CaluclateRowPosition(totalHeight, rowIndex);
             if (height <= PixelCalculator.PointsToPixels(Globals.TimeTextFontSize))
             {
-                return pos - PixelCalculator.PointsToPixels(Globals.TimeTextFontSize);
+                string mode = ConfigurationManager.AppSettings.Get("timetable.time.overlapping.position");
+                double multiplier;
+
+                switch (mode)
+                {
+                    case "middle": multiplier = 0.5 * (Globals.RowSeperatorAmount - 1);break;
+                    default: multiplier = 0;break;
+                }
+
+                return pos - PixelCalculator.PointsToPixels(Globals.TimeTextFontSize)*multiplier;
             }
 
             return pos;

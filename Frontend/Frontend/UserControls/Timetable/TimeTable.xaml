@@ -47,13 +47,14 @@
         <Rectangle x:Name="HeaderBackground" Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
         <Label 
             x:Name="text_zeit" 
+            Padding="0"
             Content="Zeit" 
             FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
             FontSize="15pt" 
             Background="#FF7D7E7E" 
             Grid.Row="0" 
             Grid.Column="0" 
-            Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+            Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
             />
 
         <!--
@@ -170,9 +171,9 @@
                                 Content="{Binding Time}"
                                 Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
                                 FontSize="12pt"
-                                Padding="-1"
+                                Padding="0"
                                 Height="auto"
-                                Margin="0"
+                                Margin="-1"
                                 HorizontalContentAlignment="Center" VerticalAlignment="Top"
                                 />
 
@@ -295,7 +296,7 @@
                             FontFamily="/Frontend;component/Resources/Fonts/#Kiona" 
                             FontSize="15pt" 
                             Background="#FF7D7E7E"
-                            Padding="0" 
+                            Padding="0"
                             Foreground="White" 
                             Grid.Row="0" 
                             Grid.Column="1" 

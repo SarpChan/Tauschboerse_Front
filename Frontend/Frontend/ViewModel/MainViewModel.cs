@@ -255,7 +255,7 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/news", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //newsList.SetList(tempTable);
         }
 
@@ -269,7 +269,7 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/sharingdata", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //sharingdataList.SetList(tempTable);
         }
 
@@ -283,7 +283,7 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/personaldata", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //personaldata.SetList(tempTable);
         }
 
@@ -293,12 +293,20 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-            List<string> tempTable = new List<string>();
+            List<TimetableModule> tempTable = new List<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/admindata", new { id = 32 });
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
+            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //admindata.SetList(tempTable);
+            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
+            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            {
+                tm.Day = dayValues[tm.Day];
+                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+                ColorGenerator.generateColor(tm);
+            }
+            timetableModuleList.SetList(tempTable);
         }
         #endregion
     }

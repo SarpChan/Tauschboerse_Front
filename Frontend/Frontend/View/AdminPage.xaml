@@ -246,7 +246,7 @@
                     <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right"/>
                 </DockPanel>
 
-                <user_controls:TimeTable BorderBrush="Black" Height="500" Margin="{StaticResource HeaderMargin}"/>
+                <user_controls:TimeTable BorderBrush="Black" Height="500pt" Margin="{StaticResource HeaderMargin}"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

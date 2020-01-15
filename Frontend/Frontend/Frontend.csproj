@@ -83,7 +83,8 @@
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
-    <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\Globals\Globals.cs" />
+    <Compile Include="Helpers\Globals\UserInformation.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
