@@ -13,6 +13,7 @@ namespace Frontend
     /// </summary>
     static class Globals
     {
+
         public static string[] Weekdays = new string[]
         {
             "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"

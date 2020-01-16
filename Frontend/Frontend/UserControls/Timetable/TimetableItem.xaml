@@ -28,7 +28,7 @@
         </DockPanel>
 
         <DockPanel Name="ItemBody">
-            <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap" MaxHeight="{Binding ActualHeight, ElementName=DockPanel_Content, Mode=OneWay}">
+            <TextBlock x:Name="Text_Course" DockPanel.Dock="Top" HorizontalAlignment="Left" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" FontSize="12pt" ToolTip="Beschreibung des Faches" Foreground="Black" Margin="10,10,0,0" TextWrapping="Wrap">
                         <Run Text="{Binding Module.Module.CourseName, ElementName=TimeTableItem}"/>
             </TextBlock>
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" LastChildFill="False">

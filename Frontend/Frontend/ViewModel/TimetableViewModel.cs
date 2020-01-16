@@ -208,7 +208,8 @@ namespace Frontend.ViewModel
 
         private void calculateValues(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
         {
-            module.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(100, 100, int.Parse(module.Module.Day), module.Module, moduleListModel.ModuleList);
+            //Hat Inititalize_TimetableViewModelModule(...) ueberschrieben
+            //module.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(100, 100, int.Parse(module.Module.Day), module.Module,_ModuleList);
         }
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
@@ -222,9 +223,14 @@ namespace Frontend.ViewModel
             ttvmm.Width = 100;
 
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
-            ttvmm.X = 10;
-            ttvmm.Y = 20;
-          
+
+            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(1000,1480.6, Int32.Parse(ttvmm.Module.Day), ttvmm.Module,_ModuleList);
+            TimeSpan span = new TimeSpan(TimeCoodinatesCalculator.TimeStringToInt( ttvmm.Module.StartTime));
+
+
+            //Console.WriteLine("\t " + ttvmm.X+"\t"+ ttvmm.Module.Day);
+            ttvmm.Y = 10;//TimeCoodinatesCalculator.ConvertTimeToYCoordinates(1,span);
+
         }
 
         private void OnModuleChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
@@ -283,7 +289,7 @@ namespace Frontend.ViewModel
                 calculateValues(add, _ModuleList);
                 foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
                 {
-                    calculateValues(ttvmm, _ModuleList);
+                    Inititalize_TimetableViewModelModule(ttvmm);
                 }
             }
         }

@@ -75,7 +75,7 @@
         </Popup>
        
 
-        <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
+        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas" >
             <!-- 
                 For loop: Rows
                 
@@ -195,10 +195,10 @@
                     <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
                         <DataTemplate.Resources>
                             <Style TargetType="usercontrols:TimetableItem">
-                                <Setter Property="Canvas.Top" Value="{Binding Path=Y}"/>
-                                <Setter Property="Canvas.Left" Value="{Binding Path=X}"/>
-                                <Setter Property="Width" Value="{Binding Path=Width}" />
-                                <Setter Property="Height" Value="{Binding Path=Height}"/>
+                                <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
+                                <Setter Property="Width" Value="{Binding Width, Mode=OneWay}" />
+                                <Setter Property="Height" Value="{Binding Height, Mode=OneWay}"/>
                             </Style>
                         </DataTemplate.Resources>
                         <Canvas>

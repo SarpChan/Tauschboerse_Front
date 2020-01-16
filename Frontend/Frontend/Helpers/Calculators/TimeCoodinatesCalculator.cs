@@ -33,7 +33,7 @@ namespace Frontend.Helpers.Calculators
             #endregion
         }
 
-        public static double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableModule module, IList<TimetableModule> moduleList)
+        public static double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableModule module, IList<TimetableViewModelModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -55,7 +55,7 @@ namespace Frontend.Helpers.Calculators
             #endregion
         }
 
-        public static double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableModule module, IList<TimetableModule> moduleList)
+        public static double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableModule module, IList<TimetableViewModelModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -112,16 +112,16 @@ namespace Frontend.Helpers.Calculators
     class TimeConverterHelper
     {
 
-        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableModule module, TimetableModule[] items)
+        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableModule module, TimetableViewModelModule[] items)
         {
 
             for (int i = index; i < items.Length; i++)
             {
-                if (items[i].Day.Equals(day) && !items[i].Equals(module))
+                if (items[i].Module.Day.Equals(day) && !items[i].Equals(module))
                 {
 
-                    var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
-                    var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
+                    var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.StartTime as String);
+                    var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.EndTime as String);
 
                     if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
@@ -156,7 +156,7 @@ namespace Frontend.Helpers.Calculators
         /// <param name="module">das untersuchte Module</param>
         /// <param name="moduleList">Liste aller Module</param>
         /// <returns>Anzahl der Module neben dem u. Module ink. u. Module</returns>
-        public static int CalculateModuleWidthDivider(TimetableModule module, IList<TimetableModule> moduleList)
+        public static int CalculateModuleWidthDivider(TimetableModule module, IList<TimetableViewModelModule> moduleList)
         {
 
             int divider = 1;
@@ -171,20 +171,20 @@ namespace Frontend.Helpers.Calculators
             return divider;
         }
 
-        private static int CalculateModuleRowPosition(int counter, int index, int startTime, int endTime, long id, String day, TimetableModule module, TimetableModule[] items)
+        private static int CalculateModuleRowPosition(int counter, int index, int startTime, int endTime, long id, String day, TimetableModule module, TimetableViewModelModule[] items)
         {
 
             for (int i = index; i < items.Length; i++)
             {
-                if (items[i].Day.Equals(day) && !items[i].Equals(module))
+                if (items[i].Module.Day.Equals(day) && !items[i].Equals(module))
                 {
 
-                    var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
-                    var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
+                    var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.StartTime as String);
+                    var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.EndTime as String);
 
                     if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
-                        if (id > System.Convert.ToInt64(items[i].ID))
+                        if (id > System.Convert.ToInt64(items[i].Module.ID))
                         {
 
                             var found = CalculateModuleRowPosition(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), id, day, module, items);
@@ -217,7 +217,7 @@ namespace Frontend.Helpers.Calculators
         /// <param name="module">das untersuchte Module</param>
         /// <param name="moduleList">Liste aller Module</param>
         /// <returns>SplatenPostion des Modules</returns>
-        public static int CalculateModuleRowPosition(TimetableModule module, IList<TimetableModule> moduleList)
+        public static int CalculateModuleRowPosition(TimetableModule module, IList<TimetableViewModelModule> moduleList)
         {
             int pos = 1;
 
