@@ -183,7 +183,7 @@ namespace Frontend.ViewModel
             }
         }
 
-        private void OnNameChange(object sender, PropertyChangedEventArgs e,TimetableViewModelModule ttvmm)
+        private void OnNameChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
         {
             Console.WriteLine("Change Name");
             TimetableModule ttm = sender as TimetableModule;
