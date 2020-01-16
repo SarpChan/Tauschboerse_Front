@@ -1,4 +1,5 @@
 ﻿using Frontend.Helpers;
+using Frontend.Helpers.Generators;
 using Frontend.Models;
 using Frontend.View;
 using System;
@@ -164,16 +165,17 @@ namespace Frontend.ViewModel
         {
             if(ttvmm.Module != null)
             {
-                ttvmm.Module.PropertyChanged += OnModuleChange;
+                /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
+                ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
             }
             
         }
 
-        private void OnModuleChange(object sender, PropertyChangedEventArgs e)
+        private void OnModuleChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
         {
             switch (e.PropertyName)
             {
-                case "Name": OnNameChange(sender, e);break;
+                case "Name": OnNameChange(sender, e,ttvmm);break;
                 case "StartTime": OnStartTimeChange(sender, e);break;
                 case "EndTime": OnEndTimeChange(sender, e);break;
                 case "Day": OnDayChange(sender, e); break;
@@ -181,9 +183,13 @@ namespace Frontend.ViewModel
             }
         }
 
-        private void OnNameChange(object sender, PropertyChangedEventArgs e)
+        private void OnNameChange(object sender, PropertyChangedEventArgs e,TimetableViewModelModule ttvmm)
         {
             Console.WriteLine("Change Name");
+            TimetableModule ttm = sender as TimetableModule;
+
+            ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName,ttm.Type);
+
         }
         private void OnStartTimeChange(object sender, PropertyChangedEventArgs e)
         {

@@ -20,7 +20,7 @@ namespace Frontend.Helpers.Generators
         /// generiert fuer das moduleDummy eine Farbe mit der in der App.config festgelegten Methode
         /// </summary>
         /// <param name="moduleDummy"></param>
-        public string generateColor(string name, TimetableModule.ModuleType type)
+        public static string generateColor(string name, TimetableModule.ModuleType type)
         {
             string mode = ConfigurationManager.AppSettings.Get("colorgenerator.mode");
 
