@@ -72,9 +72,6 @@
 
                 <Viewbox></Viewbox>
             </StackPanel>
-          
-             
-            
         </Popup>
        
 
@@ -195,11 +192,11 @@
 
                 <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:TimetableModule}">
+                    <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
                         <DataTemplate.Resources>
                             <Style TargetType="usercontrols:TimetableItem">
-                                <Setter Property="Canvas.Top" Value="{Binding Y}"/>
-                                <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Path=Y}"/>
+                                <Setter Property="Canvas.Left" Value="{Binding Path=X}"/>
                                 <Setter Property="Width" Value="{Binding Path=Width}" />
                                 <Setter Property="Height" Value="{Binding Path=Height}"/>
                             </Style>

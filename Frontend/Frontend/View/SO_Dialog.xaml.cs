@@ -54,7 +54,7 @@ namespace Frontend.View
             };
 
             TextBlock courseName = new TextBlock();
-            courseName.Text = timetableItem.Module.CourseName;
+            courseName.Text = timetableItem.Module.Module.CourseName;
         }
 
         public TimetableItem Item

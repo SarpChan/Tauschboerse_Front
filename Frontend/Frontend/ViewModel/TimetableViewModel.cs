@@ -29,9 +29,9 @@ namespace Frontend.ViewModel
 
         public TimetableViewModel()
         {
-            foreach( var module in moduleListModel.ModuleList)
+            foreach (var module in moduleListModel.ModuleList)
             {
-                _ModuleList.Add(new TimetableViewModelModule { 
+                _ModuleList.Add(new TimetableViewModelModule {
                     Module = module,
                 });
             }
@@ -53,22 +53,22 @@ namespace Frontend.ViewModel
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 
-           
-                switch (e.Action)
-                {
-                    case NotifyCollectionChangedAction.Add:
-                        OnModuleAdd(sender, e);
-                        break;
-                    case NotifyCollectionChangedAction.Remove:
-                        OnModuleRemove(sender, e);
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    OnModuleAdd(sender, e);
                     break;
-                    case NotifyCollectionChangedAction.Reset:
-                        OnModuleClear(sender, e);
+                case NotifyCollectionChangedAction.Remove:
+                    OnModuleRemove(sender, e);
                     break;
-                    default:
-                        throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
-                }
-            
+                case NotifyCollectionChangedAction.Reset:
+                    OnModuleClear(sender, e);
+                    break;
+                default:
+                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+            }
+
         }
 
         #region Commands
@@ -140,7 +140,7 @@ namespace Frontend.ViewModel
 
                 CourseName = "TEST",
 
-                GroupChar = 'Z',        
+                GroupChar = 'Z',
 
             };
 
@@ -151,16 +151,16 @@ namespace Frontend.ViewModel
 
         }
 
-        
+
 
 
         #endregion
-        
+
         #region Methods
 
         private void CalculateInitialValues()
         {
-            foreach(TimetableViewModelModule ttvmm in _ModuleList)
+            foreach (TimetableViewModelModule ttvmm in _ModuleList)
             {
                 TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
                 //ttvmm.X = timeToYCoordinatesConverter.Convert()
@@ -172,12 +172,12 @@ namespace Frontend.ViewModel
         private List<TimetableViewModelModule> findDependentModules(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
         {
             List<TimetableViewModelModule> dependencies = new List<TimetableViewModelModule>();
-            foreach(TimetableViewModelModule i in moduleList)
+            foreach (TimetableViewModelModule i in moduleList)
             {
                 if (i.Module.Equals(module.Module))
                 {
                     continue;
-                } 
+                }
                 else
                 {
                     int startTime = TimeCoodinatesCalculator.TimeStringToInt(module.Module.StartTime);
@@ -196,7 +196,7 @@ namespace Frontend.ViewModel
 
         private TimetableViewModelModule findTimetableViewModelMoudle(TimetableModule t, IList<TimetableViewModelModule> moduleList)
         {
-            foreach(TimetableViewModelModule ttvmm in moduleList)
+            foreach (TimetableViewModelModule ttvmm in moduleList)
             {
                 if (ttvmm.Module.Equals(t))
                 {
@@ -213,65 +213,75 @@ namespace Frontend.ViewModel
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-            if(ttvmm.Module != null)
-            {
-                /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
-                ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
-            }
-            
+        
+            /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
+            ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
+
+            //Initale Wertzuweisung
+            ttvmm.Height = 100;
+            ttvmm.Width = 100;
+
+            ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
+            ttvmm.X = 10;
+            ttvmm.Y = 20;
+          
         }
 
         private void OnModuleChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
         {
             var args = e as PropertyChangedExtendedEventArgs;
+            var ttm = sender as TimetableModule;
 
 
             switch (e.PropertyName)
             {
-                case "Name": OnNameChange(sender, args, ttvmm);break;
-                case "StartTime": OnStartTimeChange(sender, args,ttvmm);break;
-                case "EndTime": OnEndTimeChange(sender, args,ttvmm);break;
-                case "Day": OnDayChange(sender, args,ttvmm); break;
-                case "Type": OnTypeChange(sender, args,ttvmm); break;
+                case "Name": OnNameChange(ttm, args, ttvmm); break;
+                case "StartTime": OnStartTimeChange(ttm, args, ttvmm); break;
+                case "EndTime": OnEndTimeChange(ttm, args, ttvmm); break;
+                case "Day": OnDayChange(ttm, args, ttvmm); break;
+                case "Type": OnTypeChange(ttm, args, ttvmm); break;
             }
         }
 
-        private void OnNameChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnNameChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Change Name");
-            TimetableModule ttm = sender as TimetableModule;
+            Console.ForegroundColor = ConsoleColor.White;
 
-            ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName,ttm.Type);
-
+            ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName, ttm.Type);
 
         }
-        private void OnStartTimeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnStartTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnEndTimeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnEndTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnDayChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnDayChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnTypeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnTypeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-
+            ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName, ttm.Type);
         }
         private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach(TimetableModule t in e.NewItems)
+            foreach (TimetableModule t in e.NewItems)
             {
                 TimetableViewModelModule add = new TimetableViewModelModule
                 {
                     Module = t
                 };
+
+                Console.WriteLine("\t add Module");
+
                 _ModuleList.Add(add);
                 calculateValues(add, _ModuleList);
-                foreach(TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
+                foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
                 {
                     calculateValues(ttvmm, _ModuleList);
                 }
@@ -296,7 +306,7 @@ namespace Frontend.ViewModel
         private ObservableCollection<TimetableViewModelModule> _ModuleList = new ObservableCollection<TimetableViewModelModule>();
         public ObservableCollection<TimetableViewModelModule> ModuleList
         {
-            get { return _ModuleList;  }
+            get { return _ModuleList; }
         }
 
         private ObservableCollection<RowModel> _RowList = new ObservableCollection<RowModel>();
@@ -316,7 +326,7 @@ namespace Frontend.ViewModel
         {
             get
             {
-                if(_DialogOpen_ButtonCommand == null)
+                if (_DialogOpen_ButtonCommand == null)
                 {
                     _DialogOpen_ButtonCommand = new ActionCommand(dummy => this.OpenDialog());
                 }
@@ -324,7 +334,7 @@ namespace Frontend.ViewModel
             }
         }
 
-     
+
         //Hilfsmethode fuer OpenDialogCommand
         private void OpenDialog()
         {
@@ -336,7 +346,8 @@ namespace Frontend.ViewModel
 
         #endregion
     }
-
+}
+namespace Frontend.Models{
     public class TimetableViewModelModule
     {
         public double X { get; set; }
@@ -347,5 +358,5 @@ namespace Frontend.ViewModel
         public TimetableModule Module { get; set; }
 
     }
-
 }
+

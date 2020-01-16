@@ -41,7 +41,7 @@ namespace Frontend.UserControls
                 SetValue(ModuleProperty, value);
             }
         }
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableViewModelModule), typeof(TimetableViewModelModule), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableViewModelModule), typeof(TimetableItem), new UIPropertyMetadata(null));
 
         
        
