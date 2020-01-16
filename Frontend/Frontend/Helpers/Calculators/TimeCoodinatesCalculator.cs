@@ -9,7 +9,7 @@ namespace Frontend.Helpers.Calculators
 {
     class TimeCoodinatesCalculator
     {
-        public double ConvertTimeToYCoordinates(double totalHeight, TimeSpan moduleStartTime)
+        public static double ConvertTimeToYCoordinates(double totalHeight, TimeSpan moduleStartTime)
         {
             #region IValueConverter Members
 
@@ -33,7 +33,7 @@ namespace Frontend.Helpers.Calculators
             #endregion
         }
 
-        public double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableModule module, IList<TimetableModule> moduleList)
+        public static double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableModule module, IList<TimetableModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -55,7 +55,7 @@ namespace Frontend.Helpers.Calculators
             #endregion
         }
 
-        public double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableModule module, IList<TimetableModule> moduleList)
+        public static double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableModule module, IList<TimetableModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -79,10 +79,7 @@ namespace Frontend.Helpers.Calculators
         #endregion
 
 
-        public double ItemHeightConverter(double totalHeight, TimeSpan moduleStartTime, TimeSpan moduleEndTime)
-        {
-            #region IValueConverter Members
-            /// <summary>
+        /// <summary>
             /// Berechnet die Höhe eines TimetableItems
             /// </summary>
             /// <param name="value">Array mit benötigten Werten zum Umrechnen
@@ -91,6 +88,10 @@ namespace Frontend.Helpers.Calculators
             /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
             /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
             /// <returns>Höhe in Pixel</returns>
+        public static double ItemHeightConverter(double totalHeight, TimeSpan moduleStartTime, TimeSpan moduleEndTime)
+        {
+            #region IValueConverter Members
+            
 
             TimeSpan duration = moduleEndTime - moduleStartTime;
             double heightPerRow = totalHeight / (Globals.GetDuration() / Globals.Subdivisions) + Globals.RowPadding;

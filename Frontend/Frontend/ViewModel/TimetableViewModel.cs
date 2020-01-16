@@ -1,4 +1,5 @@
 ﻿using Frontend.Helpers;
+using Frontend.Helpers.Calculators;
 using Frontend.Helpers.Generators;
 using Frontend.Models;
 using Frontend.View;
@@ -19,6 +20,11 @@ namespace Frontend.ViewModel
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
         private DayListModel dayListModel = new DayListModel();
         private TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
+
+        private double totalWidth
+        {
+            get; set;
+        }
 
         public TimetableViewModel()
         {
@@ -158,7 +164,50 @@ namespace Frontend.ViewModel
                 TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
                 //ttvmm.X = timeToYCoordinatesConverter.Convert()
                 Inititalize_TimetableViewModelModule(ttvmm);
+                calculateValues(ttvmm, _ModuleList);
             }
+        }
+
+        private List<TimetableViewModelModule> findDependentModules(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
+        {
+            List<TimetableViewModelModule> dependencies = new List<TimetableViewModelModule>();
+            foreach(TimetableViewModelModule i in moduleList)
+            {
+                if (i.Module.Equals(module.Module))
+                {
+                    continue;
+                } 
+                else
+                {
+                    int startTime = TimeCoodinatesCalculator.TimeStringToInt(module.Module.StartTime);
+                    int endTime = TimeCoodinatesCalculator.TimeStringToInt(module.Module.EndTime);
+                    var startTimeCompare = TimeCoodinatesCalculator.TimeStringToInt(i.Module.StartTime);
+                    var endTimeCompare = TimeCoodinatesCalculator.TimeStringToInt(i.Module.EndTime);
+                    if ((startTime <= startTimeCompare && endTime > startTimeCompare) || (startTime < endTimeCompare && endTime >= endTimeCompare))
+                    {
+                        dependencies.Add(i);
+                    }
+                }
+            }
+
+            return dependencies;
+        }
+
+        private TimetableViewModelModule findTimetableViewModelMoudle(TimetableModule t, IList<TimetableViewModelModule> moduleList)
+        {
+            foreach(TimetableViewModelModule ttvmm in moduleList)
+            {
+                if (ttvmm.Module.Equals(t))
+                {
+                    return ttvmm;
+                }
+            }
+            return null;
+        }
+
+        private void calculateValues(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
+        {
+            module.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(100, 100, int.Parse(module.Module.Day), module.Module, moduleListModel.ModuleList);
         }
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
@@ -209,11 +258,28 @@ namespace Frontend.ViewModel
         }
         private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
-
+            foreach(TimetableModule t in e.NewItems)
+            {
+                TimetableViewModelModule add = new TimetableViewModelModule
+                {
+                    Module = t
+                };
+                _ModuleList.Add(add);
+                calculateValues(add, _ModuleList);
+                foreach(TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
+                {
+                    calculateValues(ttvmm, _ModuleList);
+                }
+            }
         }
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e)
         {
-
+            foreach (TimetableModule t in e.NewItems)
+            {
+                //t.PropertyChanged -= (sender, e) => OnModuleChange(sender, e, ttvmm);
+                TimetableViewModelModule foundTTVMM = findTimetableViewModelMoudle(t, _ModuleList);
+                List<TimetableViewModelModule> dependencies = findDependentModules(foundTTVMM, _ModuleList);
+            }
         }
         private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
         {
