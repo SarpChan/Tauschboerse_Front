@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Frontend.Helpers.Handlers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    public class TimetableModule : INotifyPropertyChanged
+    public class TimetableModule : NotifyPropertyValueChange
     {
 
-        public event PropertyChangedEventHandler PropertyChanged ;
+        //public event PropertyChangedEventHandler PropertyChanged ;
 
         [JsonIgnore]
         ModuleType _Type;
@@ -30,14 +31,16 @@ namespace Frontend.Models
         public string ID { get; set; }
         public string StartTime { get { return _StartTime; } 
             set {
+                var oldValue = _StartTime;
                 _StartTime = value;
-                OnPropertyChanged("StartTime");
+                NotifyPropertyChanged("StartTime", oldValue, value);
             } 
         }
         public string EndTime { get { return _EndTime; }
             set {
+                var oldValue = _EndTime;
                 _EndTime = value;
-                OnPropertyChanged("EndTime");
+                NotifyPropertyChanged("EndTime", oldValue, value);
             } 
         }
         [JsonProperty("roomID")]
@@ -47,16 +50,18 @@ namespace Frontend.Models
         [JsonProperty("moduleTitle")]
         public string CourseName { get { return _Name; } 
             set {
+                var oldValue = _Name;
                 _Name = value;
-                OnPropertyChanged("Name");
+                NotifyPropertyChanged("Name", oldValue, value);
             } 
         }
         public char GroupChar { get; set; }
         [JsonProperty("dayOfWeek")]
         public string Day { get { return _Day; } 
             set {
+                var oldValue = _Day;
                 _Day = value;
-                OnPropertyChanged("Day");
+                NotifyPropertyChanged("Day", oldValue, value);
             }
         }
         //[Newtonsoft.Json.JsonProperty("courseType")]
@@ -64,17 +69,9 @@ namespace Frontend.Models
             get { return _Type; }
             set
             {
+                var oldValue = _Type;
                 _Type = value;
-                OnPropertyChanged("Type");
-            }
-        }
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
+                NotifyPropertyChanged("Type", oldValue, value);
             }
         }
     }

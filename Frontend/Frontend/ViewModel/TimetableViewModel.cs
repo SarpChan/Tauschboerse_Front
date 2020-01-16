@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers;
 using Frontend.Helpers.Calculators;
 using Frontend.Helpers.Generators;
+using Frontend.Helpers.Handlers;
 using Frontend.Models;
 using Frontend.View;
 using System;
@@ -222,37 +223,41 @@ namespace Frontend.ViewModel
 
         private void OnModuleChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
         {
+            var args = e as PropertyChangedExtendedEventArgs;
+
+
             switch (e.PropertyName)
             {
-                case "Name": OnNameChange(sender, e,ttvmm);break;
-                case "StartTime": OnStartTimeChange(sender, e);break;
-                case "EndTime": OnEndTimeChange(sender, e);break;
-                case "Day": OnDayChange(sender, e); break;
-                case "Type": OnTypeChange(sender, e); break;
+                case "Name": OnNameChange(sender, args, ttvmm);break;
+                case "StartTime": OnStartTimeChange(sender, args,ttvmm);break;
+                case "EndTime": OnEndTimeChange(sender, args,ttvmm);break;
+                case "Day": OnDayChange(sender, args,ttvmm); break;
+                case "Type": OnTypeChange(sender, args,ttvmm); break;
             }
         }
 
-        private void OnNameChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnNameChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
             Console.WriteLine("Change Name");
             TimetableModule ttm = sender as TimetableModule;
 
             ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName,ttm.Type);
 
+
         }
-        private void OnStartTimeChange(object sender, PropertyChangedEventArgs e)
+        private void OnStartTimeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnEndTimeChange(object sender, PropertyChangedEventArgs e)
+        private void OnEndTimeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnDayChange(object sender, PropertyChangedEventArgs e)
+        private void OnDayChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
-        private void OnTypeChange(object sender, PropertyChangedEventArgs e)
+        private void OnTypeChange(object sender, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
 
         }
