@@ -22,10 +22,18 @@ namespace Frontend.ViewModel
         private DayListModel dayListModel = new DayListModel();
         private TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
 
-        private double totalWidth
-        {
-            get; set;
+        private double _TotalWidth;
+
+        public double TotalWidth {
+            get{;return _TotalWidth; }
+            set {
+                //Hier muesste dann das OnWitdhChange Aufgeruffen werden 
+                Console.WriteLine("\t TotalWidth" + value);
+                _TotalWidth = value; 
+            } 
         }
+        public double TimeWidth { get; set;}
+        public double TotalHeight { get; set; }
 
         public TimetableViewModel()
         {
@@ -218,18 +226,22 @@ namespace Frontend.ViewModel
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
             ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
 
+            
+
+            TimeSpan start = new TimeSpan(14,10,0);
+            TimeSpan end = new TimeSpan(15,10,0);
+
             //Initale Wertzuweisung
-            ttvmm.Height = 100;
-            ttvmm.Width = 100;
+            ttvmm.Height =TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
+            ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm.Module,_ModuleList);
 
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
-            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(1000,1480.6, Int32.Parse(ttvmm.Module.Day), ttvmm.Module,_ModuleList);
-            TimeSpan span = new TimeSpan(TimeCoodinatesCalculator.TimeStringToInt( ttvmm.Module.StartTime));
+            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm.Module,_ModuleList);
+            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
 
-
-            //Console.WriteLine("\t " + ttvmm.X+"\t"+ ttvmm.Module.Day);
-            ttvmm.Y = 10;//TimeCoodinatesCalculator.ConvertTimeToYCoordinates(1,span);
+            Console.WriteLine("StartTime " + start + "EndTime :" + end);
+            Console.WriteLine("\t TTVMM: X" + ttvmm.X+" Y: "+ ttvmm.Y+" Color: "+ttvmm.Color+" Height: "+ttvmm.Height+" Width: "+ttvmm.Width);
 
         }
 
@@ -286,7 +298,7 @@ namespace Frontend.ViewModel
                 Console.WriteLine("\t add Module");
 
                 _ModuleList.Add(add);
-                calculateValues(add, _ModuleList);
+                Inititalize_TimetableViewModelModule(add);
                 foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
                 {
                     Inititalize_TimetableViewModelModule(ttvmm);
@@ -351,6 +363,29 @@ namespace Frontend.ViewModel
         }
 
         #endregion
+    }
+
+    public static class TimetableSizeObserver
+    {
+        public static readonly DependencyProperty ObserveProperty = DependencyProperty.RegisterAttached(
+            "Observe",
+            typeof(bool),
+            typeof(TimetableSizeObserver));
+
+        public static readonly DependencyProperty ObservedWidthProperty = DependencyProperty.RegisterAttached(
+            "ObservedWidth",
+            typeof(double),
+            typeof(TimetableSizeObserver));
+
+        public static readonly DependencyProperty ObservedHeightProperty = DependencyProperty.RegisterAttached(
+            "ObservedHeight",
+            typeof(double),
+            typeof(TimetableSizeObserver));
+
+        public static readonly DependencyProperty ObservedTimeHeightProperty = DependencyProperty.RegisterAttached(
+            "ObservedTimeHeight",
+            typeof(double),
+            typeof(TimetableSizeObserver));
     }
 }
 namespace Frontend.Models{

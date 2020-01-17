@@ -83,6 +83,7 @@
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
+    <Compile Include="Helpers\DataPiping.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals\Globals.cs" />
     <Compile Include="Helpers\Globals\UserInformation.cs" />
@@ -90,7 +91,7 @@
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
     <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
-    <Compile Include="Helpers\SHA256Gen.cs" />
+    <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />

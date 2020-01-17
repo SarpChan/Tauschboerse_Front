@@ -75,7 +75,15 @@
         </Popup>
        
 
-        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas" >
+        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas">
+            <!--Nutzt die DataPipe um Daten an das Module zu senden-->
+            <Helpers:DataPiping.DataPipes>
+                <Helpers:DataPipeCollection>
+                    <Helpers:DataPipe Target="{Binding Path=TotalWidth,Mode=OneWayToSource}"
+                                      Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, Path=ActualWidth}"/>
+                </Helpers:DataPipeCollection>
+            </Helpers:DataPiping.DataPipes>
+
             <!-- 
                 For loop: Rows
                 
