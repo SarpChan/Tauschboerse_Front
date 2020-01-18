@@ -23,17 +23,30 @@ namespace Frontend.ViewModel
         private TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
 
         private double _TotalWidth;
+        private double _TotalHeight;
+        private double _TimeWitdh;
 
         public double TotalWidth {
-            get{;return _TotalWidth; }
+            get{return _TotalWidth; }
             set {
-                //Hier muesste dann das OnWitdhChange Aufgeruffen werden 
-                Console.WriteLine("\t TotalWidth" + value);
-                _TotalWidth = value; 
+                _TotalWidth = value;
+                OnTotalWitdhChange(_TotalWidth);
             } 
         }
-        public double TimeWidth { get; set;}
-        public double TotalHeight { get; set; }
+
+        public double TimeWidth { get { return _TimeWitdh; } 
+            set {
+                _TimeWitdh = value;
+                OnTimeWidthtChange(_TimeWitdh);
+            } 
+        }
+
+        public double TotalHeight { get { return _TotalHeight; } 
+            set {
+                _TotalHeight = value;
+                OnTotalHeightChange(_TotalHeight);
+            } 
+        }
 
         public TimetableViewModel()
         {
@@ -61,21 +74,22 @@ namespace Frontend.ViewModel
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 
+           
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        OnModuleAdd(sender, e);
+                        break;
+                    case NotifyCollectionChangedAction.Remove:
+                        OnModuleRemove(sender, e);
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        OnModuleClear(sender, e);
+                        break;
+                    default:
+                        throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+                }
 
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    OnModuleAdd(sender, e);
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    OnModuleRemove(sender, e);
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    OnModuleClear(sender, e);
-                    break;
-                default:
-                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
-            }
 
         }
 
@@ -171,9 +185,8 @@ namespace Frontend.ViewModel
             foreach (TimetableViewModelModule ttvmm in _ModuleList)
             {
                 TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
-                //ttvmm.X = timeToYCoordinatesConverter.Convert()
                 Inititalize_TimetableViewModelModule(ttvmm);
-                calculateValues(ttvmm, _ModuleList);
+                
             }
         }
 
@@ -214,35 +227,46 @@ namespace Frontend.ViewModel
             return null;
         }
 
-        private void calculateValues(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
-        {
-            //Hat Inititalize_TimetableViewModelModule(...) ueberschrieben
-            //module.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(100, 100, int.Parse(module.Module.Day), module.Module,_ModuleList);
-        }
-
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
         
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
             ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
-
-            
-
-            TimeSpan start = new TimeSpan(14,10,0);
-            TimeSpan end = new TimeSpan(15,10,0);
-
-            //Initale Wertzuweisung
-            ttvmm.Height =TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
-            ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm.Module,_ModuleList);
-
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
-            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm.Module,_ModuleList);
-            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
+        }
 
-            Console.WriteLine("StartTime " + start + "EndTime :" + end);
-            Console.WriteLine("\t TTVMM: X" + ttvmm.X+" Y: "+ ttvmm.Y+" Color: "+ttvmm.Color+" Height: "+ttvmm.Height+" Width: "+ttvmm.Width);
+        private void OnTimeWidthtChange(double newValue)
+        {
+            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            {
+                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth,newValue, ttvmm.Module, _ModuleList);
+                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth,newValue, int.Parse(ttvmm.Module.Day), ttvmm.Module, _ModuleList);
+            }
+        }
 
+        private void OnTotalHeightChange(double newValue)
+        {
+            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            {
+                TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
+                TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
+
+                ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(newValue, start);
+                ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(newValue, start, end);
+            }
+        }
+
+        private void OnTotalWitdhChange(double newValue)
+        {
+
+            Console.WriteLine("WidthChange : "+ newValue);
+
+            foreach(TimetableViewModelModule ttvmm in _ModuleList)
+            {
+                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(newValue, TimeWidth, ttvmm.Module, _ModuleList);
+                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(newValue, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm.Module, _ModuleList);
+            }
         }
 
         private void OnModuleChange(object sender, PropertyChangedEventArgs e, TimetableViewModelModule ttvmm)
@@ -364,39 +388,66 @@ namespace Frontend.ViewModel
 
         #endregion
     }
-
-    public static class TimetableSizeObserver
-    {
-        public static readonly DependencyProperty ObserveProperty = DependencyProperty.RegisterAttached(
-            "Observe",
-            typeof(bool),
-            typeof(TimetableSizeObserver));
-
-        public static readonly DependencyProperty ObservedWidthProperty = DependencyProperty.RegisterAttached(
-            "ObservedWidth",
-            typeof(double),
-            typeof(TimetableSizeObserver));
-
-        public static readonly DependencyProperty ObservedHeightProperty = DependencyProperty.RegisterAttached(
-            "ObservedHeight",
-            typeof(double),
-            typeof(TimetableSizeObserver));
-
-        public static readonly DependencyProperty ObservedTimeHeightProperty = DependencyProperty.RegisterAttached(
-            "ObservedTimeHeight",
-            typeof(double),
-            typeof(TimetableSizeObserver));
-    }
 }
 namespace Frontend.Models{
-    public class TimetableViewModelModule
+    public class TimetableViewModelModule : NotifyPropertyValueChange
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public string Color { get; set; }
-        public TimetableModule Module { get; set; }
+        private double _X;
+        private double _Y;
+        private double _Width;
+        private double _Height;
+        private string  _Color;
+        private TimetableModule _Module;
+
+
+        public double X { get { return _X; } 
+            set {
+                var oldValue = _X;
+                _X = value;
+                NotifyPropertyChanged("X", oldValue, value);
+            } 
+        }
+
+        public double Y { get { return _Y; }
+            set
+            {
+                var oldValue = _Y;
+                _Y = value;
+                NotifyPropertyChanged("Y", oldValue, value);
+            }
+        }
+        public double Width { get { return _Width; } set
+            {
+                var oldValue = _Width;
+                _Width = value;
+                NotifyPropertyChanged("Width", oldValue, value);
+            }
+        }
+
+        public double Height { get { return _Height; }
+            set
+            {
+                var oldValue = _Height;
+                _Height = value;
+                NotifyPropertyChanged("Height", oldValue, value);
+            }
+        }
+
+        public string Color { get { return _Color; } set
+            {
+                var oldValue = _Color;
+                _Color = value;
+                NotifyPropertyChanged("Color", oldValue, value);
+            }
+        }
+        public TimetableModule Module { get { return _Module; } 
+            set
+            {
+                var oldValue = _Module;
+                _Module = value;
+                NotifyPropertyChanged("Color", oldValue, value);
+            }
+        }
 
     }
 }

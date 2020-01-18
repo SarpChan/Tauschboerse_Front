@@ -76,11 +76,16 @@
        
 
         <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas">
-            <!--Nutzt die DataPipe um Daten an das Module zu senden-->
+            <!--Nutzt die DataPipe um Daten an das ViewModule zu senden-->
+            
             <Helpers:DataPiping.DataPipes>
                 <Helpers:DataPipeCollection>
                     <Helpers:DataPipe Target="{Binding Path=TotalWidth,Mode=OneWayToSource}"
-                                      Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, Path=ActualWidth}"/>
+                                      Source="{Binding ActualWidth , ElementName=Timetable, Mode=OneWay}"/>
+                    <Helpers:DataPipe Target="{Binding Path=TotalHeight,Mode=OneWayToSource}"
+                                      Source="{Binding ActualHeight , ElementName=Timetable, Mode=OneWay}"/>
+                    <Helpers:DataPipe Target="{Binding Path=TimeWidth,Mode=OneWayToSource}" 
+                                      Source="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"/>
                 </Helpers:DataPipeCollection>
             </Helpers:DataPiping.DataPipes>
 
