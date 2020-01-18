@@ -240,8 +240,8 @@ namespace Frontend.ViewModel
         {
             foreach (TimetableViewModelModule ttvmm in _ModuleList)
             {
-                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth,newValue, ttvmm.Module, _ModuleList);
-                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth,newValue, int.Parse(ttvmm.Module.Day), ttvmm.Module, _ModuleList);
+                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth,newValue, ttvmm, _ModuleList);
+                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth,newValue, int.Parse(ttvmm.Module.Day), ttvmm, _ModuleList);
             }
         }
 
@@ -264,8 +264,8 @@ namespace Frontend.ViewModel
 
             foreach(TimetableViewModelModule ttvmm in _ModuleList)
             {
-                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(newValue, TimeWidth, ttvmm.Module, _ModuleList);
-                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(newValue, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm.Module, _ModuleList);
+                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(newValue, TimeWidth, ttvmm, _ModuleList);
+                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(newValue, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, _ModuleList);
             }
         }
 

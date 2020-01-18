@@ -33,7 +33,7 @@ namespace Frontend.Helpers.Calculators
             #endregion
         }
 
-        public static double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableModule module, IList<TimetableViewModelModule> moduleList)
+        public static double ConvertTimeToXCoordinates(double totalWidth, double timeWidth, int weekday, TimetableViewModelModule ttvmm, IList<TimetableViewModelModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -47,15 +47,15 @@ namespace Frontend.Helpers.Calculators
             /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
             /// <returns>Pixel für die X-Koordniate</returns>
 
-            int rowPos = TimeConverterHelper.CalculateModuleRowPosition(module, moduleList);
-            int divder = TimeConverterHelper.CalculateModuleWidthDivider(module, moduleList);
+            int rowPos = TimeConverterHelper.CalculateModuleRowPosition(ttvmm.Module, moduleList);
+            int divder = TimeConverterHelper.CalculateModuleWidthDivider(ttvmm, moduleList);
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
             return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem / divder) * (rowPos - 1));
             #endregion
         }
 
-        public static double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableModule module, IList<TimetableViewModelModule> moduleList)
+        public static double ConvertDayToItemWidth(double totalWidth, double timeWidth, TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
         {
             #region IValueConverter Members
             /// <summary>
@@ -112,32 +112,32 @@ namespace Frontend.Helpers.Calculators
     class TimeConverterHelper
     {
 
-        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableModule module, TimetableViewModelModule[] items)
+        private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableViewModelModule ttvmm, TimetableViewModelModule[] items)
         {
 
             for (int i = index; i < items.Length; i++)
             {
-                if (items[i].Module.Day.Equals(day) && !items[i].Equals(module))
+                if (items[i].Module.Day.Equals(day) && !items[i].Equals(ttvmm))
                 {
-
+                    
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].Module.EndTime as String);
 
                     if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
                     {
 
-                        int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), day, module, items);
+                        int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), day, ttvmm, items);
 
                         int behinde = 0;
                         if (e2 < endTime)
                         {
-                            behinde = CalculateModuleWidthDivider(counter, 1 + i, e2, endTime, day, module, items);
+                            behinde = CalculateModuleWidthDivider(counter, 1 + i, e2, endTime, day, ttvmm, items);
                         }
 
                         int before = 0;
                         if (startTime < s2)
                         {
-                            before = CalculateModuleWidthDivider(counter, 1 + i, startTime, s2, day, module, items);
+                            before = CalculateModuleWidthDivider(counter, 1 + i, startTime, s2, day, ttvmm, items);
                         }
 
                         return Math.Max(Math.Max(founded, behinde), before);
@@ -150,24 +150,24 @@ namespace Frontend.Helpers.Calculators
         }
 
 
-        /// <summary>
+        /// <summary>s
         /// Brechnet wie viele Module neben dem untersuchten Modul liegen
         /// </summary>
         /// <param name="module">das untersuchte Module</param>
         /// <param name="moduleList">Liste aller Module</param>
         /// <returns>Anzahl der Module neben dem u. Module ink. u. Module</returns>
-        public static int CalculateModuleWidthDivider(TimetableModule module, IList<TimetableViewModelModule> moduleList)
+        public static int CalculateModuleWidthDivider(TimetableViewModelModule ttvmm, IList<TimetableViewModelModule> moduleList)
         {
 
             int divider = 1;
 
-            var startTime = TimeCoodinatesCalculator.TimeStringToInt(module.StartTime as String);
-            var endTime = TimeCoodinatesCalculator.TimeStringToInt(module.EndTime as String);
+            var startTime = TimeCoodinatesCalculator.TimeStringToInt(ttvmm.Module.StartTime as String);
+            var endTime = TimeCoodinatesCalculator.TimeStringToInt(ttvmm.Module.EndTime as String);
 
 
-            divider = CalculateModuleWidthDivider(divider, 0, startTime, endTime, module.Day, module, moduleList.ToArray());
+            divider = CalculateModuleWidthDivider(divider, 0, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
 
-            //Console.WriteLine("Module: " + module.CourseName + "Div :" + divider);
+            Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
             return divider;
         }
 
