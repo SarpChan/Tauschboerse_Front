@@ -167,7 +167,7 @@ namespace Frontend.Helpers.Calculators
 
             divider = CalculateModuleWidthDivider(divider, 0, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
 
-            Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
+            //Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
             return divider;
         }
 

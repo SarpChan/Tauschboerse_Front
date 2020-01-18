@@ -8,6 +8,7 @@ using Frontend.Models;
 using Frontend.Helpers;
 using Microsoft.Win32;
 using System.IO;
+using Frontend.ViewModel;
 
 namespace Frontend.View
 {
@@ -56,8 +57,6 @@ namespace Frontend.View
 
         }
 
-        
-
         private void OnfieldoStudyComboBoxChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -81,6 +80,11 @@ namespace Frontend.View
                 }
             }
             */
+        }
+
+        private void TimeTable_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

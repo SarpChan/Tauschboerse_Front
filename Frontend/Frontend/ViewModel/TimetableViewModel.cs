@@ -50,6 +50,8 @@ namespace Frontend.ViewModel
 
         public TimetableViewModel()
         {
+
+            Console.WriteLine("NEW TIMETABLEVIEWMODEL");
             foreach (var module in moduleListModel.ModuleList)
             {
                 _ModuleList.Add(new TimetableViewModelModule {
@@ -142,13 +144,11 @@ namespace Frontend.ViewModel
 	
              */
 
-            Console.WriteLine("I was here \n");
-
             TimetableModule add = new TimetableModule()
 
             {
 
-                ID = "420",
+                ID = "13",
 
                 StartTime = "08:15",
 
@@ -166,11 +166,7 @@ namespace Frontend.ViewModel
 
             };
 
-            //moduleListModel.AddModule(add);
-
-            //ModuleList.Add(add);
-
-
+            moduleListModel.ModuleList.Add(add);
         }
 
 
@@ -229,11 +225,21 @@ namespace Frontend.ViewModel
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-        
+            TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
+            TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
+
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
-            ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
+            ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(_TotalWidth, _TimeWitdh, ttvmm, _ModuleList);
+            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(_TotalWidth, _TimeWitdh, int.Parse(ttvmm.Module.Day), ttvmm, _ModuleList);
+            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(_TotalHeight, start);
+            ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(_TotalHeight, start, end);
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
+        }
+
+        private void BindListenerOn_TimetableViewModelModule(TimetableViewModelModule ttvmm)
+        {
+            ttvmm.Module.PropertyChanged += (sender, e) => OnModuleChange(sender, e, ttvmm);
         }
 
         private void OnTimeWidthtChange(double newValue)
@@ -259,8 +265,6 @@ namespace Frontend.ViewModel
 
         private void OnTotalWitdhChange(double newValue)
         {
-
-            Console.WriteLine("WidthChange : "+ newValue);
 
             foreach(TimetableViewModelModule ttvmm in _ModuleList)
             {
@@ -312,6 +316,7 @@ namespace Frontend.ViewModel
         }
         private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
+
             foreach (TimetableModule t in e.NewItems)
             {
                 TimetableViewModelModule add = new TimetableViewModelModule
@@ -319,10 +324,14 @@ namespace Frontend.ViewModel
                     Module = t
                 };
 
-                Console.WriteLine("\t add Module");
-
-                _ModuleList.Add(add);
+                Console.WriteLine("\t add Module"+add);
+               
+                ModuleList.Add(add);
+                BindListenerOn_TimetableViewModelModule(add);
                 Inititalize_TimetableViewModelModule(add);
+
+                Console.WriteLine("add on "+this+" ->  "+this.GetHashCode());
+
                 foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
                 {
                     Inititalize_TimetableViewModelModule(ttvmm);
@@ -445,7 +454,7 @@ namespace Frontend.Models{
             {
                 var oldValue = _Module;
                 _Module = value;
-                NotifyPropertyChanged("Color", oldValue, value);
+                NotifyPropertyChanged("Module", oldValue, value);
             }
         }
 

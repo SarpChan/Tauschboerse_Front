@@ -15,6 +15,7 @@ namespace Frontend.Models
         public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
 
         private static ModuleListModel _instance;
+
         public static ModuleListModel Instance
         {
             get

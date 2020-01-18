@@ -174,7 +174,7 @@
     <Compile Include="UserControls\Timetable\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\AdminpageViewModel.cs" />
+    <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -182,6 +182,7 @@
     <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\TimetabeItem.cs" />
+    <Compile Include="ViewModel\TimetablePageViewModel.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>

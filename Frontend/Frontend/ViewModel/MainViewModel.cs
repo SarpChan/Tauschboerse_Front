@@ -34,6 +34,7 @@ namespace Frontend.ViewModel
 
         public MainViewModel()
         {
+
             dayValues.Add("MONDAY", "1");
             dayValues.Add("TUESDAY", "2");
             dayValues.Add("WEDNESDAY", "3");

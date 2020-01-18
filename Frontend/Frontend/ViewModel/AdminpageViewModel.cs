@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace Frontend.ViewModel
 {
-    class AdminpageViewModel: ViewModelBase
+    class AdminPageViewModel: ViewModelBase
     {
         private FieldOfStudy fieldOfStudy = new FieldOfStudy() { Title = "Informatik" };
         private HashSet<FieldOfStudy> fieldsOfStudy = new HashSet<FieldOfStudy>();
@@ -22,11 +22,11 @@ namespace Frontend.ViewModel
             get { return _MyItems; }
         }
 
-        public AdminpageViewModel()
+        public AdminPageViewModel()
         {
             fieldsOfStudy.Add(fieldOfStudy);
             University university = new University() { FieldOfStudies = fieldsOfStudy };
-
+            Console.WriteLine("zu viel ist zuviel .");
 
             foreach (FieldOfStudy ding in fieldsOfStudy)
             {
