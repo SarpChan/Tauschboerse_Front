@@ -51,7 +51,6 @@ namespace Frontend.ViewModel
         public TimetableViewModel()
         {
 
-            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  "+this.GetHashCode());
             foreach (var module in moduleListModel.ModuleList)
             {
                 _ModuleList.Add(new TimetableViewModelModule {
@@ -149,13 +148,13 @@ namespace Frontend.ViewModel
 
             {
 
-                ID = "13",
+                ID = ((int)(new Random().NextDouble() * 50) + 1).ToString(),
 
                 StartTime = "08:15",
 
                 EndTime = "12:30",
 
-                Day = "4",
+                Day = ((int)(new Random().NextDouble() * 6)).ToString(),
 
                 PersonName = "Nicky",
 
@@ -358,7 +357,6 @@ namespace Frontend.ViewModel
         }
         private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
         {
-
         }
         #endregion
 
@@ -467,7 +465,6 @@ namespace Frontend.Models{
                 NotifyPropertyChanged("Module", oldValue, value);
             }
         }
-
     }
 }
 
