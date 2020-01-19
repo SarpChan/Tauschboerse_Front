@@ -3,9 +3,9 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\UserControls",
-    "\\Frontend\\Frontend\\View",
-    "\\Frontend\\Frontend\\ViewModel"
+    "\\Frontend\\Frontend\\Resources",
+    "\\Frontend\\Frontend\\Resources\\Icons",
+    "\\Frontend\\Frontend\\View"
   ],
   "SelectedNode": "\\Frontend\\Frontend.sln",
   "PreviewInSolutionExplorer": false
