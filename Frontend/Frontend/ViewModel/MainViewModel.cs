@@ -332,6 +332,7 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
+
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });

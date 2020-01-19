@@ -12,9 +12,9 @@ namespace Frontend.ViewModel
 {
     class AdminPageViewModel: ViewModelBase
     {
-        private FieldOfStudy fieldOfStudy = new FieldOfStudy() { Title = "Informatik" };
         private HashSet<FieldOfStudy> fieldsOfStudy = new HashSet<FieldOfStudy>();
 
+        
 
         private ObservableCollection<FieldOfStudy> _MyItems = new ObservableCollection<FieldOfStudy>();
         public ObservableCollection<FieldOfStudy> MyItems
@@ -24,14 +24,8 @@ namespace Frontend.ViewModel
 
         public AdminPageViewModel()
         {
-            fieldsOfStudy.Add(fieldOfStudy);
-            University university = new University() { FieldOfStudies = fieldsOfStudy };
-            Console.WriteLine("zu viel ist zuviel .");
 
-            foreach (FieldOfStudy ding in fieldsOfStudy)
-            {
-                _MyItems.Add(ding);
-            }
+            Console.WriteLine("NEW ADMINPAGEVM -> "+this.GetHashCode());
 
 
             //University university = new University();

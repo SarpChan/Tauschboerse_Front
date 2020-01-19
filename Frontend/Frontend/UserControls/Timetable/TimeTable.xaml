@@ -8,7 +8,7 @@
              xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
-            xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              x:Name="Timetable"
              x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
@@ -31,9 +31,11 @@
         <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
         <Helpers:TypeToIconConverter x:Key="TypeToIconConverter"/>
     </UserControl.Resources>
+    
     <UserControl.DataContext>
         <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </UserControl.DataContext>
+    
     <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>
@@ -206,17 +208,14 @@
                 <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
-                        <DataTemplate.Resources>
-                            <Style TargetType="usercontrols:TimetableItem">
-                                <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
-                                <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
-                                <Setter Property="Width" Value="{Binding Width, Mode=OneWay}" />
-                                <Setter Property="Height" Value="{Binding Height, Mode=OneWay}"/>
-                            </Style>
-                        </DataTemplate.Resources>
                         <Canvas>
-                            <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
-                                                        MouseEnter="TimetableItem_MouseEnter"/>
+                            <usercontrols:TimetableItem Module="{Binding .,Mode=TwoWay}" Panel.ZIndex="1" 
+                                                        MouseEnter="TimetableItem_MouseEnter" 
+                                                        Width="{Binding Width ,Mode=TwoWay}" 
+                                                        Height="{Binding Height,Mode=TwoWay}"
+                                                        Canvas.Left="{Binding X,Mode=TwoWay}"
+                                                        Canvas.Top="{Binding Y,Mode=TwoWay}"
+                                                        />
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

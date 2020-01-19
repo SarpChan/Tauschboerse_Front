@@ -9,8 +9,12 @@
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="Admin">
 
+    <Page.DataContext>
+        <viewmodel:AdminPageViewModel x:Name="AdminPageViewModel"/>
+    </Page.DataContext>
+    
     <Page.Resources>
-        <viewmodel:AdminPageViewModel x:Name="AdminPageViewModel" x:Key="AdminPageViewModel"/>
+        
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
         <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
@@ -162,7 +166,7 @@
         </Style>
     </Page.Resources>
 
-    <ScrollViewer DataContext="{StaticResource AdminpageViewModel}">
+    <ScrollViewer >
         <!-- grid definition -->
         <Grid Background="White">
             <Grid.RowDefinitions>
