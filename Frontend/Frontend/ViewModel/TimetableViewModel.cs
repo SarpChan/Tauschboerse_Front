@@ -232,7 +232,7 @@ namespace Frontend.ViewModel
             TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
             TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
 
-            Console.WriteLine("MODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
+            Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
 
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
             ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm, moduleListModel.ModuleList);
@@ -407,6 +407,7 @@ namespace Frontend.ViewModel
         #endregion
     }
 }
+
 namespace Frontend.Models{
     public class TimetableViewModelModule : NotifyPropertyValueChange
     {

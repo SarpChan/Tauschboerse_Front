@@ -12,7 +12,7 @@ namespace Frontend.ViewModel
 
         public TimetablePageViewModel()
         {
-            Console.WriteLine("NEW TIMETABLEPAGE");
+            Console.WriteLine("NEW TIMETABLEPAGEVM");
         }
     }
 }
