@@ -8,7 +8,7 @@ namespace Frontend.Models
 {
     class SwapOffer
     {
-       // public long id;
+       public long id;
        
         //public Student student;
         //public Group fromGroup;
