@@ -68,7 +68,6 @@ namespace Frontend.Helpers.Calculators
             /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
             /// <returns>Pixelbreite</returns>
             int divider = TimeConverterHelper.CalculateModuleWidthDivider(module, moduleList);
-
             double width = ((totalWidth - timeWidth) / Globals.weekdays) - PixelCalculator.PointsToPixels(Globals.Space);
             width /= divider;
 
@@ -117,15 +116,14 @@ namespace Frontend.Helpers.Calculators
 
             for (int i = index; i < items.Length; i++)
             {
+
                 if (items[i].Day.Equals(day) && !items[i].Equals(ttvmm.Module))
                 {
-                    
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
 
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime > s2 && endTime < e2))
                     {
-
                         int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), day, ttvmm, items);
 
                         int behinde = 0;
@@ -165,7 +163,7 @@ namespace Frontend.Helpers.Calculators
             var endTime = TimeCoodinatesCalculator.TimeStringToInt(ttvmm.Module.EndTime as String);
 
 
-            divider = CalculateModuleWidthDivider(divider, 0, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
+            divider = CalculateModuleWidthDivider(divider, 1, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
 
             //Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
             return divider;
@@ -182,7 +180,7 @@ namespace Frontend.Helpers.Calculators
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
 
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2))
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime > s2 && endTime < e2))
                     {
                         if (id > System.Convert.ToInt64(items[i].ID))
                         {

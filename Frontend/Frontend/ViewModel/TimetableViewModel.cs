@@ -149,13 +149,13 @@ namespace Frontend.ViewModel
 
             {
 
-                ID = "13",
+                ID = ((int)(new Random().NextDouble() * 50) + 1).ToString(),
 
                 StartTime = "08:15",
 
                 EndTime = "12:30",
 
-                Day = "4",
+                Day = ((int)(new Random().NextDouble() * 5)).ToString(),
 
                 PersonName = "Nicky",
 
@@ -358,7 +358,7 @@ namespace Frontend.ViewModel
         }
         private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
         {
-
+            _ModuleList.Clear();
         }
         #endregion
 
