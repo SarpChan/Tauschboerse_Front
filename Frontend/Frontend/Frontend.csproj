@@ -109,6 +109,7 @@
     <Compile Include="Models\StudentPassedExam.cs" />
     <Compile Include="Models\StudentPrioritizesGroup.cs" />
     <Compile Include="Models\StudyProgram.cs" />
+    <Compile Include="Models\SwapOffer.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableModule.cs" />
     <Compile Include="Models\TimetableRowListModel.cs" />
@@ -168,11 +169,16 @@
     <Compile Include="UserControls\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TT_SwapButton.xaml.cs">
+      <DependentUpon>TT_SwapButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
+    <Compile Include="ViewModel\TimetabeItem.cs" />
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -191,6 +197,9 @@
     </Compile>
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SO_Dialog.xaml.cs">
+      <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StudentModulePage.xaml.cs">
       <DependentUpon>StudentModulePage.xaml</DependentUpon>
@@ -310,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\TT_SwapButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -333,6 +346,10 @@
     <Page Include="View\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SO_Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\StudentModulePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -442,6 +459,9 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\login_user.png" />
     <Resource Include="Resources\Icons\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\trade_w.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
