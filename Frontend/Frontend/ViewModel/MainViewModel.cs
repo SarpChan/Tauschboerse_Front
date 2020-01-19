@@ -42,7 +42,7 @@ namespace Frontend.ViewModel
             dayValues.Add("FRIDAY", "5");
             dayValues.Add("SATURDAY", "6");
             dayValues.Add("SUNDAY", "7");
-            ActivePage = new HomePage();
+            ActivePage = "HomePage.xaml";
             IsLoading = false;
             personalData = PersonalData.Instance;
             timetableModuleList = ModuleListModel.Instance;
@@ -67,8 +67,8 @@ namespace Frontend.ViewModel
         }
 
         //Aktuell angezeigte Page. Frame hat Binding darauf um zu switchen
-        private Page _activePage;
-        public Page ActivePage
+        private string _activePage;
+        public string ActivePage
         {
             get { return _activePage; }
             set
@@ -93,7 +93,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToHomePageCommand == null)
                 {
-                    _SwitchToHomePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new HomePage()));
+                    _SwitchToHomePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("HomePage.xaml"));
                 }
                 return _SwitchToHomePageCommand;
             }
@@ -106,7 +106,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToTimetablePageCommand == null)
                 {
-                    _SwitchToTimetablePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new TimetablePage()));
+                    _SwitchToTimetablePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("TimetablePage.xaml"));
                 }
                 return _SwitchToTimetablePageCommand;
             }
@@ -119,7 +119,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToSharingServicePageCommand == null)
                 {
-                    _SwitchToSharingServicePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new SharingServicePage()));
+                    _SwitchToSharingServicePageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("SharingServicePage.xaml"));
                 }
                 return _SwitchToSharingServicePageCommand;
             }
@@ -132,7 +132,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToPersonalDataPageCommand == null)
                 {
-                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new PersonalDataPage()));
+                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("PersonalDataPage.xaml"));
                 }
                 return _SwitchToPersonalDataPageCommand;
             }
@@ -145,7 +145,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToAdminPageCommand == null)
                 {
-                    _SwitchToAdminPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new AdminPage()));
+                    _SwitchToAdminPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("AdminPage.xaml"));
                 }
                 return _SwitchToAdminPageCommand;
             }
@@ -169,9 +169,10 @@ namespace Frontend.ViewModel
         /*
          * Handled das Page-Switchen inkl. asynchroner Anfrage an den Server und anzeigen des Loading Screens
          */
-        private async void SwitchActivePageAsync(Page newActivePage)
+        private async void SwitchActivePageAsync(string newActivePage)
         {
-            if (newActivePage.GetType().Equals(typeof(HomePage)))
+            Console.WriteLine("SWITCH STARTET");
+            if (newActivePage == "HomePage.xaml")
             {
                 IsLoading = true;
                 switch (mode)
@@ -184,7 +185,7 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
-            else if (newActivePage.GetType().Equals(typeof(TimetablePage)))
+            else if (newActivePage == "TimetablePage.xaml")
             {
 
                 IsLoading = true;
@@ -198,7 +199,7 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
-            else if (newActivePage.GetType().Equals(typeof(SharingServicePage)))
+            else if (newActivePage == "SharingServicePage.xaml")
             {
                 IsLoading = true;
                 switch (mode)
@@ -211,7 +212,7 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
-            else if (newActivePage.GetType().Equals(typeof(PersonalDataPage)))
+            else if (newActivePage == "PersonalDataPage.xaml")
             {
                 IsLoading = true;
                 switch (mode)
@@ -224,7 +225,7 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
-            else if (newActivePage.GetType().Equals(typeof(AdminPage)))
+            else if (newActivePage == "AdminPage.xaml")
             {
                 IsLoading = true;
                 switch (mode)
@@ -241,7 +242,9 @@ namespace Frontend.ViewModel
             {
                 return;
             }
+            Console.WriteLine("SWITCH VOR ACTIVE");
             ActivePage = newActivePage;
+            Console.WriteLine("SWITCH NACH ACTIVE");
         }
 
         /*
@@ -249,7 +252,7 @@ namespace Frontend.ViewModel
          */
         public void Logout(int code)
         {
-            this.SwitchActivePageAsync(new HomePage());
+            this.SwitchActivePageAsync("HomePage.xaml");
             personalData.LogoutUser();
             LoginPageViewModel.Instance.IsLoggedIn = false;
             if (code == 200)

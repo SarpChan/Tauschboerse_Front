@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="ViewModel\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
+    <Compile Include="ViewModel\HomepageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
