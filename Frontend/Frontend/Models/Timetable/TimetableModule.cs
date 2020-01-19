@@ -43,11 +43,10 @@ namespace Frontend.Models
                 NotifyPropertyChanged("EndTime", oldValue, value);
             } 
         }
-        [JsonProperty("roomID")]
         public string RoomNumber { get; set; }
         [JsonProperty("lecturerName")]
         public string PersonName { get; set; }
-        [JsonProperty("moduleTitle")]
+        [JsonProperty("courseTitle")]
         public string CourseName { get { return _Name; } 
             set {
                 var oldValue = _Name;

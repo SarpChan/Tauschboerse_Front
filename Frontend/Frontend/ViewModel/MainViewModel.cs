@@ -171,7 +171,6 @@ namespace Frontend.ViewModel
          */
         private async void SwitchActivePageAsync(string newActivePage)
         {
-            Console.WriteLine("SWITCH STARTET");
             if (newActivePage == "HomePage.xaml")
             {
                 IsLoading = true;
@@ -242,9 +241,7 @@ namespace Frontend.ViewModel
             {
                 return;
             }
-            Console.WriteLine("SWITCH VOR ACTIVE");
             ActivePage = newActivePage;
-            Console.WriteLine("SWITCH NACH ACTIVE");
         }
 
         /*
@@ -282,7 +279,6 @@ namespace Frontend.ViewModel
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             timetableModuleList.SetList(tempTable);
         }
