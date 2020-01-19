@@ -25,7 +25,7 @@ namespace Frontend.ViewModel
         public AdminPageViewModel()
         {
 
-            Console.WriteLine("NEW ADMINPAGEVM -> "+this.GetHashCode());
+            Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
 
 
             //University university = new University();

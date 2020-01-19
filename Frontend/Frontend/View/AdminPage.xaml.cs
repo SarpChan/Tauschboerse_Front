@@ -25,7 +25,8 @@ namespace Frontend.View
         {
             InitializeComponent();
             Stundenplan.Focus();
- 
+            
+
 
             //Zum Testen 
             /*
