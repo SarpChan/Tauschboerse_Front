@@ -155,7 +155,7 @@ namespace Frontend.ViewModel
 
                 EndTime = "12:30",
 
-                Day = ((int)(new Random().NextDouble() * 5)).ToString(),
+                Day = "3",
 
                 PersonName = "Nicky",
 

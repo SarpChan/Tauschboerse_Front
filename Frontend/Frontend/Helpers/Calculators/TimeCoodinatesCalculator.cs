@@ -117,12 +117,12 @@ namespace Frontend.Helpers.Calculators
             for (int i = index; i < items.Length; i++)
             {
 
-                if (items[i].Day.Equals(day) && !items[i].Equals(ttvmm.Module))
+                if (items[i].Day.Equals(day) && items[i] != ttvmm.Module )
                 {
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
 
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime > s2 && endTime < e2))
+                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime >= s2 && endTime <= e2))
                     {
                         int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), day, ttvmm, items);
 
@@ -174,7 +174,7 @@ namespace Frontend.Helpers.Calculators
 
             for (int i = index; i < items.Length; i++)
             {
-                if (items[i].Day.Equals(day) && !items[i].Equals(module))
+                if (items[i].Day.Equals(day) && items[i] != module)
                 {
 
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
@@ -222,7 +222,7 @@ namespace Frontend.Helpers.Calculators
             var startTime = TimeCoodinatesCalculator.TimeStringToInt(module.StartTime as String);
             var endTime = TimeCoodinatesCalculator.TimeStringToInt(module.EndTime as String);
 
-            pos = CalculateModuleRowPosition(pos, 0, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day, module, moduleList.ToArray());
+            pos = CalculateModuleRowPosition(pos, 1, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day, module, moduleList.ToArray());
 
             //Console.WriteLine("Module: "+module.CourseName+"Pos :" + pos);
             return pos;
