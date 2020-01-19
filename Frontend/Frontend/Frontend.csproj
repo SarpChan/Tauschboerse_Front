@@ -85,7 +85,8 @@
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
-    <Compile Include="Helpers\MessageBrokerCommunication.cs" />
+    <Compile Include="Helpers\NewsMessageBroker.cs" />
+    <Compile Include="Helpers\SwapOfferMessageBroker.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Helpers\SHA256Gen.cs" />
     <Compile Include="Models\Administrator.cs" />
@@ -110,7 +111,9 @@
     <Compile Include="Models\StudentPassedExam.cs" />
     <Compile Include="Models\StudentPrioritizesGroup.cs" />
     <Compile Include="Models\StudyProgram.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\SwapOffer.cs" />
+    <Compile Include="Models\NewsListModel.cs" />
     <Compile Include="Models\SwapOfferListModel.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TimetableModule.cs" />

@@ -31,6 +31,8 @@ namespace Frontend.ViewModel
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
 
+        SwapOfferMessageBroker so_mb;
+
         public MainViewModel()
         {
             dayValues.Add("MONDAY", "1");
@@ -46,6 +48,7 @@ namespace Frontend.ViewModel
             timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
             Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
+            so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
 

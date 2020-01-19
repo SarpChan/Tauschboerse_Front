@@ -6,18 +6,18 @@ using System;
 
 namespace Frontend.Helpers
 {
-    class MessageBrokerCommunication : ViewModelBase
+    class NewsMessageBroker : ViewModelBase
     {
-        const string TOPIC_NAME = "SwapOfferTopic";
+        const string TOPIC_NAME = "NewsTopic";
         private IConnection connection;
         private IConnectionFactory connectionFactory;
         private ISession session;
         private IMessageProducer messageProducer;
         private IMessageConsumer messageConsumer;
         private string currentBrokerURL = "tcp://localhost:61616";
-        private SwapOfferListModel swapOffers = SwapOfferListModel.Instance;
+        private NewsListModel news = NewsListModel.Instance;
 
-        public MessageBrokerCommunication()
+        public NewsMessageBroker()
         {
             UpdateConnection();
         }
@@ -42,7 +42,7 @@ namespace Frontend.Helpers
             }
             catch (Exception e)
             {
-                throw new MessageBrokerCommunicationException("updateConnection(): " + e.Message);
+                throw new NewsMessageBrokerException("updateConnection(): " + e.Message);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Frontend.Helpers
         void ParseCommand(string cmd)
         {
             var fields = cmd.Split();
-            if (fields.Length < 2 || fields[0] != "swapoffer")
+            if (fields.Length < 2 || fields[0] != "news")
             {
                 return;
             }
@@ -86,13 +86,13 @@ namespace Frontend.Helpers
 
                 if (command == "remove")
                 {
-                    swapOffers.RemoveById(id);
+                    news.RemoveById(id);
                     return;
                 }
 
                 if (command == "add")
                 {
-                    swapOffers.AddById(id);
+                    news.AddById(id);
                     return;
                 }
             }
@@ -103,8 +103,8 @@ namespace Frontend.Helpers
         }
     }
 
-    class MessageBrokerCommunicationException : Exception
+    class NewsMessageBrokerException : Exception
     {
-        public MessageBrokerCommunicationException(string msg) : base(msg) { }
+        public NewsMessageBrokerException(string msg) : base(msg) { }
     }
 }
