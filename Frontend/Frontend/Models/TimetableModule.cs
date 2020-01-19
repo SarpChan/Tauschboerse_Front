@@ -18,7 +18,7 @@ namespace Frontend.Models
         public string RoomNumber { get; set; }
         [JsonProperty("lecturerName")]
         public string PersonName { get; set; }
-        [JsonProperty("moduleTitle")]
+        [JsonProperty("courseTitle")]
         public string CourseName { get; set; }
         public char GroupChar { get; set; }
         [JsonIgnore]
