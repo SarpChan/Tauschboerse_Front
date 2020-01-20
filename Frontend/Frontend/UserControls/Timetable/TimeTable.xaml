@@ -78,7 +78,7 @@
         </Popup>
        -->
 
-        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas">
             <!-- Nutzt die DataPipe um Daten an das ViewModule zu senden -->
             
             <Helpers:DataPiping.DataPipes>
@@ -96,8 +96,6 @@
             <usercontrols:TT_Item_Swapbtn x:Name="uc" ></usercontrols:TT_Item_Swapbtn>
         </Popup>
 
-
-        <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
             <!-- 
                 For loop: Rows
                 
@@ -255,7 +253,7 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                            
+
                         </Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Text">
@@ -291,7 +289,7 @@
                             Height="{Binding ActualHeight, ElementName=HeaderBackground, Mode=OneWay}"
                             >
                             <TextBlock TextTrimming="CharacterEllipsis"/>
-                           
+
                         </Label>
 
 
@@ -308,6 +306,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-       </Canvas>
     </Grid>
 </UserControl>
