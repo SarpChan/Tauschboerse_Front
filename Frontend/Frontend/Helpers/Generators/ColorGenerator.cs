@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -19,37 +20,37 @@ namespace Frontend.Helpers.Generators
         /// generiert fuer das moduleDummy eine Farbe mit der in der App.config festgelegten Methode
         /// </summary>
         /// <param name="moduleDummy"></param>
-        public static void generateColor(ModuleDummy moduleDummy)
+        public static string generateColor(string name, TimetableModule.ModuleType type)
         {
             string mode = ConfigurationManager.AppSettings.Get("colorgenerator.mode");
 
             switch(mode){
-                case "hash": moduleDummy.Color = GenerateHashColor(moduleDummy); break;
-                case "chaos": moduleDummy.Color = generateRandomColor();break;
-                default: moduleDummy.Color = generateFixColorByType(moduleDummy); break;
+                case "hash": return GenerateHashColor(name, type);
+                case "chaos": return GenerateRandomColor();
+                default: return GenerateFixColorByType(type);
             }
 
         }
 
-        static string GenerateHashColor(ModuleDummy module)
+        static string GenerateHashColor(string name, TimetableModule.ModuleType type)
         {
 
             string assigment = ConfigurationManager.AppSettings.Get("colorgenerator.hash.assigment");
             switch (assigment)
             {
-                case "byGroup": return GenerateHashColorByGroup(module);
-                default: return GenerateHashColorByType(module);
+                case "byGroup": return GenerateHashColorByGroup(name);
+                default: return GenerateHashColorByType(type);
             }
         }
 
-        static string GenerateHashColorByGroup(ModuleDummy module)
+        static string GenerateHashColorByGroup(string name)
         {
-            return HashStringToColorString(module.CourseName);
+            return HashStringToColorString(name);
         }
 
-        static string GenerateHashColorByType(ModuleDummy module)
+        static string GenerateHashColorByType(TimetableModule.ModuleType type)
         {
-            return HashStringToColorString(module.Type.ToString());
+            return HashStringToColorString(type.ToString());
         }
 
         static string HashStringToColorString(string hashingSource)
@@ -61,20 +62,20 @@ namespace Frontend.Helpers.Generators
         }
 
 
-        static String generateFixColorByType(ModuleDummy module)
+        static String GenerateFixColorByType(TimetableModule.ModuleType type)
         {
-            switch (module.Type)
+            switch (type)
             {
-                case ModuleDummy.ModuleType.Praktikum: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.practicaltraining");
-                case ModuleDummy.ModuleType.Tutorium: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.tutorial");
-                case ModuleDummy.ModuleType.Übung: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.exercise");
+                case TimetableModule.ModuleType.Praktikum: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.practicaltraining");
+                case TimetableModule.ModuleType.Tutorium: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.tutorial");
+                case TimetableModule.ModuleType.Übung: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.exercise");
                 default: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.lecture");
 
             }
 
         }
 
-        static String generateRandomColor()
+        static String GenerateRandomColor()
         {
             byte [] numbers = new byte[3];
 

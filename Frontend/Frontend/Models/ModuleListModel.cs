@@ -1,18 +1,64 @@
 ﻿using Frontend.Helpers.Generators;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend
+namespace Frontend.Models
 {
+    
     class ModuleListModel
     {
-        //Hier eig liste mit Modulen reingereicht??
-        public ModuleListModel()
+        private ObservableCollection<TimetableModule> _moduleList = new ObservableCollection<TimetableModule>();
+        public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
+
+        private static ModuleListModel _instance;
+
+        public static ModuleListModel Instance
         {
-            AddModule(new ModuleDummy()
+            get
+            {
+                if (_instance != null)
+                {
+                    return _instance;
+                }
+                else
+                {
+                    return new ModuleListModel();
+                }
+            }
+        }
+
+        private ModuleListModel()
+        {
+            _instance = this;
+        }
+
+        public void AddModule(TimetableModule m)
+        {
+            _moduleList.Add(m);
+        }
+
+        public void RemoveModule(TimetableModule m)
+        {
+            _moduleList.Remove(m);
+        }
+
+        public void SetList(ObservableCollection<TimetableModule> moduleList)
+        {
+            _moduleList.Clear();
+            foreach( var x in moduleList){
+                _moduleList.Add(x);
+            }
+        }
+    }
+}
+
+/**
+ * 
+ *             AddModule(new ModuleDummy()
             {
                 ID = "69",
                 StartTime = "10:00",
@@ -99,39 +145,4 @@ namespace Frontend
                 GroupChar = 'A',
                 Color = "#FF99AA88"
             });
-        }
-
-        private List<ModuleDummy> _moduleList = new List<ModuleDummy>();
-
-        public void AddModule(ModuleDummy m)
-        {
-            _moduleList.Add(m);
-            ColorGenerator.generateColor(m);
-        }
-        public void RemoveModule(ModuleDummy m)
-        {
-            _moduleList.Remove(m);
-        }
-
-        public List<ModuleDummy> ModuleList { get { return _moduleList; } }
-    }
-
-    /// <summary>
-    /// Dummy Model für eine Module
-    /// </summary>
-    public class ModuleDummy
-    {
-        public enum ModuleType {Vorlesung,Übung,Praktikum,Tutorium};
-        public string ID { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string RoomNumber { get; set; }
-        public string PersonName { get; set; }
-        public string CourseName { get; set; }
-        public char GroupChar { get; set; }
-        public string Color { get; set; }
-        public string Day { get; set; }
-        public ModuleType Type { get; set; }
-    }
-
-}
+ */
