@@ -53,7 +53,7 @@
                     <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
                         <DockPanel>
                             <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <Image Name="Save" Source="{StaticResource save_b}" Style="{StaticResource imageButton}" />
+                            <Image Name="Save" Source="{StaticResource save_b}" Style="{StaticResource ImageButton}" />
                             <TextBlock VerticalAlignment="Center">Speichern</TextBlock>
                         </DockPanel>
                     </Border>

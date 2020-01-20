@@ -12,9 +12,9 @@
     <Page.DataContext>
         <viewmodel:AdminPageViewModel x:Name="AdminPageViewModel"/>
     </Page.DataContext>
-    
+
     <Page.Resources>
-        
+
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
         <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
@@ -179,7 +179,10 @@
                 <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
 
-
+            <Popup x:Name="CreatModulePopup" Placement="Center">
+                <user_controls:CreateModule_Dialog x:Name="CreateModule"/>
+            </Popup>
+            
             <StackPanel Grid.Column="1" Grid.Row="1" Width="auto">
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" >
@@ -244,7 +247,7 @@
                     <Button DockPanel.Dock="Left" Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button DockPanel.Dock="Left" Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
-                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right" Click="Button_Click" Command="{Binding DataContext.AddModuleCommand, ElementName=TimeTable}" />
+                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right" Click="OpenCreateModuleDialog" />
                 </DockPanel>
 
                 <user_controls:TimeTable x:Name="TimeTable" BorderBrush="Black" Height="500pt" Margin="{StaticResource HeaderMargin}"/>

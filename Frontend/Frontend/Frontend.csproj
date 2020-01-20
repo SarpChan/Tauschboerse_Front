@@ -205,6 +205,9 @@
     <Compile Include="View\Pages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Admin\CreateModule_Dialog.xaml.cs">
+      <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\SO_Dialog.xaml.cs">
       <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
@@ -353,6 +356,10 @@
     <Page Include="View\Pages\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Admin\CreateModule_Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Windows\SO_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
