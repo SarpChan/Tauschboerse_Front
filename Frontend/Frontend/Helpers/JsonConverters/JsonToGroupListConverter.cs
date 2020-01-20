@@ -1,4 +1,4 @@
-﻿using Frontend.Models;
+﻿/*using Frontend.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -35,7 +35,7 @@ namespace Frontend.Helpers.JsonConverters
                 string end = new List<string>(g.EndTime.Keys)[0];
                 Console.WriteLine("group " + g.Id + " starts at " + start + " ends at " + g.EndTime.Keys);
             }
-           */
+           
             return groupList;
         }
 
@@ -52,4 +52,4 @@ namespace Frontend.Helpers.JsonConverters
         }
     }
 }
-
+*/

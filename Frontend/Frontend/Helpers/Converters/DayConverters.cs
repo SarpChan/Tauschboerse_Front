@@ -57,6 +57,26 @@ namespace Frontend.Helpers
         }
     }
 
+    public class DayFormatConverter
+    {
+        public static int convertToInt(string day)
+        {
+            int i = 0;
+            foreach(string wd in Globals.Weekdays)
+            {
+                i++;
 
+                if (wd.Equals(day))
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
 
+        public static string convertToString(int day)
+        {
+            return Globals.Weekdays[day - 1];
+        }
+    }
 }

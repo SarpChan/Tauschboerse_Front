@@ -42,8 +42,7 @@
     <!--Admin Button Style -->
     <Style TargetType="{x:Type Button}" x:Key="AdminButton" BasedOn="{StaticResource UniversalButton}">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontSize" Value="12pt"/>
     </Style>
 
     <!--Style save Button -->
@@ -174,9 +173,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border BorderBrush="{StaticResource CD_Grey}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}">
-                        <DockPanel>
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBlock Padding="0,12,0,0" Height="52" Text="{TemplateBinding Tag}" TextAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                        <DockPanel HorizontalAlignment="Center">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Padding="0,12,0,0" Height="50" Text="{TemplateBinding Tag}" TextAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
                         </DockPanel>
                     </Border>
                 </ControlTemplate>

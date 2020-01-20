@@ -8,7 +8,7 @@
              xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
-            xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              x:Name="Timetable"
              x:Class="Frontend.UserControls.TimeTable"
              mc:Ignorable="d" 
@@ -31,9 +31,11 @@
         <Helpers:RowTimeTextPositionConverter x:Key="RowTimeTextPositionConverter"/>
         <Helpers:TypeToIconConverter x:Key="TypeToIconConverter"/>
     </UserControl.Resources>
+    
     <UserControl.DataContext>
         <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </UserControl.DataContext>
+    
     <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>
@@ -47,13 +49,14 @@
         <Rectangle x:Name="HeaderBackground" Fill="#FF7E7E7E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
         <Label 
             x:Name="text_zeit" 
+            Padding="0"
             Content="Zeit" 
             FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
             FontSize="15pt" 
             Background="#FF7D7E7E" 
             Grid.Row="0" 
             Grid.Column="0" 
-            Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+            Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
             />
 
         <!--
@@ -67,17 +70,27 @@
         <Popup x:Name="popUp" AllowsTransparency="True">
             <StackPanel x:Name="stack">
                 <usercontrols:TimetableItem x:Name="item"/>
-                <usercontrols:TT_SwapButton TT_SwapButtonCommand="{Binding DialogOpenCommand}"></usercontrols:TT_SwapButton>
+                <!--<usercontrols:TT_SwapButton TT_SwapButtonCommand="{Binding DialogOpenCommand}"></usercontrols:TT_SwapButton>-->
 
                 <Viewbox></Viewbox>
             </StackPanel>
-          
-             
-            
         </Popup>
        
 
-        <Canvas Grid.Row="1" x:Name="TimeTableCanvas">
+        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas">
+            <!--Nutzt die DataPipe um Daten an das ViewModule zu senden-->
+            
+            <Helpers:DataPiping.DataPipes>
+                <Helpers:DataPipeCollection>
+                    <Helpers:DataPipe Target="{Binding Path=TotalWidth,Mode=OneWayToSource}"
+                                      Source="{Binding ActualWidth , ElementName=Timetable, Mode=OneWay}"/>
+                    <Helpers:DataPipe Target="{Binding Path=TotalHeight,Mode=OneWayToSource}"
+                                      Source="{Binding ActualHeight , ElementName=Timetable, Mode=OneWay}"/>
+                    <Helpers:DataPipe Target="{Binding Path=TimeWidth,Mode=OneWayToSource}" 
+                                      Source="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"/>
+                </Helpers:DataPipeCollection>
+            </Helpers:DataPiping.DataPipes>
+
             <!-- 
                 For loop: Rows
                 
@@ -134,6 +147,7 @@
                                         <MultiBinding Converter="{StaticResource RowTimeTextPositionConverter}">
                                             <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
                                             <Binding Path="RowIndex"/>
+                                            <Binding Path="ActualHeight" ElementName="HeaderBackground" Mode="OneWay"/>
                                         </MultiBinding>
                                     </Setter.Value>
                                 </Setter>
@@ -175,9 +189,9 @@
                                 Content="{Binding Time}"
                                 Width="{Binding ActualWidth, ElementName=text_zeit, Mode=OneWay}"
                                 FontSize="12pt"
-                                Padding="-1"
+                                Padding="0"
                                 Height="auto"
-                                Margin="0"
+                                Margin="-1"
                                 HorizontalContentAlignment="Center" VerticalAlignment="Top"
                                 />
 
@@ -193,54 +207,14 @@
 
                 <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:TimetableModule}">
-                        <DataTemplate.Resources>
-                            <Style TargetType="usercontrols:TimetableItem">
-                                <Setter Property="Canvas.Top">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource TimeToYCoordinatesConverter}">
-                                            <Binding Path="StartTime"/>
-                                            <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Canvas.Left">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource TimeToXCoordinatesConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
-                                            <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
-                                            <Binding Path="Day"/>
-                                            <Binding Path="."/>
-                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
-                                            <Binding ElementName="ModuleList" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Width">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource ItemWidthConverter}">
-                                            <Binding Path="ActualWidth" ElementName="Timetable" Mode="OneWay"/>
-                                            <Binding Path="ActualWidth" ElementName="text_zeit" Mode="OneWay"/>
-                                            <Binding Path="."/>
-                                            <Binding Path="ItemsSource" ElementName="ModuleList" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Height">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource ItemHeightConverter}">
-                                            <Binding Path="StartTime"/>
-                                            <Binding Path="EndTime"/>
-                                            <Binding Path="ActualHeight" ElementName="Timetable" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </DataTemplate.Resources>
+                    <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
                         <Canvas>
-                            <usercontrols:TimetableItem Module="{Binding .}" Panel.ZIndex="1" 
-                                                        MouseEnter="TimetableItem_MouseEnter"
-                                                        
+                            <usercontrols:TimetableItem Module="{Binding .,Mode=TwoWay}" Panel.ZIndex="1" 
+                                                        MouseEnter="TimetableItem_MouseEnter" 
+                                                        Width="{Binding Width ,Mode=TwoWay}" 
+                                                        Height="{Binding Height,Mode=TwoWay}"
+                                                        Canvas.Left="{Binding X,Mode=TwoWay}"
+                                                        Canvas.Top="{Binding Y,Mode=TwoWay}"
                                                         />
                         </Canvas>
                     </DataTemplate>
@@ -301,7 +275,7 @@
                             FontFamily="/Frontend;component/Resources/Fonts/#Kiona" 
                             FontSize="15pt" 
                             Background="#FF7D7E7E"
-                            Padding="0" 
+                            Padding="0"
                             Foreground="White" 
                             Grid.Row="0" 
                             Grid.Column="1" 

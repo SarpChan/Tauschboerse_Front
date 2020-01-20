@@ -12,6 +12,10 @@ namespace Frontend.Helpers
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value.GetType().Equals(typeof(string)))
+            {
+                return value;
+            }
             string uri = ((Page)value).GetType().Name + ".xaml";
             return uri;
         }
