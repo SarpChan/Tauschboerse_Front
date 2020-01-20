@@ -179,6 +179,9 @@
     <Compile Include="UserControls\TT_Item_Swapbtn.xaml.cs">
       <DependentUpon>TT_Item_Swapbtn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TT_SwapButton.xaml.cs">
+      <DependentUpon>TT_SwapButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\PageVMs\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\HomepageViewModel.cs" />
@@ -335,6 +338,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\TT_Item_Swapbtn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TT_SwapButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
