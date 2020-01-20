@@ -78,6 +78,7 @@
     <Compile Include="Helpers\DayConverters.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
+    <Compile Include="Helpers\ModuleSelectionConverter.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Helpers\ResultionConvertes.cs" />
     <Compile Include="Helpers\RowConverters.cs" />
@@ -417,7 +418,7 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="RestSharp">
-      <Version>106.6.10</Version>
+      <Version>106.10.1</Version>
     </PackageReference>
     <PackageReference Include="ToastNotifications">
       <Version>2.5.1</Version>

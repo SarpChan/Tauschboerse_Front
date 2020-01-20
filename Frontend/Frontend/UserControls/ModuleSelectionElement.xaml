@@ -4,17 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:helpers="clr-namespace:Frontend.Helpers"
+             xmlns:models="clr-namespace:Frontend.Models" 
              mc:Ignorable="d" 
              xmlns:project1="clr-namespace:Frontend.ViewModel"
              d:DesignHeight="70" d:DesignWidth="1550">
+    <UserControl.Resources>
+        <helpers:ModuleSelectionConverter x:Key="ModuleSelectionConverter"/>
+    </UserControl.Resources>
     <!--UserControl.DataContext>
         <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
     </-->
     <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*" />
-            <ColumnDefinition Width="1*" MinWidth="200"/>
+            <ColumnDefinition Width="3*" MinWidth="200"/>
+            <!--<ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -33,11 +40,19 @@
             <TextBlock Name="ModuleName" Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
             <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center"/>
         </Grid>
-        <CheckBox Grid.Column="1" FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Margin="10,0,0,0" Source="{StaticResource lecture_b}" Width="40" Stretch="Uniform"/>
-        </CheckBox>
-        <CheckBox Grid.Column="2" FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Margin="10,0,0,0" Source="{StaticResource exercise_b}" Width="40" Stretch="Uniform"/>
-        </CheckBox>
+        <ItemsControl ItemsSource="{Binding timetableModules}" Grid.Column="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:TimetableModule}">
+                    <CheckBox FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding Type, Converter={StaticResource ModuleSelectionConverter}}"/>
+                    </CheckBox>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

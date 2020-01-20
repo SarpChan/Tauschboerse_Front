@@ -310,7 +310,7 @@ namespace Frontend.ViewModel
             //admindata.SetList(tempTable);
         }
 
-        private async Task RequesModuleDataFromServerAsync()
+        private async Task RequestModuleDataFromServerAsync()
         {
             List<TimetableModule> tempTable = new List<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
@@ -328,7 +328,7 @@ namespace Frontend.ViewModel
 
         private async void RequestModuleDataDummy()
         {
-            await RequestTimetableFromServerAsync();
+            //await RequestModuleDataFromServerAsync();
             ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, ModuleList.ModuleList);
             ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, ModuleList.ModuleList);
             ModuleList.ModuleItemList.Add(moduleItem1);
