@@ -329,6 +329,16 @@ namespace Frontend.ViewModel
         private async void RequestModuleDataDummy()
         {
             //await RequestModuleDataFromServerAsync();
+            var v = new TimetableModule();
+            v.Type = TimetableModule.ModuleType.Vorlesung;
+            var p = new TimetableModule();
+            p.Type = TimetableModule.ModuleType.Praktikum;
+            var t = new TimetableModule();
+            t.Type = TimetableModule.ModuleType.Tutorium;
+            var u = new TimetableModule();
+            u.Type = TimetableModule.ModuleType.Übung;
+            ModuleList.ModuleList.Add(v);
+            ModuleList.ModuleList.Add(t);
             ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, ModuleList.ModuleList);
             ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, ModuleList.ModuleList);
             ModuleList.ModuleItemList.Add(moduleItem1);

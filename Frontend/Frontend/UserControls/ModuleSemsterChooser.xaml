@@ -25,9 +25,10 @@
                     </Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Text" Value="{Binding }"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
                     </Style>
                 </DataTemplate.Resources>
-                <Button Command="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.SwitchTermCommand}" Style="{StaticResource SelectionBarButton}" Width="200">
+                <Button Command="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SwitchTermCommand}" Style="{StaticResource SelectionBarButton}" Width="200" CommandParameter="{Binding }">
                     <TextBlock></TextBlock>
                 </Button>
             </DataTemplate>

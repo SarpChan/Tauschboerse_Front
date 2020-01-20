@@ -22,27 +22,18 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
-            Console.WriteLine(this.GetHashCode().ToString());
-            var v = new TimetableModule();
-            v.Type = TimetableModule.ModuleType.Vorlesung;
-            var p = new TimetableModule();
-            p.Type = TimetableModule.ModuleType.Praktikum;
-            var t = new TimetableModule();
-            t.Type = TimetableModule.ModuleType.Tutorium;
-            var u = new TimetableModule();
-            u.Type = TimetableModule.ModuleType.Übung;
-            moduleListModel.ModuleList.Add(v);
-            moduleListModel.ModuleList.Add(t);
-            ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
+            Console.WriteLine("StudentModuleChooser: "+this.GetHashCode().ToString());
+            
+            /*ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
             ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, moduleListModel.ModuleList);
             moduleListModel.ModuleItemList.Add(moduleItem1);
             moduleListModel.ModuleItemList.Add(moduleItem2);
-
+            */
 
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
-                _modules.Add(moduleItem);
+                //_modules.Add(moduleItem);
                 Boolean found = false;
                 foreach(var semester in tempSemesterList)
                 {
@@ -79,8 +70,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchTermCommand == null)
                 {
-                    // 1. Argument: Kommando-Effekt (Execute), 2. Argument: Bedingung "Kommando aktiv?" (CanExecute)
-                    _SwitchTermCommand = new ActionCommand(dummy => this.SwitchTerm());
+                    _SwitchTermCommand = new ActionCommand(param => this.SwitchTerm(param));
                 }
                 return _SwitchTermCommand;
             }
@@ -89,21 +79,18 @@ namespace Frontend.ViewModel
 
 
         // Hilfsmethode für SwitchTermCommand
-        private void SwitchTerm()
+        private void SwitchTerm(object i)
         {
-            /*Console.WriteLine("KLICK");
-            var request = new RestRequest("rest/lists/timetable}", Method.GET);
-            //request.AddParameter("stadtname", "vollradisroda", ParameterType.UrlSegment);
+            Console.WriteLine("KLICK"+i.ToString());
+            int semester = (int)i;
+            Modules.Clear();
+            foreach (var moduleItem in moduleListModel.ModuleItemList){
+                if(moduleItem.semester == semester)
+                {
+                    Modules.Add(moduleItem);
+                }
+            }
 
-            var m = client.Execute< ObservableCollection<TimetableModule>>(request);
-
-            _modules = m.Data;
-
-            Console.WriteLine(_modules.Count);
-            foreach (TimetableModule mod in _modules){
-                
-                Console.WriteLine(mod.CourseName);
-            }*/
         }
 
         #region properties
