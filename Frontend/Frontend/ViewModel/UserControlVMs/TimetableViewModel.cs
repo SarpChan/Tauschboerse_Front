@@ -28,7 +28,7 @@ namespace Frontend.ViewModel
             Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  "+this.GetHashCode());
             foreach (var module in moduleListModel.ModuleList)
             {
-                _ModuleList.Add(new TimetableViewModelModule {
+                _TTVMMList.Add(new TimetableViewModelModule {
                     Module = module,
                 });
             }
@@ -48,10 +48,10 @@ namespace Frontend.ViewModel
         }
 
         #region Properties
-        private ObservableCollection<TimetableViewModelModule> _ModuleList = new ObservableCollection<TimetableViewModelModule>();
-        public ObservableCollection<TimetableViewModelModule> ModuleList
+        private ObservableCollection<TimetableViewModelModule> _TTVMMList = new ObservableCollection<TimetableViewModelModule>();
+        public ObservableCollection<TimetableViewModelModule> TTVMMList
         {
-            get { return _ModuleList; }
+            get { return _TTVMMList; }
         }
 
         private ObservableCollection<RowModel> _RowList = new ObservableCollection<RowModel>();
@@ -180,13 +180,13 @@ namespace Frontend.ViewModel
                 Console.WriteLine(t);
                 Console.WriteLine("\t ADD MODULE: " + t.CourseName + " ->" + add);
 
-                ModuleList.Add(add);
+                TTVMMList.Add(add);
                 BindListenerOn_TimetableViewModelModule(add);
                 Inititalize_TimetableViewModelModule(add);
 
                 Console.WriteLine("\t on " + this + " ->  " + this.GetHashCode() + "\n");
 
-                foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
+                foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _TTVMMList))
                 {
                     Inititalize_TimetableViewModelModule(ttvmm);
                 }
@@ -198,14 +198,14 @@ namespace Frontend.ViewModel
             foreach (TimetableModule t in e.NewItems)
             {
                 //t.PropertyChanged -= (sender, e) => OnModuleChange(sender, e, ttvmm);
-                TimetableViewModelModule foundTTVMM = findTimetableViewModelMoudle(t, _ModuleList);
-                List<TimetableViewModelModule> dependencies = findDependentModules(foundTTVMM, _ModuleList);
+                TimetableViewModelModule foundTTVMM = findTimetableViewModelMoudle(t, _TTVMMList);
+                List<TimetableViewModelModule> dependencies = findDependentModules(foundTTVMM, _TTVMMList);
             }
         }
 
         private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
         {
-            _ModuleList.Clear();
+            _TTVMMList.Clear();
         }
 
         #endregion
@@ -213,7 +213,7 @@ namespace Frontend.ViewModel
         #region ViewChanged
         private void OnTimeWidthtChange(double newValue)
         {
-            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
                 ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth,newValue, ttvmm, moduleListModel.ModuleList);
                 ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth,newValue, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
@@ -222,7 +222,7 @@ namespace Frontend.ViewModel
 
         private void OnTotalHeightChange(double newValue)
         {
-            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
                 TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
                 TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
@@ -235,7 +235,7 @@ namespace Frontend.ViewModel
         private void OnTotalWitdhChange(double newValue)
         {
 
-            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
                 ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(newValue, TimeWidth, ttvmm, moduleListModel.ModuleList);
                 ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(newValue, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
@@ -330,7 +330,7 @@ namespace Frontend.ViewModel
 
         private void CalculateInitialValues()
         {
-            foreach (TimetableViewModelModule ttvmm in _ModuleList)
+            foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
                 TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
                 Inititalize_TimetableViewModelModule(ttvmm);

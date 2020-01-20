@@ -205,7 +205,7 @@
                 ...Gleiches Prinzip wie oben...
              -->
 
-                <ItemsControl ItemsSource="{Binding ModuleList}" x:Name="ModuleList">
+                <ItemsControl ItemsSource="{Binding TTVMMList}" x:Name="ModuleList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
                         <Canvas>
