@@ -87,15 +87,5 @@ namespace Frontend.View
         {
 
         }
-
-        public void OpenCreateModuleDialog(object sender, RoutedEventArgs e)
-        {
-            CreatModulePopup.IsOpen = true;
-        }
-
-        public void CloseCreateModuleDialog(object sender, RoutedEventArgs e)
-        {
-            CreatModulePopup.IsOpen = false;
-        }
     }
 }

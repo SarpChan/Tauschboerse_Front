@@ -16,12 +16,17 @@ using System.Windows.Shapes;
 
 namespace Frontend.UserControls
 {
-    public partial class CreateModule_Dialog : UserControl
+    public partial class CreateModule_Dialog : Window
     {
         public CreateModule_Dialog()
         {
             InitializeComponent();
 
+        }
+
+        private void CloWi(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
         }
 
     }

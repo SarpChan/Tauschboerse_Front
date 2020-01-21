@@ -54,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -122,6 +124,9 @@
     <Compile Include="Models\Timetable\TimetableViewModelModule.cs" />
     <Compile Include="Models\Outdated\University.cs" />
     <Compile Include="Models\Outdated\User.cs" />
+    <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
+      <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
       <DependentUpon>EditTimetable.xaml</DependentUpon>
     </Compile>
@@ -209,7 +214,7 @@
     <Compile Include="View\Pages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Admin\CreateModule_Dialog.xaml.cs">
+    <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
       <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\SO_Dialog.xaml.cs">
@@ -264,6 +269,10 @@
     <Page Include="Resources\Icons\password.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Admin\AP_AddModuleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Timetable\EditTimetable.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -369,7 +378,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Admin\CreateModule_Dialog.xaml">
+    <Page Include="View\Windows\CreateModule_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

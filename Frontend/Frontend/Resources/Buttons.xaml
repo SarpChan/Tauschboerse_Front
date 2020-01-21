@@ -45,6 +45,33 @@
         <Setter Property="FontSize" Value="12pt"/>
     </Style>
 
+
+    <!-- upload button style -->
+    <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource AdminButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <DockPanel>
+                            <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0"/>
+                        </DockPanel>
+
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--Style save Button -->
     <Style TargetType="{x:Type Button}" x:Key="SaveButton" BasedOn="{StaticResource UniversalButton}">
         <Setter Property="Template">

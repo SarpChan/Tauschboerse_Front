@@ -34,33 +34,6 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
 
-        <!-- upload button style -->
-        <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource AdminButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
-                            <DockPanel>
-                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
-                            </DockPanel>
-
-                        </Border>
-                        <!--Triggers for switching on hover -->
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
-                                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <!-- delete button style -->
         <Style TargetType="{x:Type Button}" x:Key="Deletebutton" BasedOn="{StaticResource AdminButton}">
             <Setter Property="Foreground" Value="{StaticResource CD_Red}" />
@@ -82,32 +55,6 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
                                 <Setter TargetName="Upload" Property="Fill" Value="{StaticResource bin_hover_b}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!-- add modul button style -->
-        <Style TargetType="{x:Type Button}" x:Key="AddModulebutton" BasedOn="{StaticResource Uploadbutton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
-                            <DockPanel>
-                                <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource add_b}"/>
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBlock VerticalAlignment="Center" Margin="{StaticResource TextMargin}" />
-                            </DockPanel>
-                        </Border>
-                        <!--Triggers for switching on hover -->
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
-                                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
-                                <Setter TargetName="Upload" Property="Fill" Value="{StaticResource add_hover_b}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -178,11 +125,7 @@
                 <ColumnDefinition Width="0.90*"/>
                 <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
-
-            <Popup x:Name="CreatModulePopup" Placement="Center">
-                <user_controls:CreateModule_Dialog x:Name="CreateModule"/>
-            </Popup>
-            
+  
             <StackPanel Grid.Column="1" Grid.Row="1" Width="auto">
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" >
@@ -247,7 +190,7 @@
                     <Button DockPanel.Dock="Left" Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>
                     <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextTextblock}" Text="oder"  Margin="{StaticResource TextMargin}" VerticalAlignment="Center"/>
                     <Button DockPanel.Dock="Left" Style="{StaticResource Uploadbutton}" Content="Neuen Studenplan hochladen"  Margin="{StaticResource TextMargin}" Click="Button_Click"/>
-                    <Button DockPanel.Dock="Right" Style="{StaticResource AddModulebutton}" Content="Neues Modul hinzufügen" HorizontalAlignment="Right" Click="OpenCreateModuleDialog" />
+                    <user_controls:AP_AddModuleButton/>
                 </DockPanel>
 
                 <user_controls:TimeTable x:Name="TimeTable" BorderBrush="Black" Height="500pt" Margin="{StaticResource HeaderMargin}"/>
