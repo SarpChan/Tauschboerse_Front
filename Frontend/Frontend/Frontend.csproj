@@ -94,6 +94,8 @@
     <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
+    <Compile Include="Helpers\Rules\TimeRule.cs" />
+    <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
     <Compile Include="Models\Outdated\Building.cs" />
     <Compile Include="Models\Outdated\Campus.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
+    <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

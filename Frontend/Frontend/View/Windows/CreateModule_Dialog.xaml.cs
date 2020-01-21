@@ -26,7 +26,7 @@ namespace Frontend.UserControls
 
         private void CloWi(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            this.Close();
         }
 
     }
