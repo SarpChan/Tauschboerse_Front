@@ -131,7 +131,7 @@ namespace Frontend.ViewModel
 
         {
 
-            Console.WriteLine("\n ADD MODULE WITH BUTTON");
+            ////Console.WriteLine("\n ADD MODULE WITH BUTTON");
             /*
 	
              * Annahme: Model ist nicht "observer-fähig" (z.B: Datenbank)
@@ -225,13 +225,12 @@ namespace Frontend.ViewModel
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-            Console.WriteLine("\t Init ttvmm ("+this.GetHashCode()+") \n\t\t(before) ->  Color:" + ttvmm.Color +" Y:" + ttvmm.Y+
-                "  X:"+ttvmm.X+"  H:"+ttvmm.Height+" W:"+ttvmm.Width);
+            //Console.WriteLine("\t Init ttvmm ("+this.GetHashCode()+") \n\t\t(before) ->  Color:" + ttvmm.Color +" Y:" + ttvmm.Y+"  X:"+ttvmm.X+"  H:"+ttvmm.Height+" W:"+ttvmm.Width);
 
             TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
             TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
 
-            Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
+            //Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
 
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
             ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm, moduleListModel.ModuleList);
@@ -240,8 +239,7 @@ namespace Frontend.ViewModel
             ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
-            Console.WriteLine("\t\t(after) ->  Color:" + ttvmm.Color + " Y:" + ttvmm.Y +
-                "  X:" + ttvmm.X + "  H:" + ttvmm.Height + " W:" + ttvmm.Width);
+            //Console.WriteLine("\t\t(after) ->  Color:" + ttvmm.Color + " Y:" + ttvmm.Y +"  X:" + ttvmm.X + "  H:" + ttvmm.Height + " W:" + ttvmm.Width);
 
         }
 
@@ -299,9 +297,9 @@ namespace Frontend.ViewModel
 
         private void OnNameChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Change Name");
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine("Change Name");
+            //Console.ForegroundColor = ConsoleColor.White;
 
             ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName, ttm.Type);
 
@@ -331,14 +329,14 @@ namespace Frontend.ViewModel
                 {
                     Module = t
                 };
-                Console.WriteLine(t);
-                Console.WriteLine("\t ADD MODULE: "+t.CourseName+" ->"+add);
+                //Console.WriteLine(t);
+                //Console.WriteLine("\t ADD MODULE: "+t.CourseName+" ->"+add);
                
                 ModuleList.Add(add);
                 BindListenerOn_TimetableViewModelModule(add);
                 Inititalize_TimetableViewModelModule(add);
 
-                Console.WriteLine("\t on "+this+" ->  "+this.GetHashCode()+"\n");
+                //Console.WriteLine("\t on "+this+" ->  "+this.GetHashCode()+"\n");
 
                 foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _ModuleList))
                 {

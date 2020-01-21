@@ -68,7 +68,8 @@
         </Grid>
         
         <!--MainFrame-->
-        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">
+        <!--<Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">-->
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
             <Frame.Source>
                 <Binding Path="ActivePage" Converter="{helpers:PageToUriConverter}"/>
             </Frame.Source>

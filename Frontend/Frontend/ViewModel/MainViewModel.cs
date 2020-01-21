@@ -49,7 +49,7 @@ namespace Frontend.ViewModel
             personalData = PersonalData.Instance;
             timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
-            Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
+            //Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
             so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
@@ -277,12 +277,13 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = dayValues[tm.Day];
             }
+
             timetableModuleList.SetList(tempTable);
         }
 
