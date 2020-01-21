@@ -9,66 +9,28 @@ namespace Frontend.ViewModel
 {
     class SharingPageViewModel
     {
-        private ObservableCollection<SwapOfferFrontendModel> _SwapListPublic = new ObservableCollection<SwapOfferFrontendModel>();
-        public ObservableCollection<SwapOfferFrontendModel> SwapListPublic
+        private ObservableCollection<SharingPageViewModelSwapOffer> _SwapListPublic = new ObservableCollection<SharingPageViewModelSwapOffer>();
+        public ObservableCollection<SharingPageViewModelSwapOffer> SwapListPublic
         {
             get { return _SwapListPublic; }
         }
 
-        private ObservableCollection<SwapOfferFrontendModel> _SwapListOwn = new ObservableCollection<SwapOfferFrontendModel>();
-        public ObservableCollection<SwapOfferFrontendModel> SwapListOwn
+        private ObservableCollection<SharingPageViewModelSwapOffer> _SwapListOwn = new ObservableCollection<SharingPageViewModelSwapOffer>();
+        public ObservableCollection<SharingPageViewModelSwapOffer> SwapListOwn
         {
             get { return _SwapListOwn; }
         }
 
-        public string Siebzehn
-        {
-            get { return "17"; }
-        }
+        List<SwapOfferFrontendModel> TestListOwn = new List<SwapOfferFrontendModel>();
+        List<SwapOfferFrontendModel> TestListPublic = new List<SwapOfferFrontendModel>();
+
+        public IEnumerable<String> AutocompleteOwn { get; set; }
+        public IEnumerable<String> AutocompletePublic { get; set; }
 
         public SharingPageViewModel()
         {
-            /*
-        public long Id { get; set; }
-        public int Slots { get; set; }
-        public char GroupChar { get; set; }
-        public DayOfWeek Day { get; set; }
-        public DateTime StartTime { get; set; } 
-        public DateTime EndTime { get; set; }
-        public Term Term { get; set; }
-        public CourseComponent CourseComponent { get; set; }
-        public Lecturer Lecturer { get; set; }
-        public Room Room { get; set; }
-        public HashSet<Student> Students { get; set; }
-        public HashSet<StudentPrioritizesGroup> StudentPrioritizesGroups { get; set; }
 
-            public long Id { get; set; }
-        public CourseType Type { get; set; }
-        public int CreditPoints { get; set; }
-        public string Exam { get; set; }
-        public HashSet<Group> Groups { get; set; }
-        public long CourseId { get; set; }
-        public StudentPassedExam StudentPassedExam { get; set; }
-             
-            SwapListOwn.Add(new SwapOffer
-            {
-                id = 1,
-                date = new DateTime(2020,01,17),
-                student = null,
-                fromGroup = new Group(),
-                toGroup = new Group
-                {
-                    GroupChar = 'D',
-                    Day = Models.DayOfWeek.MONDAY,
-                    StartTime = new DateTime(1,1,1,8,15,0),
-                    EndTime = new DateTime(1, 1, 1, 9, 45, 0),
-                    CourseComponent = new CourseComponent
-                    {
-                        Type = new CourseType
-                    }
-                }
-            });*/
-            SwapListOwn.Add(new SwapOfferFrontendModel
+            TestListOwn.Add(new SwapOfferFrontendModel
             {
                 Id = 0,
                 FromGroupChar = 'A',
@@ -83,7 +45,22 @@ namespace Frontend.ViewModel
                 ToDay = Models.DayOfWeek.MONDAY
             });
 
-            SwapListPublic.Add(new SwapOfferFrontendModel
+            TestListOwn.Add(new SwapOfferFrontendModel
+            {
+                Id = 0,
+                FromGroupChar = 'C',
+                ToGroupChar = 'D',
+                CourseName = "Programmieren 2",
+                CourseType = "Vorlesung",
+                ToStartTime = new TimeSpan(8, 15, 0),
+                ToEndTime = new TimeSpan(9, 45, 0),
+                FromStartTime = new TimeSpan(10, 0, 0),
+                FromEndTime = new TimeSpan(11, 30, 0),
+                FromDay = Models.DayOfWeek.FRIDAY,
+                ToDay = Models.DayOfWeek.MONDAY
+            });
+
+            TestListPublic.Add(new SwapOfferFrontendModel
             {
                 Id = 0,
                 FromGroupChar = 'A',
@@ -97,9 +74,65 @@ namespace Frontend.ViewModel
                 FromDay = Models.DayOfWeek.FRIDAY,
                 ToDay = Models.DayOfWeek.MONDAY,
             });
-            Console.WriteLine("Added;");
 
-            Console.WriteLine(this.GetHashCode());
+            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[0]));
+            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[1]));
+            SwapListPublic.Add(new SharingPageViewModelSwapOffer(TestListPublic[0]));
+
+            CreateAutocompletes();
+
+        }
+
+        #region Methods
+        private void CreateAutocompletes()
+        {
+            List<String> autoCompleteConvertList = new List<string>();
+            foreach(SharingPageViewModelSwapOffer swapoffer in this.SwapListOwn)
+            {
+               autoCompleteConvertList.Add(swapoffer.CourseName);
+               autoCompleteConvertList.Add(swapoffer.CourseType);
+            }
+            this.AutocompleteOwn = autoCompleteConvertList.Distinct().ToList(); ;
+            foreach (string s in this.AutocompleteOwn) Console.WriteLine(s);
+            List<String> autoCompleteConvertList2 = new List<string>();
+            foreach (SharingPageViewModelSwapOffer swapoffer in this.SwapListPublic)
+            {
+                autoCompleteConvertList2.Add(swapoffer.CourseName);
+                autoCompleteConvertList2.Add(swapoffer.CourseType);
+            }
+            this.AutocompletePublic = autoCompleteConvertList2.Distinct().ToList(); ;
+
+        }
+        #endregion Methods
+        //SPVMSO
+        public class SharingPageViewModelSwapOffer
+        {
+            public string CourseName { get; set; }
+            //Könnte auch dann ein Bild sein.
+            public string CourseType { get; set; }
+            public string Has { get; set; }
+            public string Wants { get; set; }
+            public long Id { get; set; }
+
+            public SharingPageViewModelSwapOffer(SwapOfferFrontendModel sofm)
+            {
+                this.CourseName = sofm.CourseName;
+                this.CourseType = sofm.CourseType;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Gruppe ").Append(sofm.FromGroupChar).Append(" (");
+                string tanslateDay = sofm.FromDay.ToString();
+                sb.Append(tanslateDay.First().ToString().ToUpper()).Append(tanslateDay.Substring(1).ToLower()).Append(" ");
+                //sb.Append(sofm.FromStartTime.Hours).Append(":").Append(sofm.FromStartTime.Minutes).Append(" - ").Append(sofm.FromEndTime.Hours).Append(":").Append(sofm.FromEndTime.Minutes).Append(")");
+                sb.Append(sofm.FromStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.FromEndTime.ToString(@"hh\:mm")).Append(")");
+                this.Has = sb.ToString();
+                sb.Clear();
+                sb.Append("Gruppe ").Append(sofm.ToGroupChar).Append(" (");
+                tanslateDay = sofm.ToDay.ToString();
+                sb.Append(tanslateDay.First().ToString().ToUpper()).Append(tanslateDay.Substring(1).ToLower()).Append(" ");
+                sb.Append(sofm.ToStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.ToEndTime.ToString(@"hh\:mm")).Append(")");
+                this.Wants = sb.ToString();
+                this.Id = sofm.Id;
+            }
         }
 
         public class SwapOfferFrontendModel
