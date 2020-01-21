@@ -134,13 +134,17 @@
                             <!-- Numeric -->
                             
                             <!-- List -->
+                            
+                            <!-- Removed
+                                
+                                IsEditable="{Binding Path=AssignedDataGridColumn.UserCanEnterText, 
+                                        RelativeSource={RelativeSource AncestorType={x:Type local:DataGridColumnFilter}}, 
+                                        FallbackValue=False}"  -->
                             <ComboBox 
                                 Visibility="Collapsed"
                                 IsTextSearchEnabled="True"
 
-                                IsEditable="{Binding Path=AssignedDataGridColumn.UserCanEnterText, 
-                                        RelativeSource={RelativeSource AncestorType={x:Type local:DataGridColumnFilter}}, 
-                                        FallbackValue=False}"  
+                                
                                 
                                 IsReadOnly="False"
                                 

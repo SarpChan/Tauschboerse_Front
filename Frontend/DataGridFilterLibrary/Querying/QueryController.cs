@@ -273,14 +273,14 @@ namespace DataGridFilterLibrary.Querying
 
         private static void invoke(Action action)
         {
-            System.Diagnostics.Trace.WriteLine("------------------ START APPLAY FILTER ------------------------------");
+            //System.Diagnostics.Trace.WriteLine("------------------ START APPLAY FILTER ------------------------------");
             Stopwatch sw = Stopwatch.StartNew();
 
             action.Invoke();
 
             sw.Stop();
-            System.Diagnostics.Trace.WriteLine("TIME: " + sw.ElapsedMilliseconds);
-            System.Diagnostics.Trace.WriteLine("------------------ STOP APPLAY FILTER ------------------------------");
+            //System.Diagnostics.Trace.WriteLine("TIME: " + sw.ElapsedMilliseconds);
+            //System.Diagnostics.Trace.WriteLine("------------------ STOP APPLAY FILTER ------------------------------");
         }
 
         private bool itemPassesFilter(object item)

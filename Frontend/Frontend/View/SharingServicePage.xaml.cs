@@ -10,6 +10,7 @@ namespace Frontend.View
         public SharingServicePage()
         {
             InitializeComponent();
+            DataContext = this;
         }
     }
 }

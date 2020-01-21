@@ -7,7 +7,8 @@
       xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
-      Title="Sharing Service">
+      Title="Sharing Service"
+      >
     <Page.Resources>
         <viewmodel:SharingPageViewModel x:Name="SharingPageViewModel" x:Key="SharingPageViewModel"/>
     </Page.Resources>
@@ -38,8 +39,10 @@
                 CanUserAddRows="False" 
                 Background="{x:Null}"
                 MinRowHeight="40"
+                Height="210"
+                AlternationCount="2"
                 VerticalAlignment="Center"
-                filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
+                filter:DataGridExtensions.UseBackgroundWorkerForFiltering="False"
                 filter:DataGridExtensions.IsClearButtonVisible="False"
                 ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
            TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
@@ -48,10 +51,6 @@
                 >
                 <DataGrid.Resources>
                     
-                    <Style TargetType="{x:Type Rectangle}">
-                        <Setter Property="Fill" Value="{StaticResource CD_Black}" />
-                    </Style>
-
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
                             <Setter Property="Background" Value="White" />
                             <Setter Property="Foreground" Value="Black" />
@@ -80,7 +79,13 @@
                                     <Setter Property="Background" Value="{x:Null}" />
                                     <Setter Property="BorderBrush" Value="{x:Null}" />
                                 </Trigger>
-                            </Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#FFF"></Setter>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#FFD2E7EB"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
                         </Style>
                     
                 </DataGrid.Resources>
@@ -94,7 +99,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Kurstyp" Width="2*"  SortMemberPath="CourseType">
+                    <DataGridTemplateColumn Header="Kurstyp" Width="2*" SortMemberPath="CourseType">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding CourseType}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
@@ -116,26 +121,40 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Ändern" CanUserResize="False" Width="0.5*" CanUserSort="False" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
+                    <DataGridTemplateColumn Header="" CanUserResize="False" Width="0.5*" CanUserSort="False" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
-                                    <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Center">
+                                    <Button 
+                                        HorizontalAlignment="Stretch" 
+                                        Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" 
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding EditCommand, Source={StaticResource SharingPageViewModel}}"
+                                        CommandParameter="{Binding Id}" 
+                                        >
                                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" LastChildFill="False">
-                                            <Image Name="Save" Source="{StaticResource edit_b}" Height="20" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" OpacityMask="Black" />
+                                            <Image Name="EditIcon" Source="{StaticResource edit_b}" Height="20" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" OpacityMask="Black" />
                                         </DockPanel>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Löschen" CanUserResize="False"  Width="0.5*" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
+                    <DataGridTemplateColumn Header="" CanUserResize="False"  Width="0.5*" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
-                                    <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                                    <Button 
+                                        HorizontalAlignment="Stretch" 
+                                        Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" 
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding DeleteCommand, Source={StaticResource SharingPageViewModel}}"
+                                        CommandParameter="{Binding Id}" 
+                                        >
                                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" LastChildFill="False">
-                                            <Image Name="Save" Source="{StaticResource delete}" Height="20" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" OpacityMask="Black" />
+                                            <Image Name="DeleteIcon" Source="{StaticResource delete}" Height="20" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" OpacityMask="Black" />
                                         </DockPanel>
                                     </Button>
                                 </StackPanel>
@@ -146,8 +165,124 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            <Button Width="240pt" HorizontalAlignment="Left" Margin="0,20,0,0" Style="{Binding Mode=OneWay, Source={StaticResource AdminButton}}">
+                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
+                    <Image Name="AddIcon" Source="{StaticResource add}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock Padding="20,8,0,0" Height="40" Text="Tauschangebot erstellen" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                </DockPanel>
+            </Button>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Alle öffentlichen Tauschangebote" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" Margin="0,40,0,20" />
-            <DataGrid x:Name="DG_PUBLIC" ItemsSource="{Binding AutocompleteOwn}" AutoGenerateColumns="True">
+            <DataGrid 
+                x:Name="DG_PUBLIC"
+                ItemsSource="{Binding SwapListPublic}" 
+                AutoGenerateColumns="False" 
+                CanUserAddRows="False" 
+                Background="{x:Null}"
+                MinRowHeight="40"
+                Height="210"
+                AlternationCount="2"
+                VerticalAlignment="Center"
+                filter:DataGridExtensions.UseBackgroundWorkerForFiltering="False"
+                filter:DataGridExtensions.IsClearButtonVisible="False"
+                ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
+           TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
+           ResourceId=DataGridHeaderFilterControlStyle}}"
+                VerticalContentAlignment="Center" Focusable="False" VerticalScrollBarVisibility="Visible" SelectionUnit="CellOrRowHeader" CanUserDeleteRows="False" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" HorizontalScrollBarVisibility="Hidden"
+                >
+                <DataGrid.Resources>
+
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                        <Setter Property="Margin" Value="-1,-1,0,0" />
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                    <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background" Value="{x:Null}" />
+                        <Setter Property="BorderBrush" Value="{x:Null}" />
+
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{x:Null}" />
+                                <Setter Property="BorderBrush" Value="{x:Null}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="{x:Null}" />
+                        <Setter Property="BorderBrush" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{x:Null}" />
+                                <Setter Property="BorderBrush" Value="{x:Null}" />
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#FFF"></Setter>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#FFD2E7EB"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+
+
+                    <DataGridTemplateColumn Header="Kurs" Width="2*" CanUserSort="True" SortMemberPath="CourseName">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CourseName}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Kurstyp" Width="2*" SortMemberPath="CourseType">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CourseType}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Hat" Width="4*" SortMemberPath="Has">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Has}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Will" Width="4.5*" SortMemberPath="Wants">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Wants}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" CanUserResize="False"  Width="0.5*" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
+                                    <Button 
+                                        HorizontalAlignment="Stretch" 
+                                        Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" 
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding RequestCommand, Source={StaticResource SharingPageViewModel}}"
+                                        CommandParameter="{Binding Id}" 
+                                        >
+                                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" LastChildFill="False">
+                                            <Image Name="TradeIcon" Source="{StaticResource trade_b}" Height="20" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" OpacityMask="Black" />
+                                        </DockPanel>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
 
             </DataGrid>
         </StackPanel>
