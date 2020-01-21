@@ -129,6 +129,9 @@
     <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
       <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Admin\ModuleTimeEditor.xaml.cs">
+      <DependentUpon>ModuleTimeEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
       <DependentUpon>EditTimetable.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,7 @@
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
+    <Compile Include="ViewModel\UserControlVMs\ModuleTimeEditorMV.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
@@ -274,6 +278,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Admin\AP_AddModuleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Admin\ModuleTimeEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

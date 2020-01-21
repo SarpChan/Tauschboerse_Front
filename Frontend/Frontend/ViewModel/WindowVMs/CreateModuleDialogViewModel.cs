@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Frontend.ViewModel
@@ -13,7 +14,6 @@ namespace Frontend.ViewModel
     {
         private APIClient ApiClient = APIClient.Instance;
         private ModuleListModel ModuleListModel = ModuleListModel.Instance;
-
 
         #region Properties
 
