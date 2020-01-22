@@ -96,7 +96,6 @@
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Helpers\Rules\TimeRule.cs" />
     <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
-    <Compile Include="Models\GroupListModel.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
     <Compile Include="Models\Outdated\Building.cs" />
     <Compile Include="Models\Outdated\Campus.cs" />
