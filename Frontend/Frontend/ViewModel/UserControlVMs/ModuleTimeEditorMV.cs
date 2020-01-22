@@ -2,6 +2,7 @@
 using Frontend.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,8 @@ namespace Frontend.ViewModel
             set { _Color = value; }
         }
 
-        private static string[] _Weekdays = Globals.Weekdays;
-        public static string[] Weekdays{get { return _Weekdays; }}
+        private ObservableCollection<string> _Weekdays = new ObservableCollection<string>(Globals.Weekdays.Take(Globals.weekdays));
+        public ObservableCollection<string> Weekdays {get { return _Weekdays; } set { _Weekdays = value; } }
 
         #endregion
 
@@ -53,7 +54,28 @@ namespace Frontend.ViewModel
                 return _SaveTimeCommand;
             }
         }
+
+        private ICommand _ChangeDayCommand;
+        public ICommand ChangeDayCommand
+        {
+            get
+            {
+                if (_ChangeDayCommand == null)
+                {
+                    //_ChangeDayCommand = new ActionCommand((int i) => ChangeDay(i), null);
+                }
+                return _ChangeDayCommand;
+            }
+        }
+
         #endregion
+
+        public void ChangeDay(int index)
+        {
+            Console.WriteLine(index);
+            EditTimetableModule.Day = Convert.ToString(index);
+        }
+
 
         public void SaveTime()
         {

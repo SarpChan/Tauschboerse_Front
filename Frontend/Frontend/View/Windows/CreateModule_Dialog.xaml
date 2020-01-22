@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:helpers="clr-namespace:Frontend.Helpers"
         xmlns:user_controls="clr-namespace:Frontend.UserControls"
         x:Class="Frontend.UserControls.CreateModule_Dialog"
@@ -35,9 +36,30 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
-    
-    <Border BorderThickness="2" BorderBrush="Black" Background="White">
+
+
+    <xctk:Wizard FinishButtonClosesWindow="True">
+        <xctk:WizardPage x:Name="IntroPage" 
+                                   Title="Welcome to my Wizard"
+                                   Description="This Wizard will walk you though how to do something." />
+        <xctk:WizardPage x:Name="Page1" PageType="Interior"
+                                   Title="Wähle eine Zeit aus"
+                                   Description="This is the first page in the process."
+                                   
+                                   NextPage="{Binding ElementName=Page2}"
+                                   PreviousPage="{Binding ElementName=IntroPage}">
+            <user_controls:ModuleTimeEditor Module="{Binding EditTimetableModule}" Color="#34ebc3" Width="200pt"/>
+        </xctk:WizardPage>
+        <xctk:WizardPage x:Name="Page2" PageType="Interior"
+                                   Title="Page 2"
+                                   Description="This is the second page in the process"/>
+        <xctk:WizardPage x:Name="LastPage" PageType="Interior"
+                                   Title="Last Page"
+                                   Description="This is the last page in the process"
+                                   CanFinish="True"/>
+    </xctk:Wizard>
+
+    <!--<Border BorderThickness="2" BorderBrush="Black" Background="White">
         <StackPanel>
             <Label HorizontalContentAlignment="Center" Content="Module Erstellen" FontFamily="pack://application:,,,/Resources/Fonts/#Roboto"  FontSize="15pt"  Foreground="White" Background="Black"/>
             <StackPanel Margin="10" >
@@ -82,8 +104,7 @@
                         <Label Content="Beauftragter:" FontWeight="ExtraLight" />
                         <ComboBox Name="Lecture" Text="Beauftragter" Style="{StaticResource UniversalComboBox}"/>
                     </StackPanel>
-                    <!-- Momentan ist leider kein Attribute CP vor handen
-                    
+    
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
                         <Label Content="CP:" FontWeight="ExtraLight" />
                         <TextBox x:Name="CP" PreviewTextInput="CP" DockPanel.Dock="Right" VerticalAlignment="Center" MinWidth="50" Height="50" HorizontalAlignment="Stretch">
@@ -96,7 +117,7 @@
                         </TextBox.Text>
                         </TextBox>
                     </StackPanel>
-                    -->
+                
           
                 </DockPanel>
 
@@ -104,7 +125,7 @@
                 <DockPanel >
 
                     <user_controls:ModuleTimeEditor  Module="{Binding EditTimetableModule}" Color="#34ebc3" />
-                    <!--<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
                         <Label Content="Startzeit:" FontWeight="ExtraLight" />
                         <TextBox x:Name="StartTime" VerticalAlignment="Center" MinWidth="150" Height="50">
                             <TextBox.Text>
@@ -134,7 +155,6 @@
                         <Label Content="Wochentag:" FontWeight="ExtraLight" />
                         <ComboBox x:Name="Weekday" Text="Wochentag" Style="{StaticResource UniversalComboBox}" />
                     </StackPanel>
-                    -->
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
                         <Label Content="Semester:" FontWeight="ExtraLight" />
                         <ComboBox x:Name="Semseter" Text="Semester" VerticalAlignment="Center" Style="{StaticResource UniversalComboBox}" />
@@ -149,4 +169,5 @@
             </StackPanel>
         </StackPanel>
     </Border>
+    -->
 </Window>
