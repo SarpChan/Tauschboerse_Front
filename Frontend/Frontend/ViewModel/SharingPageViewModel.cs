@@ -455,7 +455,7 @@ namespace Frontend.Models
         }
     }
 
-    public class SwapOfferFrontendModel
+    /**public class SwapOfferFrontendModel
     {
         public long Id { get; set; }
         public char FromGroupChar { get; set; }
@@ -468,7 +468,7 @@ namespace Frontend.Models
         public TimeSpan FromEndTime { get; set; }
         public Models.DayOfWeek FromDay { get; set; }
         public Models.DayOfWeek ToDay { get; set; }
-    }
+    }**/
 
     public class NewsModel
     {

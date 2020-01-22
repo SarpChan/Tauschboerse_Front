@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    class SwapOfferFrontendModel
+    public class SwapOfferFrontendModel
     {
 
         public long Id { get; set; }
@@ -18,8 +18,8 @@ namespace Frontend.Models
         public TimeSpan ToEndTime { get; set; }
         public TimeSpan FromStartTime { get; set; }
         public TimeSpan FromEndTime { get; set; }
-        public Models.DayOfWeek FromDay { get; set; }
-        public Models.DayOfWeek ToDay { get; set; }
+        public DayOfWeek FromDay { get; set; }
+        public DayOfWeek ToDay { get; set; }
 
 
     }

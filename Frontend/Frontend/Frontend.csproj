@@ -99,6 +99,7 @@
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Helpers\Rules\TimeRule.cs" />
     <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
     <Compile Include="Models\Outdated\Building.cs" />
     <Compile Include="Models\Outdated\Campus.cs" />
@@ -124,6 +125,8 @@
     <Compile Include="Models\Outdated\StudyProgram.cs" />
     <Compile Include="Models\Outdated\SwapOffer.cs" />
     <Compile Include="Models\Outdated\Term.cs" />
+    <Compile Include="Models\SwapOfferFrontendModel.cs" />
+    <Compile Include="Models\SwapOfferListModel.cs" />
     <Compile Include="Models\Timetable\TimetableModule.cs" />
     <Compile Include="Models\Timetable\TimetableRowListModel.cs" />
     <Compile Include="Models\Timetable\TimetableViewModelModule.cs" />
