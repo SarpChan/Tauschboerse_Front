@@ -11,9 +11,9 @@ namespace Frontend.Models
     
     class ModuleListModel
     {
-        private List<TimetableModule> _moduleList = new List<TimetableModule>();
+        private ObservableCollection<TimetableModule> _moduleList = new ObservableCollection<TimetableModule>();
         private List<ModuleSelectionItem> _moduleItemList = new List<ModuleSelectionItem>();
-        public List<TimetableModule> ModuleList { get { return _moduleList; } }
+        public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
         public List<ModuleSelectionItem> ModuleItemList { get { return _moduleItemList; } }
 
         private static ModuleListModel _instance;

@@ -23,7 +23,7 @@ namespace Frontend.ViewModel
     class MainViewModel : ViewModelBase
     {
         public PersonalData personalData;
-        public ModuleListModel timetableModuleList;
+        public ModuleListModel ModuleList;
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
 
         private int thisID;
@@ -132,7 +132,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToPersonalDataPageCommand == null)
                 {
-                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync(new StudentModulePage()));
+                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("StudentModulePage.xaml"));
                 }
                 return _SwitchToPersonalDataPageCommand;
             }
@@ -239,11 +239,11 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
-            else if (newActivePage.GetType().Equals(typeof(StudentModulePage)))
+            else if (newActivePage =="StudentModulePage.xaml")
             {
                 IsLoading = true;
-                //await RequesModuleDataFromServerAsync();
-                RequestModuleDataDummy();
+                await RequestModuleDataFromServerAsync();
+                //RequestModuleDataDummy();
                 IsLoading = false;
             }
 
@@ -358,22 +358,18 @@ namespace Frontend.ViewModel
                 tm.Day = dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
-            timetableModuleList.SetList(tempTable);
+           ModuleList.SetList(tempTable);
         }
 
         private async Task RequestModuleDataFromServerAsync()
         {
-            List<TimetableModule> tempTable = new List<TimetableModule>();
+            List<ModuleSelectionItem> tempTable = new List<ModuleSelectionItem>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("/rest/lists/module");
+            var response = await apiClient.NewGETRequest("/rest/lists/module/prioritize");
             if ((int)response.StatusCode >= 400) return;
             Console.WriteLine(response.Content);
-            tempTable = JsonConvert.DeserializeObject<List<TimetableModule>>(response.Content.ToString());
-            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
-            {
-                tm.Day = dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
-            }
+            tempTable = JsonConvert.DeserializeObject<List<ModuleSelectionItem>>(response.Content.ToString());
+            
             ModuleList.SetList(tempTable);
         }
 

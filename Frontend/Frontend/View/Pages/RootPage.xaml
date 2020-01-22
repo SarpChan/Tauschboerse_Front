@@ -80,6 +80,6 @@
             <Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Icons/loading_anim.gif" Stretch="None" />
         </Grid>
         <!--Login Page Grid-->
-        <!--user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/-->
+        <user_controls:Login_Page Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
