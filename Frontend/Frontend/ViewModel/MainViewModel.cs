@@ -163,6 +163,19 @@ namespace Frontend.ViewModel
             }
         }
 
+        private ICommand _SwitchToPythonUploadPageCommand;
+        public ICommand SwitchToPythonUploadPageCommand
+        {
+            get
+            {
+                if (_SwitchToPythonUploadPageCommand == null)
+                {
+                    _SwitchToPythonUploadPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("PythonUpload.xaml"));
+                }
+                return _SwitchToPythonUploadPageCommand;
+            }
+        }
+
         private ICommand _LogoutCommand;
         public ICommand LogoutCommand
         {
@@ -237,6 +250,19 @@ namespace Frontend.ViewModel
                 IsLoading = false;
             }
             else if (newActivePage == "AdminPage.xaml")
+            {
+                IsLoading = true;
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestAdminDataFromServerAsync();
+                        break;
+                }
+                IsLoading = false;
+            }
+            else if (newActivePage == "PythonUpload.xaml")
             {
                 IsLoading = true;
                 switch (mode)

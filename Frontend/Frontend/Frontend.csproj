@@ -140,14 +140,17 @@
     <Compile Include="UserControls\Login\Login_PasswordInput.xaml.cs">
       <DependentUpon>Login_PasswordInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
-      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
+    <Compile Include="UserControls\Login\Login_UsernameInput.xaml.cs">
+      <DependentUpon>Login_UsernameInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ModuleSelection\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SavePythonCodeButton.xaml.cs">
+      <DependentUpon>SavePythonCodeButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SideBar\SB_AdminButton.xaml.cs">
       <DependentUpon>SB_AdminButton.xaml</DependentUpon>
@@ -182,12 +185,16 @@
     <Compile Include="UserControls\TT_SwapButton.xaml.cs">
       <DependentUpon>TT_SwapButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UploadPythonscriptButton.xaml.cs">
+      <DependentUpon>UploadPythonscriptButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AdminpageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\HomepageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="ViewModel\PythonUploadViewModel.cs" />
     <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\TimetabeItem.cs" />
