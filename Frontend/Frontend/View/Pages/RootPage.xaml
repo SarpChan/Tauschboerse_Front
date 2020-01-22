@@ -39,7 +39,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="1000*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
  
         <!--Topbar-->
@@ -54,8 +54,8 @@
                 <ColumnDefinition Width="280"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="940" />
+                <RowDefinition MaxHeight="60" Height="60" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
            <StackPanel Orientation="Vertical" Grid.Row="1">

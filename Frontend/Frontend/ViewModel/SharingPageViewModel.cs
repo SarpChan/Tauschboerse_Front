@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using Frontend.Helpers;
 using Frontend.Models;
 namespace Frontend.ViewModel
@@ -31,6 +32,17 @@ namespace Frontend.ViewModel
         {
             get { return _SwapListOwn; }
         }
+
+        private ObservableCollection<NewsModel> _NewsList = new ObservableCollection<NewsModel>();
+        /// <summary>
+        /// Eine Liste mit allen News des aktuellen Nutzers
+        /// </summary>
+        public ObservableCollection<NewsModel> NewsList
+        {
+            get { return _NewsList; }
+        }
+
+
 
         private List<SwapOfferFrontendModel> TestListOwn = new List<SwapOfferFrontendModel>();
         private List<SwapOfferFrontendModel> TestListPublic = new List<SwapOfferFrontendModel>();
@@ -81,9 +93,9 @@ namespace Frontend.ViewModel
             TestListOwn.Add(new SwapOfferFrontendModel
             {
                 Id = 2,
-                FromGroupChar = 'C',
+                FromGroupChar = 'A',
                 ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
+                CourseName = "EIBO",
                 CourseType = "Vorlesung",
                 ToStartTime = new TimeSpan(8, 15, 0),
                 ToEndTime = new TimeSpan(9, 45, 0),
@@ -95,7 +107,7 @@ namespace Frontend.ViewModel
             TestListOwn.Add(new SwapOfferFrontendModel
             {
                 Id = 3,
-                FromGroupChar = 'C',
+                FromGroupChar = 'B',
                 ToGroupChar = 'D',
                 CourseName = "Programmieren 2",
                 CourseType = "Vorlesung",
@@ -109,7 +121,7 @@ namespace Frontend.ViewModel
             TestListOwn.Add(new SwapOfferFrontendModel
             {
                 Id = 4,
-                FromGroupChar = 'C',
+                FromGroupChar = 'A',
                 ToGroupChar = 'D',
                 CourseName = "Programmieren 2",
                 CourseType = "Vorlesung",
@@ -123,7 +135,7 @@ namespace Frontend.ViewModel
             TestListOwn.Add(new SwapOfferFrontendModel
             {
                 Id = 5,
-                FromGroupChar = 'C',
+                FromGroupChar = 'A',
                 ToGroupChar = 'D',
                 CourseName = "Programmieren 2",
                 CourseType = "Vorlesung",
@@ -187,6 +199,21 @@ namespace Frontend.ViewModel
             SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[6]));
             SwapListPublic.Add(new SharingPageViewModelSwapOffer(TestListPublic[0]));
 
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 20,8,15,0)).ToUnixTimeSeconds()
+            });
             CreateAutocompletes();
 
         }
@@ -223,9 +250,17 @@ namespace Frontend.ViewModel
             Console.WriteLine("Editing " + id + "...");
         }
 
-        private void RequestTradeOffer(object id)
+        private async void RequestTradeOffer(object id)
         {
-            Console.WriteLine("Trading " + id + "...");
+            APIClient api = APIClient.Instance;
+            foreach (SharingPageViewModelSwapOffer swapOffer in this.SwapListPublic)
+            {
+                if (swapOffer.Id == (long)id)
+                {
+                    Console.WriteLine("Trading " + id + "...");
+                    await api.NewPOSTRequest("/tradeOffer/request", swapOffer);
+                }
+            }
         }
 
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -276,9 +311,9 @@ namespace Frontend.ViewModel
 
         private SharingPageViewModelSwapOffer FindSharingPageViewModelSwapOfferWithId(long id, IList<SharingPageViewModelSwapOffer> swapOffers)
         {
-            foreach(SharingPageViewModelSwapOffer spvmso in swapOffers)
+            foreach (SharingPageViewModelSwapOffer spvmso in swapOffers)
             {
-                if(spvmso.Id == id)
+                if (spvmso.Id == id)
                 {
                     return spvmso;
                 }
@@ -367,12 +402,34 @@ namespace Frontend.Models
     /// </summary>
     public class SharingPageViewModelSwapOffer
     {
-        public string CourseName { get; set; }
+        public string CourseName
+        {
+            get
+            {
+                return SwapOffer.CourseName;
+            }
+            set
+            {
+                SwapOffer.CourseName = (string)value;
+            }
+        }
+        public string CourseType
+        {
+            get
+            {
+                return SwapOffer.CourseType;
+            }
+            set
+            {
+                SwapOffer.CourseType = (string)value;
+            }
+        }
         //Könnte auch dann ein Bild sein.
-        public string CourseType { get; set; }
         public string Has { get; set; }
         public string Wants { get; set; }
         public long Id { get; set; }
+
+        public SwapOfferFrontendModel SwapOffer { get; set; }
 
         /// <summary>
         /// Konstruktor für ein SPVMSO
@@ -381,13 +438,11 @@ namespace Frontend.Models
         public SharingPageViewModelSwapOffer(SwapOfferFrontendModel sofm)
         {
             //Im getter durchreichen
-            this.CourseName = sofm.CourseName;
-            this.CourseType = sofm.CourseType;
+            this.SwapOffer = sofm;
             StringBuilder sb = new StringBuilder();
             sb.Append("Gruppe ").Append(sofm.FromGroupChar).Append(" (");
             string tanslateDay = sofm.FromDay.ToString();
             sb.Append(tanslateDay.First().ToString().ToUpper()).Append(tanslateDay.Substring(1).ToLower()).Append(" ");
-            //sb.Append(sofm.FromStartTime.Hours).Append(":").Append(sofm.FromStartTime.Minutes).Append(" - ").Append(sofm.FromEndTime.Hours).Append(":").Append(sofm.FromEndTime.Minutes).Append(")");
             sb.Append(sofm.FromStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.FromEndTime.ToString(@"hh\:mm")).Append(")");
             this.Has = sb.ToString();
             sb.Clear();
@@ -415,5 +470,41 @@ namespace Frontend.Models
         public Models.DayOfWeek ToDay { get; set; }
     }
 
+    public class NewsModel
+    {
+        [JsonProperty("message")]
+        public string Message { get; set; }
+        [JsonProperty("timestamp")]
+        public long timestamp { get; set; }
+        [JsonIgnore]
+        public String Time
+        {
+            get
+            {
+                DateTime conv = new DateTime(timestamp);
+                DateTime today = DateTime.Now;
+                StringBuilder sb = new StringBuilder();
+                if (conv.Day == today.Day)
+                {
+                    sb.Append("Heute,");
+                }
+                else if (conv.Day == today.Day - 1)
+                {
+                    sb.Append("Gestern,");
+                }
+                else
+                {
+                    sb.Append(conv.ToShortDateString()).Append(",");
+                }
+                sb.Append(conv.ToShortTimeString()).Append("Uhr").Append(":");
+
+                return sb.ToString();
+            }
+            set
+            {
+                Time = (string)value;
+            }
+        }
+    }
 
 }

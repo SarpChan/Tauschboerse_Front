@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Frontend.UserControls"
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              mc:Ignorable="d" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="550" MaxWidth="700"
             >
 
@@ -130,8 +131,9 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
-                </TextBlock>
+                <!--<TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15"/>-->
+                <xctk:WatermarkTextBox x:Name="CourseName" Watermark="Fach eingeben"  BorderThickness="1"  Padding="10 15" />
+                
             </Border>
         </StackPanel>
 

@@ -197,6 +197,7 @@
     <Compile Include="ViewModel\PageVMs\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="ViewModel\SharingPageViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />

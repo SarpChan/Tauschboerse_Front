@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Frontend.View
 {
@@ -11,6 +12,13 @@ namespace Frontend.View
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        public void OpenDialog(object sender, RoutedEventArgs args)
+        {
+            SO_Dialog d = new SO_Dialog();
+            d.Show();
+            d.Topmost = true;
         }
     }
 }
