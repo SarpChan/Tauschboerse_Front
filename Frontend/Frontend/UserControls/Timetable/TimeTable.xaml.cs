@@ -38,7 +38,7 @@ namespace Frontend.UserControls
 
         private void TimetableItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("MouseEnter TimeTableItem");
+            //Console.WriteLine("MouseEnter TimeTableItem");
             popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
             uc.MouseLeave += TimetableItem_MouseLeave;
             popUp.IsOpen = true;
