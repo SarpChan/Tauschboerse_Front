@@ -82,6 +82,7 @@
     <Compile Include="Helpers\Converters\BoolToValueConverter.cs" />
     <Compile Include="Helpers\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
+    <Compile Include="Helpers\SwapOfferFromBackend.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
