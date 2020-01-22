@@ -17,25 +17,44 @@ namespace Frontend.Helpers
         }
 
 
-        private async Task RequestNewsFromServerAsync(long id)
+        public async Task allSwapOffers()
         {
-
-            SwapOfferFilter swapOfferFilter = new SwapOfferFilter
-            {
-                attribute = "forOwnderId",
-                comperatorValue = id,
-                comperatorType = "EQUALS"
-            };
             List<SwapOfferFrontendModel> swapOffer = new List<SwapOfferFrontendModel>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/swapOffer", JsonConvert.SerializeObject(swapOffer, Formatting.Indented));
+
+             var response = await apiClient.NewGETRequest("/rest/lists/swapOffer/all");
             if ((int)response.StatusCode >= 400)
             {
                 return;
             }
             swapOffer = JsonConvert.DeserializeObject<List<SwapOfferFrontendModel>>(response.Content.ToString());
             swapOfferListModel.SetList(swapOffer);
+            
         }
+
+        public async Task SwapOffersByUser()
+        {
+
+            
+            List<SwapOfferFrontendModel> swapOffer = new List<SwapOfferFrontendModel>();
+            APIClient apiClient = APIClient.Instance;
+
+            var response = await apiClient.NewGETRequest("/rest/lists/swapOffer/me");
+            if ((int)response.StatusCode >= 400)
+            {
+                return;
+            }
+            swapOffer = JsonConvert.DeserializeObject<List<SwapOfferFrontendModel>>(response.Content.ToString());
+            
+            
+           
+            
+            swapOfferListModel.SetList(swapOffer);
+            
+        }
+
+
+
 
     }
 }
