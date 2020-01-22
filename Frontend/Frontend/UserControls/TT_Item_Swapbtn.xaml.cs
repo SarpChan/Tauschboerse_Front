@@ -27,7 +27,10 @@ namespace Frontend.UserControls
                       
         }
 
-      
+      /*
+       * Methode, die vom Usercontrol aufgerufen wird, um ein neues Dialogfenster zum Tauschen erstellt und
+       * dieses öffnet und mit allen Daten über den Aufruf FillDialog() füllt
+       */
         private void OpenDialog(object sender, RoutedEventArgs e)
         {
             SO_Dialog d = new SO_Dialog();
@@ -37,6 +40,9 @@ namespace Frontend.UserControls
             
         }
 
+        /*
+         * Methode, um das Dialogfenster mit den richtigen Daten zu füllen
+         */
         private void FillDialog(SO_Dialog d)
         {
             d.CourseName.Text = item.Module.Module.CourseName;

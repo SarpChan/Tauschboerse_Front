@@ -112,6 +112,7 @@
         <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </Window.DataContext>
 
+    <!--Griddefinition-->
     <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -132,7 +133,6 @@
                 <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
                 </TextBlock>
             </Border>
-
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
@@ -140,8 +140,6 @@
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
                 <TextBlock  x:Name="TargetCourse"  Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
             </Border>
-
-
         </StackPanel>
 
 
@@ -153,6 +151,7 @@
 
         </StackPanel>
 
+        <!--Combobox für die noch auszuwählenden Gruppen-->
         <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
             <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
             <ComboBox x:Name="ToGroup" Width="250" Height="50" HorizontalAlignment="Left">
@@ -162,6 +161,7 @@
             </ComboBox>
         </StackPanel>
 
+        <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
         <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 80 0 0">
             <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create"/>
             <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloWi" Margin="40 0 0 0"/>

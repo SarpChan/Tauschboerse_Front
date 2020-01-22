@@ -30,16 +30,31 @@ namespace Frontend.View
             InitializeComponent();
         }
 
+   
+        /*
+         * Methode, um das Dialogfenster wieder zu schließen
+         */
         private void CloWi(object sender, RoutedEventArgs e)
         {
             Visibility = Visibility.Collapsed;
         }
 
+        /*
+         * Methode für den "Erstellen"-Button, die die Methode CreateSwapOfferAsync aufruft und
+         * das Dialogfenster wieder schließt 
+         */
         public void Create(object sender, RoutedEventArgs e)
         {
             CreateSwapOfferAsync();
             CloWi(sender, e);
         }
+
+        /*
+         * Methode, um ein neues SwapOffer anzulegen und dieses an das Backend zu schicken
+         * Das SwapOfferobjekt bekommt dafür die IDs von der Gruppe, in der der Student aktuell ist, 
+         * die ID der Gruppe, in die er wechseln möchte.
+         * Über den APIClient wird das Backend und der passende PostRequest angesprochen
+         */
         private async void CreateSwapOfferAsync()
         {
 
