@@ -1,4 +1,6 @@
-﻿using Frontend.View;
+﻿using Frontend.Helpers;
+using Frontend.Models;
+using Frontend.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,13 @@ namespace Frontend.UserControls
     /// </summary>
     public partial class TT_Item_Swapbtn : UserControl
     {
+        SO_Dialog d;
+        GroupListModel GroupList;
+
         public TT_Item_Swapbtn()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            GroupList = GroupListModel.Instance;
                       
         }
 
@@ -33,22 +39,38 @@ namespace Frontend.UserControls
        */
         private void OpenDialog(object sender, RoutedEventArgs e)
         {
-            SO_Dialog d = new SO_Dialog();
+            d = new SO_Dialog();
             d.Show();
             d.Topmost = true;
-            FillDialog(d);
+            FillDialog();
             
+        }
+
+        /*
+         * Methode, um die Liste mit allen Gruppen aus dem Backend zu holen, die der User noch wählen kann
+         */
+        private async void GetGroupLstAsync()
+        {
+           
+            APIClient apiClient = APIClient.Instance;
+            var request = await apiClient.NewGETRequest("rest/");
+            
+
         }
 
         /*
          * Methode, um das Dialogfenster mit den richtigen Daten zu füllen
          */
-        private void FillDialog(SO_Dialog d)
+        private void FillDialog()
         {
+           
             d.CourseName.Text = item.Module.Module.CourseName;
             d.TargetCourse.Text = item.Module.Module.CourseName;
             d.FromGroup.Text = item.Module.Module.GroupChar;
+            
             d.GroupID = item.Module.Module.ID;
+
+           
         }
     }
 }

@@ -59,8 +59,6 @@ namespace Frontend.View
         {
 
             Console.WriteLine("create");
-           
-           
             SwapOffer so = new SwapOffer(GroupID, ToGroupID);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
