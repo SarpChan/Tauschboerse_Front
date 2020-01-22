@@ -2,6 +2,7 @@ using Frontend.ViewModel;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace Frontend.Helpers
         }
         private APIClient()
         {
-            _client = new RestClient("http://localhost:8080/");
+            _client = new RestClient(ConfigurationManager.AppSettings.Get("server.url"));
         }
         public static APIClient Instance
         {
