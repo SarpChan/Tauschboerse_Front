@@ -380,6 +380,7 @@ namespace Frontend.Models
         /// <param name="sofm">Das zu repräsentierende SwapOfferFrontendModel</param>
         public SharingPageViewModelSwapOffer(SwapOfferFrontendModel sofm)
         {
+            //Im getter durchreichen
             this.CourseName = sofm.CourseName;
             this.CourseType = sofm.CourseType;
             StringBuilder sb = new StringBuilder();
