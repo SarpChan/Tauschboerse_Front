@@ -3,10 +3,11 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\Resources",
+    "\\Frontend\\Frontend\\Helpers",
+    "\\Frontend\\Frontend\\Models",
     "\\Frontend\\Frontend\\Resources\\Icons",
     "\\Frontend\\Frontend\\View"
   ],
-  "SelectedNode": "\\Frontend\\Frontend.sln",
+  "SelectedNode": "\\Frontend\\Frontend\\Models\\SwapOfferFilter.cs",
   "PreviewInSolutionExplorer": false
 }

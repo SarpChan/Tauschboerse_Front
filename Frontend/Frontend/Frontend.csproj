@@ -91,6 +91,8 @@
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\SwapOfferFilter.cs" />
+    <Compile Include="Models\SwapOfferList.cs" />
     <Compile Include="Models\SwapOfferFrontendModel.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseComponent.cs" />
