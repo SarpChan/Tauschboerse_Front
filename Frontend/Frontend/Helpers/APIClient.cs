@@ -63,11 +63,12 @@ namespace Frontend.Helpers
             _request.AddJsonBody(jsonBody);
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
-            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            if ((int)response.StatusCode >= 400)
             {
-                MainViewModel.Instance.Logout((int)response.StatusCode);
-                this.Logout();
+                MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
             }
+            
+           
             cancellationTokenSource.Dispose();
             return response;
         }
@@ -80,13 +81,11 @@ namespace Frontend.Helpers
             //request.AddHeader("Content-Type", "application/json");
 
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
-            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            if ((int)response.StatusCode >= 400)
             {
-                MainViewModel.Instance.Logout((int)response.StatusCode);
-                this.Logout();
+                MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
             }
             cancellationTokenSource.Dispose();
-
             return response;
         }
     }

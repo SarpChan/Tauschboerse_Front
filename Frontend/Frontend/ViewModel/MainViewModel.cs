@@ -282,6 +282,66 @@ namespace Frontend.ViewModel
             ActivePage = newActivePage;
         }
 
+        public void HandleHttpError(int HttpCode)
+        {
+            switch (HttpCode)
+            {
+                //Bad Request
+                case (400):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Fehlerhafter Request an Server");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Unauthorized
+                case (401):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        Logout(HttpCode);
+                        APIClient.Instance.Logout();
+                    }
+                    break;
+                //Forbidden
+                case (403):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Keine Zugriffsberechtigung");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Not Found
+                case (404):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Resource nicht gefunden");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Method Not Allowed
+                case (405):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Anfrage-Methode nicht erlaubt");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                default:
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning("HttpFehlerCode: " + HttpCode);
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+            }
+
+        }
+
         /*
          * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
          */
@@ -297,9 +357,7 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowError("Der Authentifizierungstoken ist nicht mehr gueltig");
             }
-        
-            APIClient apiClient = APIClient.Instance;
-            apiClient.Logout();
+            APIClient.Instance.Logout();
         }
        
         /*

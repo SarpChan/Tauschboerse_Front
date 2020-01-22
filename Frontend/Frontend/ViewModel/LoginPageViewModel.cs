@@ -77,6 +77,7 @@ namespace Frontend.ViewModel
         }
         
         private bool _isLoggedIn;
+
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }

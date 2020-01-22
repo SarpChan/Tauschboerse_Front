@@ -59,13 +59,11 @@
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
            <StackPanel Orientation="Vertical" Grid.Row="1">
-                <user_controls:SB_HomeButton SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"/>
+                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
                 <user_controls:SB_TimetableButton SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
                 <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToPersonalDataPageCommand}"/>
-                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
                 <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
-                <user_controls:SB_PythonUploadButton UploadPythonscriptButtonCommand="{Binding SwitchToPythonUploadPage}"/>
-
+                <user_controls:SB_PythonScriptButton SB_PythonScriptButtonCommand="{Binding SwitchToPythonUploadPageCommand}"/>
             </StackPanel>
         </Grid>
         

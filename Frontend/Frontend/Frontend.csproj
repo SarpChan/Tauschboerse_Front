@@ -161,6 +161,9 @@
     <Compile Include="UserControls\SideBar\SB_PersonalDataButton.xaml.cs">
       <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SideBar\SB_PythonScriptButton.xaml.cs">
+      <DependentUpon>SB_PythonScriptButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SideBar\SB_SharingServiceButton.xaml.cs">
       <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
     </Compile>
@@ -303,6 +306,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SavePythonCodeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SideBar\SB_PythonScriptButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
