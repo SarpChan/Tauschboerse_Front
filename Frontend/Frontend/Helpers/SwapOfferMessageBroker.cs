@@ -19,7 +19,7 @@ namespace Frontend.Helpers
 
         public SwapOfferMessageBroker()
         {
-            UpdateConnection();
+            //UpdateConnection();
         }
 
         public void UpdateConnection()
@@ -86,13 +86,13 @@ namespace Frontend.Helpers
 
                 if (command == "remove")
                 {
-                    swapOffers.RemoveById(id);
+                    //swapOffers.RemoveById(id);
                     return;
                 }
 
                 if (command == "add")
                 {
-                    swapOffers.AddById(id);
+                    //swapOffers.AddById(id);
                     return;
                 }
             }

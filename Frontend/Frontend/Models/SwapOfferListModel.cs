@@ -1,7 +1,5 @@
-﻿using Frontend.Helpers.Generators;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +8,19 @@ namespace Frontend.Models
 {
     class SwapOfferListModel
     {
-        private ObservableCollection<SwapOffer> _swapOfferList = new ObservableCollection<SwapOffer>();
-        public ObservableCollection<SwapOffer> SwapOfferList { get { return _swapOfferList; } }
+
+        private List<SwapOfferFrontendModel> _swapOfferList = new List<SwapOfferFrontendModel>();
+
+        public List<SwapOfferFrontendModel> SwapOfferList
+        {
+            get
+            {
+                return _swapOfferList;
+            }
+        }
 
         private static SwapOfferListModel _instance;
+
         public static SwapOfferListModel Instance
         {
             get
@@ -34,40 +41,20 @@ namespace Frontend.Models
             _instance = this;
         }
 
-        private void AddSwapOffer(SwapOffer so)
+        public void addSwapOffer(SwapOfferFrontendModel swapOffer)
         {
-            _swapOfferList.Add(so);
+            _swapOfferList.Add(swapOffer);
         }
 
-        private void RemoveSwapOffer(SwapOffer so)
+        public void removeSwapOffer(SwapOfferFrontendModel swapOffer)
         {
-            _swapOfferList.Remove(so);
+            _swapOfferList.Remove(swapOffer);
         }
 
-        public void SetSwapOfferList(ObservableCollection<SwapOffer> swapOfferList)
+
+        public void SetList(List<SwapOfferFrontendModel> swapOfferList)
         {
             _swapOfferList = swapOfferList;
-        }
-
-        public void RemoveById(long id)
-        {   
-            SwapOffer rm = FindSwapOfferByID(id);
-            RemoveSwapOffer(rm);
-        }
-
-        public void AddById(long id)
-        {
-            SwapOffer add = FindSwapOfferByID(id);
-            AddSwapOffer(add);
-        }
-
-        private SwapOffer FindSwapOfferByID(long id)
-        {
-            foreach (var so in SwapOfferList)
-            {
-                if (so.id == id) { return so; };
-            }
-            return null;
         }
 
     }

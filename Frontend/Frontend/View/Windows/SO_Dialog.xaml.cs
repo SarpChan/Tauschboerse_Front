@@ -61,12 +61,12 @@ namespace Frontend.View
             Console.WriteLine("create");
            
            
-            SwapOffer so = new SwapOffer(GroupID, ToGroupID);
+            /*SwapOffer so = new SwapOffer(GroupID, ToGroupID);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
             Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);*/
            
 
         }

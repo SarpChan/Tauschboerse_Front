@@ -82,7 +82,7 @@
     <Compile Include="Helpers\Commands\ActionCommand.cs" />
     <Compile Include="Helpers\Converters\BoolToValueConverter.cs" />
     <Compile Include="Helpers\Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
+    <Compile Include="Helpers\NewsMessageBroker.cs" />
     <Compile Include="Helpers\SwapOfferFromBackend.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
@@ -92,17 +92,18 @@
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Helpers\DataPiping.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
-    <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Helpers\Globals\Globals.cs" />
     <Compile Include="Helpers\Globals\UserInformation.cs" />
     <Compile Include="Helpers\Handlers\PropertieValueChangeHandler.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
-    <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Helpers\Rules\TimeRule.cs" />
     <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
+    <Compile Include="Helpers\SwapOfferMessageBroker.cs" />
     <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsListModel.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
     <Compile Include="Models\Outdated\Building.cs" />
     <Compile Include="Models\Outdated\Campus.cs" />
@@ -189,9 +190,6 @@
     <Compile Include="UserControls\TopBar\TB_LogoutButton.xaml.cs">
       <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Timetable\editTimetable.xaml.cs">
-      <DependentUpon>editTimetable.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Timetable\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
     </Compile>
@@ -204,6 +202,9 @@
     <Compile Include="UserControls\TT_SwapButton.xaml.cs">
       <DependentUpon>TT_SwapButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UploadPythonscriptButton.xaml.cs">
+      <DependentUpon>UploadPythonscriptButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\PageVMs\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\HomepageViewModel.cs" />
@@ -211,10 +212,10 @@
     <Compile Include="ViewModel\PageVMs\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="ViewModel\PythonUploadViewModel.cs" />
-    <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\SharingPageViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
+    <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
@@ -232,7 +233,6 @@
     <Compile Include="View\PythonUpload.xaml.cs">
       <DependentUpon>PythonUpload.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SharingServicePage.xaml.cs">
     <Compile Include="View\Pages\SharingServicePage.xaml.cs">
       <DependentUpon>SharingServicePage.xaml</DependentUpon>
     </Compile>
@@ -242,14 +242,14 @@
     <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
       <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\SO_Dialog.xaml.cs">
-      <DependentUpon>SO_Dialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\StudentModulePage.xaml.cs">
       <DependentUpon>StudentModulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\SO_Dialog.xaml.cs">
+      <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -411,7 +411,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SharingServicePage.xaml">
     <Page Include="View\Pages\SharingServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -424,15 +423,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Windows\SO_Dialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Pages\StudentModulePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\TimetablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\SO_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
