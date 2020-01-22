@@ -3,10 +3,13 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\Resources",
+    "\\Frontend\\Frontend\\Helpers",
+    "\\Frontend\\Frontend\\Helpers\\Generators",
+    "\\Frontend\\Frontend\\Helpers\\Globals",
     "\\Frontend\\Frontend\\Resources\\Icons",
-    "\\Frontend\\Frontend\\View"
+    "\\Frontend\\Frontend\\UserControls",
+    "\\Frontend\\Frontend\\ViewModel"
   ],
-  "SelectedNode": "\\Frontend\\Frontend.sln",
+  "SelectedNode": "\\Frontend\\Frontend\\ViewModel\\TimetableViewModel.cs",
   "PreviewInSolutionExplorer": false
 }
