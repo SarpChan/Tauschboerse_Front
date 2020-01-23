@@ -12,6 +12,16 @@
       >
     <Page.Resources>
         <viewmodel:SharingPageViewModel x:Name="SharingPageViewModel" x:Key="SharingPageViewModel"/>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                    <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="White" DataContext="{StaticResource SharingPageViewModel}">
@@ -27,12 +37,12 @@
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Aktuelle News" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource HeadlineBoldTextBlock}}"/>
 
-                <ListView ItemsSource="{Binding NewsList}" Margin="0,10,0,50">
+                <ListView ItemsSource="{Binding NewsList}" Margin="0,10,0,50" AlternationCount="2" MaxHeight="200">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Time}"/>
-                                <TextBlock Text="{Binding Message}"/>
+                                <TextBlock Text="{Binding Time}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Message}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -73,6 +73,20 @@ namespace Frontend.Helpers
             return response;
         }
 
+        public async Task<IRestResponse> NewDELETERequest(string restEndpoint)
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            _request = new RestRequest(restEndpoint, Method.DELETE);
+            _request.AddHeader("Accept", "application/json");
+            _request.AddHeader("Content-Type", "application/json");
+           
+
+            var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
+
+            cancellationTokenSource.Dispose();
+            return response;
+        }
+
         public async Task<IRestResponse> NewGETRequest(string restEndpoint)
         {
             var cancellationTokenSource = new CancellationTokenSource();

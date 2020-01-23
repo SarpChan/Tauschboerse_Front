@@ -8,6 +8,9 @@ using System.Windows.Input;
 using Newtonsoft.Json;
 using Frontend.Helpers;
 using Frontend.Models;
+using ToastNotifications.Messages;
+using Frontend.Helpers.Converters;
+
 namespace Frontend.ViewModel
 {
     /// <summary>
@@ -66,6 +69,7 @@ namespace Frontend.ViewModel
             {
                 _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
             }
+
             NewsList.Add(new NewsModel
             {
                 Message = "Sie wurden exmatrikuliert.",
@@ -74,12 +78,42 @@ namespace Frontend.ViewModel
             NewsList.Add(new NewsModel
             {
                 Message = "Sie wurden zum Stundent dekradiert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8, 15, 0)).ToUnixTimeSeconds()
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22,8, 15, 0)).ToUnixTimeSeconds()
             });
             NewsList.Add(new NewsModel
             {
                 Message = "Sie wurden zum Admin befördert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 20,8,15,0)).ToUnixTimeSeconds()
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8,15,0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new NewsModel
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
             });
             CreateAutocompletes();
 
@@ -106,10 +140,21 @@ namespace Frontend.ViewModel
 
         }
 
-        private void DeleteTradeOffer(object id)
+        private async void DeleteTradeOffer(object id)
         {
             //ID = System.Int64
-            Console.WriteLine("Deleting " + id + "...");
+            APIClient api = APIClient.Instance;
+            string requestUrl = "/rest/swapOffer/delete/" + id;
+            Console.WriteLine(requestUrl);
+            var response = await api.NewDELETERequest(requestUrl);
+            if ((int)response.StatusCode >= 400)
+            {
+                App.notifier.ShowError((int)response.StatusCode+": Beim Löschen des Tauschangebots ist ein Fehler aufgetreten");
+            } else
+            {
+                App.notifier.ShowSuccess("Tausch gelöscht");
+                //Ging
+            }
         }
 
         private void EditTradeOffer(object id)
@@ -366,7 +411,7 @@ namespace Frontend.Models
         {
             get
             {
-                DateTime conv = new DateTime(timestamp);
+                DateTime conv = TimestampToDatetimeConverter.convert(timestamp);
                 DateTime today = DateTime.Now;
                 StringBuilder sb = new StringBuilder();
                 if (conv.Day == today.Day)
