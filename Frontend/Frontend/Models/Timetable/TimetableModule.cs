@@ -15,15 +15,15 @@ namespace Frontend.Models
         //public event PropertyChangedEventHandler PropertyChanged ;
 
         [JsonIgnore]
-        ModuleType _Type;
+        ModuleType _Type = ModuleType.Praktikum;
         [JsonIgnore]
-        string _StartTime = "";
+        string _StartTime = "12:34";
         [JsonIgnore]
-        string _EndTime = "";
+        string _EndTime = "14:42";
         [JsonIgnore]
-        string _Day;
+        string _Day = "1";
         [JsonIgnore]
-        string _Name;
+        string _Name = "Default";
         
 
         public enum ModuleType { Vorlesung, Übung, Praktikum, Tutorium };
@@ -82,10 +82,24 @@ namespace Frontend.Models
         public TimetableModule DeepCopy()
         {
             TimetableModule other = (TimetableModule)this.MemberwiseClone();
-            other.StartTime = String.Copy(_StartTime);
-            other.EndTime = String.Copy(_EndTime);
-            other.Day = String.Copy(_Day);
-            other.CourseName = String.Copy(_Name);
+            if(_StartTime != null){
+                other.StartTime = String.Copy(_StartTime);
+            }
+
+            if(_EndTime != null)
+            {
+                other.EndTime = String.Copy(_EndTime);
+            }
+            
+            if(_Day != null)
+            {
+                other.Day = String.Copy(_Day);
+            }
+            
+            if(_Name != null)
+            {
+                other.CourseName = String.Copy(_Name);
+            }
 
             return other;
         }
