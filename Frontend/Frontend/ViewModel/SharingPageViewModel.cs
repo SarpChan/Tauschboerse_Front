@@ -43,10 +43,6 @@ namespace Frontend.ViewModel
         }
 
 
-
-        private List<SwapOfferFrontendModel> TestListOwn = new List<SwapOfferFrontendModel>();
-        private List<SwapOfferFrontendModel> TestListPublic = new List<SwapOfferFrontendModel>();
-
         /// <summary>
         /// Eine Liste mit allen Möglichkeite der Suche
         /// Depricated
@@ -61,144 +57,15 @@ namespace Frontend.ViewModel
         public SharingPageViewModel()
         {
 
-            TestListOwn.Add(new SwapOfferFrontendModel
+            SwapOfferListModel swapOfferListModel = SwapOfferListModel.Instance;
+            foreach(SwapOfferFrontendModel swapOffer in swapOfferListModel.SwapOfferListPublic)
             {
-                Id = 0,
-                FromGroupChar = 'A',
-                ToGroupChar = 'B',
-                CourseName = "Programmieren 3",
-                CourseType = "Praktikum",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-
-            TestListOwn.Add(new SwapOfferFrontendModel
+                _SwapListPublic.Add(new SharingPageViewModelSwapOffer(swapOffer));
+            }
+            foreach (SwapOfferFrontendModel swapOffer in swapOfferListModel.SwapOfferListPersonal)
             {
-                Id = 1,
-                FromGroupChar = 'C',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 2,
-                FromGroupChar = 'A',
-                ToGroupChar = 'D',
-                CourseName = "EIBO",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 3,
-                FromGroupChar = 'B',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 4,
-                FromGroupChar = 'A',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 5,
-                FromGroupChar = 'A',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 6,
-                FromGroupChar = 'C',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-            TestListOwn.Add(new SwapOfferFrontendModel
-            {
-                Id = 7,
-                FromGroupChar = 'C',
-                ToGroupChar = 'D',
-                CourseName = "Programmieren 2",
-                CourseType = "Vorlesung",
-                ToStartTime = new TimeSpan(8, 15, 0),
-                ToEndTime = new TimeSpan(9, 45, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY
-            });
-
-            TestListPublic.Add(new SwapOfferFrontendModel
-            {
-                Id = 8,
-                FromGroupChar = 'A',
-                ToGroupChar = 'B',
-                CourseName = "EIBO",
-                CourseType = "Übung",
-                ToStartTime = new TimeSpan(10, 0, 0),
-                ToEndTime = new TimeSpan(11, 30, 0),
-                FromStartTime = new TimeSpan(10, 0, 0),
-                FromEndTime = new TimeSpan(11, 30, 0),
-                FromDay = Models.DayOfWeek.FRIDAY,
-                ToDay = Models.DayOfWeek.MONDAY,
-            });
-
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[0]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[1]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[2]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[3]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[4]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[5]));
-            SwapListOwn.Add(new SharingPageViewModelSwapOffer(TestListOwn[6]));
-            SwapListPublic.Add(new SharingPageViewModelSwapOffer(TestListPublic[0]));
-
+                _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
+            }
             NewsList.Add(new NewsModel
             {
                 Message = "Sie wurden exmatrikuliert.",
@@ -402,6 +269,41 @@ namespace Frontend.Models
     /// </summary>
     public class SharingPageViewModelSwapOffer
     {
+
+        private Dictionary<String,String> WeekdayTranslate = new Dictionary<string, string>() {
+            {"monday", "Montag"},
+            {"tuesday", "Dienstag"},
+            {"wednesday", "Mittwoch"},
+            {"thursday", "Donnerstag"},
+            {"friday", "Freitag"},
+            {"satturday", "Samstag"},
+            {"sunday", "Sonntag"},
+        };
+
+        private Dictionary<String, String> WeekdayTranslateRe = new Dictionary<string, string>() {
+            {"montag", "monday"},
+            {"dienstag", "tuesday"},
+            {"mittwoch", "wednesday"},
+            {"donnerstag", "thursday"},
+            {"freitag", "friday"},
+            {"samstag", "satturday"},
+            {"sonntag", "sunday"},
+        };
+
+        private Dictionary<String, String> CourseTypeTranslate = new Dictionary<string, string>() {
+            {"lecture", "Vorlesung"},
+            {"practice", "Praktikum"},
+            {"tutorial", "Tutorium"},
+            {"test", "Test"},
+        };
+
+        private Dictionary<String, String> CourseTypeTranslateRe = new Dictionary<string, string>() {
+            {"vorlesung", "lecture"},
+            {"praktikum", "practice"},
+            {"tutorium", "tutorial"},
+            {"test", "test"},
+        };
+
         public string CourseName
         {
             get
@@ -417,11 +319,11 @@ namespace Frontend.Models
         {
             get
             {
-                return SwapOffer.CourseType;
+                return CourseTypeTranslate[SwapOffer.CourseType.ToLower()];
             }
             set
             {
-                SwapOffer.CourseType = (string)value;
+                SwapOffer.CourseType = CourseTypeTranslateRe[(string)value.ToLower()].ToUpper();
             }
         }
         //Könnte auch dann ein Bild sein.
@@ -441,34 +343,17 @@ namespace Frontend.Models
             this.SwapOffer = sofm;
             StringBuilder sb = new StringBuilder();
             sb.Append("Gruppe ").Append(sofm.FromGroupChar).Append(" (");
-            string tanslateDay = sofm.FromDay.ToString();
-            sb.Append(tanslateDay.First().ToString().ToUpper()).Append(tanslateDay.Substring(1).ToLower()).Append(" ");
+            sb.Append(WeekdayTranslate[sofm.FromDay.ToString().ToLower()]).Append(" ");
             sb.Append(sofm.FromStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.FromEndTime.ToString(@"hh\:mm")).Append(")");
             this.Has = sb.ToString();
             sb.Clear();
             sb.Append("Gruppe ").Append(sofm.ToGroupChar).Append(" (");
-            tanslateDay = sofm.ToDay.ToString();
-            sb.Append(tanslateDay.First().ToString().ToUpper()).Append(tanslateDay.Substring(1).ToLower()).Append(" ");
+            sb.Append(WeekdayTranslate[sofm.ToDay.ToString().ToLower()]).Append(" ");
             sb.Append(sofm.ToStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.ToEndTime.ToString(@"hh\:mm")).Append(")");
             this.Wants = sb.ToString();
             this.Id = sofm.Id;
         }
     }
-
-    /**public class SwapOfferFrontendModel
-    {
-        public long Id { get; set; }
-        public char FromGroupChar { get; set; }
-        public char ToGroupChar { get; set; }
-        public string CourseName { get; set; }
-        public string CourseType { get; set; }
-        public TimeSpan ToStartTime { get; set; }
-        public TimeSpan ToEndTime { get; set; }
-        public TimeSpan FromStartTime { get; set; }
-        public TimeSpan FromEndTime { get; set; }
-        public Models.DayOfWeek FromDay { get; set; }
-        public Models.DayOfWeek ToDay { get; set; }
-    }**/
 
     public class NewsModel
     {

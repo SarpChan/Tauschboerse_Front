@@ -28,7 +28,7 @@ namespace Frontend.Helpers
                 return;
             }
             swapOffer = JsonConvert.DeserializeObject<List<SwapOfferFrontendModel>>(response.Content.ToString());
-            swapOfferListModel.SetList(swapOffer);
+            swapOfferListModel.SetList(swapOffer,false);
             
         }
 
@@ -49,7 +49,7 @@ namespace Frontend.Helpers
             
            
             
-            swapOfferListModel.SetList(swapOffer);
+            swapOfferListModel.SetList(swapOffer,true);
             
         }
 

@@ -9,13 +9,23 @@ namespace Frontend.Models
     class SwapOfferListModel
     {
 
-        private List<SwapOfferFrontendModel> _swapOfferList = new List<SwapOfferFrontendModel>();
+        private List<SwapOfferFrontendModel> _swapOfferListPersonal = new List<SwapOfferFrontendModel>();
 
-        public List<SwapOfferFrontendModel> SwapOfferList
+        public List<SwapOfferFrontendModel> SwapOfferListPersonal
         {
             get
             {
-                return _swapOfferList;
+                return _swapOfferListPersonal;
+            }
+        }
+
+        private List<SwapOfferFrontendModel> _swapOfferListPublic = new List<SwapOfferFrontendModel>();
+
+        public List<SwapOfferFrontendModel> SwapOfferListPublic
+        {
+            get
+            {
+                return _swapOfferListPublic;
             }
         }
 
@@ -41,20 +51,40 @@ namespace Frontend.Models
             _instance = this;
         }
 
-        public void addSwapOffer(SwapOfferFrontendModel swapOffer)
+        public void AddSwapOffer(SwapOfferFrontendModel swapOffer, bool isPublic)
         {
-            _swapOfferList.Add(swapOffer);
+            if (isPublic) _swapOfferListPublic.Add(swapOffer);
+            else _swapOfferListPersonal.Add(swapOffer);
         }
 
-        public void removeSwapOffer(SwapOfferFrontendModel swapOffer)
+        public void RemoveSwapOffer(SwapOfferFrontendModel swapOffer, bool isPublic)
         {
-            _swapOfferList.Remove(swapOffer);
+            if (isPublic) _swapOfferListPersonal.Remove(swapOffer);
+            else _swapOfferListPersonal.Remove(swapOffer);
         }
 
 
-        public void SetList(List<SwapOfferFrontendModel> swapOfferList)
+        public void SetList(IList<SwapOfferFrontendModel> swapOfferList, bool isPublic)
         {
-            _swapOfferList = swapOfferList;
+            if (isPublic)
+            {
+                _swapOfferListPublic.Clear();
+                foreach (SwapOfferFrontendModel swapOffer in swapOfferList)
+                {
+                    _swapOfferListPublic.Add(swapOffer);
+                }
+
+            }
+            else
+            {
+                _swapOfferListPersonal.Clear();
+                foreach (SwapOfferFrontendModel swapOffer in swapOfferList)
+                {
+                    _swapOfferListPersonal.Add(swapOffer);
+                }
+            }
+            
+            
         }
 
     }

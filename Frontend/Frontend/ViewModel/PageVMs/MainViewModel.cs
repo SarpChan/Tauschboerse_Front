@@ -386,10 +386,11 @@ namespace Frontend.ViewModel
          */
         private async Task RequestNewsFromServerAsync()
         {
-            List<string> tempTable = new List<string>();
+            
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/news", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
+            
             //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //newsList.SetList(tempTable);
         }
@@ -400,10 +401,17 @@ namespace Frontend.ViewModel
          */
         private async Task RequestSharingDataFromServerAsync()
         {
-            List<string> tempTable = new List<string>();
+            ObservableCollection<SwapOfferFrontendModel> tempList = new ObservableCollection<SwapOfferFrontendModel>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/sharingdata", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/swapOffer/me");
             if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content.ToString());
+            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
+            SwapOfferListModel.Instance.SetList(tempList, false);
+            response = await apiClient.NewGETRequest("/rest/lists/swapOffer/all");
+            if ((int)response.StatusCode >= 400) return;
+            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
+            SwapOfferListModel.Instance.SetList(tempList, true);
             //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //sharingdataList.SetList(tempTable);
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Frontend.Models
 {
@@ -10,7 +11,10 @@ namespace Frontend.Models
     {
 
         public long Id { get; set; }
+        //fromGrouptoGroup
+        [JsonProperty("fromGroup")]
         public char FromGroupChar { get; set; }
+        [JsonProperty("toGroup")]
         public char ToGroupChar { get; set; }
         public string CourseName { get; set; }
         public string CourseType { get; set; }
