@@ -74,6 +74,53 @@ namespace Frontend.Models
                 NotifyPropertyChanged("Type", oldValue, value);
             }
         }
+
+        /// <summary>
+        /// Copiert das Timetable Object
+        /// </summary>
+        /// <returns></returns>
+        public TimetableModule DeepCopy()
+        {
+            TimetableModule other = (TimetableModule)this.MemberwiseClone();
+            other.StartTime = String.Copy(_StartTime);
+            other.EndTime = String.Copy(_EndTime);
+            other.Day = String.Copy(_Day);
+            other.CourseName = String.Copy(_Name);
+
+            return other;
+        }
+
+        /// <summary>
+        /// Uberschreibt die Daten des akt. Objektes mit den eines anderen Objektes
+        /// </summary>
+        /// <param name="other"></param>
+        public void ReplaceData(TimetableModule other)
+        {
+            if (!other.StartTime.Equals(StartTime) && other.StartTime != null)
+            {
+                StartTime = other.StartTime;
+            }
+
+            if(!other.EndTime.Equals(EndTime) && other.EndTime != null)
+            {
+                EndTime = other.EndTime;
+            }
+
+            if (!other.Day.Equals(Day) && other.Day != null)
+            {
+                Day = other.Day;
+            }
+
+            if (!other.CourseName.Equals(CourseName) && other.CourseName != null)
+            {
+                CourseName = other.CourseName;
+            }
+
+            if (other.Type != Type)
+            {
+                Type = other.Type;
+            }
+        }
     }
 
 }
