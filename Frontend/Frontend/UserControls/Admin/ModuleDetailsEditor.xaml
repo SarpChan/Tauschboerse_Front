@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Frontend.UserControls.ModuleDetailsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
+             xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:helpers="clr-namespace:Frontend.Helpers"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Helpers="clr-namespace:Frontend.Helpers" 
+             xmlns:models="clr-namespace:Frontend.Models" 
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             FontSize="15pt"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewmodel:ModuleDetailsEditorVM x:Name="viewmodel"/>
+    </UserControl.DataContext>
+
+    <StackPanel Orientation="Vertical">
+        <Button x:Name="BackButton" Background="Transparent" Padding="0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border BorderThickness="2pt" Background="White" BorderBrush="Green">
+                        <DockPanel Margin="5pt" LastChildFill="True" >
+                            <Image DockPanel.Dock="Left" Source="{StaticResource info}" Width="20pt" Margin="0,0,10pt,0"/>
+                            <Label DockPanel.Dock="Right" Content="Detail" FontSize="15pt" />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+
+        <Border BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
+
+            <DockPanel Margin="10pt" x:Name="DetailEditPanel">
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label Content="Raum" HorizontalAlignment="Center"/>
+                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Raum"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label Content="Beauftragter" HorizontalAlignment="Center"/>
+                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Beauftragter"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label Content="Gruppe" HorizontalAlignment="Center"/>
+                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <Button Margin="0,20pt,0,0" x:Name="saveButton" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
+            </DockPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

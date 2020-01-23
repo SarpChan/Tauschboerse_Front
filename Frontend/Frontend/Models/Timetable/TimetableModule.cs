@@ -17,9 +17,9 @@ namespace Frontend.Models
         [JsonIgnore]
         ModuleType _Type;
         [JsonIgnore]
-        string _StartTime;
+        string _StartTime = "";
         [JsonIgnore]
-        string _EndTime;
+        string _EndTime = "";
         [JsonIgnore]
         string _Day;
         [JsonIgnore]

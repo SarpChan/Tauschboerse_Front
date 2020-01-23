@@ -5,22 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              xmlns:local="clr-namespace:Frontend.UserControls"
-             xmlns:helpers="clr-namespace:Frontend.Helpers"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             xmlns:converters="clr-namespace:Frontend.Helpers"
              mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <viewmodel:ModuleTimeEditorMV x:Name="viewmodel"/>
+        <viewmodel:ModuleTimeEditorVM x:Name="viewmodel"/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <Style TargetType="local:ModuleTimeEditor">
-            <Setter Property="Module" Value="{Binding EditTimetableModule, Mode=TwoWay}"/>
-        </Style>
-        
+        <converters:TimeConverter x:Key="TimeConverter"/>
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
@@ -42,7 +38,7 @@
 
             <DockPanel Margin="10pt" x:Name="TimeEditPanel">
 
-                    <ItemsControl ItemsSource="{Binding Weekdays}" DockPanel.Dock="Top" UseLayoutRounding="False">
+                    <ItemsControl x:Name="Days" ItemsSource="{Binding Weekdays}" DockPanel.Dock="Top" UseLayoutRounding="False">
                         <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center" Background="White" />
@@ -51,26 +47,28 @@
                     </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Content="{Binding .}"
+                                <Button Content="{Binding}"
                                         HorizontalAlignment="Center"
                                         Panel.ZIndex="1" 
                                         BorderBrush="Transparent"
                                         Padding="10,0"
-                                        Command="{Binding ChangeDayCommand}"
-                                        CommandParameter="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}}"
+                                        Command="{Binding ElementName=Days, Path=DataContext.ChangeDayCommand}"
+                                        CommandParameter="{Binding}"
                                         Width="70pt"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
 
-                <xctk:TimePicker Value="{Binding EditTimetableModule.StartTime, Mode=TwoWay}" Format="ShortTime" DockPanel.Dock="Top" Margin="0,10pt,0,0" />
+                <xctk:TimePicker x:Name="startTimePicker" DefaultValue="12:24" Format="ShortTime" DockPanel.Dock="Top" Margin="0,10pt,0,0" />
 
                 <Label DockPanel.Dock="Top" Content="|" HorizontalAlignment="Center" FontSize="15pt"></Label>
 
-                <xctk:TimePicker Value="{Binding EditTimetableModule.EndTime, Mode=TwoWay}"  Format="ShortTime" DockPanel.Dock="Top"/>
+                <xctk:TimePicker x:Name="endTimePicker"  DefaultValue="17:42" Format="ShortTime" DockPanel.Dock="Top"/>
+
 
                 <Button Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
+            
             </DockPanel>
         </Border>
     </StackPanel>

@@ -22,6 +22,12 @@ namespace Frontend.UserControls
         {
             InitializeComponent();
 
+            TimetableModule ttm = viewmodel.EditTimetableModule;
+
+            moduleTimeEditor.viewmodel.EditTimetableModule = ttm;
+            moduleDetailsEditor.viewmodel.EditTimetableModule = ttm;
+            moduleTypEditor.viewmodel.EditTimetableModule = ttm;
+
         }
 
         private void CloWi(object sender, RoutedEventArgs e)

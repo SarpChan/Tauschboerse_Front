@@ -22,23 +22,29 @@ namespace Frontend.UserControls
     /// <summary>
     /// Interaction logic for ModuleTimeEditor.xaml
     /// </summary>
-    public partial class ModuleDetailsEditor : UserControl
+    public partial class ModuleTimeEditor : UserControl
     {
-        public ModuleDetailsEditor()
+        public ModuleTimeEditor()
         {
             InitializeComponent();
 
+            startTimePicker.ValueChanged += StartTimePicker_ValueChanged;
+            endTimePicker.ValueChanged += EndTimePicker_ValueChanged;
+
         }
-        public TimetableModule Module
+
+        private void EndTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            get
-            {
-                return (TimetableModule)GetValue(ModuleProperty);
-            }
-            set
-            {
-                SetValue(ModuleProperty, value);
-            }
+            var time = (DateTime)e.NewValue;
+            var ttm = viewmodel.EditTimetableModule;
+            ttm.StartTime = time.ToString("HH:mm");
+        }
+
+        private void StartTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var time = (DateTime)e.NewValue;
+            var ttm = viewmodel.EditTimetableModule;
+            ttm.EndTime = time.ToString("HH:mm");
         }
 
         public String DeaktiveteSaveButton
@@ -55,14 +61,6 @@ namespace Frontend.UserControls
                 }
             }
         }
-
-        public string Color
-        {
-            get { return viewmodel.Color; }
-            set { viewmodel.Color = value; }
-        }
-
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(ModuleTimeEditor), new UIPropertyMetadata(null));
     }
 
 }

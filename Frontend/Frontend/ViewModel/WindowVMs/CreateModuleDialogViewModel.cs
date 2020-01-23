@@ -76,7 +76,9 @@ namespace Frontend.ViewModel
 
         private void CreateModule()
         {
-            Console.WriteLine("CREATE Module");
+            Console.WriteLine("CREATE Module("+EditTimetableModule.GetHashCode()+")");
+            Console.WriteLine("with Propertys \n ST: " + EditTimetableModule.StartTime + " ET:" + EditTimetableModule.EndTime+"WD:"+EditTimetableModule.Day);
+            Console.WriteLine("Name :" + EditTimetableModule.CourseName + "PersonName :" + EditTimetableModule.PersonName + "G : " + EditTimetableModule.GroupChar);
             ModuleListModel.AddModule(EditTimetableModule);
         }
 

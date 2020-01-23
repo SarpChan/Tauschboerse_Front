@@ -159,7 +159,7 @@
                 -->
 
 
-                <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
+                <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Stundenpläne"/>
                 <!--<DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                     <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
                     <Button Style="{StaticResource Deletebutton}"  Content="Alle Stundenpläne löschen"/>

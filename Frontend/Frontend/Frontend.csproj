@@ -82,6 +82,7 @@
     <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
+    <Compile Include="Helpers\Converters\TimeConverter.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
@@ -129,8 +130,14 @@
     <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
       <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Admin\ModuleTypEditor.xaml.cs">
+      <DependentUpon>ModuleTypEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Admin\ModuleTimeEditor.xaml.cs">
       <DependentUpon>ModuleTimeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ModuleDetailsEditor.xaml.cs">
+      <DependentUpon>ModuleDetailsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
       <DependentUpon>EditTimetable.xaml</DependentUpon>
@@ -200,7 +207,10 @@
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
-    <Compile Include="ViewModel\UserControlVMs\ModuleTimeEditorMV.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleDetailsEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTimeEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
@@ -282,7 +292,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Admin\ModuleTypEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\Admin\ModuleTimeEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Admin\ModuleDetailsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
