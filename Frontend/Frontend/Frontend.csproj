@@ -130,6 +130,9 @@
     <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
       <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Admin\ModuleMainInformationEditor.xaml.cs">
+      <DependentUpon>ModuleMainInformationEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Admin\ModuleTypEditor.xaml.cs">
       <DependentUpon>ModuleTypEditor.xaml</DependentUpon>
     </Compile>
@@ -209,6 +212,7 @@
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleDetailsEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleMainInformationEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTimeEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
@@ -280,6 +284,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\RadioButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Icons\login_user.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -291,6 +299,10 @@
     <Page Include="UserControls\Admin\AP_AddModuleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Admin\ModuleMainInformationEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Admin\ModuleTypEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -528,6 +540,8 @@
     <Resource Include="Resources\Icons\login_user.png" />
     <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Icons\check.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

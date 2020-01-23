@@ -18,7 +18,7 @@ namespace Frontend.ViewModel
 
         #region Properties
   
-        private ObservableCollection<string> _Weekdays = new ObservableCollection<string>(Globals.Weekdays.Take(Globals.weekdays));
+        private ObservableCollection<string> _Weekdays = new ObservableCollection<string>(Globals.WeekdaysAbbreviation.Take(Globals.weekdays));
         public ObservableCollection<string> Weekdays {get { return _Weekdays; } set { _Weekdays = value; } }
 
         #endregion

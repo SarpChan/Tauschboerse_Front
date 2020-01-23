@@ -27,6 +27,7 @@ namespace Frontend.UserControls
             moduleTimeEditor.viewmodel.EditTimetableModule = ttm;
             moduleDetailsEditor.viewmodel.EditTimetableModule = ttm;
             moduleTypEditor.viewmodel.EditTimetableModule = ttm;
+            moduleMainInformationEditor.viewmodel.EditTimetableModule = ttm;
 
         }
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Frontend.UserControls.ModuleTimeEditor"
+﻿<UserControl x:Name="userControl" x:Class="Frontend.UserControls.ModuleTimeEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,8 +19,8 @@
         <converters:TimeConverter x:Key="TimeConverter"/>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <Button x:Name="BackButton" Background="Transparent" Padding="0">
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Top" x:Name="BackButton" Background="Transparent" Padding="0">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderThickness="2pt" Background="White" BorderBrush="Green">
@@ -34,30 +34,29 @@
 
         </Button>
 
-        <Border BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
+        <Border DockPanel.Dock="Top" BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
 
             <DockPanel Margin="10pt" x:Name="TimeEditPanel">
 
-                    <ItemsControl x:Name="Days" ItemsSource="{Binding Weekdays}" DockPanel.Dock="Top" UseLayoutRounding="False">
-                        <ItemsControl.ItemsPanel>
+                <ItemsControl x:Name="Days" ItemsSource="{Binding Weekdays}" DockPanel.Dock="Top" UseLayoutRounding="False">
+                    <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center" Background="White" />
                         </ItemsPanelTemplate>
-                        
+
                     </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Content="{Binding}"
-                                        HorizontalAlignment="Center"
-                                        Panel.ZIndex="1" 
-                                        BorderBrush="Transparent"
-                                        Padding="10,0"
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding}"
+                                        GroupName="DayChoose"
+                                        Style="{StaticResource UniversalRadioButton}"
                                         Command="{Binding ElementName=Days, Path=DataContext.ChangeDayCommand}"
                                         CommandParameter="{Binding}"
-                                        Width="70pt"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                        Margin="5pt"
+                                        />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
 
                 <xctk:TimePicker x:Name="startTimePicker" DefaultValue="12:24" Format="ShortTime" DockPanel.Dock="Top" Margin="0,10pt,0,0" />
@@ -68,8 +67,8 @@
 
 
                 <Button Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
-            
+
             </DockPanel>
         </Border>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Frontend.ViewModel
@@ -11,37 +12,15 @@ namespace Frontend.ViewModel
         private APIClient apiClient = APIClient.Instance;
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
 
-        #region Properties
-
+        #region Propertie
 
         #endregion
 
         public ModuleDetailsEditorVM()
         {
+            Console.WriteLine("CREATE CreateModuleDialogViewModel");
 
-        }
-
-        #region ICommand
-        private ICommand _ChangeDayCommand;
-        public ICommand ChangeDayCommand
-        {
-            get
-            {
-                if (_ChangeDayCommand == null)
-                {
-                    _ChangeDayCommand = new ActionCommand(param => ChangeDay(param), null);
-                }
-                return _ChangeDayCommand;
-            }
-        }
-
-        #endregion
-
-        public void ChangeDay(object param)
-        {
-            int index = (int)param;
-            Console.WriteLine(index);
-            EditTimetableModule.Day = Convert.ToString(index);
+            
         }
     }
 }

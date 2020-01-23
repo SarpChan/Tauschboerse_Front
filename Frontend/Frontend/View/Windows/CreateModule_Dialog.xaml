@@ -12,6 +12,7 @@
         FontFamily="/Resources/Fonts/#Roboto"
         FontSize="12pt" 
         x:Name="CreateModul"
+    WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
     >
     <Window.DataContext>
@@ -47,10 +48,11 @@
         -->
         <TextBlock DockPanel.Dock="Top" Text="Module erstellen" Style="{StaticResource HeadlineTextBlock}"/>
 
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <user_controls:ModuleTimeEditor x:Name="moduleTimeEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt"/>
-            <user_controls:ModuleDetailsEditor x:Name="moduleDetailsEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt"/>
-            <user_controls:ModuleTypEditor x:Name="moduleTypEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt"/>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" x:Name="editorPanel">
+            <user_controls:ModuleMainInformationEditor x:Name="moduleMainInformationEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt"/>
+            <user_controls:ModuleTimeEditor x:Name="moduleTimeEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt" />
+            <user_controls:ModuleDetailsEditor x:Name="moduleDetailsEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt" />
+            <user_controls:ModuleTypEditor x:Name="moduleTypEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button  Style="{StaticResource DialogButtonFocused}" Click="CloWi" Command="{Binding CreateModuleCommand}" />
