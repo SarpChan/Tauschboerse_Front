@@ -82,6 +82,7 @@ namespace Frontend.Models
         public TimetableModule DeepCopy()
         {
             TimetableModule other = (TimetableModule)this.MemberwiseClone();
+
             if(_StartTime != null){
                 other.StartTime = String.Copy(_StartTime);
             }

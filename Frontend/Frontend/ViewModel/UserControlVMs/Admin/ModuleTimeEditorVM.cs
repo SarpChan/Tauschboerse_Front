@@ -52,6 +52,7 @@ namespace Frontend.ViewModel
             {
                 if (dayStr.Equals(d))
                 {
+                    Console.WriteLine("Change Day" + count);
                     EditTimetableModule.Day = Convert.ToString(count);
                 }
                 count++;

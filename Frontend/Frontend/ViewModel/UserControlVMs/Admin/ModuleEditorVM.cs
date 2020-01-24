@@ -78,6 +78,7 @@ namespace Frontend.ViewModel
 
         public void DiscardAllhanges()
         {
+            Console.WriteLine("Discard Changes");
             _EditTimetableModule.ReplaceData(_TimetableModuleBackUp);
         }
     }

@@ -30,21 +30,35 @@ namespace Frontend.UserControls
 
             startTimePicker.ValueChanged += StartTimePicker_ValueChanged;
             endTimePicker.ValueChanged += EndTimePicker_ValueChanged;
-
         }
+
 
         private void EndTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+
+            var time = (DateTime)e.NewValue;
+            var ttm = viewmodel.EditTimetableModule;
+            ttm.EndTime = time.ToString("HH:mm");
+        }
+
+        private void StartTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            Console.WriteLine("change Value" + e.NewValue);
             var time = (DateTime)e.NewValue;
             var ttm = viewmodel.EditTimetableModule;
             ttm.StartTime = time.ToString("HH:mm");
         }
 
-        private void StartTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        public TimetableModule Module
         {
-            var time = (DateTime)e.NewValue;
-            var ttm = viewmodel.EditTimetableModule;
-            ttm.EndTime = time.ToString("HH:mm");
+            get
+            {
+                return (TimetableModule)GetValue(ModuleProperty);
+            }
+            set
+            {
+                SetValue(ModuleProperty, value);
+            }
         }
 
         public String DeaktiveteSaveButton
@@ -61,6 +75,14 @@ namespace Frontend.UserControls
                 }
             }
         }
+
+        public string Color
+        {
+            get { return viewmodel.Color; }
+            set { viewmodel.Color = value; }
+        }
+
+        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(ModuleTimeEditor), new UIPropertyMetadata(null));
     }
 
 }

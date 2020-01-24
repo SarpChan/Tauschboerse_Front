@@ -10,6 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="250" Background="White" BorderBrush="{Binding Module.Color,ElementName=TimeTableItem, Mode=OneWay}" BorderThickness="1pt,0,1pt,1pt"
              >
+    
     <UserControl.Resources>
         <converters:TypeToIconConverter x:Key="TypeToIconConverter"/>
         <ImageBrush x:Key="Icon" ImageSource="pack://application:,,,/Resources/Icons/practicum_w.png" Stretch="Uniform"/>

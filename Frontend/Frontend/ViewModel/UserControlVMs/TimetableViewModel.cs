@@ -188,11 +188,11 @@ namespace Frontend.ViewModel
                     Module = t
                 };
                 Console.WriteLine(t);
-                Console.WriteLine("\t ADD MODULE: " + t.CourseName + " ->" + add);
+                Console.WriteLine("\t ADD MODULE: ("+t.GetHashCode()+")" + t.CourseName + " ->" + add);
+                Inititalize_TimetableViewModelModule(add);
+                BindListenerOn_TimetableViewModelModule(add);
 
                 TTVMMList.Add(add);
-                BindListenerOn_TimetableViewModelModule(add);
-                Inititalize_TimetableViewModelModule(add);
 
                 Console.WriteLine("\t on " + this + " ->  " + this.GetHashCode() + "\n");
 
@@ -236,6 +236,11 @@ namespace Frontend.ViewModel
             {
                 TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
                 TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
+
+                if (start > end)
+                {
+                    throw new StartTimeLaterThenEndException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+                }
 
                 ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(newValue, start);
                 ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(newValue, start, end);
@@ -389,9 +394,13 @@ namespace Frontend.ViewModel
         {
             Console.WriteLine("\t Init ttvmm ("+this.GetHashCode()+") \n\t\t(before) ->  Color:" + ttvmm.Color +" Y:" + ttvmm.Y+
                 "  X:"+ttvmm.X+"  H:"+ttvmm.Height+" W:"+ttvmm.Width);
-
+            Console.WriteLine("TIme :" + ttvmm.Module.StartTime + "Time :" + ttvmm.Module.EndTime);
             TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
             TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
+            if(start > end)
+            {
+                throw new StartTimeLaterThenEndException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+            }
 
             Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
 

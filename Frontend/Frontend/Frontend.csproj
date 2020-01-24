@@ -87,6 +87,7 @@
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Helpers\DataPiping.cs" />
+    <Compile Include="Helpers\Exceptions\StartTimeLaterThenEndException.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals\Globals.cs" />
     <Compile Include="Helpers\Globals\UserInformation.cs" />
@@ -130,16 +131,16 @@
     <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
       <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Admin\ModuleMainInformationEditor.xaml.cs">
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml.cs">
       <DependentUpon>ModuleMainInformationEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Admin\ModuleTypEditor.xaml.cs">
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml.cs">
       <DependentUpon>ModuleTypEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Admin\ModuleTimeEditor.xaml.cs">
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleTimeEditor.xaml.cs">
       <DependentUpon>ModuleTimeEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Admin\ModuleDetailsEditor.xaml.cs">
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml.cs">
       <DependentUpon>ModuleDetailsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
@@ -215,7 +216,7 @@
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleMainInformationEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTimeEditorVM.cs" />
-    <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
+    <Compile Include="ViewModel\UserControlVMs\TimetabeItemVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
@@ -300,19 +301,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Admin\ModuleMainInformationEditor.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Admin\ModuleTypEditor.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Admin\ModuleTimeEditor.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleTimeEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Admin\ModuleDetailsEditor.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

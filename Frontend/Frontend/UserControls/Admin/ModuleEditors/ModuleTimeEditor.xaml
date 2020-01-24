@@ -63,7 +63,7 @@
 
                 <Label DockPanel.Dock="Top" Content="|" HorizontalAlignment="Center" FontSize="15pt"></Label>
 
-                <xctk:TimePicker x:Name="endTimePicker"  DefaultValue="17:42" Format="ShortTime" DockPanel.Dock="Top"/>
+                <xctk:TimePicker x:Name="endTimePicker" DefaultValue="17:42" Format="ShortTime" DockPanel.Dock="Top"/>
 
 
                 <Button Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />

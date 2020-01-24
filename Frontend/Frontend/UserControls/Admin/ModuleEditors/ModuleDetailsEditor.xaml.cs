@@ -28,17 +28,7 @@ namespace Frontend.UserControls
         {
             InitializeComponent();
 
-        }
-        public TimetableModule Module
-        {
-            get
-            {
-                return (TimetableModule)GetValue(ModuleProperty);
-            }
-            set
-            {
-                SetValue(ModuleProperty, value);
-            }
+
         }
 
         public String DeaktiveteSaveButton
@@ -55,14 +45,6 @@ namespace Frontend.UserControls
                 }
             }
         }
-
-        public string Color
-        {
-            get { return viewmodel.Color; }
-            set { viewmodel.Color = value; }
-        }
-
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(ModuleTimeEditor), new UIPropertyMetadata(null));
     }
 
 }
