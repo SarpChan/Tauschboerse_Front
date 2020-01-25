@@ -27,6 +27,7 @@ namespace Frontend.UserControls
         public ModuleTypEditor()
         {
             InitializeComponent();
+
         }
 
         public String DeaktiveteSaveButton

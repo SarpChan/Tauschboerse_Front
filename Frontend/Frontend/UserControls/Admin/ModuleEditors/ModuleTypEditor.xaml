@@ -34,7 +34,27 @@
         <Border DockPanel.Dock="Top" BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
 
             <DockPanel Margin="10pt" x:Name="TimeEditPanel">
-                
+
+                <ItemsControl x:Name="Types" ItemsSource="{Binding Types}" DockPanel.Dock="Top" UseLayoutRounding="False">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" Background="White" />
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding}"
+                                        GroupName="TypeChoose"
+                                        Style="{StaticResource UniversalRadioButton}"
+                                        Command="{Binding ElementName=Types, Path=DataContext.ChangeTypeCommand}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5pt"
+                                        />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
                 <Button Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
             </DockPanel>
         </Border>

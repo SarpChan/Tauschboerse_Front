@@ -38,17 +38,23 @@
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <Label Content="Raum" HorizontalAlignment="Center"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Raum"/>
+                    <ComboBox x:Name="RoomComboBox" Style="{StaticResource UniversalComboBox}" Text="Raum"
+                              ItemsSource="{Binding RoomDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding EditTimetableModule.RoomNumber, Mode=OneWayToSource}"/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <Label Content="Beauftragter" HorizontalAlignment="Center"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Beauftragter"/>
+                    <ComboBox x:Name="LectureComboBox" Style="{StaticResource UniversalComboBox}" Text="Beauftragter"
+                              ItemsSource="{Binding LectureDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding EditTimetableModule.PersonName, Mode=OneWayToSource}" />
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <Label Content="Gruppe" HorizontalAlignment="Center"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="GroupComboBox" Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"
+                              ItemsSource="{Binding GroupDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              />
                 </StackPanel>
 
                 <Button Margin="0,20pt,0,0" x:Name="saveButton" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />

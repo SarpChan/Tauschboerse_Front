@@ -26,7 +26,7 @@ namespace Frontend.Models
         string _Name = "Default";
         
 
-        public enum ModuleType { Vorlesung, Übung, Praktikum, Tutorium };
+        public enum ModuleType {[Description("Vorlesung")] Vorlesung, [Description("Übung")] Übung, [Description("Praktikum")] Praktikum, [Description("Tutorium")] Tutorium };
         [JsonProperty("groupID")] 
         public long ID { get; set; }
         public string StartTime { get { return _StartTime; } 

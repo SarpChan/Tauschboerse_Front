@@ -17,13 +17,13 @@ namespace Frontend.ViewModel
 
         #region Properties
 
-        private TimetableModule _EditTimetableModule = new TimetableModule();
+        //Voruebergehend ist die ID Random [es waere fuer des Backend wahrscheonlich beser wenn die ID Null ist da Random auch eine vorhandene ID treffen koennte]
+        private TimetableModule _EditTimetableModule = new TimetableModule() { ID = new Random().Next() };
         public TimetableModule EditTimetableModule { 
             get{ return _EditTimetableModule; } 
             set { _EditTimetableModule = value;
             } 
         }
-
 
         #endregion
 

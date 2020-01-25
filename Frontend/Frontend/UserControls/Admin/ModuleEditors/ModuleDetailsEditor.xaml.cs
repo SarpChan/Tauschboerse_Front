@@ -27,9 +27,38 @@ namespace Frontend.UserControls
         public ModuleDetailsEditor()
         {
             InitializeComponent();
+            GroupComboBox.SelectionChanged += (sender, e) => GroupComboBox_Changed(sender);
+            GroupComboBox.DropDownClosed += (sender, e) => GroupComboBox_Changed(sender);
 
+            RoomComboBox.SelectionChanged += (sender,e) =>RoomComboBox_Changed(sender);
+            RoomComboBox.DropDownClosed += (sender, e) => RoomComboBox_Changed(sender);
 
+            LectureComboBox.SelectionChanged += (sender, e)=>LectureComboBox_Changed(sender);
+            LectureComboBox.DropDownClosed += (sender, e) => LectureComboBox_Changed(sender);
         }
+
+        #region ComboBoxChanged
+
+        private void LectureComboBox_Changed(object sender)
+        {
+            var combobox = (ComboBox)sender;
+            viewmodel.EditTimetableModule.PersonName = combobox.Text;
+        }
+
+        private void RoomComboBox_Changed(object sender)
+        {
+            var combobox = (ComboBox)sender;
+            viewmodel.EditTimetableModule.RoomNumber = combobox.Text;
+        }
+
+        private void GroupComboBox_Changed(object sender)
+        {
+            var combobox = (ComboBox)sender;
+            viewmodel.EditTimetableModule.GroupChar = combobox.Text;
+            
+        }
+
+        #endregion
 
         public String DeaktiveteSaveButton
         {
