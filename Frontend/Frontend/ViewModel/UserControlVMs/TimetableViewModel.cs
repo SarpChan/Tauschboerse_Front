@@ -283,9 +283,9 @@ namespace Frontend.ViewModel
 
             switch (e.PropertyName)
             {
-                case "Name": OnNameChange(ttm, args, ttvmm); break;
-                case "StartTime": OnStartTimeChange(ttm, args, ttvmm); break;
-                case "EndTime": OnEndTimeChange(ttm, args, ttvmm); break;
+                case "CourseName": OnNameChange(ttm, args, ttvmm); break;
+                case "StartTime": OnTimeChange(ttm, args, ttvmm); break;
+                case "EndTime": OnTimeChange(ttm, args, ttvmm); break;
                 case "Day": OnDayChange(ttm, args, ttvmm); break;
                 case "Type": OnTypeChange(ttm, args, ttvmm); break;
             }
@@ -301,19 +301,24 @@ namespace Frontend.ViewModel
 
         }
 
-        private void OnStartTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
+            TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
+            TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
 
+            if (start > end)
+            {
+                throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+            }
+
+            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
+            ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
         }
 
-        private void OnEndTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
-        {
-
-        }
 
         private void OnDayChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-
+            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, Convert.ToInt32(ttm.Day), ttvmm, moduleListModel.ModuleList);
         }
 
         private void OnTypeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
