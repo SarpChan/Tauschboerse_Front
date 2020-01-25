@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace Frontend.Models
     class SwapOfferListModel
     {
 
-        private List<SwapOfferFrontendModel> _swapOfferListPersonal = new List<SwapOfferFrontendModel>();
+        private ObservableCollection<SwapOfferFrontendModel> _swapOfferListPersonal = new ObservableCollection<SwapOfferFrontendModel>();
 
-        public List<SwapOfferFrontendModel> SwapOfferListPersonal
+        public ObservableCollection<SwapOfferFrontendModel> SwapOfferListPersonal
         {
             get
             {
@@ -19,9 +20,9 @@ namespace Frontend.Models
             }
         }
 
-        private List<SwapOfferFrontendModel> _swapOfferListPublic = new List<SwapOfferFrontendModel>();
+        private ObservableCollection<SwapOfferFrontendModel> _swapOfferListPublic = new ObservableCollection<SwapOfferFrontendModel>();
 
-        public List<SwapOfferFrontendModel> SwapOfferListPublic
+        public ObservableCollection<SwapOfferFrontendModel> SwapOfferListPublic
         {
             get
             {

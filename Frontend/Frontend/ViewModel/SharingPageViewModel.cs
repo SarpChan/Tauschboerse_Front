@@ -70,6 +70,9 @@ namespace Frontend.ViewModel
                 _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
             }
 
+            swapOfferListModel.SwapOfferListPublic.CollectionChanged += OnPublicCollectionChange;
+            swapOfferListModel.SwapOfferListPersonal.CollectionChanged += OnPersonalCollectionChange;
+
             NewsList.Add(new NewsModel
             {
                 Message = "Sie wurden exmatrikuliert.",
@@ -175,20 +178,40 @@ namespace Frontend.ViewModel
             }
         }
 
-        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        void OnPersonalCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
 
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    OnModuleAdd(sender, e);
+                    OnModuleAdd(sender, e, true);
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    OnModuleRemove(sender, e);
+                    OnModuleRemove(sender, e, true);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    OnModuleClear(sender, e);
+                    OnModuleClear(sender, e, true);
+                    break;
+                default:
+                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+            }
+        }
+
+        void OnPublicCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    OnModuleAdd(sender, e, false);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    OnModuleRemove(sender, e, false);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    OnModuleClear(sender, e, false);
                     break;
                 default:
                     throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
@@ -199,26 +222,48 @@ namespace Frontend.ViewModel
 
         #region CollectionChangeActions
 
-        private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
 
             foreach (SwapOfferFrontendModel t in e.NewItems)
             {
                 SharingPageViewModelSwapOffer add = new SharingPageViewModelSwapOffer(t);
-                this.SwapListOwn.Add(add);
+                if (own)
+                {
+                    this.SwapListOwn.Add(add);
+                } else
+                {
+                    this.SwapListPublic.Add(add);
+                }
+                
             }
         }
-        private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
             foreach (SwapOfferFrontendModel t in e.NewItems)
             {
-                SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListOwn);
-                this.SwapListOwn.Remove(foundSPVMSO);
+                if (own)
+                {
+                    SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListOwn);
+                    this.SwapListOwn.Remove(foundSPVMSO);
+                }
+                else
+                {
+                    SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListPublic);
+                    this.SwapListPublic.Remove(foundSPVMSO);
+                }
             }
         }
-        private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
-            this.SwapListOwn.Clear();
+            if (own)
+            {
+                this.SwapListOwn.Clear();
+            }
+            else
+            {
+                this.SwapListPublic.Clear();
+            }
         }
 
         private SharingPageViewModelSwapOffer FindSharingPageViewModelSwapOfferWithId(long id, IList<SharingPageViewModelSwapOffer> swapOffers)
