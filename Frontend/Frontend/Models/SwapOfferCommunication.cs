@@ -10,6 +10,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using ToastNotifications.Messages;
+using Frontend.Helpers;
 
 namespace Frontend.Models
 {

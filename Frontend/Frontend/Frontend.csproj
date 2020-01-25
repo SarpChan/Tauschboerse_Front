@@ -85,6 +85,7 @@
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
+    <Compile Include="Helpers\ObservableModelBase.cs" />
     <Compile Include="Helpers\PageToUriConverter.cs" />
     <Compile Include="Helpers\SHA256Gen.cs" />
     <Compile Include="Models\Administrator.cs" />
