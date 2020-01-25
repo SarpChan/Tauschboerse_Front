@@ -51,5 +51,25 @@ namespace Frontend.UserControls
         {
             popUp.IsOpen = false;
         }
+
+        private void TimetableItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            Console.WriteLine("MouseLeftClick TimeTableItem");
+            if (UserInformation.isAdmin)
+            {
+                if (moduleEdit.IsOpen)
+                {
+                    moduleEdit.IsOpen = false;
+                }
+                else
+                {
+                    var tti = (TimetableItem)sender;
+                    moduleEdit.PlacementTarget = tti;
+                    ModuleEditor.viewmodel.EditTimetableModule = tti.Module.Module;
+                    moduleEdit.IsOpen = true;
+                }
+            }
+        }
     }
 }

@@ -212,6 +212,7 @@
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleDetailsEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorChooserVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleMainInformationEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />

@@ -9,8 +9,8 @@ namespace Frontend.ViewModel
     class ModuleDetailsEditorVM : ModuleEditorVM
     {
 
-        private APIClient apiClient = APIClient.Instance;
-        private ModuleListModel moduleListModel = ModuleListModel.Instance;
+        protected APIClient apiClient = APIClient.Instance;
+        protected ModuleListModel moduleListModel = ModuleListModel.Instance;
 
         #region Propertie
 

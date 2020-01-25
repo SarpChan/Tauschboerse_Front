@@ -205,11 +205,26 @@ namespace Frontend.ViewModel
 
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (TimetableModule t in e.NewItems)
+            List<TimetableViewModelModule> changeTTVMM = new List<TimetableViewModelModule>();
+
+
+            foreach (TimetableModule t in e.OldItems)
             {
-                //t.PropertyChanged -= (sender, e) => OnModuleChange(sender, e, ttvmm);
-                TimetableViewModelModule foundTTVMM = findTimetableViewModelMoudle(t, _TTVMMList);
-                List<TimetableViewModelModule> dependencies = findDependentModules(foundTTVMM, _TTVMMList);
+
+                foreach(TimetableViewModelModule ttvmm in TTVMMList)
+                {
+                    if(ttvmm.Module == t)
+                    {
+                        changeTTVMM.Add(ttvmm);
+                    }
+                }
+
+                foreach(TimetableViewModelModule ttvmm  in changeTTVMM)
+                {
+                    TTVMMList.Remove(ttvmm);
+                }
+
+                
             }
         }
 

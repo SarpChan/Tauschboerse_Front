@@ -14,36 +14,37 @@
              mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <viewmodel:ModuleDetailsEditorVM x:Name="viewmodel"/>
+        <viewmodel:ModuleEditorChooserVM x:Name="viewmodel"/>
     </UserControl.DataContext>
 
     <DockPanel LastChildFill="True">
 
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Einstellungen">
+        <Button DockPanel.Dock="Top" x:Name="MainInformationButton" Style="{StaticResource ModuleChangeButton}" Content="Einstellungen">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource edit_b}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>
         </Button>
         
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Detail" Margin="0,10pt,0,0">
+        <Button DockPanel.Dock="Top" x:Name="DetailButton" Style="{StaticResource ModuleChangeButton}" Content="Detail" Margin="0,10pt,0,0">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource info}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>
         </Button>
         
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Zeiten" Margin="0,10pt,0,0">
+        <Button DockPanel.Dock="Top" x:Name="TimeButton" Style="{StaticResource ModuleChangeButton}" Content="Zeiten" Margin="0,10pt,0,0">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource times}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>
         </Button>
 
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Art" Margin="0,10pt,0,0">
+        <Button DockPanel.Dock="Top" x:Name="TypeButton" Style="{StaticResource ModuleChangeButton}" Content="Art" Margin="0,10pt,0,0">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource lecture_b}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>
         </Button>
 
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Löschen" Margin="0,10pt,0,0">
+        <Button DockPanel.Dock="Top" x:Name="DeleteButton" Style="{StaticResource ModuleChangeButton}" Content="Löschen" Margin="0,10pt,0,0"
+                Command="{Binding DeleteModuleCommand}">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource delete}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>

@@ -92,9 +92,15 @@
                 </Helpers:DataPipeCollection>
             </Helpers:DataPiping.DataPipes>
 
-        <Popup x:Name="popUp" AllowsTransparency="True">
-            <usercontrols:TT_Item_Swapbtn x:Name="uc" ></usercontrols:TT_Item_Swapbtn>
-        </Popup>
+            <Popup x:Name="popUp" AllowsTransparency="True">
+                <usercontrols:TT_Item_Swapbtn x:Name="uc" ></usercontrols:TT_Item_Swapbtn>
+            </Popup>
+
+            <Popup x:Name="moduleEdit"
+                   AllowsTransparency="True"
+                   Placement="Left">
+                <usercontrols:ModuleEditorChooser x:Name="ModuleEditor"/>
+            </Popup>
 
             <!-- 
                 For loop: Rows
@@ -215,7 +221,8 @@
                     <DataTemplate DataType="{x:Type models:TimetableViewModelModule}">
                         <Canvas>
                             <usercontrols:TimetableItem Module="{Binding .,Mode=TwoWay}" Panel.ZIndex="1" 
-                                                        MouseEnter="TimetableItem_MouseEnter" 
+                                                        MouseEnter="TimetableItem_MouseEnter"
+                                                        MouseLeftButtonDown="TimetableItem_MouseLeftButtonDown"
                                                         Width="{Binding Width ,Mode=TwoWay}" 
                                                         Height="{Binding Height,Mode=TwoWay}"
                                                         Canvas.Left="{Binding X,Mode=TwoWay}"
