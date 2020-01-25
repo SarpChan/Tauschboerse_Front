@@ -74,6 +74,33 @@ namespace Frontend.ViewModel
                 return _SwitchTermCommand;
             }
         }
+
+        private ICommand _IsCompletedCheckedCommand;
+        public ICommand IsCompletedCheckedCommand
+        {
+            get
+            {
+                if (_IsCompletedCheckedCommand == null)
+                {
+                    _IsCompletedCheckedCommand = new ActionCommand(param => this.CheckboxIsChecked(param));
+                }
+                return _IsCompletedCheckedCommand;
+            }
+        }
+
+        private ICommand _IsCompletedUnCheckedCommand;
+        public ICommand IsCompletedUnCheckedCommand
+        {
+            get
+            {
+                if (_IsCompletedUnCheckedCommand == null)
+                {
+                    _IsCompletedUnCheckedCommand = new ActionCommand(param => this.CheckboxIsUnChecked(param));
+                }
+                return _IsCompletedUnCheckedCommand;
+            }
+        }
+
         #endregion
 
 
@@ -90,6 +117,16 @@ namespace Frontend.ViewModel
                 }
             }
 
+        }
+
+        private void CheckboxIsChecked(object i)
+        {
+            Console.WriteLine("isChecked" + (long) i);
+        }
+
+        private void CheckboxIsUnChecked(object i)
+        {
+            Console.WriteLine("uncheck");
         }
 
         #region properties

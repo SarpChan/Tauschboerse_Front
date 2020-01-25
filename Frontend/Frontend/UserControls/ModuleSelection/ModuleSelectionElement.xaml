@@ -8,6 +8,7 @@
              xmlns:models="clr-namespace:Frontend.Models" 
              mc:Ignorable="d" 
              xmlns:project1="clr-namespace:Frontend.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DesignHeight="70" d:DesignWidth="1550">
     <UserControl.Resources>
         <helpers:ModuleSelectionConverter x:Key="ModuleSelectionConverter"/>
@@ -35,17 +36,17 @@
             </Grid.RowDefinitions>
             <TextBlock Name="Credits" Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding CreditPoints}"></TextBlock>
             <TextBlock Name="ModuleName" Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
-            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" CommandParameter="{Binding Id}">
-                <!--i:Interaction.Triggers>
-                <i:EventTrigger EventName="Checked">
-                    <i:InvokeCommandAction Command="{Binding DataContext.IsCompletedCheckedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type t:RadGridView}}}" CommandParameter="{Binding}"/>
-                </i:EventTrigger>
+            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.IsCompletedCheckedCommand}" CommandParameter="{Binding Id}"/>
+                    </i:EventTrigger>
 
-                <i:EventTrigger EventName="Unchecked">
-                    <i:InvokeCommandAction Command="{Binding DataContext.IsCompletedUncheckedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type t:RadGridView}}}" CommandParameter="{Binding}"/>
-                </i:EventTrigger>
-                </-->
-                </CheckBox>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.IsCompletedUnCheckedCommand}" CommandParameter="{Binding Id}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
         </Grid>
         <ItemsControl ItemsSource="{Binding timetableModules}" Grid.Column="1">
             <ItemsControl.ItemsPanel>
