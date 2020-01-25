@@ -239,7 +239,7 @@ namespace Frontend.ViewModel
 
                 if (start > end)
                 {
-                    throw new StartTimeLaterThenEndException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+                    throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
                 }
 
                 ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(newValue, start);
@@ -399,7 +399,7 @@ namespace Frontend.ViewModel
             TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
             if(start > end)
             {
-                throw new StartTimeLaterThenEndException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+                throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
             }
 
             Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);

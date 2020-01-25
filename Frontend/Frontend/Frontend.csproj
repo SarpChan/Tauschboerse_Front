@@ -87,7 +87,7 @@
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
     <Compile Include="Helpers\DataPiping.cs" />
-    <Compile Include="Helpers\Exceptions\StartTimeLaterThenEndException.cs" />
+    <Compile Include="Helpers\Exceptions\StartTimeLaterThenEndTimeException.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
     <Compile Include="Helpers\Globals\Globals.cs" />
     <Compile Include="Helpers\Globals\UserInformation.cs" />
@@ -131,6 +131,9 @@
     <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
       <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleEditorChooser.xaml.cs">
+      <DependentUpon>ModuleEditorChooser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml.cs">
       <DependentUpon>ModuleMainInformationEditor.xaml</DependentUpon>
     </Compile>
@@ -142,9 +145,6 @@
     </Compile>
     <Compile Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml.cs">
       <DependentUpon>ModuleDetailsEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
-      <DependentUpon>EditTimetable.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Login\Login_HeadText.xaml.cs">
       <DependentUpon>Login_HeadText.xaml</DependentUpon>
@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleEditorChooser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -316,10 +320,6 @@
     <Page Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Timetable\EditTimetable.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Login\Login_HeadText.xaml">
       <SubType>Designer</SubType>

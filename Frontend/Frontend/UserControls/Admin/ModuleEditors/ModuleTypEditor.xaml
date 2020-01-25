@@ -17,18 +17,10 @@
     </UserControl.DataContext>
 
     <DockPanel LastChildFill="True">
-        <Button DockPanel.Dock="Top" x:Name="BackButton" Background="Transparent" Padding="0">
-            <Button.Template>
-                <ControlTemplate>
-                    <Border BorderThickness="2pt" Background="White" BorderBrush="Green">
-                        <DockPanel Margin="5pt" LastChildFill="True" >
-                            <Image DockPanel.Dock="Left" Source="{StaticResource lecture_b}" Width="20pt" Margin="0,0,10pt,0"/>
-                            <Label DockPanel.Dock="Right" Content="Art" FontSize="15pt" />
-                        </DockPanel>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-
+        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Art">
+            <Button.Tag>
+                <Image DockPanel.Dock="Left" Source="{StaticResource lecture_b}" Width="20pt" Margin="0,0,10pt,0"/>
+            </Button.Tag>
         </Button>
 
         <Border DockPanel.Dock="Top" BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
