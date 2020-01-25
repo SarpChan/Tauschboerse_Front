@@ -330,6 +330,13 @@ namespace Frontend.ViewModel
                         //APIClient.Instance.Logout();
                     }
                     break;
+                case (-1):
+                    
+                    App.notifier.ShowError("Server is offline");
+                    //Logout(HttpCode);
+                    //APIClient.Instance.Logout();
+                    
+                    break;
                 default:
                     if (LoginPageViewModel.Instance.IsLoggedIn)
                     {

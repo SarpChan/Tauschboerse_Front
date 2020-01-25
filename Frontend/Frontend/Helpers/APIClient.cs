@@ -1,10 +1,12 @@
 using Frontend.ViewModel;
 using RestSharp;
 using RestSharp.Authenticators;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using ToastNotifications.Messages;
 
 namespace Frontend.Helpers
 {
@@ -39,11 +41,17 @@ namespace Frontend.Helpers
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
-
+            Console.WriteLine("->"+response.ResponseStatus);
             if (response.IsSuccessful)
             {
                 _client.Authenticator = new JwtAuthenticator(response.Content);
                 return true;
+            } else if(response.ResponseStatus != ResponseStatus.Completed)
+            {
+                MainViewModel.Instance.HandleHttpError(-1);
+            } else
+            {
+                App.notifier.ShowError("Ungueltiges Passwort oder ungueltiger Benutzername");
             }
             return false;
         }
@@ -98,6 +106,11 @@ namespace Frontend.Helpers
             if ((int)response.StatusCode >= 400)
             {
                 MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
+            } else if(response.ResponseStatus == ResponseStatus.TimedOut)
+            {
+                MainViewModel.Instance.HandleHttpError(-1);
+                cancellationTokenSource.Dispose();
+                return response;
             }
             cancellationTokenSource.Dispose();
             return response;

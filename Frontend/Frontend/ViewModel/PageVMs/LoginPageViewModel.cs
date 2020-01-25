@@ -102,10 +102,7 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowSuccess("Einloggen erfolgreich");
             }
-            else
-            {
-                App.notifier.ShowError("Ungueltiges Passwort oder ungueltiger Benutzername");
-            }
+            
         }
         #endregion
     }
