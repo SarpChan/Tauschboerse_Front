@@ -17,7 +17,8 @@
     </UserControl.DataContext>
 
     <DockPanel LastChildFill="True">
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Art">
+        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Art"
+                Click="BackButton_Click">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource lecture_b}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>

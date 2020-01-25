@@ -20,7 +20,8 @@
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True">
-        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Zeiten">
+        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Zeiten"
+                Click="BackButton_Click">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource times}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>

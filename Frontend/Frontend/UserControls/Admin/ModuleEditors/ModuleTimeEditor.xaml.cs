@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -49,18 +50,6 @@ namespace Frontend.UserControls
             ttm.StartTime = time.ToString("HH:mm");
         }
 
-        public TimetableModule Module
-        {
-            get
-            {
-                return (TimetableModule)GetValue(ModuleProperty);
-            }
-            set
-            {
-                SetValue(ModuleProperty, value);
-            }
-        }
-
         public String DeaktiveteSaveButton
         {
             set
@@ -76,13 +65,16 @@ namespace Frontend.UserControls
             }
         }
 
-        public string Color
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            get { return viewmodel.Color; }
-            set { viewmodel.Color = value; }
-        }
+            if (Parent is Popup)
+            {
+                var chooser = new ModuleEditorChooser();
+                chooser.viewmodel.EditTimetableModule = viewmodel.EditTimetableModule;
 
-        public static readonly DependencyProperty ModuleProperty = DependencyProperty.Register("Module", typeof(TimetableModule), typeof(ModuleTimeEditor), new UIPropertyMetadata(null));
+                ((Popup)Parent).Child = chooser;
+            }
+        }
     }
 
 }
