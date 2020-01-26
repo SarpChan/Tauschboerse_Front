@@ -29,21 +29,23 @@ namespace Frontend.UserControls
      */
     public partial class TimeTable : UserControl
     {
-        
+
         public TimeTable()
         {
             InitializeComponent();
-            
+
         }
 
         private void TimetableItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("MouseEnter TimeTableItem");
-            popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
-            uc.MouseLeave += TimetableItem_MouseLeave;
-            popUp.IsOpen = true;
-            uc.item.Module = ((TimetableItem)sender).Module;
-
+            if (!moduleEdit.IsOpen)
+            {
+                Console.WriteLine("MouseEnter TimeTableItem");
+                popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
+                uc.MouseLeave += TimetableItem_MouseLeave;
+                popUp.IsOpen = true;
+                uc.item.Module = ((TimetableItem)sender).Module;
+            }
 
         }
 
@@ -68,6 +70,7 @@ namespace Frontend.UserControls
                     moduleEdit.PlacementTarget = tti;
                     ModuleEditor.viewmodel.EditTimetableModule = tti.Module.Module;
                     moduleEdit.IsOpen = true;
+                    popUp.IsOpen = false;
                 }
             }
         }

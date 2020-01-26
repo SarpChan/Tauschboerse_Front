@@ -19,7 +19,7 @@
 
     <DockPanel LastChildFill="True">
         <Button x:Name="BackButton" DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Details"
-                Click="BackButton_Click">
+                Click="BackButton_Click" Command="{Binding DiscardAllChangesCommand}">
             <Button.Tag>
                 <Image DockPanel.Dock="Left" Source="{StaticResource info}" Width="20pt" Margin="0,0,10pt,0"/>
             </Button.Tag>
@@ -50,7 +50,7 @@
                               />
                 </StackPanel>
 
-                <Button Margin="0,20pt,0,0" x:Name="saveButton" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
+                <Button Click="BackButton_Click" Command="{Binding SaveCommand}" Margin="0,20pt,0,0" x:Name="saveButton" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
             </DockPanel>
         </Border>
     </DockPanel>

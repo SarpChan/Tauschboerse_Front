@@ -36,17 +36,17 @@ namespace Frontend.ViewModel
         }
 
         #region ICommand
-        private ICommand _SaveTimeCommand;
+        private ICommand _SaveCommand;
 
-        public ICommand SaveTimeCommand
+        public ICommand SaveCommand
         {
             get
             {
-                if (_SaveTimeCommand == null)
+                if (_SaveCommand == null)
                 {
-                    _SaveTimeCommand = new ActionCommand(dummy => this.SaveTime(), null);
+                    _SaveCommand = new ActionCommand(dummy => this.SaveTime(), null);
                 }
-                return _SaveTimeCommand;
+                return _SaveCommand;
             }
         }
 
