@@ -47,8 +47,8 @@ namespace Frontend.Helpers.Calculators
             /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
             /// <returns>Pixel für die X-Koordniate</returns>
 
-            int rowPos = TimeConverterHelper.CalculateModuleRowPosition(ttvmm.Module, moduleList);
-            int divder = TimeConverterHelper.CalculateModuleWidthDivider(ttvmm, moduleList);
+            int rowPos = CalculateModuleRowPosition(ttvmm.Module, moduleList);
+            int divder = CalculateModuleWidthDivider(ttvmm, moduleList);
             double widthPerItem = (totalWidth - timeWidth) / Globals.weekdays;
 
             return (timeWidth + (weekday) * widthPerItem) + ((widthPerItem / divder) * (rowPos - 1));
@@ -67,11 +67,41 @@ namespace Frontend.Helpers.Calculators
             /// <param name="parameter">Parameter der bei gleichen Werten Ergebnis beeinflusst</param>
             /// <param name="culture">Aktuelle Sprache (wird nicht benutzt)</param>
             /// <returns>Pixelbreite</returns>
-            int divider = TimeConverterHelper.CalculateModuleWidthDivider(module, moduleList);
+            int divider = CalculateModuleWidthDivider(module, moduleList);
             double width = ((totalWidth - timeWidth) / Globals.weekdays) - PixelCalculator.PointsToPixels(Globals.Space);
             width /= divider;
 
             return width < 0 ? 0 : width;
+        }
+
+        public static bool IsTimeAndDayOverlapping(TimetableModule ttm_1, TimetableModule ttm_2)
+        {
+
+
+            if (ttm_1.Day.Equals(ttm_2.Day))
+            {
+                return IsTimeOverlapping(ttm_1, ttm_2);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool IsTimeOverlapping(TimetableModule ttm_1, TimetableModule ttm_2)
+        {
+
+            var s1 = TimeCoodinatesCalculator.TimeStringToInt(ttm_1.StartTime as String);
+            var e1 = TimeCoodinatesCalculator.TimeStringToInt(ttm_1.EndTime as String);
+            var s2 = TimeCoodinatesCalculator.TimeStringToInt(ttm_2.StartTime as String);
+            var e2 = TimeCoodinatesCalculator.TimeStringToInt(ttm_2.EndTime as String);
+
+            return IsTimeOverlapping(s1, e1, s2, e2);
+        }
+
+        public static bool IsTimeOverlapping(int s1, int e1, int s2, int e2)
+        {
+            return ((s1 <= s2 && e1 > s2) || (s1 < e2 && e1 >= e2) || (s1 >= s2 && e1 <= e2));
         }
 
 
@@ -104,12 +134,6 @@ namespace Frontend.Helpers.Calculators
         {
             return System.Convert.ToInt32(time.Split(':')[0]) * 60 + System.Convert.ToInt32(time.Split(':')[1]);
         }
-    }
-
-
-
-    class TimeConverterHelper
-    {
 
         private static int CalculateModuleWidthDivider(int counter, int index, int startTime, int endTime, String day, TimetableViewModelModule ttvmm, TimetableModule[] items)
         {
@@ -122,7 +146,7 @@ namespace Frontend.Helpers.Calculators
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
 
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime >= s2 && endTime <= e2))
+                    if (IsTimeOverlapping(startTime, endTime, s2, e2))
                     {
                         int founded = CalculateModuleWidthDivider(1 + counter, 1 + i, Math.Min(startTime, s2), Math.Min(endTime, e2), day, ttvmm, items);
 
@@ -163,8 +187,11 @@ namespace Frontend.Helpers.Calculators
             var endTime = TimeCoodinatesCalculator.TimeStringToInt(ttvmm.Module.EndTime as String);
 
 
-            divider = CalculateModuleWidthDivider(divider, 1, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
-
+            divider = CalculateModuleWidthDivider(divider, 0, startTime, endTime, ttvmm.Module.Day, ttvmm, moduleList.ToArray());
+            if(divider == 0)
+            {
+                return 1;
+            }
             //Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
             return divider;
         }
@@ -180,7 +207,7 @@ namespace Frontend.Helpers.Calculators
                     var s2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].StartTime as String);
                     var e2 = TimeCoodinatesCalculator.TimeStringToInt(items[i].EndTime as String);
 
-                    if ((startTime <= s2 && endTime > s2) || (startTime < e2 && endTime >= e2)|| (startTime > s2 && endTime < e2))
+                    if (IsTimeOverlapping(startTime, endTime, s2, e2))
                     {
                         if (id > System.Convert.ToInt64(items[i].ID))
                         {
