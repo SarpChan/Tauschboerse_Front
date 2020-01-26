@@ -28,12 +28,8 @@ namespace Frontend.ViewModel
             Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  "+this.GetHashCode());
             foreach (var module in moduleListModel.ModuleList)
             {
-                _TTVMMList.Add(new TimetableViewModelModule {
-                    Module = module,
-                });
+                OnModuleAdd(module);
             }
-
-            CalculateInitialValues();
 
             foreach (var row in rowListModel.RowList)
             {
@@ -183,23 +179,24 @@ namespace Frontend.ViewModel
 
             foreach (TimetableModule t in e.NewItems)
             {
-                TimetableViewModelModule add = new TimetableViewModelModule
-                {
-                    Module = t
-                };
-                Console.WriteLine(t);
-                Console.WriteLine("\t ADD MODULE: ("+t.GetHashCode()+")" + t.CourseName + " ->" + add);
-                Inititalize_TimetableViewModelModule(add);
-                BindListenerOn_TimetableViewModelModule(add);
+                OnModuleAdd(t);
+            }
+        }
 
-                TTVMMList.Add(add);
+        private void OnModuleAdd(TimetableModule t)
+        {
+            TimetableViewModelModule add = new TimetableViewModelModule
+            {
+                Module = t
+            };
+            Inititalize_TimetableViewModelModule(add);
+            TTVMMList.Add(add);
 
-                Console.WriteLine("\t on " + this + " ->  " + this.GetHashCode() + "\n");
+            BindListenerOn_TimetableViewModelModule(add);
 
-                foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _TTVMMList))
-                {
-                    Inititalize_TimetableViewModelModule(ttvmm);
-                }
+            foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _TTVMMList))
+            {
+                Inititalize_TimetableViewModelModule(ttvmm);
             }
         }
 
@@ -249,16 +246,7 @@ namespace Frontend.ViewModel
         {
             foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
-                TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
-                TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
-
-                if (start > end)
-                {
-                    throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
-                }
-
-                ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(newValue, start);
-                ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(newValue, start, end);
+                RecalculateTimeDependetProperties(ttvmm);
             }
         }
 
@@ -293,15 +281,20 @@ namespace Frontend.ViewModel
 
         private void OnNameChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Change Name");
-            Console.ForegroundColor = ConsoleColor.White;
-
             ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName, ttm.Type);
-
         }
 
         private void OnTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        {
+            RecalculateTimeDependetProperties(ttvmm);
+
+            foreach (var d in findDependentModules(ttvmm,_TTVMMList))
+            {
+                RecalculateTimeDependetProperties(d);
+            }
+        }
+
+        private void RecalculateTimeDependetProperties(TimetableViewModelModule ttvmm)
         {
             TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
             TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
@@ -336,8 +329,7 @@ namespace Frontend.ViewModel
         private void AddModule()
 
         {
-            //ZUM TESTEN 
-            Console.WriteLine("\n ADD MODULE WITH BUTTON");
+            //ZUM TESTEN [wird momentan nicht benutzt]
             TimetableModule add = new TimetableModule()
 
             {
@@ -412,23 +404,11 @@ namespace Frontend.ViewModel
 
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-            Console.WriteLine("\t Init ttvmm ("+this.GetHashCode()+") \n\t\t(before) ->  Color:" + ttvmm.Color +" Y:" + ttvmm.Y+
-                "  X:"+ttvmm.X+"  H:"+ttvmm.Height+" W:"+ttvmm.Width);
-            Console.WriteLine("TIme :" + ttvmm.Module.StartTime + "Time :" + ttvmm.Module.EndTime);
-            TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
-            TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
-            if(start > end)
-            {
-                throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
-            }
-
-            Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
-
+            RecalculateTimeDependetProperties(ttvmm);
+           
             /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
             ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm, moduleListModel.ModuleList);
             ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
-            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
-            ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
             Console.WriteLine("\t\t(after) ->  Color:" + ttvmm.Color + " Y:" + ttvmm.Y +

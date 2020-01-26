@@ -52,11 +52,11 @@
                 </ItemsControl>
 
 
-                <xctk:TimePicker x:Name="startTimePicker" DefaultValue="12:24" Format="ShortTime" DockPanel.Dock="Top" Margin="0,10pt,0,0" Maximum="{Binding ElementName=endTimePicker, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <xctk:TimePicker x:Name="startTimePicker" DefaultValue="{Binding EditTimetableModule.StartTime}" Format="ShortTime" DockPanel.Dock="Top" Margin="0,10pt,0,0" Maximum="{Binding ElementName=endTimePicker, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label DockPanel.Dock="Top" Content="|" HorizontalAlignment="Center" FontSize="15pt"></Label>
 
-                <xctk:TimePicker x:Name="endTimePicker" DefaultValue="17:42" Format="ShortTime" DockPanel.Dock="Top"  Minimum="{Binding ElementName=startTimePicker, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <xctk:TimePicker x:Name="endTimePicker" DefaultValue="{Binding EditTimetableModule.EndTime}" Format="ShortTime" DockPanel.Dock="Top"  Minimum="{Binding ElementName=startTimePicker, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
 
                 <Button Click="BackButton_Click" Command="{Binding SaveCommand}" Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />

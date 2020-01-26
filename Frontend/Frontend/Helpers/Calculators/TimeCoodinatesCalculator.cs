@@ -102,7 +102,6 @@ namespace Frontend.Helpers.Calculators
 
         public static int TimeStringToInt(String time)
         {
-            Console.WriteLine(time);
             return System.Convert.ToInt32(time.Split(':')[0]) * 60 + System.Convert.ToInt32(time.Split(':')[1]);
         }
     }

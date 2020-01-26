@@ -30,6 +30,8 @@ namespace Frontend.UserControls
     public partial class TimeTable : UserControl
     {
 
+        private object _LastEditModuleOpener = null;
+
         public TimeTable()
         {
             InitializeComponent();
@@ -68,9 +70,11 @@ namespace Frontend.UserControls
                 {
                     var tti = (TimetableItem)sender;
                     moduleEdit.PlacementTarget = tti;
+                    moduleEdit.Child = ModuleEditor;
                     ModuleEditor.viewmodel.EditTimetableModule = tti.Module.Module;
                     moduleEdit.IsOpen = true;
                     popUp.IsOpen = false;
+                    _LastEditModuleOpener = sender;
                 }
             }
         }
