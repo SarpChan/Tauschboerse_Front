@@ -35,9 +35,18 @@
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Aktuelle News" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource HeadlineBoldTextBlock}}"/>
+                <TextBlock 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" 
+                    Margin="0,40,0,0" 
+                    Text="Aktuelle News" 
+                    FontSize="32" 
+                    FontFamily="/Frontend;component/Resources/Fonts/#Kiona"
+                    Style="{Binding Mode=OneWay, Source={StaticResource HeadlineBoldTextBlock}}"/>
 
-                <ListView ItemsSource="{Binding NewsList}" Margin="0,10,0,50" AlternationCount="2" MaxHeight="200">
+                <ListView ItemsSource="{Binding NewsList}" Margin="0,10,0,50" AlternationCount="2" MaxHeight="185">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -50,12 +59,6 @@
 
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Die Tauschbörse" FontSize="32" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource HeadlineBoldTextBlock}}"/>
 
-                <!--<Button Width="180pt" HorizontalAlignment="Right" Margin="0" Style="{Binding Mode=OneWay, Source={StaticResource AdminButton}}">
-                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                    <Image Name="Save" Source="{StaticResource reload}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <TextBlock Padding="20,8,0,0" Width="150" Height="40" Text="Aktualisieren" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
-                </DockPanel>
-            </Button>-->
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Deine Tauschangebote" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" Margin="0,20" />
                 <DataGrid 
                 x:Name="DG_OWN"
@@ -204,7 +207,7 @@
                 CanUserAddRows="False" 
                 Background="{x:Null}"
                 MinRowHeight="40"
-                Height="210"
+                Height="290"
                 AlternationCount="2"
                 VerticalAlignment="Center"
                 filter:DataGridExtensions.UseBackgroundWorkerForFiltering="False"
@@ -212,7 +215,7 @@
                 ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
            TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
            ResourceId=DataGridHeaderFilterControlStyle}}"
-                VerticalContentAlignment="Center" Focusable="False" VerticalScrollBarVisibility="Visible" SelectionUnit="CellOrRowHeader" CanUserDeleteRows="False" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" HorizontalScrollBarVisibility="Hidden"
+                VerticalContentAlignment="Center" Focusable="False" VerticalScrollBarVisibility="Visible" SelectionUnit="CellOrRowHeader" CanUserDeleteRows="False" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" HorizontalScrollBarVisibility="Hidden" Margin="0,0,0,40"
                 >
                     <DataGrid.Resources>
 

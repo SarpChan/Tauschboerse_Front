@@ -14,5 +14,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Tag="Login" Command="{Binding LoginButtonCommand,ElementName=login_button}" Style="{StaticResource LoginButton}"/>
+    <Button Tag="Login" 
+            Command="{Binding LoginButtonCommand,ElementName=login_button}"  
+            Style="{StaticResource LoginButton}" 
+            CommandParameter="{Binding PWBox, ElementName=login_button}"/>
 </UserControl>

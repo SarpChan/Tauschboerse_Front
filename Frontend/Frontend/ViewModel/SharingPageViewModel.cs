@@ -36,11 +36,11 @@ namespace Frontend.ViewModel
             get { return _SwapListOwn; }
         }
 
-        private ObservableCollection<NewsModel> _NewsList = new ObservableCollection<NewsModel>();
+        private ObservableCollection<News> _NewsList = new ObservableCollection<News>();
         /// <summary>
         /// Eine Liste mit allen News des aktuellen Nutzers
         /// </summary>
-        public ObservableCollection<NewsModel> NewsList
+        public ObservableCollection<News> NewsList
         {
             get { return _NewsList; }
         }
@@ -73,50 +73,50 @@ namespace Frontend.ViewModel
             swapOfferListModel.SwapOfferListPublic.CollectionChanged += OnPublicCollectionChange;
             swapOfferListModel.SwapOfferListPersonal.CollectionChanged += OnPersonalCollectionChange;
 
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden exmatrikuliert.",
-                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Stundent dekradiert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22,8, 15, 0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22,8, 15, 0)).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Admin befördert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8,15,0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8,15,0)).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden exmatrikuliert.",
-                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Stundent dekradiert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Admin befördert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden exmatrikuliert.",
-                timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Stundent dekradiert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
             });
-            NewsList.Add(new NewsModel
+            NewsList.Add(new News
             {
                 Message = "Sie wurden zum Admin befördert.",
-                timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
             });
             CreateAutocompletes();
 
@@ -194,7 +194,7 @@ namespace Frontend.ViewModel
                     OnModuleClear(sender, e, true);
                     break;
                 default:
-                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+                    throw new ArgumentException("Error while adding to personal sharing list " + e.Action.ToString());
             }
         }
 
@@ -214,7 +214,25 @@ namespace Frontend.ViewModel
                     OnModuleClear(sender, e, false);
                     break;
                 default:
-                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+                    throw new ArgumentException("Error while adding to public sharing list " + e.Action.ToString());
+            }
+        }
+
+        void OnNewsCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    OnNewsAdd(sender, e);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    OnNewsRemove(sender, e);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    OnNewsClear(sender, e);
+                    break;
+                default:
+                    throw new ArgumentException("Error while adding to news list " + e.Action.ToString());
             }
         }
 
@@ -264,6 +282,27 @@ namespace Frontend.ViewModel
             {
                 this.SwapListPublic.Clear();
             }
+        }
+
+        private void OnNewsAdd(object sender, NotifyCollectionChangedEventArgs e)
+        {
+
+            foreach (SwapOfferFrontendModel t in e.NewItems)
+            {
+                this.SwapListOwn.Add(null);
+            }
+        }
+        private void OnNewsRemove(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            foreach (SwapOfferFrontendModel t in e.NewItems)
+            {
+                SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListPublic);
+                this.SwapListPublic.Remove(foundSPVMSO);
+            }
+        }
+        private void OnNewsClear(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.NewsList.Clear();
         }
 
         private SharingPageViewModelSwapOffer FindSharingPageViewModelSwapOfferWithId(long id, IList<SharingPageViewModelSwapOffer> swapOffers)
@@ -442,43 +481,6 @@ namespace Frontend.Models
             sb.Append(sofm.ToStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.ToEndTime.ToString(@"hh\:mm")).Append(")");
             this.Wants = sb.ToString();
             this.Id = sofm.Id;
-        }
-    }
-
-    public class NewsModel
-    {
-        [JsonProperty("message")]
-        public string Message { get; set; }
-        [JsonProperty("timestamp")]
-        public long timestamp { get; set; }
-        [JsonIgnore]
-        public String Time
-        {
-            get
-            {
-                DateTime conv = TimestampToDatetimeConverter.convert(timestamp);
-                DateTime today = DateTime.Now;
-                StringBuilder sb = new StringBuilder();
-                if (conv.Day == today.Day)
-                {
-                    sb.Append("Heute,");
-                }
-                else if (conv.Day == today.Day - 1)
-                {
-                    sb.Append("Gestern,");
-                }
-                else
-                {
-                    sb.Append(conv.ToShortDateString()).Append(",");
-                }
-                sb.Append(conv.ToShortTimeString()).Append("Uhr").Append(":");
-
-                return sb.ToString();
-            }
-            set
-            {
-                Time = (string)value;
-            }
         }
     }
 

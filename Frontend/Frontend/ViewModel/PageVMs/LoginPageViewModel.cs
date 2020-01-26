@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers;
 using System;
 using System.Configuration;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ToastNotifications.Messages;
 
@@ -40,7 +41,7 @@ namespace Frontend.ViewModel
             {
                 if (_LoginCommand == null)
                 {
-                    _LoginCommand = new ActionCommand(dummy => this.ProcessLogin());
+                    _LoginCommand = new ActionCommand(pwBox => this.ProcessLogin());
                 }
                 return _LoginCommand;
             }
