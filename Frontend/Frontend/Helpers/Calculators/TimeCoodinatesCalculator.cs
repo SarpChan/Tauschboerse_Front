@@ -249,7 +249,7 @@ namespace Frontend.Helpers.Calculators
             var startTime = TimeCoodinatesCalculator.TimeStringToInt(module.StartTime as String);
             var endTime = TimeCoodinatesCalculator.TimeStringToInt(module.EndTime as String);
 
-            pos = CalculateModuleRowPosition(pos, 1, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day, module, moduleList.ToArray());
+            pos = CalculateModuleRowPosition(pos, 0, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day, module, moduleList.ToArray());
 
             //Console.WriteLine("Module: "+module.CourseName+"Pos :" + pos);
             return pos;

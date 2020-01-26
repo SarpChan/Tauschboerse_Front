@@ -17,6 +17,10 @@
         <viewmodel:ModuleEditorChooserVM x:Name="viewmodel"/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+
     <DockPanel LastChildFill="True">
 
         <Button DockPanel.Dock="Top" x:Name="MainInformationButton" Style="{StaticResource ModuleChangeButton}" Content="Einstellungen"
