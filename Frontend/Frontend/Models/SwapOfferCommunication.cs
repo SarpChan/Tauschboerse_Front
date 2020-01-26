@@ -60,13 +60,15 @@ namespace Frontend.Models
 
         // OnMessageReceived - beim messageConsumer registrierte Callback-Methode,
         // wird bei Empfang einer neuen Nachricht vom messageConsumer aufgerufen.
-        // Textnachrichten werden zur Kommandoausführung an parseCommand() weitergegeben
         public void OnMessageReceived(IMessage msg)
         {
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
-                App.notifierSO.ShowSuccess(textmessage.Text);
+                if (textmessage.Text.StartsWith(" Du hast erfolgreich von der Gruppe "))
+                {
+                    App.notifierSO.ShowSuccess(textmessage.Text);
+                } 
             }
         }
 
