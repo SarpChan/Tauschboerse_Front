@@ -39,6 +39,7 @@ namespace Frontend.UserControls
 
             var time = (DateTime)e.NewValue;
             var ttm = viewmodel.EditTimetableModule;
+
             ttm.EndTime = time.ToString("HH:mm");
         }
 

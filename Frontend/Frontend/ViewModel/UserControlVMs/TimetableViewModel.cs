@@ -286,11 +286,18 @@ namespace Frontend.ViewModel
 
         private void OnTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-            RecalculateTimeDependetProperties(ttvmm);
+            try {
 
-            foreach (var d in findDependentModules(ttvmm,_TTVMMList))
+                RecalculateTimeDependetProperties(ttvmm);
+
+                foreach (var d in findDependentModules(ttvmm,_TTVMMList))
+                {
+                    RecalculateTimeDependetProperties(d);
+                }
+            }
+            catch (Exception ex)
             {
-                RecalculateTimeDependetProperties(d);
+                Console.WriteLine(ex.Message);
             }
         }
 
