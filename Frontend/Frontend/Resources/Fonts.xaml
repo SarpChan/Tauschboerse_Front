@@ -15,19 +15,21 @@
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
         <Setter Property="FontSize" Value="32"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        
     </Style>
 
     <!-- small headline -->
-    <Style TargetType="TextBlock" x:Key="secondHeadlineLable">
+    <Style TargetType="TextBlock" x:Key="SecondHeadlineTextBlock">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
     </Style>
-    
-    <!-- text -->
-    <Style TargetType="Label" x:Key="TextTextLable">
-        <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
-        <Setter Property="FontSize" Value="15"/>
+
+    <!-- small headline bold-->
+    <Style TargetType="TextBlock" x:Key="secondHeadlineLableBold">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
     </Style>
 
@@ -37,11 +39,20 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="TextTextCenterBlock">
+
+    <!-- login head text -->
+    <Style TargetType="TextBlock" x:Key="LoginHeadTextBlock">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+    </Style>
+                
+
+    <!--Textblock-->
+    <Style TargetType="TextBlock" x:Key="Textblock">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
 </ResourceDictionary>

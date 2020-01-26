@@ -54,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,141 +74,180 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\ActionCommand.cs" />
+    <Compile Include="Helpers\Calculators\TimeCoodinatesCalculator.cs" />
+    <Compile Include="Helpers\Commands\ActionCommand.cs" />
     <Compile Include="Helpers\APIClient.cs" />
-    <Compile Include="Helpers\BoolToValueConverter.cs" />
-    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Converters\BoolToValueConverter.cs" />
+    <Compile Include="Helpers\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
+    <Compile Include="Helpers\Converters\TimeConverter.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
     <Compile Include="Helpers\Converters\WidthPercentageConverter.cs" />
+    <Compile Include="Helpers\DataPiping.cs" />
+    <Compile Include="Helpers\Exceptions\StartTimeLaterThenEndTimeException.cs" />
     <Compile Include="Helpers\Generators\ColorGenerator.cs" />
-    <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\Globals\Globals.cs" />
+    <Compile Include="Helpers\Globals\UserInformation.cs" />
+    <Compile Include="Helpers\Handlers\PropertieValueChangeHandler.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
-    <Compile Include="Helpers\ObservableModelBase.cs" />
-    <Compile Include="Helpers\PageToUriConverter.cs" />
-    <Compile Include="Helpers\SHA256Gen.cs" />
-    <Compile Include="Models\Administrator.cs" />
-    <Compile Include="Models\Building.cs" />
-    <Compile Include="Models\Campus.cs" />
-    <Compile Include="Models\SwapOfferCommunication.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseComponent.cs" />
-    <Compile Include="Models\Curriculum.cs" />
-    <Compile Include="Models\DayListModel.cs" />
-    <Compile Include="Models\ExamRegulation.cs" />
-    <Compile Include="Models\FieldOfStudy.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\Lecturer.cs" />
-    <Compile Include="Models\Module.cs" />
-    <Compile Include="Models\ModuleInCurriculum.cs" />
+    <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
+    <Compile Include="Helpers\JsonFileDialog.cs" />
+    <Compile Include="Helpers\Generators\SHA256Gen.cs" />
+    <Compile Include="Helpers\Rules\TimeRule.cs" />
+    <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
+    <Compile Include="Models\Outdated\Administrator.cs" />
+    <Compile Include="Models\Outdated\Building.cs" />
+    <Compile Include="Models\Outdated\Campus.cs" />
+    <Compile Include="Models\Outdated\Course.cs" />
+    <Compile Include="Models\Outdated\CourseComponent.cs" />
+    <Compile Include="Models\Outdated\Curriculum.cs" />
+    <Compile Include="Models\Outdated\DayListModel.cs" />
+    <Compile Include="Models\Outdated\ExamRegulation.cs" />
+    <Compile Include="Models\Outdated\FieldOfStudy.cs" />
+    <Compile Include="Models\Outdated\Group.cs" />
+    <Compile Include="Models\Outdated\Lecturer.cs" />
+    <Compile Include="Models\Outdated\Module.cs" />
+    <Compile Include="Models\Outdated\ModuleInCurriculum.cs" />
     <Compile Include="Models\ModuleListModel.cs" />
-    <Compile Include="Models\PersonalData.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Room.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudentAttendsCourse.cs" />
-    <Compile Include="Models\StudentPassedExam.cs" />
-    <Compile Include="Models\StudentPrioritizesGroup.cs" />
-    <Compile Include="Models\StudyProgram.cs" />
-    <Compile Include="Models\SwapOffer.cs" />
-    <Compile Include="Models\Term.cs" />
-    <Compile Include="Models\TimetableModule.cs" />
-    <Compile Include="Models\TimetableRowListModel.cs" />
-    <Compile Include="Models\University.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="UserControls\EditTimetable.xaml.cs">
-      <DependentUpon>EditTimetable.xaml</DependentUpon>
+    <Compile Include="Models\Outdated\PersonalData.cs" />
+    <Compile Include="Models\Outdated\Role.cs" />
+    <Compile Include="Models\Outdated\Room.cs" />
+    <Compile Include="Models\Outdated\Rule.cs" />
+    <Compile Include="Models\Outdated\Student.cs" />
+    <Compile Include="Models\Outdated\StudentAttendsCourse.cs" />
+    <Compile Include="Models\Outdated\StudentPassedExam.cs" />
+    <Compile Include="Models\Outdated\StudentPrioritizesGroup.cs" />
+    <Compile Include="Models\Outdated\StudyProgram.cs" />
+    <Compile Include="Models\Outdated\SwapOffer.cs" />
+    <Compile Include="Models\Outdated\Term.cs" />
+    <Compile Include="Models\Timetable\TimetableModule.cs" />
+    <Compile Include="Models\Timetable\TimetableRowListModel.cs" />
+    <Compile Include="Models\Timetable\TimetableViewModelModule.cs" />
+    <Compile Include="Models\Outdated\University.cs" />
+    <Compile Include="Models\Outdated\User.cs" />
+    <Compile Include="UserControls\Admin\AP_AddModuleButton.xaml.cs">
+      <DependentUpon>AP_AddModuleButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Login_HeadText.xaml.cs">
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleEditorChooser.xaml.cs">
+      <DependentUpon>ModuleEditorChooser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml.cs">
+      <DependentUpon>ModuleMainInformationEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml.cs">
+      <DependentUpon>ModuleTypEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleTimeEditor.xaml.cs">
+      <DependentUpon>ModuleTimeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml.cs">
+      <DependentUpon>ModuleDetailsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Login\Login_HeadText.xaml.cs">
       <DependentUpon>Login_HeadText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Login_LoginButton.xaml.cs">
+    <Compile Include="UserControls\Login\Login_LoginButton.xaml.cs">
       <DependentUpon>Login_LoginButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Login_Page.xaml.cs">
+    <Compile Include="UserControls\Login\Login_Page.xaml.cs">
       <DependentUpon>Login_Page.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Login_PasswordInput.xaml.cs">
+    <Compile Include="UserControls\Login\Login_PasswordInput.xaml.cs">
       <DependentUpon>Login_PasswordInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Login_UsernameInput.xaml.cs">
+    <Compile Include="UserControls\Login\Login_UsernameInput.xaml.cs">
       <DependentUpon>Login_UsernameInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ModuleSelectionButton.xaml.cs">
+    <Compile Include="UserControls\ModuleSelection\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ModuleSelectionElement.xaml.cs">
+    <Compile Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SelectionBarElement.xaml.cs">
+    <Compile Include="UserControls\Admin\SelectionBarElement.xaml.cs">
       <DependentUpon>SelectionBarElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TB_LogoButton.xaml.cs">
+    <Compile Include="UserControls\Taskbar\TB_LogoButton.xaml.cs">
       <DependentUpon>TB_LogoButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TB_LogoutButton.xaml.cs">
+    <Compile Include="UserControls\Taskbar\TB_LogoutButton.xaml.cs">
       <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_AdminButton.xaml.cs">
+    <Compile Include="UserControls\Sidebar\SB_AdminButton.xaml.cs">
       <DependentUpon>SB_AdminButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_PersonalDataButton.xaml.cs">
+    <Compile Include="UserControls\Sidebar\SB_PersonalDataButton.xaml.cs">
       <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_SharingServiceButton.xaml.cs">
+    <Compile Include="UserControls\Sidebar\SB_SharingServiceButton.xaml.cs">
       <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_HomeButton.xaml.cs">
+    <Compile Include="UserControls\Sidebar\SB_HomeButton.xaml.cs">
       <DependentUpon>SB_HomeButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SB_TimetableButton.xaml.cs">
+    <Compile Include="UserControls\Sidebar\SB_TimetableButton.xaml.cs">
       <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TimeTable.xaml.cs">
+    <Compile Include="UserControls\Timetable\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TimetableItem.xaml.cs">
+    <Compile Include="UserControls\Timetable\TimetableItem.xaml.cs">
       <DependentUpon>TimetableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TT_Item_Swapbtn.xaml.cs">
+      <DependentUpon>TT_Item_Swapbtn.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TT_SwapButton.xaml.cs">
       <DependentUpon>TT_SwapButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\PageVMs\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
-    <Compile Include="ViewModel\LoginPageViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PageVMs\HomepageViewModel.cs" />
+    <Compile Include="ViewModel\PageVMs\LoginPageViewModel.cs" />
+    <Compile Include="ViewModel\PageVMs\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
-    <Compile Include="ViewModel\SO_DialogViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
-    <Compile Include="ViewModel\TimetabeItem.cs" />
-    <Compile Include="ViewModel\TimetableViewModel.cs" />
-    <Compile Include="View\AdminPage.xaml.cs">
+    <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleDetailsEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorChooserVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleMainInformationEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTimeEditorVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\TimetabeItemVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
+    <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
+    <Compile Include="View\Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\HomePage.xaml.cs">
+    <Compile Include="View\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoadingPage.xaml.cs">
+    <Compile Include="View\Pages\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PersonalDataPage.xaml.cs">
+    <Compile Include="View\Pages\PersonalDataPage.xaml.cs">
       <DependentUpon>PersonalDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SharingServicePage.xaml.cs">
+    <Compile Include="View\Pages\SharingServicePage.xaml.cs">
       <DependentUpon>SharingServicePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RootPage.xaml.cs">
+    <Compile Include="View\Pages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SO_Dialog.xaml.cs">
+    <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
+      <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\SO_Dialog.xaml.cs">
       <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StudentModulePage.xaml.cs">
+    <Compile Include="View\Pages\StudentModulePage.xaml.cs">
       <DependentUpon>StudentModulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimetablePage.xaml.cs">
+    <Compile Include="View\Pages\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -225,6 +266,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Combobox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Controls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -241,6 +286,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\RadioButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Icons\login_user.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -249,75 +298,99 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\EditTimetable.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Login_HeadText.xaml">
+    <Page Include="UserControls\Admin\AP_AddModuleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Login_LoginButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Login_Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Login_PasswordInput.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Login_UsernameInput.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\ModuleSelectionButton.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleEditorChooser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\ModuleSelectionElement.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleMainInformationEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SelectionBarElement.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TB_LogoButton.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleTimeEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TB_LogoutButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_AdminButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_PersonalDataButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_SharingServiceButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SB_HomeButton.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SB_TimetableButton.xaml">
+    <Page Include="UserControls\Login\Login_HeadText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TimeTable.xaml">
+    <Page Include="UserControls\Login\Login_LoginButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login\Login_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login\Login_PasswordInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Login\Login_UsernameInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModuleSelection\ModuleSelectionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TimetableItem.xaml">
+    <Page Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Admin\SelectionBarElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Taskbar\TB_LogoButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Taskbar\TB_LogoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Sidebar\SB_AdminButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Sidebar\SB_PersonalDataButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Sidebar\SB_SharingServiceButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Sidebar\SB_HomeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Sidebar\SB_TimetableButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Timetable\TimeTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Timetable\TimetableItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TT_Item_Swapbtn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -325,39 +398,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\AdminPage.xaml">
+    <Page Include="View\Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\HomePage.xaml">
+    <Page Include="View\Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LoadingPage.xaml">
+    <Page Include="View\Pages\LoadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PersonalDataPage.xaml">
+    <Page Include="View\Pages\PersonalDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SharingServicePage.xaml">
+    <Page Include="View\Pages\SharingServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RootPage.xaml">
+    <Page Include="View\Pages\RootPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SO_Dialog.xaml">
+    <Page Include="View\Windows\CreateModule_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\StudentModulePage.xaml">
+    <Page Include="View\Windows\SO_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TimetablePage.xaml">
+    <Page Include="View\Pages\StudentModulePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\TimetablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -418,8 +495,8 @@
     <Resource Include="Resources\Icons\tutorial_w.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Apache.NMS.ActiveMQ">
-      <Version>1.7.2</Version>
+    <PackageReference Include="Extended.Wpf.Toolkit">
+      <Version>3.7.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -466,7 +543,7 @@
     <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\trade_w.png" />
+    <Resource Include="Resources\Icons\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

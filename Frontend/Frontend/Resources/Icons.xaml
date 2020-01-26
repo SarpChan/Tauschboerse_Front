@@ -4,6 +4,7 @@
     <BitmapImage x:Key="edit_b" UriSource="/Resources/Icons/edit_b.png"/>
     <BitmapImage x:Key="exercise_b" UriSource="/Resources/Icons/exercise_b.png"/>
     <BitmapImage x:Key="exercise_w" UriSource="/Resources/Icons/exercise_w.png"/>
+    <BitmapImage x:Key="info" UriSource="/Resources/Icons/info.png"/>
     <BitmapImage x:Key="lecture_b" UriSource="/Resources/Icons/lecture_b.png"/>
     <BitmapImage x:Key="lecture_w" UriSource="/Resources/Icons/lecture_w.png"/>
     <BitmapImage x:Key="left_arrow_b" UriSource="/Resources/Icons/left_arrow_b.png"/>
@@ -14,14 +15,19 @@
     <BitmapImage x:Key="pdf_b" UriSource="/Resources/Icons/pdf_b.png"/>
     <BitmapImage x:Key="practicum_b" UriSource="/Resources/Icons/practicum_b.png"/>
     <BitmapImage x:Key="practicum_w" UriSource="/Resources/Icons/practicum_w.png"/>
+    <BitmapImage x:Key="save" UriSource="/Resources/Icons/save.png"/>
     <BitmapImage x:Key="save_b" UriSource="/Resources/Icons/save_b.png"/>
     <BitmapImage x:Key="stupla_logo" UriSource="/Resources/Icons/stupla_logo.png"/>
     <BitmapImage x:Key="stupla_logo_big" UriSource="/Resources/Icons/stupla_logo_big.png"/>
     <BitmapImage x:Key="stupla_logo_icon" UriSource="/Resources/Icons/stupla_logo_icon.png"/>
+    <BitmapImage x:Key="times" UriSource="/Resources/Icons/times.png"/>
     <BitmapImage x:Key="tutorial_b" UriSource="/Resources/Icons/tutorial_b.png"/>
     <BitmapImage x:Key="tutorial_w" UriSource="/Resources/Icons/tutorial_w.png"/>
-    <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
-    
+    <BitmapImage x:Key="delete" UriSource="/Resources/Icons/delete.png"/>
+    <BitmapImage x:Key="login_user" UriSource="/Resources/Icons/login_user.png"/>
+    <BitmapImage x:Key="password" UriSource="/Resources/Icons/password.png"/>
+    <BitmapImage x:Key="check" UriSource="/Resources/Icons/check.png"/>
+
     <DrawingBrush x:Key="upload_b" Stretch="Uniform">
         <DrawingBrush.Drawing>
             <GeometryDrawing Brush="{StaticResource CD_GreyBrown}" Geometry="M4.23529 13.7647H10.5882V7.41177H14.8235L7.41177 0L0 7.41177H4.23529V13.7647ZM0 15.8824H14.8235V18H0V15.8824Z "/>
@@ -48,12 +54,11 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
     <DrawingBrush x:Key="add_b" Stretch="Uniform">
-            <DrawingBrush.Drawing>
+        <DrawingBrush.Drawing>
             <GeometryDrawing Brush="{StaticResource CD_GreyBrown}" Geometry="M22 12.5714H12.5714V22H9.42857V12.5714H0V9.42857H9.42857V0H12.5714V9.42857H22V12.5714Z"/>
-            </DrawingBrush.Drawing>
-        
+        </DrawingBrush.Drawing>
     </DrawingBrush>
-
-
-
+    
+    <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
+    <BitmapImage x:Key="trade_w" UriSource="/Resources/Icons/trade_w.png"/>
 </ResourceDictionary>
