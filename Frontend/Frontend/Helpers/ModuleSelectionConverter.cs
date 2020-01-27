@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using static Frontend.Models.TimetableModule;
+using static Frontend.Models.ModuleSelectionItem;
 
 namespace Frontend.Helpers
 {
@@ -11,16 +11,16 @@ namespace Frontend.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {            
-            if (((ModuleType)value).Equals(ModuleType.Vorlesung))
+            if (((ModuleType)value).Equals(ModuleType.LECTURE))
             {
                 var img = Application.Current.Resources["lecture_b"];
                 return img;
-            } else if (((ModuleType)value).Equals(ModuleType.Tutorium))
+            } else if (((ModuleType)value).Equals(ModuleType.TUTORIAL))
             {
                 var img = Application.Current.Resources["tutorial_b"];
                 return img;
             }
-            else if (((ModuleType)value).Equals(ModuleType.Praktikum))
+            else if (((ModuleType)value).Equals(ModuleType.PRACTICE))
             {
                 var img = Application.Current.Resources["practicum_b"];
                 return img;

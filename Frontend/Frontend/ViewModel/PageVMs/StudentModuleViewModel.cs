@@ -21,14 +21,6 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
-            Console.WriteLine("StudentModuleChooser: "+this.GetHashCode().ToString());
-            
-            /*ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, moduleListModel.ModuleList);
-            ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, moduleListModel.ModuleList);
-            moduleListModel.ModuleItemList.Add(moduleItem1);
-            moduleListModel.ModuleItemList.Add(moduleItem2);
-            */
-
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
