@@ -14,8 +14,6 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,6 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -40,7 +39,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -76,17 +74,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\APIClient.cs" />
-    <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Calculators\TimeCoodinatesCalculator.cs" />
     <Compile Include="Helpers\Commands\ActionCommand.cs" />
+    <Compile Include="Helpers\APIClient.cs" />
     <Compile Include="Helpers\Converters\BoolToValueConverter.cs" />
     <Compile Include="Helpers\Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Converters\TimestampToDatetimeConverter.cs" />
-    <Compile Include="Helpers\NewsMessageBroker.cs" />
-    <Compile Include="Helpers\SwapOfferFromBackend.cs" />
+    <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
-    <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
@@ -97,14 +91,11 @@
     <Compile Include="Helpers\Globals\UserInformation.cs" />
     <Compile Include="Helpers\Handlers\PropertieValueChangeHandler.cs" />
     <Compile Include="Helpers\JsonConverters\JsonToGroupListConverter.cs" />
+    <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
     <Compile Include="Helpers\Rules\TimeRule.cs" />
     <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
-    <Compile Include="Helpers\SwapOfferMessageBroker.cs" />
-    <Compile Include="Models\Filter.cs" />
-    <Compile Include="Models\News.cs" />
-    <Compile Include="Models\NewsListModel.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
     <Compile Include="Models\Outdated\Building.cs" />
     <Compile Include="Models\Outdated\Campus.cs" />
@@ -130,8 +121,6 @@
     <Compile Include="Models\Outdated\StudyProgram.cs" />
     <Compile Include="Models\Outdated\SwapOffer.cs" />
     <Compile Include="Models\Outdated\Term.cs" />
-    <Compile Include="Models\SwapOfferFrontendModel.cs" />
-    <Compile Include="Models\SwapOfferListModel.cs" />
     <Compile Include="Models\Timetable\TimetableModule.cs" />
     <Compile Include="Models\Timetable\TimetableRowListModel.cs" />
     <Compile Include="Models\Timetable\TimetableViewModelModule.cs" />
@@ -164,32 +153,29 @@
     <Compile Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml.cs">
       <DependentUpon>ModuleSelectionElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SavePythonCodeButton.xaml.cs">
-      <DependentUpon>SavePythonCodeButton.xaml</DependentUpon>
+    <Compile Include="UserControls\Admin\SelectionBarElement.xaml.cs">
+      <DependentUpon>SelectionBarElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SideBar\SB_AdminButton.xaml.cs">
-      <DependentUpon>SB_AdminButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar\SB_HomeButton.xaml.cs">
-      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar\SB_PersonalDataButton.xaml.cs">
-      <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar\SB_PythonScriptButton.xaml.cs">
-      <DependentUpon>SB_PythonScriptButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar\SB_SharingServiceButton.xaml.cs">
-      <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SideBar\SB_TimetableButton.xaml.cs">
-      <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TopBar\TB_LogoButton.xaml.cs">
+    <Compile Include="UserControls\Taskbar\TB_LogoButton.xaml.cs">
       <DependentUpon>TB_LogoButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TopBar\TB_LogoutButton.xaml.cs">
+    <Compile Include="UserControls\Taskbar\TB_LogoutButton.xaml.cs">
       <DependentUpon>TB_LogoutButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar\SB_AdminButton.xaml.cs">
+      <DependentUpon>SB_AdminButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar\SB_PersonalDataButton.xaml.cs">
+      <DependentUpon>SB_PersonalDataButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar\SB_SharingServiceButton.xaml.cs">
+      <DependentUpon>SB_SharingServiceButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar\SB_HomeButton.xaml.cs">
+      <DependentUpon>SB_HomeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar\SB_TimetableButton.xaml.cs">
+      <DependentUpon>SB_TimetableButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Timetable\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -203,20 +189,14 @@
     <Compile Include="UserControls\TT_SwapButton.xaml.cs">
       <DependentUpon>TT_SwapButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UploadPythonscriptButton.xaml.cs">
-      <DependentUpon>UploadPythonscriptButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\PageVMs\AdminPageViewModel.cs" />
     <Compile Include="ViewModel\EditTTViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\HomepageViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\MainViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
-    <Compile Include="ViewModel\PythonUploadViewModel.cs" />
-    <Compile Include="ViewModel\SharingPageViewModel.cs" />
     <Compile Include="ViewModel\StudentModuleViewModel.cs" />
     <Compile Include="ViewModel\PageVMs\TimetablePageViewModel.cs" />
-    <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
@@ -231,9 +211,6 @@
     <Compile Include="View\Pages\PersonalDataPage.xaml.cs">
       <DependentUpon>PersonalDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PythonUpload.xaml.cs">
-      <DependentUpon>PythonUpload.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\SharingServicePage.xaml.cs">
       <DependentUpon>SharingServicePage.xaml</DependentUpon>
     </Compile>
@@ -243,14 +220,14 @@
     <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
       <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\SO_Dialog.xaml.cs">
+      <DependentUpon>SO_Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\StudentModulePage.xaml.cs">
       <DependentUpon>StudentModulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Windows\SO_Dialog.xaml.cs">
-      <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -300,81 +277,69 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Admin\SelectionBarElement.xaml">
+    <Page Include="UserControls\Timetable\EditTimetable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Login\Login_HeadText.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Login\Login_LoginButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Login\Login_Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Login\Login_PasswordInput.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Login\Login_UsernameInput.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ModuleSelection\ModuleSelectionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SavePythonCodeButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\SideBar\SB_PythonScriptButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UploadPythonscriptButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\ModuleSelection\ModuleSelectionElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SideBar\SB_AdminButton.xaml">
+    <Page Include="UserControls\Admin\SelectionBarElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SideBar\SB_HomeButton.xaml">
+    <Page Include="UserControls\Taskbar\TB_LogoButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SideBar\SB_PersonalDataButton.xaml">
+    <Page Include="UserControls\Taskbar\TB_LogoutButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SideBar\SB_SharingServiceButton.xaml">
+    <Page Include="UserControls\Sidebar\SB_AdminButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SideBar\SB_TimetableButton.xaml">
+    <Page Include="UserControls\Sidebar\SB_PersonalDataButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TopBar\TB_LogoButton.xaml">
+    <Page Include="UserControls\Sidebar\SB_SharingServiceButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TopBar\TB_LogoutButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UserControls\Sidebar\SB_HomeButton.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Timetable\editTimetable.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UserControls\Sidebar\SB_TimetableButton.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Timetable\TimeTable.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -408,10 +373,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PythonUpload.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Pages\SharingServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -424,15 +385,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Windows\SO_Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Pages\StudentModulePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\TimetablePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Windows\SO_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -457,7 +418,6 @@
     </EmbeddedResource>
     <None Include="Design\projectGuides.guides" />
     <None Include="Models\timetable_stupla.json" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -494,9 +454,6 @@
     <Resource Include="Resources\Icons\tutorial_w.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Apache.NMS.ActiveMQ">
-      <Version>1.7.2</Version>
-    </PackageReference>
     <PackageReference Include="Extended.Wpf.Toolkit">
       <Version>3.7.0</Version>
     </PackageReference>
@@ -514,9 +471,6 @@
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>1.4.18</Version>
-    </PackageReference>
-    <PackageReference Include="WPFTextBoxAutoComplete">
-      <Version>1.0.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -549,21 +503,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\trade_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\reload.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataGridFilterLibrary\DataGridFilterLibrary.csproj">
-      <Project>{512fd53f-9ad1-46a1-a961-9fabdfad50c5}</Project>
-      <Name>DataGridFilterLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\trade_b.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

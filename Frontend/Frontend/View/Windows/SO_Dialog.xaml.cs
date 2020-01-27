@@ -24,7 +24,7 @@ namespace Frontend.View
     {
 
         public long GroupID;
-        public long ToGroupID=40;
+        public long ToGroupID;
         public SO_Dialog()
         {
             InitializeComponent();
@@ -58,15 +58,21 @@ namespace Frontend.View
         private async void CreateSwapOfferAsync()
         {
 
+            foreach(Group g in ToGroup.ItemsSource)
+            {
+                if(g.Equals(ToGroup.SelectedItem))
+                {
+                    ToGroupID = g.Id;
+                }
+            }
+            
             Console.WriteLine("create");
-           
-           
-            /*SwapOffer so = new SwapOffer(GroupID, ToGroupID);
+            SwapOffer so = new SwapOffer(GroupID, ToGroupID);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
             Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);*/
+            Console.WriteLine(response.Content);
            
 
         }
