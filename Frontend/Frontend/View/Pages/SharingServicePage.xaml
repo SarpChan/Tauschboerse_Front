@@ -51,7 +51,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Time}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Message}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}"/>
+                                <TextBlock Text="{Binding Message}" Style="{DynamicResource TextTextblock}" />
+                                <!--Style="{DynamicResource TextTextblock}"-->
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -123,14 +124,14 @@
                         <DataGridTemplateColumn Header="Kurs" Width="2.5*" CanUserSort="True" SortMemberPath="CourseName">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CourseName}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding CourseName}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Kurstyp" Width="2.3*" SortMemberPath="CourseType">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CourseType}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
+                                    <TextBlock Text="{Binding CourseType}" Style="{DynamicResource TextTextblock}" VerticalAlignment="Center" Margin="10,0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -138,14 +139,14 @@
                         <DataGridTemplateColumn Header="Hat" Width="4*" SortMemberPath="Has">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Has}"/>
+                                    <TextBlock VerticalAlignment="Center" Style="{DynamicResource TextTextblock}" Margin="10,0" Text="{Binding Has}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Will" Width="4*" SortMemberPath="Wants">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Wants}"/>
+                                    <TextBlock VerticalAlignment="Center" Style="{DynamicResource TextTextblock}" Margin="10,0" Text="{Binding Wants}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -263,14 +264,14 @@
                         <DataGridTemplateColumn Header="Kurs" Width="2.5*" CanUserSort="True" SortMemberPath="CourseName">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CourseName}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
+                                    <TextBlock Text="{Binding CourseName}" Style="{DynamicResource TextTextblock}" VerticalAlignment="Center" Margin="10,0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Kurstyp" Width="2.3*" SortMemberPath="CourseType">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CourseType}" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" VerticalAlignment="Center" Margin="10,0"/>
+                                    <TextBlock Text="{Binding CourseType}" Style="{DynamicResource TextTextblock}" VerticalAlignment="Center" Margin="10,0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -278,14 +279,14 @@
                         <DataGridTemplateColumn Header="Hat" Width="4*" SortMemberPath="Has">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Has}"/>
+                                    <TextBlock VerticalAlignment="Center" Style="{DynamicResource TextTextblock}" Margin="10,0" Text="{Binding Has}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Will" Width="4.5*" SortMemberPath="Wants">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource Textblock}}" Margin="10,0" Text="{Binding Wants}"/>
+                                    <TextBlock VerticalAlignment="Center" Style="{DynamicResource TextTextblock}" Margin="10,0" Text="{Binding Wants}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

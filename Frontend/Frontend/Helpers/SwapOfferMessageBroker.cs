@@ -21,7 +21,7 @@ namespace Frontend.Helpers
         {
             //UpdateConnection();
         }
-
+       
         public void UpdateConnection()
         {
             try

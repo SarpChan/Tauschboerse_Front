@@ -128,7 +128,7 @@
                                         Path=FilterCurrentData.QueryString,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=Explicit}"
-                                        Grid.Column="2" Name="PART_TextBoxFilter">
+                                        Grid.Column="2" x:Name="PART_TextBoxFilter">
                                 
                             </support:DelayTextBox>
                             <!-- Numeric -->
