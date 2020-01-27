@@ -30,6 +30,10 @@ namespace Frontend.View
             InitializeComponent();
         }
 
+        public SO_Dialog(long Id)
+        {
+            InitializeComponent();
+        }
    
         /*
          * Methode, um das Dialogfenster wieder zu schließen

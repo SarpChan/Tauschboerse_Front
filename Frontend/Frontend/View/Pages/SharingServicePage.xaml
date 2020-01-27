@@ -52,7 +52,7 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding Time}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Message}" Style="{DynamicResource TextTextblock}" />
-                                <!--Style="{DynamicResource TextTextblock}"-->
+                                
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -196,7 +196,7 @@
                 </DataGrid>
                 <Button Width="240pt" HorizontalAlignment="Left" Margin="0,20,0,0" Style="{Binding Mode=OneWay, Source={StaticResource AdminButton}}" Click="OpenDialog">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
-                        <Image Name="AddIcon" Source="{StaticResource add}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Image Name="AddIcon" Source="{DynamicResource add}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <TextBlock Padding="20,8,0,0" Height="40" Text="Tauschangebot erstellen" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
                     </DockPanel>
                 </Button>
