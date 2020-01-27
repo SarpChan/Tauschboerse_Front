@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:helpers="clr-namespace:Frontend.Helpers"
         xmlns:user_controls="clr-namespace:Frontend.UserControls"
         x:Class="Frontend.UserControls.CreateModule_Dialog"
@@ -11,9 +12,11 @@
         FontFamily="/Resources/Fonts/#Roboto"
         FontSize="12pt" 
         x:Name="CreateModul"
+    WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
     >
     <Window.DataContext>
-        <viewmodel:CreateModuleDialogViewModel/>
+        <viewmodel:CreateModuleDialogViewModel x:Name="viewmodel"/>
     </Window.DataContext>
 
     <Window.Resources>
@@ -34,119 +37,27 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
     </Window.Resources>
-    
-    
-    <Border BorderThickness="2" BorderBrush="Black" Background="White">
-        <StackPanel>
-            <Label HorizontalContentAlignment="Center" Content="Module Erstellen" FontFamily="pack://application:,,,/Resources/Fonts/#Roboto"  FontSize="15pt"  Foreground="White" Background="Black"/>
-            <StackPanel Margin="10" >
-                <Label Content="Fachbereich: " FontSize="12pt" FontWeight="Bold" Margin="0,10,0,0"/>
-                <DockPanel x:Name="Subject" VerticalAlignment="Center" Margin="0,10pt,0,0" >
-                    <ComboBox  DockPanel.Dock="Left" Name="StudyProgramComboBox" Width=" auto" Text="Fachbereich"  Style="{StaticResource UniversalComboBox}"
-                               SelectedValuePath="Key" DisplayMemberPath="Value" ItemsSource="{Binding StudyProgramDict}" />
-                    <ComboBox  DockPanel.Dock="Left" Name="FieldofStudyComboBox" Width=" auto" Text="Studiengang"  Style="{StaticResource UniversalComboBox}" 
-                               SelectedValuePath="Key" DisplayMemberPath="Value" ItemsSource="{Binding FieldOfStudyDict}"/>
-                    <Label DockPanel.Dock="Left" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Center" Content="CourseName :"/>
-
-                    <TextBox DockPanel.Dock="Left" Name="CourseName">
-                        <TextBox.Text>
-                            <Binding Path="EditTimetableModule.CourseName" Mode="TwoWay">
-                                <Binding.ValidationRules>
-                                    <helpers:NotEmptyRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </DockPanel>
-
-                <Label Content="Daten: " FontSize="12pt" FontWeight="Bold" Margin="0,10,0,0"/>
-                <DockPanel x:Name="Goupe"  Margin="0,10pt,0,0" >
-
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-                        <Label Content="Typ:"/>
-                        <ComboBox Name="Type" Text="Type" Style="{StaticResource UniversalComboBox}"/>
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Buchstarbe:" FontWeight="ExtraLight" />
-                        <ComboBox Name="GroupChar" Text="Buchstarbe" Style="{StaticResource UniversalComboBox}"/>
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Raum:" FontWeight="ExtraLight" />
-                        <ComboBox Name="Raum" Text="Raum" Style="{StaticResource UniversalComboBox}"/>
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Beauftragter:" FontWeight="ExtraLight" />
-                        <ComboBox Name="Lecture" Text="Beauftragter" Style="{StaticResource UniversalComboBox}"/>
-                    </StackPanel>
-                    <!-- Momentan ist leider kein Attribute CP vor handen
-                    
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="CP:" FontWeight="ExtraLight" />
-                        <TextBox x:Name="CP" PreviewTextInput="CP" DockPanel.Dock="Right" VerticalAlignment="Center" MinWidth="50" Height="50" HorizontalAlignment="Stretch">
-                        <TextBox.Text>
-                            <Binding Path="EditTimetableModule.CreditPoints" Mode="TwoWay">
-                                <Binding.ValidationRules>
-                                    <helpers:NotEmptyRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
-                    -->
-          
-                </DockPanel>
-
-                <Label Content="Zeit und Datum:" FontSize="12pt" FontWeight="Bold" Margin="0,10pt,0,0"/>
-                <DockPanel >
-
-                    <user_controls:ModuleTimeEditor  Module="{Binding EditTimetableModule}" Color="#34ebc3" />
-                    <!--<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-                        <Label Content="Startzeit:" FontWeight="ExtraLight" />
-                        <TextBox x:Name="StartTime" VerticalAlignment="Center" MinWidth="150" Height="50">
-                            <TextBox.Text>
-                                <Binding Path="EditTimetableModule.StartTime" Mode="TwoWay">
-                                    <Binding.ValidationRules>
-                                        <helpers:TimeRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Endzeit:" FontWeight="ExtraLight" />
-                        <TextBox x:Name="EndTime" VerticalAlignment="Center" MinWidth="150" Height="50">
-                            <TextBox.Text>
-                                <Binding Path="EditTimetableModule.EndTime" Mode="TwoWay">
-                                    <Binding.ValidationRules>
-                                        <helpers:TimeRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
-                    
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Wochentag:" FontWeight="ExtraLight" />
-                        <ComboBox x:Name="Weekday" Text="Wochentag" Style="{StaticResource UniversalComboBox}" />
-                    </StackPanel>
-                    -->
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10pt,0,0,0">
-                        <Label Content="Semester:" FontWeight="ExtraLight" />
-                        <ComboBox x:Name="Semseter" Text="Semester" VerticalAlignment="Center" Style="{StaticResource UniversalComboBox}" />
-                    </StackPanel>
-                </DockPanel>
-
-                <DockPanel  Margin="0,20pt,0,0" LastChildFill="False">
-                    <Button DockPanel.Dock="Right" Style="{Binding Mode=OneWay, Source={StaticResource CancelButton}}" Click="CloWi"  Margin="10pt,0,0,0"/>
-                    <Button DockPanel.Dock="Right" Style="{StaticResource DialogButtonFocused}" Click="CloWi" Command="{Binding CreateModuleCommand}" />
-                </DockPanel>
-
-            </StackPanel>
+    <DockPanel Margin="10pt">
+        <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Border Margin="10pt" Background="White" BorderThickness="2pt" BorderBrush="Green">
+                <Label Margin="10pt" Content="1"/>
+            </Border>
         </StackPanel>
-    </Border>
+        -->
+        <TextBlock DockPanel.Dock="Top" Text="Module erstellen" Style="{StaticResource HeadlineTextBlock}"/>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" x:Name="editorPanel">
+            <user_controls:ModuleMainInformationEditor x:Name="moduleMainInformationEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt"/>
+            <user_controls:ModuleTimeEditor x:Name="moduleTimeEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt" />
+            <user_controls:ModuleDetailsEditor x:Name="moduleDetailsEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt" />
+            <user_controls:ModuleTypEditor x:Name="moduleTypEditor" DeaktiveteSaveButton="true" Margin="10pt" Width="180pt" Height="400pt"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button  Style="{StaticResource DialogButtonFocused}" Click="CloWi" Command="{Binding CreateModuleCommand}" />
+            <Button  Style="{Binding Mode=OneWay, Source={StaticResource CancelButton}}" Click="CloWi"  Margin="10pt,0,0,0"/>
+        </StackPanel>
+    </DockPanel>
+    
 </Window>

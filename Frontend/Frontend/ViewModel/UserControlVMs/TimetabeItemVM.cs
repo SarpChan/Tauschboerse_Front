@@ -8,8 +8,11 @@ using System.Windows.Input;
 
 namespace Frontend.ViewModel
 {
-    class TimetabeItem : ViewModelBase
+    class TimetabeItemVM : ViewModelBase
     {
-        
+        public TimetabeItemVM()
+        {
+            
+        }
     }
 }

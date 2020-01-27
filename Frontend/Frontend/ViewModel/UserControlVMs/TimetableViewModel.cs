@@ -25,15 +25,11 @@ namespace Frontend.ViewModel
         public TimetableViewModel()
         {
 
-            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  "+this.GetHashCode());
+            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
             foreach (var module in moduleListModel.ModuleList)
             {
-                _TTVMMList.Add(new TimetableViewModelModule {
-                    Module = module,
-                });
+                OnModuleAdd(module);
             }
-
-            CalculateInitialValues();
 
             foreach (var row in rowListModel.RowList)
             {
@@ -65,7 +61,7 @@ namespace Frontend.ViewModel
         {
             get { return _DayList; }
         }
-        
+
         private double _TotalWidth;
         public double TotalWidth
         {
@@ -106,23 +102,14 @@ namespace Frontend.ViewModel
         public ICommand AddModuleCommand
 
         {
-
             get
-
             {
-
                 if (_AddModuleCommand == null)
 
                 {
-
-                    // 1. Argument: Kommando-Effekt (Execute), 2. Argument: Bedingung "Kommando aktiv?" (CanExecute)
-
                     _AddModuleCommand = new ActionCommand(dummy => this.AddModule(), null);
-
                 }
-
                 return _AddModuleCommand;
-
             }
 
         }
@@ -183,33 +170,45 @@ namespace Frontend.ViewModel
 
             foreach (TimetableModule t in e.NewItems)
             {
-                TimetableViewModelModule add = new TimetableViewModelModule
-                {
-                    Module = t
-                };
-                Console.WriteLine(t);
-                Console.WriteLine("\t ADD MODULE: " + t.CourseName + " ->" + add);
-
-                TTVMMList.Add(add);
-                BindListenerOn_TimetableViewModelModule(add);
-                Inititalize_TimetableViewModelModule(add);
-
-                Console.WriteLine("\t on " + this + " ->  " + this.GetHashCode() + "\n");
-
-                foreach (TimetableViewModelModule ttvmm in findDependentModules(add, _TTVMMList))
-                {
-                    Inititalize_TimetableViewModelModule(ttvmm);
-                }
+                OnModuleAdd(t);
             }
+        }
+
+        private void OnModuleAdd(TimetableModule t)
+        {
+            TimetableViewModelModule add = new TimetableViewModelModule
+            {
+                Module = t
+            };
+            BindListenerOn_TimetableViewModelModule(add);
+            Inititalize_TimetableViewModelModule(add);
+            TTVMMList.Add(add);
+
+            RecalculateTTVMMList();
         }
 
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (TimetableModule t in e.NewItems)
+            List<TimetableViewModelModule> changeTTVMM = new List<TimetableViewModelModule>();
+
+
+            foreach (TimetableModule t in e.OldItems)
             {
-                //t.PropertyChanged -= (sender, e) => OnModuleChange(sender, e, ttvmm);
-                TimetableViewModelModule foundTTVMM = findTimetableViewModelMoudle(t, _TTVMMList);
-                List<TimetableViewModelModule> dependencies = findDependentModules(foundTTVMM, _TTVMMList);
+
+                foreach (TimetableViewModelModule ttvmm in TTVMMList)
+                {
+                    if (ttvmm.Module == t)
+                    {
+                        changeTTVMM.Add(ttvmm);
+                    }
+                }
+
+                foreach (TimetableViewModelModule ttvmm in changeTTVMM)
+                {
+                    TTVMMList.Remove(ttvmm);
+                }
+
+
             }
         }
 
@@ -225,8 +224,7 @@ namespace Frontend.ViewModel
         {
             foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
-                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth,newValue, ttvmm, moduleListModel.ModuleList);
-                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth,newValue, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
+                RecalculateDayDependetProperties(ttvmm);
             }
         }
 
@@ -234,11 +232,7 @@ namespace Frontend.ViewModel
         {
             foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
-                TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
-                TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
-
-                ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(newValue, start);
-                ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(newValue, start, end);
+                RecalculateTimeDependetProperties(ttvmm);
             }
         }
 
@@ -247,8 +241,7 @@ namespace Frontend.ViewModel
 
             foreach (TimetableViewModelModule ttvmm in _TTVMMList)
             {
-                ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(newValue, TimeWidth, ttvmm, moduleListModel.ModuleList);
-                ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(newValue, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
+                RecalculateDayDependetProperties(ttvmm);
             }
         }
 
@@ -263,9 +256,9 @@ namespace Frontend.ViewModel
 
             switch (e.PropertyName)
             {
-                case "Name": OnNameChange(ttm, args, ttvmm); break;
-                case "StartTime": OnStartTimeChange(ttm, args, ttvmm); break;
-                case "EndTime": OnEndTimeChange(ttm, args, ttvmm); break;
+                case "CourseName": OnNameChange(ttm, args, ttvmm); break;
+                case "StartTime": OnTimeChange(ttm, args, ttvmm); break;
+                case "EndTime": OnTimeChange(ttm, args, ttvmm); break;
                 case "Day": OnDayChange(ttm, args, ttvmm); break;
                 case "Type": OnTypeChange(ttm, args, ttvmm); break;
             }
@@ -273,27 +266,58 @@ namespace Frontend.ViewModel
 
         private void OnNameChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Change Name");
-            Console.ForegroundColor = ConsoleColor.White;
-
             ttvmm.Color = ColorGenerator.generateColor(ttm.CourseName, ttm.Type);
-
         }
 
-        private void OnStartTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void OnTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        {
+            RecalculateTTVMMList();
+        }
+
+        private void RecalculateTTVMMList()
         {
 
+            foreach (var d in _TTVMMList)
+            {
+                try
+                {
+                    RecalculateTimeDependetProperties(d);
+                    RecalculateDayDependetProperties(d);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+
+
         }
 
-        private void OnEndTimeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
+        private void RecalculateTimeDependetProperties(TimetableViewModelModule ttvmm)
         {
+            TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
+            TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
 
+            if (start > end)
+            {
+                throw new StartTimeLaterThenEndTimeException("Die Startzeit ist spaeter als die Anfangszeit !", start, end);
+            }
+
+            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
+            ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
         }
+
+        private void RecalculateDayDependetProperties(TimetableViewModelModule ttvmm)
+        {
+            ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm, moduleListModel.ModuleList);
+            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
+        }
+
 
         private void OnDayChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
         {
-
+            RecalculateTTVMMList();
         }
 
         private void OnTypeChange(TimetableModule ttm, PropertyChangedExtendedEventArgs e, TimetableViewModelModule ttvmm)
@@ -311,8 +335,7 @@ namespace Frontend.ViewModel
         private void AddModule()
 
         {
-            //ZUM TESTEN 
-            Console.WriteLine("\n ADD MODULE WITH BUTTON");
+            //ZUM TESTEN [wird momentan nicht benutzt]
             TimetableModule add = new TimetableModule()
 
             {
@@ -338,32 +361,18 @@ namespace Frontend.ViewModel
             moduleListModel.ModuleList.Add(add);
         }
 
-        private void CalculateInitialValues()
-        {
-            foreach (TimetableViewModelModule ttvmm in _TTVMMList)
-            {
-                TimeToYCoordinatesConverter timeToYCoordinatesConverter = new TimeToYCoordinatesConverter();
-                Inititalize_TimetableViewModelModule(ttvmm);
-                
-            }
-        }
-
         private List<TimetableViewModelModule> findDependentModules(TimetableViewModelModule module, IList<TimetableViewModelModule> moduleList)
         {
             List<TimetableViewModelModule> dependencies = new List<TimetableViewModelModule>();
             foreach (TimetableViewModelModule i in moduleList)
             {
-                if (i.Module.Equals(module.Module))
+                if (i.Module == module.Module)
                 {
                     continue;
                 }
                 else
                 {
-                    int startTime = TimeCoodinatesCalculator.TimeStringToInt(module.Module.StartTime);
-                    int endTime = TimeCoodinatesCalculator.TimeStringToInt(module.Module.EndTime);
-                    var startTimeCompare = TimeCoodinatesCalculator.TimeStringToInt(i.Module.StartTime);
-                    var endTimeCompare = TimeCoodinatesCalculator.TimeStringToInt(i.Module.EndTime);
-                    if ((startTime <= startTimeCompare && endTime > startTimeCompare) || (startTime < endTimeCompare && endTime >= endTimeCompare))
+                    if (TimeCoodinatesCalculator.IsTimeAndDayOverlapping(i.Module, module.Module))
                     {
                         dependencies.Add(i);
                     }
@@ -373,33 +382,10 @@ namespace Frontend.ViewModel
             return dependencies;
         }
 
-        private TimetableViewModelModule findTimetableViewModelMoudle(TimetableModule t, IList<TimetableViewModelModule> moduleList)
-        {
-            foreach (TimetableViewModelModule ttvmm in moduleList)
-            {
-                if (ttvmm.Module.Equals(t))
-                {
-                    return ttvmm;
-                }
-            }
-            return null;
-        }
-
         private void Inititalize_TimetableViewModelModule(TimetableViewModelModule ttvmm)
         {
-            Console.WriteLine("\t Init ttvmm ("+this.GetHashCode()+") \n\t\t(before) ->  Color:" + ttvmm.Color +" Y:" + ttvmm.Y+
-                "  X:"+ttvmm.X+"  H:"+ttvmm.Height+" W:"+ttvmm.Width);
-
-            TimeSpan start = TimeSpan.Parse(ttvmm.Module.StartTime);
-            TimeSpan end = TimeSpan.Parse(ttvmm.Module.EndTime);
-
-            Console.WriteLine("\t\tMODULELIST LENGTH : " + moduleListModel.ModuleList.Count);
-
-            /*Meldet die Methode OnModuleChange auf die PropertyChanged des Modules an und gibt das ttvmm als festen Parameter mit"*/
-            ttvmm.Width = TimeCoodinatesCalculator.ConvertDayToItemWidth(TotalWidth, TimeWidth, ttvmm, moduleListModel.ModuleList);
-            ttvmm.X = TimeCoodinatesCalculator.ConvertTimeToXCoordinates(TotalWidth, TimeWidth, int.Parse(ttvmm.Module.Day), ttvmm, moduleListModel.ModuleList);
-            ttvmm.Y = TimeCoodinatesCalculator.ConvertTimeToYCoordinates(TotalHeight, start);
-            ttvmm.Height = TimeCoodinatesCalculator.ItemHeightConverter(TotalHeight, start, end);
+            RecalculateTimeDependetProperties(ttvmm);
+            RecalculateDayDependetProperties(ttvmm);
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
 
             Console.WriteLine("\t\t(after) ->  Color:" + ttvmm.Color + " Y:" + ttvmm.Y +
