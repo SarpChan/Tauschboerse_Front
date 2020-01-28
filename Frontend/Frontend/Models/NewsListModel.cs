@@ -32,6 +32,51 @@ namespace Frontend.Models
         private NewsListModel()
         {
             _instance = this;
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden exmatrikuliert.",
+                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Stundent dekradiert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
+            });
+            NewsList.Add(new News
+            {
+                Message = "Sie wurden zum Admin befördert.",
+                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
+            });
         }
 
         private void AddNews(News n)

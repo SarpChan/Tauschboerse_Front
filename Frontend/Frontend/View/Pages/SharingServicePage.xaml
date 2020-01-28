@@ -74,8 +74,8 @@
                 filter:DataGridExtensions.UseBackgroundWorkerForFiltering="False"
                 filter:DataGridExtensions.IsClearButtonVisible="False"
                 ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
-           TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
-           ResourceId=DataGridHeaderFilterControlStyle}}"
+               TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
+               ResourceId=DataGridHeaderFilterControlStyle}}"
                 VerticalContentAlignment="Center" Focusable="False" VerticalScrollBarVisibility="Visible" SelectionUnit="CellOrRowHeader" CanUserDeleteRows="False" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" HorizontalScrollBarVisibility="Hidden"
                 >
                     <DataGrid.Resources>

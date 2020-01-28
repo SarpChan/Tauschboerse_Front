@@ -238,7 +238,7 @@
     <Compile Include="View\Pages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PythonUpload.xaml.cs">
+    <Compile Include="View\Pages\PythonUpload.xaml.cs">
       <DependentUpon>PythonUpload.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
@@ -417,7 +417,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PythonUpload.xaml">
+    <Page Include="View\Pages\PythonUpload.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
