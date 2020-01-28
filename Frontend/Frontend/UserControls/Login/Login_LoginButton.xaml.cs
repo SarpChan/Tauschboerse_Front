@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,7 +13,22 @@ namespace Frontend.UserControls
             get { return (ICommand)GetValue(LoginButtonCommandProperty); }
             set { SetValue(LoginButtonCommandProperty, value); }
         }
+
+        private PasswordBox _PWBox;
+
+        public PasswordBox PWBox
+        {
+            get {
+                return _PWBox;
+            }
+            set {
+                Console.WriteLine(((PasswordBox)value).Password);
+                _PWBox = (PasswordBox)value;
+            }
+        }
+
         public static readonly DependencyProperty LoginButtonCommandProperty =
             DependencyProperty.Register("LoginButtonCommand", typeof(ICommand), typeof(Login_LoginButton), new UIPropertyMetadata(null));
-    }
+
+        }
 }

@@ -16,7 +16,6 @@ namespace Frontend.View
 
         public HomePage()
         {
-            Console.WriteLine("Homepage Constructor");
             InitializeComponent();
         }
     }

@@ -34,4 +34,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="Body_Content_DataGrid_Centering"
+	  TargetType="{x:Type DataGridCell}">
+        <Setter Property="VerticalAlignment"
+			Value="Center" />
+         
+    </Style>
 </ResourceDictionary>

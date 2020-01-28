@@ -39,7 +39,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="1000*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
  
         <!--Topbar-->
@@ -54,21 +54,22 @@
                 <ColumnDefinition Width="280"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="940" />
+                <RowDefinition MaxHeight="60" Height="60" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource CD_Black}" Grid.Row="0"/>
            <StackPanel Orientation="Vertical" Grid.Row="1">
-                <user_controls:SB_HomeButton SB_HomeButtonCommand="{Binding SwitchToHomePageCommand}"/>
+                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
                 <user_controls:SB_TimetableButton SB_TimetableButtonCommand="{Binding SwitchToTimetablePageCommand}"/>
                 <user_controls:SB_PersonalDataButton SB_PersonalDataButtonCommand="{Binding SwitchToPersonalDataPageCommand}"/>
-                <user_controls:SB_SharingServiceButton SB_SharingServiceButtonCommand="{Binding SwitchToSharingServicePageCommand}"/>
                 <user_controls:SB_AdminButton SB_AdminButtonCommand="{Binding SwitchToAdminPageCommand}"/>
+                <user_controls:SB_PythonScriptButton SB_PythonScriptButtonCommand="{Binding SwitchToPythonUploadPageCommand}"/>
             </StackPanel>
         </Grid>
         
         <!--MainFrame-->
-        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">
+        <!--<Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" LoadCompleted="FrameLoadCompleted" DataContextChanged="FrameDataContextChanged">-->
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden">
             <Frame.Source>
                 <Binding Path="ActivePage" Converter="{helpers:PageToUriConverter}"/>
             </Frame.Source>

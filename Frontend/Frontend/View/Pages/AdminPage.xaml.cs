@@ -24,7 +24,7 @@ namespace Frontend.View
         public AdminPage()
         {
             InitializeComponent();
-            Stundenplan.Focus();
+            //Stundenplan.Focus();
             
 
 

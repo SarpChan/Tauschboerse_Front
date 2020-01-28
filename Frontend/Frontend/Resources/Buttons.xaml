@@ -296,6 +296,14 @@
                             <TextBlock Foreground="{StaticResource CD_White}" HorizontalAlignment="Center" VerticalAlignment="Center">Erstellen</TextBlock>
                         </DockPanel>
                     </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -316,7 +324,7 @@
                     <!--Triggers for switching on hover -->
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="{StaticResource CD_Red}"/>
+                            <Setter Property="Background" Value="{StaticResource CD_Black}"/>
                             <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
                             <Setter Property="FontWeight" Value="Bold"></Setter>

@@ -10,9 +10,12 @@
         <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="pack://application:,,,/Resources/Buttons.xaml"/>
+                <ResourceDictionary  Source="../../Resources/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Tag="Login" Command="{Binding LoginButtonCommand,ElementName=login_button}" Style="{StaticResource LoginButton}"/>
+    <Button Tag="Login" 
+            Command="{Binding LoginButtonCommand,ElementName=login_button}"  
+            Style="{StaticResource LoginButton}" 
+            CommandParameter="{Binding PWBox, ElementName=login_button}"/>
 </UserControl>

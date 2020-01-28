@@ -1,6 +1,7 @@
 ﻿<!--Corporate Design Fonts-->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <!-- headeline bold -->
     <Style TargetType="TextBlock" x:Key="HeadlineBoldTextBlock">
@@ -48,8 +49,8 @@
     </Style>
                 
 
-    <!--Textblock-->
-    <Style TargetType="TextBlock" x:Key="Textblock">
+    <!--Textbox-->
+    <Style TargetType="xctk:WatermarkTextBox" x:Key="Textbox">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>

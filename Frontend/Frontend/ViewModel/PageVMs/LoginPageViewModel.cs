@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers;
 using System;
 using System.Configuration;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ToastNotifications.Messages;
 
@@ -28,7 +29,7 @@ namespace Frontend.ViewModel
             Username = "Nutzername";
             Password = "Passwort";
             thisID = (int)(new Random().NextDouble() * 9999 ) + 1;
-            Console.WriteLine("\"new LoginPageViewModel()\" InstanceID: " + thisID);
+            //Console.WriteLine("\"new LoginPageViewModel()\" InstanceID: " + thisID);
             _instance = this;
         }
 
@@ -40,7 +41,7 @@ namespace Frontend.ViewModel
             {
                 if (_LoginCommand == null)
                 {
-                    _LoginCommand = new ActionCommand(dummy => this.ProcessLogin());
+                    _LoginCommand = new ActionCommand(pwBox => this.ProcessLogin());
                 }
                 return _LoginCommand;
             }
@@ -77,6 +78,7 @@ namespace Frontend.ViewModel
         }
         
         private bool _isLoggedIn;
+
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -101,10 +103,7 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowSuccess("Einloggen erfolgreich");
             }
-            else
-            {
-                App.notifier.ShowError("Ungueltiges Passwort oder ungueltiger Benutzername");
-            }
+            
         }
         #endregion
     }

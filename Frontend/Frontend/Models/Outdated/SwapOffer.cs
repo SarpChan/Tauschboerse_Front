@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    class SwapOffer { 
-    
+    class SwapOffer
+    {
+
 
         [JsonProperty("fromGroup")]
         public long FromGroupID { get; set; }
@@ -17,7 +18,7 @@ namespace Frontend.Models
 
         public SwapOffer(long fromGroup, long toGroup)
         {
-           // this.course = course;
+            // this.course = course;
             this.FromGroupID = fromGroup;
             this.ToGroupID = toGroup;
         }

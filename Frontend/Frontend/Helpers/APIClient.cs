@@ -1,10 +1,12 @@
 using Frontend.ViewModel;
 using RestSharp;
 using RestSharp.Authenticators;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using ToastNotifications.Messages;
 
 namespace Frontend.Helpers
 {
@@ -39,11 +41,17 @@ namespace Frontend.Helpers
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
-
+            Console.WriteLine("->"+response.ResponseStatus);
             if (response.IsSuccessful)
             {
                 _client.Authenticator = new JwtAuthenticator(response.Content);
                 return true;
+            } else if(response.ResponseStatus != ResponseStatus.Completed)
+            {
+                MainViewModel.Instance.HandleHttpError(-1);
+            } else
+            {
+                App.notifier.ShowError("Ungueltiges Passwort oder ungueltiger Benutzername");
             }
             return false;
         }
@@ -63,11 +71,26 @@ namespace Frontend.Helpers
             _request.AddJsonBody(jsonBody);
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
-            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            if ((int)response.StatusCode >= 400)
             {
-                MainViewModel.Instance.Logout((int)response.StatusCode);
-                this.Logout();
+                MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
             }
+            
+           
+            cancellationTokenSource.Dispose();
+            return response;
+        }
+
+        public async Task<IRestResponse> NewDELETERequest(string restEndpoint)
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            _request = new RestRequest(restEndpoint, Method.DELETE);
+            _request.AddHeader("Accept", "application/json");
+            _request.AddHeader("Content-Type", "application/json");
+           
+
+            var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
+
             cancellationTokenSource.Dispose();
             return response;
         }
@@ -80,13 +103,16 @@ namespace Frontend.Helpers
             //request.AddHeader("Content-Type", "application/json");
 
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
-            if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)
+            if ((int)response.StatusCode >= 400)
             {
-                MainViewModel.Instance.Logout((int)response.StatusCode);
-                this.Logout();
+                MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
+            } else if(response.ResponseStatus == ResponseStatus.TimedOut)
+            {
+                MainViewModel.Instance.HandleHttpError(-1);
+                cancellationTokenSource.Dispose();
+                return response;
             }
             cancellationTokenSource.Dispose();
-
             return response;
         }
     }

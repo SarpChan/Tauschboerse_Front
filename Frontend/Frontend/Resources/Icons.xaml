@@ -26,6 +26,7 @@
     <BitmapImage x:Key="delete" UriSource="/Resources/Icons/delete.png"/>
     <BitmapImage x:Key="login_user" UriSource="/Resources/Icons/login_user.png"/>
     <BitmapImage x:Key="password" UriSource="/Resources/Icons/password.png"/>
+    <BitmapImage x:Key="trade" UriSource="/Resources/Icons/trade_w.png"/>
     <BitmapImage x:Key="check" UriSource="/Resources/Icons/check.png"/>
 
     <DrawingBrush x:Key="upload_b" Stretch="Uniform">
@@ -61,4 +62,7 @@
     
     <BitmapImage x:Key="save_hover_b" UriSource="/Resources/Icons/save_hover_b.png"/>
     <BitmapImage x:Key="trade_w" UriSource="/Resources/Icons/trade_w.png"/>
+    <BitmapImage x:Key="trade_b" UriSource="/Resources/Icons/trade_b.png"/>
+    <BitmapImage x:Key="reload" UriSource="/Resources/Icons/reload.png"/>
+    <BitmapImage x:Key="add" UriSource="/Resources/Icons/add.png"/>
 </ResourceDictionary>

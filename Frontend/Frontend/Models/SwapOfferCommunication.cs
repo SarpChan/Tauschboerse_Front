@@ -16,7 +16,7 @@ namespace Frontend.Models
 {
     class SwapOfferCommunication : ObservableModelBase
     {
-        const string TOPIC_NAME = "SampleSubscriptionTopic";
+        const string TOPIC_NAME = "SwapMessageQueue";
 
         private IConnection connection;
         private IConnectionFactory connectionFactory;
