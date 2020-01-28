@@ -24,38 +24,6 @@ namespace Frontend.View
         public AdminPage()
         {
             InitializeComponent();
-            Stundenplan.Focus();
-            
-
-
-            //Zum Testen 
-            /*
-            List<Rule> rules = new List<Rule>(); //only for testing purposes
-            rules.Add(new Rule() { Id = 1, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?"});
-            rules.Add(new Rule() { Id = 2, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?" });
-            rules.Add(new Rule() { Id = 3, Beschreibung = "Hallo i bin eine Beschreibung!", Regel = "Regel bist du es ?" });
-
-
-
-            DataGridRules.ItemsSource = rules;
-            */
-
-            ObservableCollection<string> po = new ObservableCollection<string>();
-            po.Add("PO 2019");
-            po.Add("PO 2018");
-            ExamRegulationComboBox.ItemsSource = po;
-
-            ObservableCollection<string> foS = new ObservableCollection<string>();
-            foS.Add("Informatik");
-
-            FieldofStudyComboBox.ItemsSource = foS;
-
-            ObservableCollection<string> Sp = new ObservableCollection<string>();
-            Sp.Add("Meideninformatik");
-
-            StudyProgramComboBox.ItemsSource = Sp;
-
-
         }
 
         private void OnfieldoStudyComboBoxChanged(object sender, SelectionChangedEventArgs e)

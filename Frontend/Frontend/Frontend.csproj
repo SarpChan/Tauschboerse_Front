@@ -105,8 +105,8 @@
     <Compile Include="Models\Outdated\CourseComponent.cs" />
     <Compile Include="Models\Outdated\Curriculum.cs" />
     <Compile Include="Models\Outdated\DayListModel.cs" />
-    <Compile Include="Models\Outdated\ExamRegulation.cs" />
-    <Compile Include="Models\Outdated\FieldOfStudy.cs" />
+    <Compile Include="Models\ExamRegulation.cs" />
+    <Compile Include="Models\FieldOfStudy.cs" />
     <Compile Include="Models\Outdated\Group.cs" />
     <Compile Include="Models\Outdated\Lecturer.cs" />
     <Compile Include="Models\Outdated\Module.cs" />
@@ -120,7 +120,7 @@
     <Compile Include="Models\Outdated\StudentAttendsCourse.cs" />
     <Compile Include="Models\Outdated\StudentPassedExam.cs" />
     <Compile Include="Models\Outdated\StudentPrioritizesGroup.cs" />
-    <Compile Include="Models\Outdated\StudyProgram.cs" />
+    <Compile Include="Models\StudyProgram.cs" />
     <Compile Include="Models\Outdated\SwapOffer.cs" />
     <Compile Include="Models\Outdated\Term.cs" />
     <Compile Include="Models\Timetable\TimetableModule.cs" />
@@ -500,6 +500,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NSwag.Core">
+      <Version>13.2.2</Version>
     </PackageReference>
     <PackageReference Include="RestSharp">
       <Version>106.6.10</Version>

@@ -33,11 +33,10 @@
                              />
                 </StackPanel>
                
-
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Fachbereich" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
                     <ComboBox Style="{StaticResource UniversalComboBox}" Text="Fachbereich"
-                              ItemsSource="{Binding StudyProgramDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              ItemsSource="{Binding StudyProgramsDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
                                />
                 </StackPanel>
 
@@ -50,7 +49,7 @@
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Module" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
                     <ComboBox Style="{StaticResource UniversalComboBox}" HorizontalAlignment="Center"
-                               ItemsSource="{Binding ModuleDict}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+                               ItemsSource="{Binding ModuleDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                 </StackPanel>
 
 

@@ -222,7 +222,7 @@
                         <Canvas>
                             <usercontrols:TimetableItem Module="{Binding .,Mode=TwoWay}" Panel.ZIndex="1" 
                                                         MouseEnter="TimetableItem_MouseEnter"
-                                                        MouseLeftButtonDown="TimetableItem_MouseLeftButtonDown"
+                                                        MouseRightButtonDown="TimetableItem_MouseLeftButtonDown"
                                                         Width="{Binding Width ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                         Height="{Binding Height,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Canvas.Left="{Binding X,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

@@ -72,11 +72,17 @@ namespace Frontend.ViewModel
             if (EditTimetableModule != null && !moduleListModel.ModuleList.Contains(EditTimetableModule))
             {
                 moduleListModel.ModuleList.Add(EditTimetableModule);
+                
             }
 
         }
 
-        public void DiscardAllhanges()
+        private async Task SendChangesToServerAsync()
+        {
+            
+        }
+
+            public void DiscardAllhanges()
         {
             Console.WriteLine("Discard Changes");
             _EditTimetableModule.ReplaceData(_TimetableModuleBackUp);
