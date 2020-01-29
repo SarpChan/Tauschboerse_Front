@@ -3,6 +3,8 @@ using Apache.NMS.ActiveMQ;
 using Apache.NMS.ActiveMQ.Commands;
 using Frontend.Models;
 using System;
+using Newtonsoft.Json;
+using ToastNotifications.Messages;
 
 namespace Frontend.Helpers
 {
@@ -57,37 +59,61 @@ namespace Frontend.Helpers
         // Textnachrichten werden zur Kommandoausführung an parseCommand() weitergegeben
         public void OnPersonalSwapOfferAccept(IMessage msg)
         {
+
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
-                ParseCommand(textmessage.Text);
+                JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
+                News news = new News
+                {
+                    Message = jmsg.message,
+                    Timestamp = jmsg.timestamp
+                };
+                NewsListModel.Instance.NewsList.Add(news);
+                App.notifierSO.ShowSuccess(jmsg.message);
+                //ParseCommand(textmessage.Text);
                 
             }
         }
 
-        public void OnSwapOfferPublicReceive(IMessage msg)
+        public void OnSwapOfferPublicReceive(IMessage msg) //neues hinzufügen oder löschen
         {
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
                 ParseCommand(textmessage.Text);
-
+                PublicSwapMessage psmsg = JsonConvert.DeserializeObject<PublicSwapMessage>(textmessage.Text);
+                if (psmsg.action.Equals("add")){
+                    SwapOfferFrontendModel newjmsg = JsonConvert.DeserializeObject<SwapOfferFrontendModel>(psmsg.data);
+                    swapOffers.AddSwapOffer(newjmsg,true);
+                }
+                else if (psmsg.action.Equals("delete")){
+                    swapOffers.RemoveById(long.Parse(psmsg.data));
+                }
             }
         }
 
         public void OnNewsListReceive(IMessage msg)
         {
-            if (msg is IMapMessage)
+            if (msg is ITextMessage)
             {
-                IMapMessage textmessage = msg as IMapMessage;
+                ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage + "\n");
                 //ParseCommand(textmessage);
                 Console.WriteLine(textmessage.Properties);
-
+                JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
+                News news = new News
+                {
+                    Message = jmsg.message,
+                    Timestamp = jmsg.timestamp,
+                };
+                NewsListModel.Instance.NewsList.Add(news);
             }
         }
+
+
 
         void ParseCommand(string cmd)
         {

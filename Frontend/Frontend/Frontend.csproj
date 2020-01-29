@@ -97,7 +97,6 @@
     <Compile Include="Helpers\Converters\PageToUriConverter.cs" />
     <Compile Include="Helpers\JsonFileDialog.cs" />
     <Compile Include="Helpers\Generators\SHA256Gen.cs" />
-    <Compile Include="Helpers\NewsMessageBroker.cs" />
     <Compile Include="Helpers\ObservableModelBase.cs" />
     <Compile Include="Helpers\Rules\TimeRule.cs" />
     <Compile Include="Helpers\Rules\NotEmptyRule.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="Models\Outdated\StudyProgram.cs" />
     <Compile Include="Models\Outdated\SwapOffer.cs" />
     <Compile Include="Models\Outdated\Term.cs" />
-    <Compile Include="Models\SwapOfferCommunication.cs" />
     <Compile Include="Models\SwapOfferFrontendModel.cs" />
     <Compile Include="Models\SwapOfferListModel.cs" />
     <Compile Include="Models\SwapOffers\SwapOfferCourse.cs" />

@@ -17,7 +17,7 @@ namespace Frontend.Models
     public class PublicSwapMessage
     {
         public long timestamp;
-        public string action;
+        public string action; 
         public string data;
     }
 }
