@@ -120,10 +120,10 @@ namespace Frontend.Helpers
         {
             RestRequest _request = new RestRequest(restEndpoint, Method.POST);
             _request.RequestFormat = DataFormat.Json;
-            _request.AddHeader("Authorization", "Authorization");
             _request.AddHeader("Content-Type", "multipart/form-data");
-            _request.AddFile("content", path);
-            var response = _client.Execute(_request);
+            _request.AddFile("file", path, "file");
+            Console.WriteLine(path);
+            var response = await _client.ExecuteTaskAsync(_request);
 
             return response;
         }
