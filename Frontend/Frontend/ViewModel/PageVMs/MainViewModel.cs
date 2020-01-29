@@ -242,8 +242,15 @@ namespace Frontend.ViewModel
             else if (newActivePage =="StudentModulePage.xaml")
             {
                 IsLoading = true;
-                await RequestModuleDataFromServerAsync();
-                //RequestModuleDataDummy();
+                switch (mode)
+                {
+                    case "debug":
+                        RequestModuleDataDummy();
+                        break;
+                    case "normal":
+                        await RequestModuleDataFromServerAsync();
+                        break;
+                }
                 IsLoading = false;
             }
 

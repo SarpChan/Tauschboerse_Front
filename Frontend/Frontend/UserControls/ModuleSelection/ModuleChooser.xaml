@@ -9,9 +9,9 @@
              xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1300">
-    <UserControl.DataContext>
+    <!--UserControl.DataContext>
         <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
-    </UserControl.DataContext>
+    </-->
     <ItemsControl ItemsSource="{Binding Modules}" Margin="0,0,0,-0.4">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -27,6 +27,9 @@
                 </DataTemplate.Resources>
                 <usercontrols:ModuleSelectionElement/>
             </DataTemplate>
+            
         </ItemsControl.ItemTemplate>
+        
     </ItemsControl>
+    
 </UserControl>

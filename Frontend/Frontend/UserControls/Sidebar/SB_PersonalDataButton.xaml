@@ -13,5 +13,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Button Tag="PersonalData" Command="{Binding SB_PersonalDataButtonCommand,ElementName=sb_personal_data_button}" Style="{StaticResource MenuButton}"/>
+    <Button Tag="Modulauswahl" Command="{Binding SB_PersonalDataButtonCommand,ElementName=sb_personal_data_button}" Style="{StaticResource MenuButton}"/>
 </UserControl>

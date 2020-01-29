@@ -10,10 +10,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
       Title="StudentModulePage">
-    <Page.DataContext>
+    <!--Page.DataContext>
         <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
-    </Page.DataContext>
+    </-->
     <StackPanel>
+        <StackPanel.DataContext>
+            <project:StudentModuleViewModel/>
+        </StackPanel.DataContext>
         <ScrollViewer>
             <Grid Background="White">
                 <Grid.ColumnDefinitions>
@@ -62,6 +65,7 @@
                     <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                         <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
                         <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
+                        <TextBlock HorizontalAlignment ="Left" Text="{Binding CPSum, StringFormat='gesamt: \{\0} CP', Mode=TwoWay, NotifyOnSourceUpdated=True}"  Style="{StaticResource SecondHeadlineTextBlock}" Margin="0,25,0,0"/>
                         <usercontrols:TimeTable Height="500pt" BorderBrush="Black" Margin="0,25,0,0"/>
                     </StackPanel>
                 </StackPanel>

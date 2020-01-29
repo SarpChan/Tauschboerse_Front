@@ -11,25 +11,27 @@ using System.Windows.Input;
 using System.Collections.Specialized;
 
 using RestSharp;
+using System.ComponentModel;
 
 namespace Frontend.ViewModel
 {
     class StudentModuleViewModel : ViewModelBase
     {
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
-        
+
 
         public StudentModuleViewModel()
         {
+            Console.WriteLine("StudentViewModel: "+this.GetHashCode());
             moduleListModel.ModuleList.Clear();
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
                 //_modules.Add(moduleItem);
                 Boolean found = false;
-                foreach(var semester in tempSemesterList)
+                foreach (var semester in tempSemesterList)
                 {
-                    if(moduleItem.semester == semester)
+                    if (moduleItem.semester == semester)
                     {
                         found = true;
                         break;
@@ -40,18 +42,18 @@ namespace Frontend.ViewModel
                     //NumberOfSemesters.Add(moduleItem.semester);
                     tempSemesterList.Add(moduleItem.semester);
                 }
-               
-         }
+
+            }
             tempSemesterList = tempSemesterList.OrderBy(i => i).ToList();
-            
-            
-            for(int i = 0;i<tempSemesterList.Count;i++)
+
+
+            for (int i = 0; i < tempSemesterList.Count; i++)
             {
                 NumberOfSemesters.Add(tempSemesterList[i]);
             }
 
-            Console.WriteLine(NumberOfSemesters); 
-            
+            Console.WriteLine(NumberOfSemesters);
+
         }
 
         #region ICommands
@@ -100,11 +102,12 @@ namespace Frontend.ViewModel
         // Hilfsmethode für SwitchTermCommand
         private void SwitchTerm(object i)
         {
-            Console.WriteLine("KLICK"+i.ToString());
+            Console.WriteLine("KLICK" + i.ToString());
             int semester = (int)i;
             Modules.Clear();
-            foreach (var moduleItem in moduleListModel.ModuleItemList){
-                if(moduleItem.semester == semester)
+            foreach (var moduleItem in moduleListModel.ModuleItemList)
+            {
+                if (moduleItem.semester == semester)
                 {
                     Modules.Add(moduleItem);
                 }
@@ -115,18 +118,21 @@ namespace Frontend.ViewModel
         private void CheckboxIsChecked(object i)
         {
             Dictionary<String, String> weekdays = new Dictionary<String, String>() { { "MONDAY", "0" }, { "TUESDAY", "1" }, { "WEDNESDAY", "2" }, { "THURSDAY", "3" }, { "FRIDAY", "4" }, { "SATURDAY", "5" } };
-            Console.WriteLine("isChecked" + (long) i);
-            foreach(var moduleItem in moduleListModel.ModuleItemList)
+            Console.WriteLine("isChecked" + (long)i);
+            foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
-                if(moduleItem.Id == (long)i)
+
+                if (moduleItem.Id == (long)i)
                 {
+                    CPSum += moduleItem.CreditPoints;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
                         if (weekdays.ContainsKey(timetableModule.Day))
                         {
                             timetableModule.Day = weekdays[timetableModule.Day];
                         }
-                     
+
+
                         moduleListModel.ModuleList.Add(timetableModule);
                     }
                 }
@@ -142,6 +148,7 @@ namespace Frontend.ViewModel
             {
                 if (moduleItem.Id == (long)i)
                 {
+                    CPSum -= moduleItem.CreditPoints;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
                         moduleListModel.ModuleList.Remove(timetableModule);
@@ -162,7 +169,22 @@ namespace Frontend.ViewModel
         {
             get { return _modules; }
         }
-        #endregion
+
+        private int _cpSum = 0;
+        public int CPSum
+        {
+            get { return _cpSum; }
+            set
+            {
+                if (_cpSum != value)
+                {
+                    _cpSum = value;
+                    OnPropertyChanged("CPSum");
+                }
+            }
+
+            #endregion
+        }
     }
 
     public class CurriculumDummy

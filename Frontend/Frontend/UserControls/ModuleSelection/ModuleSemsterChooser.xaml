@@ -7,9 +7,9 @@
              xmlns:project="clr-namespace:Frontend.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="1402.752">
-    <UserControl.DataContext>
+    <!--UserControl.DataContext>
         <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
-    </UserControl.DataContext>
+    </-->
     <ItemsControl ItemsSource="{Binding NumberOfSemesters}" VerticalAlignment="Top" Padding="0,50,0,0" AlternationCount="100">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
