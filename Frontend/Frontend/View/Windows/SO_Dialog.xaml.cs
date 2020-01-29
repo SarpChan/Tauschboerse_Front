@@ -1,5 +1,6 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
+using Frontend.Models.SwapOffers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +24,7 @@ namespace Frontend.View
     public partial class SO_Dialog : Window
     {
 
-        public long ModulID;
+        public long ModuleID;
        
         public SO_Dialog()
         {
@@ -61,20 +62,12 @@ namespace Frontend.View
          */
         private async void CreateSwapOfferAsync()
         {
-            long ToGroupID = 0;
+            SwapOfferGroup SelectedGroup = (SwapOfferGroup) ToGroup.SelectedItem;
 
-            foreach (long id in ToGroup.ItemsSource)
-            {
-                if(id.Equals(ToGroup.SelectedItem))
-                {
-                    ToGroupID = id;
-             
-                }
-            }
-            
+            long ToGroupId = SelectedGroup.Id;
             Console.WriteLine("create");
            
-            SwapOffer so = new SwapOffer(ModulID, ToGroupID);
+            SwapOffer so = new SwapOffer(ModuleID, ToGroupId);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
             Console.WriteLine(response.Content);
