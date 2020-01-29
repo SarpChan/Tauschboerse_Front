@@ -222,6 +222,7 @@
     <Compile Include="ViewModel\UserControlVMs\TimetabeItem.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
+    <Compile Include="ViewModel\WindowVMs\SwapOfferDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Models.SwapOffers
+namespace Frontend.Models
 {
     class SwapOfferCourse
     {
@@ -24,6 +24,17 @@ namespace Frontend.Models.SwapOffers
 
     class SwapOfferGroup
     {
+        [JsonIgnore]
+        public string DisplayText
+        {
+            get
+            {
+                return "Gruppe " + Char;
+            } set
+            {
+                DisplayText = value;
+            }
+        }
         public char Char;
         public long Id;
     }
