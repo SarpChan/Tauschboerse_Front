@@ -10,6 +10,7 @@ using Frontend.Helpers;
 using Frontend.Models;
 using ToastNotifications.Messages;
 using Frontend.Helpers.Converters;
+using Frontend.View;
 
 namespace Frontend.ViewModel
 {
@@ -119,11 +120,6 @@ namespace Frontend.ViewModel
                 App.notifier.ShowSuccess("Tausch gelöscht");
                 //Ging
             }
-        }
-
-        private void EditTradeOffer(object id)
-        {
-            Console.WriteLine("Editing " + id + "...");
         }
 
         private async void RequestTradeOffer(object id)
@@ -318,7 +314,7 @@ namespace Frontend.ViewModel
         /// <summary>
         /// Command der an den Edit Button in jeder Zeile gebinded wird
         /// </summary>
-        public ICommand EditCommand
+        /*public ICommand EditCommand
         {
             get
             {
@@ -330,7 +326,7 @@ namespace Frontend.ViewModel
                 return _EditCommand;
             }
             set { }
-        }
+        }*/
 
         private ICommand _RequestCommand;
 
