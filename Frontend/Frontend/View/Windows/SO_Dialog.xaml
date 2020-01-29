@@ -129,16 +129,16 @@
 
         <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
+            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
                 <xctk:WatermarkTextBox x:Name="CourseName" Style="{StaticResource Textbox}" Watermark="Kursname" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
             </Border>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
-            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
+            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Kurstyp"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <xctk:WatermarkTextBox x:Name="TargetCourse" Style="{StaticResource Textbox}" Watermark="Kursname" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
+                <xctk:WatermarkTextBox x:Name="CourseType" Style="{StaticResource Textbox}" Watermark="Kurstyp" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
             </Border>
         </StackPanel>
 
@@ -154,7 +154,7 @@
         <!--Combobox für die noch auszuwählenden Gruppen-->
         <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
             <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
-            <ComboBox x:Name="ToGroup" ItemsSource="{Binding .}" Width="250" Height="50" HorizontalAlignment="Left">
+            <ComboBox x:Name="ToGroup" Width="250" Height="50" HorizontalAlignment="Left">
                 <!--<ComboBoxItem Content="Gruppe A"/>
                 <ComboBoxItem IsSelected="True" Content="Gruppe B"/>
                 <ComboBoxItem Content="Gruppe C"/>

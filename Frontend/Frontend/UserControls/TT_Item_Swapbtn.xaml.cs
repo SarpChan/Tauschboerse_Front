@@ -1,5 +1,6 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
+using Frontend.Models.SwapOffers;
 using Frontend.View;
 using Newtonsoft.Json;
 using System;
@@ -55,14 +56,19 @@ namespace Frontend.UserControls
         private async void GetGroupLstAsync()
         {
             Dictionary<long, char> Groups;
+            List<SwapOfferGroup> lst = new List<SwapOfferGroup>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/"+ d.ModulID);
+            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/" + d.ModuleID);
             Console.WriteLine(response.Content);
             Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
-            d.ToGroup.ItemsSource = Groups;
-            d.ToGroup.Text = Groups.Values.ToString();
 
-            
+            foreach (KeyValuePair<long, char> keyValue in Groups)
+            {
+                lst.Add(new SwapOfferGroup { Char = keyValue.Value, Id = keyValue.Key });
+            }
+
+            d.ToGroup.ItemsSource = lst;
+
         }
 
         /*
@@ -72,9 +78,9 @@ namespace Frontend.UserControls
         {
            
             d.CourseName.Text = item.Module.Module.CourseName;
-            d.TargetCourse.Text = item.Module.Module.CourseName;
+            d.CourseType.Text = item.Module.Module.Type.ToString();
             d.FromGroup.Text = item.Module.Module.GroupChar;      
-            d.ModulID = item.Module.Module.ID;
+            d.ModuleID = item.Module.Module.ID;
             GetGroupLstAsync();
 
            
