@@ -56,7 +56,7 @@ namespace Frontend.UserControls
         {
             Dictionary<long, char> Groups;
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/"+ d.GroupID);
+            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/"+ d.ModulID);
             Console.WriteLine(response.Content);
             Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
             d.ToGroup.ItemsSource = Groups;
@@ -74,7 +74,7 @@ namespace Frontend.UserControls
             d.CourseName.Text = item.Module.Module.CourseName;
             d.TargetCourse.Text = item.Module.Module.CourseName;
             d.FromGroup.Text = item.Module.Module.GroupChar;      
-            d.GroupID = item.Module.Module.ID;
+            d.ModulID = item.Module.Module.ID;
             GetGroupLstAsync();
 
            

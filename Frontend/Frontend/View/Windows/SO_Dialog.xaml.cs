@@ -24,7 +24,7 @@ namespace Frontend.View
     public partial class SO_Dialog : Window
     {
 
-        public long GroupID;
+        public long ModulID;
        
         public SO_Dialog()
         {
@@ -71,7 +71,7 @@ namespace Frontend.View
             
             Console.WriteLine("create");
            
-            SwapOffer so = new SwapOffer(GroupID, ToGroupID);
+            SwapOffer so = new SwapOffer(ModulID, ToGroupID);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
             Console.WriteLine(response.Content);
