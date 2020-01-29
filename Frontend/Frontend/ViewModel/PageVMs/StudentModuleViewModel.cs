@@ -124,6 +124,7 @@ namespace Frontend.ViewModel
 
                 if (moduleItem.Id == (long)i)
                 {
+                    moduleItem.IsChecked = true;
                     CPSum += moduleItem.CreditPoints;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
@@ -146,8 +147,10 @@ namespace Frontend.ViewModel
             Console.WriteLine("uncheck");
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
+                
                 if (moduleItem.Id == (long)i)
                 {
+                    moduleItem.IsChecked = false;
                     CPSum -= moduleItem.CreditPoints;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {

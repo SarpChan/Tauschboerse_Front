@@ -36,7 +36,7 @@
             </Grid.RowDefinitions>
             <TextBlock Name="Credits" Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding CreditPoints, StringFormat='\{\0} CP'}"></TextBlock>
             <TextBlock Name="ModuleName" Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
-            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center">
+            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" IsChecked="{Binding IsChecked}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Checked">
                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.IsCompletedCheckedCommand}" CommandParameter="{Binding Id}"/>

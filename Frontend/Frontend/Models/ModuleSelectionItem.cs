@@ -15,7 +15,7 @@ namespace Frontend.Models
         public string Title { get; set; }
         public int CreditPoints { get; set; }
         public int semester { get; set; }
-        public List<String> moduleTypes { get; set; }        
+        public List<String> moduleTypes { get; set; }
         public ObservableCollection<TimetableModule> timetableModules { get; set; }
 
         public ModuleSelectionItem(long id, string title, int creditPoints, int semester, ObservableCollection<TimetableModule> timetableModules)
@@ -26,6 +26,9 @@ namespace Frontend.Models
             this.semester = semester;
             this.timetableModules = timetableModules;
         }
+
+        public Boolean IsChecked { get; set; } = false;
+
 
         //public HashSet<Curriculum> Curriculua { get; set; }
         //public HashSet<Course> Courses { get; set; }
