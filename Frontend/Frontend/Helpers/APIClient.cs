@@ -115,5 +115,17 @@ namespace Frontend.Helpers
             cancellationTokenSource.Dispose();
             return response;
         }
+
+        public async Task<IRestResponse> NewFileUploadRequest(string restEndpoint, string path)
+        {
+            RestRequest _request = new RestRequest(restEndpoint, Method.POST);
+            _request.RequestFormat = DataFormat.Json;
+            _request.AddHeader("Authorization", "Authorization");
+            _request.AddHeader("Content-Type", "multipart/form-data");
+            _request.AddFile("content", path);
+            var response = _client.Execute(_request);
+
+            return response;
+        }
     }
 }

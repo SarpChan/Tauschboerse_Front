@@ -457,6 +457,8 @@ namespace Frontend.ViewModel
             }
             timetableModuleList.SetList(tempTable);
         }
+
+
         #endregion
     }
 }
