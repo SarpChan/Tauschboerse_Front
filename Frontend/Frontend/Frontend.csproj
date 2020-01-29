@@ -151,8 +151,6 @@
     <Compile Include="UserControls\ModuleSelection\ModuleSelectionButton.xaml.cs">
       <DependentUpon>ModuleSelectionButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Timetable\EditTimetable.xaml.cs">
-      <DependentUpon>EditTimetable.xaml</DependentUpon>
     <Compile Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml.cs">
       <DependentUpon>ModuleDetailsEditor.xaml</DependentUpon>
     </Compile>

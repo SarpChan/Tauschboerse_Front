@@ -21,6 +21,7 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
+            moduleListModel.ModuleList.Clear();
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
@@ -113,7 +114,22 @@ namespace Frontend.ViewModel
 
         private void CheckboxIsChecked(object i)
         {
+            Dictionary<String, String> weekdays = new Dictionary<String, String>() { { "MONDAY", "0" }, { "TUESDAY", "1" }, { "WEDNESDAY", "2" }, { "THURSDAY", "3" }, { "FRIDAY", "4" }, { "SATURDAY", "5" } };
             Console.WriteLine("isChecked" + (long) i);
+            foreach(var moduleItem in moduleListModel.ModuleItemList)
+            {
+                if(moduleItem.Id == (long)i)
+                {
+                    foreach (var timetableModule in moduleItem.timetableModules)
+                    {
+                        timetableModule.Day = weekdays[timetableModule.Day];
+                     
+                        moduleListModel.ModuleList.Add(timetableModule);
+                    }
+                }
+            }
+
+
         }
 
         private void CheckboxIsUnChecked(object i)

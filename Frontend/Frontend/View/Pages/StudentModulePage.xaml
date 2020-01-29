@@ -64,6 +64,7 @@
                 <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
                     <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
                     <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
+                    <usercontrols:TimeTable Height="500pt" BorderBrush="Black" Margin="0,0,77.4,0.2"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
