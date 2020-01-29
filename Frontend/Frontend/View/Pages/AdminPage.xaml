@@ -168,9 +168,11 @@
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                     <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
-                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectionChanged="FieldofStudyComboBox_SelectionChanged"/>
                     <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
-                              ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                              ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectionChanged="StudyProgramComboBox_SelectionChanged"/>
                     <ComboBox Name="ExamRegulationComboBox" Text="PO" Width="50" Style="{StaticResource UniversalComboBox}"
                               ItemsSource="{Binding ExamRegulationDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                 </DockPanel>

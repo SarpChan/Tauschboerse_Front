@@ -66,6 +66,24 @@ namespace Frontend.UserControls
             }
         }
 
+        private void StudyProgramsDict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (KeyValuePair<StudyProgram, string> x in e.AddedItems)
+            {
+                viewmodel.FillExamRegulationDict(x.Key);
+            }
+        }
+
+        private void FieldOfStudyDict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            foreach(KeyValuePair<FieldOfStudy,string> x in e.AddedItems)
+            {
+                
+                viewmodel.FillStudyProgramDict(x.Key);
+            }
+
+        }
     }
 
 }

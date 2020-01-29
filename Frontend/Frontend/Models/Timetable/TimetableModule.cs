@@ -31,10 +31,18 @@ namespace Frontend.Models
         [JsonIgnore]
         string _PersonName = "DU";
 
-
-        public enum ModuleType {[Description("Vorlesung")] Vorlesung, [Description("Übung")] Übung, [Description("Praktikum")] Praktikum, [Description("Tutorium")] Tutorium };
         [JsonProperty("groupID")]
         public long ID { get; set; }
+        [JsonProperty("courseComponentID")]
+        public long CourseID { get; set; }
+        [JsonProperty("lecturerNameAbbreviation")]
+        public string LecturerNameAbbreviation { get; set; }
+        [JsonProperty("courseTitleAbbreviation")]
+        public string courseTitleAbbreviation;
+
+
+        public enum ModuleType {[Description("Vorlesung")] Vorlesung, [Description("Übung")] Übung, [Description("Praktikum")] Praktikum, [Description("Tutorium")] Tutorium };
+
         public string StartTime
         {
             get { return _StartTime; }

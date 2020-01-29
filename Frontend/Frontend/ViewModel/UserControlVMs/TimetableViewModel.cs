@@ -22,11 +22,10 @@ namespace Frontend.ViewModel
         private DayListModel dayListModel = new DayListModel();
         private TimetableTetris tetris = new TimetableTetris();
         TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
-        //private TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
-
+        
         public TimetableViewModel()
         {
-            
+                
                 Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
                 foreach (var module in moduleListModel.ModuleList)
                 {
@@ -162,7 +161,6 @@ namespace Frontend.ViewModel
                 return tetris.DownCommand;
             }
         }
-
 
 
         //Hilfsmethode fuer OpenDialogCommand

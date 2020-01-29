@@ -55,5 +55,21 @@ namespace Frontend.View
         {
 
         }
+
+        private void FieldofStudyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (StudyProgram Sp in e.AddedItems)
+            {
+                AdminPageViewModel.FillExamRegulationDict(Sp);
+            }
+        }
+
+        private void StudyProgramComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (FieldOfStudy foS in e.AddedItems)
+            {
+                AdminPageViewModel.FillStudyProgramDict(foS);
+            }
+        }
     }
 }

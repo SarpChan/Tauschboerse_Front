@@ -1,5 +1,6 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,21 +66,34 @@ namespace Frontend.ViewModel
 
         #endregion
 
-        public void SaveTime()
+        public async void SaveTime()
         {
             //Hier APIclient ansprechen
 
             if (EditTimetableModule != null && !moduleListModel.ModuleList.Contains(EditTimetableModule))
             {
-                moduleListModel.ModuleList.Add(EditTimetableModule);
-                
+                try
+                {
+                    await SendChangesToServerAsync();
+                    moduleListModel.ModuleList.Add(EditTimetableModule);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    DiscardAllhanges();
+                }
             }
 
         }
 
         private async Task SendChangesToServerAsync()
         {
+            APIClient apiClient = APIClient.Instance;
+            var json = JsonConvert.SerializeObject(EditTimetableModule);
+            var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate",json);
             
+            if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content.ToString());
         }
 
             public void DiscardAllhanges()

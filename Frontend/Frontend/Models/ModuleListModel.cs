@@ -36,7 +36,7 @@ namespace Frontend.Models
             _instance = this;
         }
 
-        public async void AddModule(TimetableModule m)
+        public void AddModule(TimetableModule m)
         {
             Task gameTask = Task.Factory.StartNew(() =>
             {

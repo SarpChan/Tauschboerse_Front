@@ -3,6 +3,7 @@ using Frontend.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,6 +95,32 @@ namespace Frontend.ViewModel
                 Console.WriteLine("Das FieldOfStudy ist Null");
             }
         }
+
+        public void FillStudyProgramDict(FieldOfStudy fieldOfStudy)
+        {
+            if (fieldOfStudy.StudyPrograms != null)
+            {
+                StudyProgramDict.Clear();
+                foreach (StudyProgram sP in fieldOfStudy.StudyPrograms)
+                {
+                    StudyProgramDict.Add(sP, sP.Title);
+                }
+            }
+        }
+
+        public void FillExamRegulationDict(StudyProgram studyProgram)
+        {
+            if (studyProgram.ExamRegulations != null)
+            {
+                ExamRegulationDict.Clear();
+                foreach (ExamRegulation eR in studyProgram.ExamRegulations)
+                {
+                    // Datum Format Y de-DE => Oktober 2008
+                    ExamRegulationDict.Add(eR, eR.Date.ToString("Y", CultureInfo.CreateSpecificCulture("de-DE")));
+                }
+            }
+        }
+
 
     }
 }

@@ -30,6 +30,7 @@ namespace Frontend.ViewModel
             LoadFieldOfStudyList();
         }
 
+
         private List<FieldOfStudy> _FieldOfStudyList = new List<FieldOfStudy>();
 
         private Dictionary<FieldOfStudy, string> _FieldOfStudyDict = new Dictionary<FieldOfStudy, string>();
@@ -65,6 +66,32 @@ namespace Frontend.ViewModel
         {
             get { return _SemesterDict; }
             set { _SemesterDict = value; }
+        }
+
+        private ICommand _FillStudyProgramDictCommand;
+        public ICommand FillStudyProgramDictCommand
+        {
+            get
+            {
+                if (_FillStudyProgramDictCommand == null)
+                {
+                    _FillStudyProgramDictCommand = new ActionCommand(param => this.FillStudyProgramDict(param as FieldOfStudy));
+                }
+                return _FillStudyProgramDictCommand;
+            }
+        }
+
+        private ICommand _FillExamRegulationDictCommand;
+        public ICommand FillExamRegulationDictCommand
+        {
+            get
+            {
+                if (_FillExamRegulationDictCommand == null)
+                {
+                    _FillExamRegulationDictCommand = new ActionCommand(param => this.FillExamRegulationDict(param as StudyProgram));
+                }
+                return _FillExamRegulationDictCommand;
+            }
         }
 
         private async void LoadFieldOfStudyList()

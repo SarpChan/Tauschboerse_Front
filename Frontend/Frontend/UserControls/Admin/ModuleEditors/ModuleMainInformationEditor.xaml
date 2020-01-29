@@ -35,15 +35,16 @@
                
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Fachbereich" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Fachbereich"
-                              ItemsSource="{Binding StudyProgramsDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
-                               />
+                    <ComboBox Name="FieldOfStudyDict" Style="{StaticResource UniversalComboBox}" Text="Fachbereich"
+                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectionChanged="FieldOfStudyDict_SelectionChanged"/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Studiengang" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"
-                               ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+                    <ComboBox Name="StudyProgramsDict" Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"
+                               ItemsSource="{Binding StudyProgramsDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectionChanged="StudyProgramsDict_SelectionChanged"/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
