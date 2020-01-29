@@ -1,4 +1,4 @@
-﻿<Window x:Class="Frontend.View.SO_Dialog"
+﻿<Window x:Class="Frontend.View.Windows.CreateSwapOffer_Dialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,9 +9,12 @@
              mc:Ignorable="d" 
         Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="50pt"  MaxWidth="500pt"
             >
-
+    
     <Window.Resources>
+        <viewmodel:SwapOfferDialogViewModel x:Name="SwapOfferDialogViewModel" x:Key="SwapOfferDialogViewModel"/>
         <!--Combobox  Style-->
+        
+        
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#d2e7eb"/>
 
         <Style TargetType="ComboBoxItem">

@@ -9,17 +9,19 @@ namespace Frontend.Models
 {
     class SwapOfferCourse
     {
-        public string courseId;
+        [JsonProperty("id")]
+        public long courseComponentId;
+        [JsonProperty("courseId")]
+        public long courseId; 
+        [JsonProperty("title")]
         public string courseName;
-        public List<SwapOfferGroup> courseTypes;
-    }
-
-    class SwapOfferCourseTypes
-    {
+        [JsonProperty("groups")]
         public List<SwapOfferGroup> groups;
-        public string currentGroupId;
-        public string currentGroupChar;
-        public string name;
+        [JsonProperty("myGroupChar")]
+        public char groupChar;
+        [JsonProperty("typ")]
+        public string courseType;
+
     }
 
     class SwapOfferGroup

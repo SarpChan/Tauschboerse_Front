@@ -247,6 +247,9 @@
     <Compile Include="View\Windows\CreateModule_Dialog.xaml.cs">
       <DependentUpon>CreateModule_Dialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\CreateSwapOffer_Dialog.xaml.cs">
+      <DependentUpon>CreateSwapOffer_Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\SO_Dialog.xaml.cs">
       <DependentUpon>SO_Dialog.xaml</DependentUpon>
     </Compile>
@@ -427,6 +430,10 @@
     <Page Include="View\Windows\CreateModule_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\CreateSwapOffer_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\SO_Dialog.xaml">
       <Generator>MSBuild:Compile</Generator>
