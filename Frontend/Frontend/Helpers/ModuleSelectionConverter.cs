@@ -11,16 +11,16 @@ namespace Frontend.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {            
-            if (((ModuleType)value).Equals(ModuleType.LECTURE))
+            if (((String)value).Equals("LECTURE"))
             {
                 var img = Application.Current.Resources["lecture_b"];
                 return img;
-            } else if (((ModuleType)value).Equals(ModuleType.TUTORIAL))
+            } else if (((String)value).Equals("TUTORIAL"))
             {
                 var img = Application.Current.Resources["tutorial_b"];
                 return img;
             }
-            else if (((ModuleType)value).Equals(ModuleType.PRACTICE))
+            else if (((String)value).Equals("PRACTICE"))
             {
                 var img = Application.Current.Resources["practicum_b"];
                 return img;

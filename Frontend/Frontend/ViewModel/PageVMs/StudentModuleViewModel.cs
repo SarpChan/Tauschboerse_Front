@@ -122,7 +122,10 @@ namespace Frontend.ViewModel
                 {
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
-                        timetableModule.Day = weekdays[timetableModule.Day];
+                        if (weekdays.ContainsKey(timetableModule.Day))
+                        {
+                            timetableModule.Day = weekdays[timetableModule.Day];
+                        }
                      
                         moduleListModel.ModuleList.Add(timetableModule);
                     }
@@ -135,6 +138,16 @@ namespace Frontend.ViewModel
         private void CheckboxIsUnChecked(object i)
         {
             Console.WriteLine("uncheck");
+            foreach (var moduleItem in moduleListModel.ModuleItemList)
+            {
+                if (moduleItem.Id == (long)i)
+                {
+                    foreach (var timetableModule in moduleItem.timetableModules)
+                    {
+                        moduleListModel.ModuleList.Remove(timetableModule);
+                    }
+                }
+            }
         }
 
         #region properties

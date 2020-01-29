@@ -14,57 +14,56 @@
         <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
     </Page.DataContext>
     <StackPanel>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid Width="1640" Height="2000" Background="White">
+        <ScrollViewer>
+            <Grid Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Width="1550"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="77"/>
-                    <RowDefinition Height="113"/>
-                    <RowDefinition Height="137"/>
-                    <RowDefinition Height="593"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Modulauswahl" VerticalAlignment="Top" Style="{StaticResource HeadlineTextBlock}" Margin="0,0,0,80"/>
 
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Modulauswahl" VerticalAlignment="Top" Style="{StaticResource HeadlineTextBlock}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Legende:</TextBlock>
+                        <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource lecture_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Vorlesung</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" VerticalAlignment="Center">
+                            <Image Source="{StaticResource exercise_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Übung</TextBlock>
+                        </WrapPanel>
+                        <TextBlock Grid.Column="3" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Höchste Priorität A-D Niedrigste Priorität</TextBlock>
+                        <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource tutorial_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Tutorium</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource practicum_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Praktikum</TextBlock>
+                        </WrapPanel>
+                        <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Termin nicht möglich x</TextBlock>
+                    </Grid>
 
-                <Grid Grid.Column="1" Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Legende:</TextBlock>
-                    <WrapPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Image Source="{StaticResource lecture_b}" Width="40" Stretch="Uniform"/>
-                        <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Vorlesung</TextBlock>
-                    </WrapPanel>
-                    <WrapPanel Grid.Column="2" VerticalAlignment="Center">
-                        <Image Source="{StaticResource exercise_b}" Width="40" Stretch="Uniform"/>
-                        <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Übung</TextBlock>
-                    </WrapPanel>
-                    <TextBlock Grid.Column="3" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Höchste Priorität A-D Niedrigste Priorität</TextBlock>
-                    <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                        <Image Source="{StaticResource tutorial_b}" Width="40" Stretch="Uniform"/>
-                        <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Tutorium</TextBlock>
-                    </WrapPanel>
-                    <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
-                        <Image Source="{StaticResource practicum_b}" Width="40" Stretch="Uniform"/>
-                        <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Praktikum</TextBlock>
-                    </WrapPanel>
-                    <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Termin nicht möglich x</TextBlock>
-                </Grid>
-
-                <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
-                    <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
-                    <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
-                    <usercontrols:TimeTable Height="500pt" BorderBrush="Black" Margin="0,0,77.4,0.2"/>
+                    <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                        <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
+                        <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
+                        <usercontrols:TimeTable Height="500pt" BorderBrush="Black" Margin="0,25,0,0"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

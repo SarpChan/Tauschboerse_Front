@@ -48,16 +48,16 @@
                 </i:Interaction.Triggers>
             </CheckBox>
         </Grid>
-        <ItemsControl ItemsSource="{Binding timetableModules}" Grid.Column="1">
+        <ItemsControl ItemsSource="{Binding moduleTypes}" Grid.Column="1">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:TimetableModule}">
+                <DataTemplate DataType="String">
                     <CheckBox FlowDirection="RightToLeft" Margin="40,0,0,0" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding Type, Converter={StaticResource ModuleSelectionConverter}}"/>
+                        <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding Converter={StaticResource ModuleSelectionConverter}}"/>
                     </CheckBox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
