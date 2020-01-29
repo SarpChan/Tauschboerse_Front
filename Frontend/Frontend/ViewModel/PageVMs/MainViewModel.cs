@@ -375,7 +375,7 @@ namespace Frontend.ViewModel
         {
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/student_timetable");
             if ((int)response.StatusCode >= 400) return;
             //Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
@@ -443,10 +443,10 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-
+           
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/date_timetable");
             if ((int)response.StatusCode >= 400) return;
             
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
@@ -454,7 +454,9 @@ namespace Frontend.ViewModel
             {
                 tm.Day = dayValues[tm.Day];
             }
+
             timetableModuleList.SetList(tempTable);
+            
         }
         #endregion
     }

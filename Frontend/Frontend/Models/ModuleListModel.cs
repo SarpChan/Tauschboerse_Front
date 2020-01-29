@@ -38,20 +38,29 @@ namespace Frontend.Models
 
         public void AddModule(TimetableModule m)
         {
-            _moduleList.Add(m);
+            Task gameTask = Task.Factory.StartNew(() =>
+            {
+                _moduleList.Add(m);
+            });
         }
 
         public void RemoveModule(TimetableModule m)
         {
-            _moduleList.Remove(m);
+            Task gameTask = Task.Factory.StartNew(() =>
+            {
+                _moduleList.Remove(m);
+            });
         }
 
         public void SetList(ObservableCollection<TimetableModule> moduleList)
         {
-            _moduleList.Clear();
-            foreach( var x in moduleList){
-                _moduleList.Add(x);
-            }
+            Task gameTask = Task.Factory.StartNew(() =>
+            {
+                _moduleList.Clear();
+                foreach( var x in moduleList){
+                    _moduleList.Add(x);
+                }
+            });
         }
     }
 }

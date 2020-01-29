@@ -149,7 +149,6 @@
                                         <Button Style="{StaticResource DataGridDeletebutton}" Content="Löschen" FontSize="12pt" Margin="{StaticResource TextMargin}"/>
                                         <Button Style="{StaticResource DataGridDeletebutton}" Content="Bearbeiten" Margin="{StaticResource TextMargin}"/>
                                     </DockPanel>
-
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -158,8 +157,8 @@
                 <Line x:Name="line1" Stroke="{StaticResource CD_LightGrey}"  X1="0" Y1="10" X2="{Binding ActualWidth, ElementName=line1, Mode=OneWay}" Y2="10" StrokeThickness="2" Margin="{StaticResource HeaderMargin}"/>
                 -->
 
-
-                <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Studenpläne"/>
+                <TextBlock Margin="{StaticResource HeaderMargin}" Style="{StaticResource HeadlineTextBlock}" Text="Stundenpläne"/>
+                
                 <!--<DockPanel  Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
                     <Button Style="{StaticResource Uploadbutton}" Content="Kombinierte Stundenplandatei hochladen"  Margin="{StaticResource TextMargin}"/>
                     <Button Style="{StaticResource Deletebutton}"  Content="Alle Stundenpläne löschen"/>
@@ -168,9 +167,14 @@
                 -->
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" ItemsSource="{Binding}" SelectionChanged="OnfieldoStudyComboBoxChanged" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"/>
-                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}"  ItemsSource="{Binding}" Style="{StaticResource UniversalComboBox}"/>
-                    <ComboBox Name="ExamRegulationComboBox" Text="PO" ItemsSource="{Binding}" Width="50" Style="{StaticResource UniversalComboBox}"/>
+                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
+                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectionChanged="FieldofStudyComboBox_SelectionChanged"/>
+                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
+                              ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectionChanged="StudyProgramComboBox_SelectionChanged"/>
+                    <ComboBox Name="ExamRegulationComboBox" Text="PO" Width="50" Style="{StaticResource UniversalComboBox}"
+                              ItemsSource="{Binding ExamRegulationDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                 </DockPanel>
                 
                 <!-- caption-->
@@ -182,7 +186,6 @@
                     <Rectangle Stroke="{StaticResource CD_GreyBrown}" StrokeThickness="3" Style="{StaticResource rectangle}" />
                     <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                 </DockPanel>
-
 
                 <user_controls:SelectionBarElement Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
 

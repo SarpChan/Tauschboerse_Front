@@ -9,6 +9,6 @@ namespace Frontend
     static class UserInformation
     {
         public static string UserName = "Unkown";
-        public static bool isAdmin = false;
+        public static bool isAdmin = true;
     }
 }
