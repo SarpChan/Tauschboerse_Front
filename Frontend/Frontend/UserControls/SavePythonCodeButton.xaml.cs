@@ -32,11 +32,11 @@ namespace Frontend.UserControls
             {
                 file.Write(codeblock);
             }
-            SendPythonCodeToServerAsync(path);
+            sendPythonCodeToServerAsync(path);
 
         }
 
-        private async Task SendPythonCodeToServerAsync(string path)
+        private async Task sendPythonCodeToServerAsync(string path)
         {
 
             APIClient apiClient = APIClient.Instance;
