@@ -20,25 +20,28 @@ namespace Frontend.ViewModel
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
         private DayListModel dayListModel = new DayListModel();
+        private TimetableTetris tetris = new TimetableTetris();
+        TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
         //private TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
 
         public TimetableViewModel()
         {
+            
+                Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
+                foreach (var module in moduleListModel.ModuleList)
+                {
+                    OnModuleAdd(module);
+                }
 
-            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
-            foreach (var module in moduleListModel.ModuleList)
-            {
-                OnModuleAdd(module);
-            }
-
-            foreach (var row in rowListModel.RowList)
-            {
-                _RowList.Add(row);
-            }
-            foreach (var day in dayListModel.DayList)
-            {
-                _DayList.Add(day);
-            }
+                foreach (var row in rowListModel.RowList)
+                {
+                    _RowList.Add(row);
+                }
+                foreach (var day in dayListModel.DayList)
+                {
+                    _DayList.Add(day);
+                }
+            
 
             moduleListModel.ModuleList.CollectionChanged += this.OnCollectionChanged;
         }
@@ -127,6 +130,40 @@ namespace Frontend.ViewModel
             }
         }
 
+        //Spezial Command
+        public ICommand StartTetrisCommand
+        {
+            get
+            {
+                return tetris.StartCommand;
+            }
+        }
+
+        public ICommand LeftTetrisCommand
+        {
+            get
+            {
+                return tetris.LeftCommand;
+            }
+        }
+
+        public ICommand RightTetrisCommand
+        {
+            get
+            {
+                return tetris.RightCommand;
+            }
+        }
+
+        public ICommand DownTetrisCommand
+        {
+            get
+            {
+                return tetris.DownCommand;
+            }
+        }
+
+
 
         //Hilfsmethode fuer OpenDialogCommand
         private void OpenDialog()
@@ -146,22 +183,23 @@ namespace Frontend.ViewModel
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 
-
-            switch (e.Action)
+            taskFactory.StartNew(() =>
             {
-                case NotifyCollectionChangedAction.Add:
-                    OnModuleAdd(sender, e);
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    OnModuleRemove(sender, e);
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    OnModuleClear(sender, e);
-                    break;
-                default:
-                    throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
-            }
-
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        OnModuleAdd(sender, e);
+                        break;
+                    case NotifyCollectionChangedAction.Remove:
+                        OnModuleRemove(sender, e);
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        OnModuleClear(sender, e);
+                        break;
+                    default:
+                        throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
+                }
+            }).Wait();
 
         }
 

@@ -11,7 +11,8 @@
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              x:Name="Timetable"
              x:Class="Frontend.UserControls.TimeTable"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Focusable="True"
              d:DesignHeight="1000" d:DesignWidth="1000">
     <!-- Import aller Converter als Static Resource -->
     <UserControl.Resources>
@@ -35,6 +36,18 @@
     <UserControl.DataContext>
         <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </UserControl.DataContext>
+
+    <UserControl.InputBindings>
+        <KeyBinding  Key="T"
+                     Modifiers="Ctrl"
+                     Command="{Binding StartTetrisCommand}"/>
+        <KeyBinding  Key="A"
+                     Command="{Binding LeftTetrisCommand}"/>
+        <KeyBinding  Key="D"
+                     Command="{Binding RightTetrisCommand}"/>
+        <KeyBinding  Key="S"
+                     Command="{Binding DownTetrisCommand}"/>
+    </UserControl.InputBindings>
     
     <Grid x:Name="grid_Timetable" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>

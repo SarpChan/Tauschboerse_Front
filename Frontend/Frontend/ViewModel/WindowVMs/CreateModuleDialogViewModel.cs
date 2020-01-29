@@ -41,13 +41,14 @@ namespace Frontend.ViewModel
             {
                 if (_CreateModuleCommand == null)
                 { 
-                    _CreateModuleCommand = new ActionCommand(dummy => this.CreateModule(), null);
+                    _CreateModuleCommand = new ActionCommand(dummy =>  this.CreateModule(), null);
                 }
                 return _CreateModuleCommand;
             }
         }
         #endregion
 
+        TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
 
 
         private void CreateModule()
@@ -56,6 +57,8 @@ namespace Frontend.ViewModel
             Console.WriteLine("with Propertys \n ST: " + EditTimetableModule.StartTime + " ET:" + EditTimetableModule.EndTime+"WD:"+EditTimetableModule.Day);
             Console.WriteLine("Name :" + EditTimetableModule.CourseName + "PersonName :" + EditTimetableModule.PersonName + "G : " + EditTimetableModule.GroupChar);
             ModuleListModel.AddModule(EditTimetableModule);
+            
+            
         }
 
     }

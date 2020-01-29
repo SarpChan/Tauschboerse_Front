@@ -218,6 +218,7 @@
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTypEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\Admin\ModuleTimeEditorVM.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetabeItemVM.cs" />
+    <Compile Include="ViewModel\UserControlVMs\TimetableTetris.cs" />
     <Compile Include="ViewModel\UserControlVMs\TimetableViewModel.cs" />
     <Compile Include="ViewModel\WindowVMs\CreateModuleDialogViewModel.cs" />
     <Compile Include="View\Pages\AdminPage.xaml.cs">

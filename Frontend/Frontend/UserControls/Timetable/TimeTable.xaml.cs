@@ -35,7 +35,8 @@ namespace Frontend.UserControls
         public TimeTable()
         {
             InitializeComponent();
-
+            Focusable = true;
+            Loaded += (s, e) => Keyboard.Focus(this);
         }
 
         private void TimetableItem_MouseEnter(object sender, MouseEventArgs e)
