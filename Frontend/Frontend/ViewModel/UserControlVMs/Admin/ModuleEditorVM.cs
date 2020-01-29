@@ -69,8 +69,8 @@ namespace Frontend.ViewModel
         public async void SaveTime()
         {
             //Hier APIclient ansprechen
-
-            if (EditTimetableModule != null && !moduleListModel.ModuleList.Contains(EditTimetableModule))
+            Console.WriteLine("hhsadjbasidb");
+            if (EditTimetableModule != null)
             {
                 try
                 {
@@ -89,11 +89,11 @@ namespace Frontend.ViewModel
         private async Task SendChangesToServerAsync()
         {
             APIClient apiClient = APIClient.Instance;
-            var json = JsonConvert.SerializeObject(EditTimetableModule);
-            var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate",json);
+            string json = JsonConvert.SerializeObject(EditTimetableModule);
+            var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate", EditTimetableModule);
             
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content.ToString());
+            Console.WriteLine("[SAVE TIMETABLE]"+response.Content.ToString());
         }
 
             public void DiscardAllhanges()

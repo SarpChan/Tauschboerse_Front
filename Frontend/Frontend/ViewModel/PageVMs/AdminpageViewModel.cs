@@ -51,7 +51,7 @@ namespace Frontend.ViewModel
 
             Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
 
-            LoadFieldOfStudyList();
+            //LoadFieldOfStudyList();
         }
 
         private async void LoadFieldOfStudyList()
@@ -69,6 +69,7 @@ namespace Frontend.ViewModel
 
         private async Task RequestMainInformationDataFromServerAsync()
         {
+
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/fieldOfStudy");
             Console.WriteLine("[RequestMainInformationDataFromServer]" + response.StatusDescription);

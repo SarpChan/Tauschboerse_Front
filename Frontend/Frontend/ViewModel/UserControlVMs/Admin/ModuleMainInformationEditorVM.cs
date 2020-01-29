@@ -104,6 +104,10 @@ namespace Frontend.ViewModel
             }
         }
 
+        public void LoadTimetable()
+        {
+
+        }
 
         private async Task RequestMainInformationDataFromServerAsync()
         {
