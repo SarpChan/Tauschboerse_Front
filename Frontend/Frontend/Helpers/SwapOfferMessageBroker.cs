@@ -8,12 +8,15 @@ namespace Frontend.Helpers
 {
     class SwapOfferMessageBroker : ViewModelBase
     {
-        const string TOPIC_NAME = "SwapOfferTopic";
+        const string TOPIC_NAME_PUBLIC_SWAP = "SwapOfferTopic";
+        const string TOPIC_NAME_PERSONAL_SWAP = "SwapMessageQueue";
+        const string TOPIC_NAME_NEWS = "NewsMessageTopic";
         private IConnection connection;
         private IConnectionFactory connectionFactory;
         private ISession session;
-        private IMessageProducer messageProducer;
-        private IMessageConsumer messageConsumer;
+        private IMessageConsumer messageConsumerPublic;
+        private IMessageConsumer messageConsumerPersonal;
+        private IMessageConsumer messageConsumerNews;
         private string currentBrokerURL = "tcp://localhost:61616";
         private SwapOfferListModel swapOffers = SwapOfferListModel.Instance;
 
@@ -30,15 +33,18 @@ namespace Frontend.Helpers
                 if (connectionFactory == null) connectionFactory = new ConnectionFactory(currentBrokerURL);
                 connection = connectionFactory.CreateConnection();
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
-                messageProducer = session.CreateProducer(new ActiveMQTopic(TOPIC_NAME));
-                messageConsumer = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME));
+                messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
+                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP));
+                messageConsumerNews = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS));
 
                 // MessageListener-Methode für eingehende Nachrichten registrieren
-                messageConsumer.Listener += OnMessageReceived;
+                messageConsumerPublic.Listener += OnSwapOfferPublicReceive;
+                messageConsumerNews.Listener += OnNewsListReceive;
+                messageConsumerPersonal.Listener += OnPersonalSwapOfferAccept;
 
                 // Thread zum Empfang eingehender Nachrichten starten
                 connection.Start();
-                Console.WriteLine("\n*** Starting connection: " + TOPIC_NAME + "@" + currentBrokerURL + "\n");
+                
             }
             catch (Exception e)
             {
@@ -49,26 +55,37 @@ namespace Frontend.Helpers
         // OnMessageReceived - beim messageConsumer registrierte Callback-Methode,
         // wird bei Empfang einer neuen Nachricht vom messageConsumer aufgerufen.
         // Textnachrichten werden zur Kommandoausführung an parseCommand() weitergegeben
-        public void OnMessageReceived(IMessage msg)
+        public void OnPersonalSwapOfferAccept(IMessage msg)
         {
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
                 ParseCommand(textmessage.Text);
+                
             }
         }
 
-        public void SendMessage(string message)
+        public void OnSwapOfferPublicReceive(IMessage msg)
         {
-            try
+            if (msg is ITextMessage)
             {
-                IMessage msg = session.CreateTextMessage(message.Trim());
-                messageProducer.Send(msg);
+                ITextMessage textmessage = msg as ITextMessage;
+                Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
+                ParseCommand(textmessage.Text);
+
             }
-            catch (Exception exc)
+        }
+
+        public void OnNewsListReceive(IMessage msg)
+        {
+            if (msg is IMapMessage)
             {
-                throw new MessageBrokerCommunicationException("Error sending message: " + exc.Message);
+                IMapMessage textmessage = msg as IMapMessage;
+                Console.WriteLine("\nreceived: " + textmessage + "\n");
+                //ParseCommand(textmessage);
+                Console.WriteLine(textmessage.Properties);
+
             }
         }
 
@@ -98,7 +115,7 @@ namespace Frontend.Helpers
             }
             catch (Exception e)
             {
-                SendMessage("Exception: " + e.ToString());
+                //SendMessage("Exception: " + e.ToString());
             }
         }
     }
@@ -107,4 +124,6 @@ namespace Frontend.Helpers
     {
         public MessageBrokerCommunicationException(string msg) : base(msg) { }
     }
+
 }
+

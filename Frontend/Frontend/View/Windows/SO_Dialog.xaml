@@ -154,7 +154,7 @@
         <!--Combobox für die noch auszuwählenden Gruppen-->
         <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
             <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
-            <ComboBox x:Name="ToGroup" Width="250" Height="50" HorizontalAlignment="Left">
+            <ComboBox x:Name="ToGroup" ItemsSource="{Binding .}" Width="250" Height="50" HorizontalAlignment="Left">
                 <!--<ComboBoxItem Content="Gruppe A"/>
                 <ComboBoxItem IsSelected="True" Content="Gruppe B"/>
                 <ComboBoxItem Content="Gruppe C"/>

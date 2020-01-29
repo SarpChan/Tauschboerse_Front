@@ -74,8 +74,8 @@
                 filter:DataGridExtensions.UseBackgroundWorkerForFiltering="False"
                 filter:DataGridExtensions.IsClearButtonVisible="False"
                 ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
-           TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
-           ResourceId=DataGridHeaderFilterControlStyle}}"
+               TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
+               ResourceId=DataGridHeaderFilterControlStyle}}"
                 VerticalContentAlignment="Center" Focusable="False" VerticalScrollBarVisibility="Visible" SelectionUnit="CellOrRowHeader" CanUserDeleteRows="False" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" HorizontalScrollBarVisibility="Hidden"
                 >
                     <DataGrid.Resources>
@@ -150,7 +150,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="" CanUserResize="False" Width="0.5*" CanUserSort="False" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
+                        <!--<DataGridTemplateColumn Header="" CanUserResize="False" Width="0.5*" CanUserSort="False" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
@@ -169,7 +169,7 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        </DataGridTemplateColumn>-->
                         <DataGridTemplateColumn Header="" CanUserResize="False"  Width="0.5*" filter:DataGridColumnExtensions.DoNotGenerateFilterControl="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -283,7 +283,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Will" Width="4.5*" SortMemberPath="Wants">
+                        <DataGridTemplateColumn Header="Will" Width="4*" SortMemberPath="Wants">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Center" Style="{DynamicResource TextTextblock}" Margin="10,0" Text="{Binding Wants}"/>

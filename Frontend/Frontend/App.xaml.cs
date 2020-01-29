@@ -11,9 +11,9 @@ namespace Frontend
     /// </summary>
     public partial class App : Application
     {
-         /*
-         * Notifier fuer die Toast-Benachrichtigungen
-         */
+        /*
+        * Notifier fuer die Toast-Benachrichtigungen
+        */
         public static Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(

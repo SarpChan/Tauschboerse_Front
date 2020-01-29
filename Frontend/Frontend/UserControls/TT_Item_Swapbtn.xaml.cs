@@ -45,7 +45,7 @@ namespace Frontend.UserControls
             d.Show();
             d.Topmost = true;
             FillDialog();
-            GetGroupLstAsync();
+           
             
         }
 
@@ -54,16 +54,15 @@ namespace Frontend.UserControls
          */
         private async void GetGroupLstAsync()
         {
-            List<Group> Groups;
+            Dictionary<long, char> Groups;
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/"+ d.GroupID);
+            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/"+ d.ModulID);
             Console.WriteLine(response.Content);
-            Groups = JsonConvert.DeserializeObject<List<Group>>(response.Content); // WIRFT FEHLERMELDUNG
+            Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
             d.ToGroup.ItemsSource = Groups;
-            
-            
+            d.ToGroup.Text = Groups.Values.ToString();
 
-
+            
         }
 
         /*
@@ -75,7 +74,8 @@ namespace Frontend.UserControls
             d.CourseName.Text = item.Module.Module.CourseName;
             d.TargetCourse.Text = item.Module.Module.CourseName;
             d.FromGroup.Text = item.Module.Module.GroupChar;      
-            d.GroupID = item.Module.Module.ID;
+            d.ModulID = item.Module.Module.ID;
+            GetGroupLstAsync();
 
            
         }

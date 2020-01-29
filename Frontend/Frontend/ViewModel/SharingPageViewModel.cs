@@ -10,6 +10,7 @@ using Frontend.Helpers;
 using Frontend.Models;
 using ToastNotifications.Messages;
 using Frontend.Helpers.Converters;
+using Frontend.View;
 
 namespace Frontend.ViewModel
 {
@@ -61,6 +62,7 @@ namespace Frontend.ViewModel
         {
 
             SwapOfferListModel swapOfferListModel = SwapOfferListModel.Instance;
+            NewsListModel newsListModel = NewsListModel.Instance;
             foreach(SwapOfferFrontendModel swapOffer in swapOfferListModel.SwapOfferListPublic)
             {
                 _SwapListPublic.Add(new SharingPageViewModelSwapOffer(swapOffer));
@@ -69,55 +71,15 @@ namespace Frontend.ViewModel
             {
                 _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
             }
+            foreach(News news in newsListModel.NewsList)
+            {
+                _NewsList.Add(news);
+            }
 
             swapOfferListModel.SwapOfferListPublic.CollectionChanged += OnPublicCollectionChange;
             swapOfferListModel.SwapOfferListPersonal.CollectionChanged += OnPersonalCollectionChange;
-
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden exmatrikuliert.",
-                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Stundent dekradiert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22,8, 15, 0)).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Admin befördert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21,8,15,0)).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden exmatrikuliert.",
-                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Stundent dekradiert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Admin befördert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden exmatrikuliert.",
-                Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Stundent dekradiert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 22, 8, 15, 0)).ToUnixTimeSeconds()
-            });
-            NewsList.Add(new News
-            {
-                Message = "Sie wurden zum Admin befördert.",
-                Timestamp = ((DateTimeOffset)new DateTime(2020, 1, 21, 8, 15, 0)).ToUnixTimeSeconds()
-            });
+            newsListModel.NewsList.CollectionChanged += OnNewsCollectionChange;
+            
             CreateAutocompletes();
 
         }
@@ -158,11 +120,6 @@ namespace Frontend.ViewModel
                 App.notifier.ShowSuccess("Tausch gelöscht");
                 //Ging
             }
-        }
-
-        private void EditTradeOffer(object id)
-        {
-            Console.WriteLine("Editing " + id + "...");
         }
 
         private async void RequestTradeOffer(object id)
@@ -287,17 +244,17 @@ namespace Frontend.ViewModel
         private void OnNewsAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
 
-            foreach (SwapOfferFrontendModel t in e.NewItems)
+            foreach (News t in e.NewItems)
             {
-                this.SwapListOwn.Add(null);
+                this.NewsList.Add(t);
             }
         }
         private void OnNewsRemove(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (SwapOfferFrontendModel t in e.NewItems)
+            foreach (News t in e.NewItems)
             {
-                SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListPublic);
-                this.SwapListPublic.Remove(foundSPVMSO);
+                News foundNews = FindNewsWithId(t.id, this.NewsList);
+                this.NewsList.Remove(foundNews);
             }
         }
         private void OnNewsClear(object sender, NotifyCollectionChangedEventArgs e)
@@ -312,6 +269,18 @@ namespace Frontend.ViewModel
                 if (spvmso.Id == id)
                 {
                     return spvmso;
+                }
+            }
+            return null;
+        }
+
+        private News FindNewsWithId(long id, IList<News> newsList)
+        {
+            foreach (News news in newsList)
+            {
+                if (news.id == id)
+                {
+                    return news;
                 }
             }
             return null;
@@ -345,7 +314,7 @@ namespace Frontend.ViewModel
         /// <summary>
         /// Command der an den Edit Button in jeder Zeile gebinded wird
         /// </summary>
-        public ICommand EditCommand
+        /*public ICommand EditCommand
         {
             get
             {
@@ -357,7 +326,7 @@ namespace Frontend.ViewModel
                 return _EditCommand;
             }
             set { }
-        }
+        }*/
 
         private ICommand _RequestCommand;
 

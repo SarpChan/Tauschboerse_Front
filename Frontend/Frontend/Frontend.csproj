@@ -104,6 +104,7 @@
     <Compile Include="Helpers\SwapOfferFromBackend.cs" />
     <Compile Include="Helpers\SwapOfferMessageBroker.cs" />
     <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\MessageBrokerModel.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsListModel.cs" />
     <Compile Include="Models\Outdated\Administrator.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Models\SwapOfferCommunication.cs" />
     <Compile Include="Models\SwapOfferFrontendModel.cs" />
     <Compile Include="Models\SwapOfferListModel.cs" />
+    <Compile Include="Models\SwapOffers\SwapOfferCourse.cs" />
     <Compile Include="Models\Timetable\TimetableModule.cs" />
     <Compile Include="Models\Timetable\TimetableRowListModel.cs" />
     <Compile Include="Models\Timetable\TimetableViewModelModule.cs" />
