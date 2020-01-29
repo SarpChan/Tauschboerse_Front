@@ -1,6 +1,5 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
-using Frontend.Models.SwapOffers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

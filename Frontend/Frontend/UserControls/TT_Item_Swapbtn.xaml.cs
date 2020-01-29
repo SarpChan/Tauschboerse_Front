@@ -1,6 +1,5 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
-using Frontend.Models.SwapOffers;
 using Frontend.View;
 using Newtonsoft.Json;
 using System;
