@@ -66,23 +66,20 @@ namespace Frontend.UserControls
             }
         }
 
-        private void StudyProgramsDict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void StudyProgramComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (KeyValuePair<StudyProgram, string> x in e.AddedItems)
+            foreach (StudyProgram x in e.AddedItems)
             {
-                viewmodel.FillExamRegulationDict(x.Key);
+                viewmodel.FillExamRegulationList(x);
             }
         }
 
-        private void FieldOfStudyDict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FieldOfStudyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            foreach(KeyValuePair<FieldOfStudy,string> x in e.AddedItems)
+            foreach (FieldOfStudy x in e.AddedItems)
             {
-                
-                viewmodel.FillStudyProgramDict(x.Key);
+                viewmodel.FillStudyProgramList(x);
             }
-
         }
     }
 

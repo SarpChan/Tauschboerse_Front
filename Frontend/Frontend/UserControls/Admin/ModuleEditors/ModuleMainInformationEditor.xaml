@@ -16,6 +16,10 @@
         <viewmodel:ModuleMainInformationEditorVM  x:Name="viewmodel"/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <helpers:ExamRegulationDataConverter x:Key="ExamRegulationDataConverter"/>
+    </UserControl.Resources>
+    
     <DockPanel LastChildFill="True">
        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Einstellungen"
                Click="BackButton_Click" Command="{Binding DiscardAllChangesCommand}">
@@ -35,16 +39,34 @@
                
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Fachbereich" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Name="FieldOfStudyDict" Text="Fachbereich"
-                              ItemsSource="{Binding FieldOfStudyDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value" 
-                              SelectionChanged="FieldOfStudyDict_SelectionChanged"/>
+                    <ComboBox x:Name="FieldOfStudyComboBox" Text="Fachbereich"
+                              ItemsSource="{Binding FieldOfStudyList, ElementName=viewmodel}"
+                              SelectionChanged="FieldOfStudyComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Studiengang" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Name="StudyProgramsDict" Text="Gruppe" HorizontalAlignment="Center"
-                               ItemsSource="{Binding StudyProgramsDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
-                              SelectionChanged="StudyProgramsDict_SelectionChanged"/>
+                    
+                    <ComboBox x:Name="StudyProgramComboBox" Text="Studiengang"
+                              ItemsSource="{Binding StudyProgramList, ElementName=viewmodel}"
+                              SelectionChanged="StudyProgramComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">

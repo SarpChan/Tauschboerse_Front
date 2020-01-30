@@ -30,29 +30,13 @@ namespace Frontend.ViewModel
             LoadFieldOfStudyList();
         }
 
+        public ObservableCollection<FieldOfStudy> FieldOfStudyList { get; } = new ObservableCollection<FieldOfStudy>();
 
-        private List<FieldOfStudy> _FieldOfStudyList = new List<FieldOfStudy>();
+        public ObservableCollection<StudyProgram> StudyProgramList { get; } = new ObservableCollection<StudyProgram>();
 
-        private Dictionary<FieldOfStudy, string> _FieldOfStudyDict = new Dictionary<FieldOfStudy, string>();
-        public Dictionary<FieldOfStudy, string> FieldOfStudyDict
-        {
-            get { return _FieldOfStudyDict; }
-            set { _FieldOfStudyDict = value; }
-        }
+        public ObservableCollection<ExamRegulation> ExamRegulationList { get; } = new ObservableCollection<ExamRegulation>();
 
-        private Dictionary<StudyProgram, string> _StudyProgramDict = new Dictionary<StudyProgram, string>();
-        public Dictionary<StudyProgram, string> StudyProgramDict
-        {
-            get { return _StudyProgramDict; }
-            set { _StudyProgramDict = value; }
-        }
-
-        private Dictionary<ExamRegulation, string> _ExamRegulationDict = new Dictionary<ExamRegulation, string>();
-        public Dictionary<ExamRegulation, string> ExamRegulationDict
-        {
-            get { return _ExamRegulationDict; }
-            set { _ExamRegulationDict = value; }
-        }
+        public ObservableCollection<string> SemesterList { get; } = new ObservableCollection<string>();
 
         private Dictionary<long, string> _ModuleDict = new Dictionary<long, string>();
         public Dictionary<long, string> ModuleDict
@@ -68,32 +52,6 @@ namespace Frontend.ViewModel
             set { _SemesterDict = value; }
         }
 
-        private ICommand _FillStudyProgramDictCommand;
-        public ICommand FillStudyProgramDictCommand
-        {
-            get
-            {
-                if (_FillStudyProgramDictCommand == null)
-                {
-                    _FillStudyProgramDictCommand = new ActionCommand(param => this.FillStudyProgramDict(param as FieldOfStudy));
-                }
-                return _FillStudyProgramDictCommand;
-            }
-        }
-
-        private ICommand _FillExamRegulationDictCommand;
-        public ICommand FillExamRegulationDictCommand
-        {
-            get
-            {
-                if (_FillExamRegulationDictCommand == null)
-                {
-                    _FillExamRegulationDictCommand = new ActionCommand(param => this.FillExamRegulationDict(param as StudyProgram));
-                }
-                return _FillExamRegulationDictCommand;
-            }
-        }
-
         private async void LoadFieldOfStudyList()
         {
             try {
@@ -104,63 +62,73 @@ namespace Frontend.ViewModel
             }
         }
 
-        public void LoadTimetable()
-        {
-
-        }
-
         private async Task RequestMainInformationDataFromServerAsync()
         {
+
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/fieldOfStudy");
             Console.WriteLine("[RequestMainInformationDataFromServer]" + response.StatusDescription);
             if ((int)response.StatusCode >= 400) return;
-
             Console.WriteLine(response.Content.ToString());
-            _FieldOfStudyList = JsonConvert.DeserializeObject<List<FieldOfStudy>>(response.Content.ToString());
-            FillFieldOfStudyDicts(_FieldOfStudyList);
-            
+            var foSList = JsonConvert.DeserializeObject<List<FieldOfStudy>>(response.Content.ToString());
+            FillFieldOfStudyList(foSList);
         }
 
-        private void FillFieldOfStudyDicts(List<FieldOfStudy> fieldOfStudyList)
+        public void FillFieldOfStudyList(List<FieldOfStudy> list)
         {
-            if(fieldOfStudyList != null)
+            FieldOfStudyList.Clear();
+            StudyProgramList.Clear();
+            ExamRegulationList.Clear();
+
+            foreach (var foS in list)
             {
-                FieldOfStudyDict.Clear();
-                foreach (FieldOfStudy FoS in fieldOfStudyList)
-                {
-                    FieldOfStudyDict.Add(FoS, FoS.Title);
-                }
+                Console.WriteLine("FOS :" + foS.Title);
+                FieldOfStudyList.Add(foS);
             }
-            else
+
+        }
+
+
+        public void FillStudyProgramList(FieldOfStudy fieldOfStudy)
+        {
+
+
+
+            if (fieldOfStudy.StudyPrograms != null)
             {
-                Console.WriteLine("Das FieldOfStudy ist Null");
+                StudyProgramList.Clear();
+
+                foreach (var Sp in fieldOfStudy.StudyPrograms)
+                {
+                    StudyProgramList.Add(Sp);
+                }
             }
         }
 
-        public void FillStudyProgramDict(FieldOfStudy fieldOfStudy)
+        public void FillExamRegulationList(StudyProgram studyProgram)
         {
-            if(fieldOfStudy.StudyPrograms != null)
+            if (studyProgram.ExamRegulations != null)
             {
-                StudyProgramDict.Clear();
-                foreach(StudyProgram sP in fieldOfStudy.StudyPrograms)
+                ExamRegulationList.Clear();
+                foreach (ExamRegulation eR in studyProgram.ExamRegulations)
                 {
-                    StudyProgramDict.Add(sP, sP.Title);
+                    ExamRegulationList.Add(eR);
                 }
             }
         }
 
-        public void FillExamRegulationDict(StudyProgram studyProgram)
+        public void FillSemesterList(ExamRegulation examRegulation)
         {
-            if(studyProgram.ExamRegulations != null)
+            if (examRegulation != null)
             {
-                ExamRegulationDict.Clear();
-                foreach(ExamRegulation eR in studyProgram.ExamRegulations)
+                SemesterList.Clear();
+                for (int i = 1; i <= examRegulation.MaxTerms; i++)
                 {
-                    // Datum Format Y de-DE => Oktober 2008
-                    ExamRegulationDict.Add(eR, eR.Date.ToString("Y", CultureInfo.CreateSpecificCulture("de-DE")));
+                    SemesterList.Add(i.ToString());
                 }
+
             }
+
         }
     }
 }
