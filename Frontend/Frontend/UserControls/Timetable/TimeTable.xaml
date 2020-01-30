@@ -91,7 +91,7 @@
         </Popup>
        -->
 
-        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas">
+        <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TimeTableCanvas" MouseEnter="TimeTable_MouseEnter">
             <!-- Nutzt die DataPipe um Daten an das ViewModule zu senden -->
             
             <Helpers:DataPiping.DataPipes>
@@ -106,7 +106,7 @@
             </Helpers:DataPiping.DataPipes>
 
             <Popup x:Name="popUp" AllowsTransparency="True">
-                <usercontrols:TT_Item_Swapbtn x:Name="uc" ></usercontrols:TT_Item_Swapbtn>
+                <usercontrols:TT_Item_Swapbtn x:Name="uc"/>
             </Popup>
 
             <Popup x:Name="moduleEdit"
