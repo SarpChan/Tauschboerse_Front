@@ -56,8 +56,9 @@ namespace Frontend.UserControls
         {
             Dictionary<long, char> Groups;
             List<SwapOfferGroup> lst = new List<SwapOfferGroup>();
+            List<char> c = new List<char>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/" + d.ModuleID);
+            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/" + d.FromGroupID);
             Console.WriteLine(response.Content);
             Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
 
@@ -65,7 +66,7 @@ namespace Frontend.UserControls
             {
                 lst.Add(new SwapOfferGroup { Char = keyValue.Value, Id = keyValue.Key });
             }
-
+          
             d.ToGroup.ItemsSource = lst;
 
         }
@@ -78,8 +79,8 @@ namespace Frontend.UserControls
            
             d.CourseName.Text = item.Module.Module.CourseName;
             d.CourseType.Text = item.Module.Module.Type.ToString();
-            //d.FromGroup.Text = item.Module.Module.GroupChar;      
-            d.ModuleID = item.Module.Module.ID;
+            d.FromGroup.Text = item.Module.Module.GroupChar;      
+            d.FromGroupID = item.Module.Module.ID;
             GetGroupLstAsync();
 
            

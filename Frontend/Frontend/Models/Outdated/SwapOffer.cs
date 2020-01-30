@@ -20,7 +20,7 @@ namespace Frontend.Models
         {
             // this.course = course;
             this.FromGroupID = fromGroup;
-            this.ToGroupID = new long[] { toGroup, };
+            this.ToGroupID = new long[] { toGroup };
         }
     }
 }
