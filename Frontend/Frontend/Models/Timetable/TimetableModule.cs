@@ -15,7 +15,7 @@ namespace Frontend.Models
         //public event PropertyChangedEventHandler PropertyChanged ;
 
         [JsonIgnore]
-        ModuleType _Type = ModuleType.Praktikum;
+        ModuleType _Type = ModuleType.PRACTICE;
         [JsonIgnore]
         string _StartTime = "12:34";
         [JsonIgnore]
@@ -41,7 +41,7 @@ namespace Frontend.Models
         public string courseTitleAbbreviation;
 
 
-        public enum ModuleType {[Description("Vorlesung")] Vorlesung, [Description("Übung")] Übung, [Description("Praktikum")] Praktikum, [Description("Tutorium")] Tutorium };
+        public enum ModuleType {[Description("Vorlesung")] LECTURE, [Description("Übung")] TEST, [Description("Praktikum")] PRACTICE, [Description("Tutorium")] TUTORIAL };
 
         public string StartTime
         {

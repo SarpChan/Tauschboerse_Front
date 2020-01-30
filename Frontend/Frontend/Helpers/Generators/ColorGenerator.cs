@@ -66,9 +66,9 @@ namespace Frontend.Helpers.Generators
         {
             switch (type)
             {
-                case TimetableModule.ModuleType.Praktikum: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.practicaltraining");
-                case TimetableModule.ModuleType.Tutorium: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.tutorial");
-                case TimetableModule.ModuleType.Übung: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.exercise");
+                case TimetableModule.ModuleType.PRACTICE: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.practicaltraining");
+                case TimetableModule.ModuleType.TUTORIAL: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.tutorial");
+                case TimetableModule.ModuleType.TEST: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.exercise");
                 default: return ConfigurationManager.AppSettings.Get("colorgenerator.fix.lecture");
 
             }

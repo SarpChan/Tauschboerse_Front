@@ -22,7 +22,8 @@ namespace Frontend.ViewModel
         public TimetableModule EditTimetableModule
         {
             get { return _EditTimetableModule; }
-            set {
+            set
+            {
                 Console.WriteLine("set ttm" + value.GetHashCode());
                 _EditTimetableModule = value;
                 _TimetableModuleBackUp = value.DeepCopy();
@@ -68,16 +69,14 @@ namespace Frontend.ViewModel
 
         public async void SaveTime()
         {
-            //Hier APIclient ansprechen
-            Console.WriteLine("hhsadjbasidb");
+            //Hier APIclient ansprechen 
             if (EditTimetableModule != null)
             {
                 try
                 {
                     await SendChangesToServerAsync();
-                    moduleListModel.ModuleList.Add(EditTimetableModule);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     DiscardAllhanges();
@@ -94,12 +93,11 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             string json = JsonConvert.SerializeObject(EditTimetableModule);
             var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate", json);
-            
+            Console.WriteLine("[SAVE TIMETABLE]" + response.Content.ToString());
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine("[SAVE TIMETABLE]"+response.Content.ToString());
         }
 
-            public void DiscardAllhanges()
+        public void DiscardAllhanges()
         {
             Console.WriteLine("Discard Changes");
             _EditTimetableModule.ReplaceData(_TimetableModuleBackUp);
