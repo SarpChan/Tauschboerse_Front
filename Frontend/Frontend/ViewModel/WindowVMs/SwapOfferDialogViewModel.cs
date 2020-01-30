@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using ToastNotifications.Messages;
 
 namespace Frontend.ViewModel
 {
@@ -68,11 +69,10 @@ namespace Frontend.ViewModel
         public async void CreateSwapOffer()
         {
             SwapOffer so = new SwapOffer(FromGroupId, ToGroupId);
-            Console.WriteLine(FromGroupId + " - " + ToGroupId);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapoffer/insert", so);
-            Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
+            App.notifier.ShowSuccess("Tauschangebot erstellt!");
         }
 
         public void CourseTypeSelectionChanged(SwapOfferCourse selectedItem)
