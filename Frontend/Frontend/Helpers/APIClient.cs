@@ -45,7 +45,7 @@ namespace Frontend.Helpers
             {
                 string token = response.Content.Split(' ')[0];
                 _client.Authenticator = new JwtAuthenticator(token);
-                Console.WriteLine(_client.Authenticator.ToString());
+                Console.WriteLine(token);
                 UserInformation.UserId = response.Content.Split(' ')[1];
                 Console.WriteLine(UserInformation.UserId);
                 return true;

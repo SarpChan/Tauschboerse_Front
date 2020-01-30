@@ -11,9 +11,9 @@ namespace Frontend.Models
     {
 
 
-        [JsonProperty("fromGroup")]
+        [JsonProperty("fromGroupsID")]
         public long FromGroupID { get; set; }
-        [JsonProperty("toGroup")]
+        [JsonProperty("toGroupsID")]
         public long[] ToGroupID { get; set; }
 
         public SwapOffer(long fromGroup, long toGroup)

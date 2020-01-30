@@ -95,8 +95,9 @@ namespace Frontend.ViewModel
 
         #region methods
 
-        private async void ProcessLogin()
+        internal async void ProcessLogin()
         {
+            Console.WriteLine(Username + " - " + Password);
             APIClient apiClient = APIClient.Instance;
             IsLoggedIn = await apiClient.SendLogin(Username, Password);
             if (IsLoggedIn)

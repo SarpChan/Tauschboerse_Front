@@ -69,7 +69,7 @@ namespace Frontend.ViewModel
         {
             SwapOffer so = new SwapOffer(FromGroupId, ToGroupId);
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
+            var response = await apiClient.NewPOSTRequest("/rest/swapoffer/insert", so);
             Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
         }
