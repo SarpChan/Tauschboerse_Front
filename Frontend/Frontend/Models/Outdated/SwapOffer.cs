@@ -14,13 +14,13 @@ namespace Frontend.Models
         [JsonProperty("fromGroup")]
         public long FromGroupID { get; set; }
         [JsonProperty("toGroup")]
-        public long ToGroupID { get; set; }
+        public long []ToGroupID { get; set; }
 
         public SwapOffer(long fromGroup, long toGroup)
         {
             // this.course = course;
             this.FromGroupID = fromGroup;
-            this.ToGroupID = toGroup;
+            this.ToGroupID = new long[] { toGroup };
         }
     }
 }
