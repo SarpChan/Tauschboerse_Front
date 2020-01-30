@@ -15,6 +15,6 @@
     </UserControl.Resources>
     <DockPanel>
         <TextBlock DockPanel.Dock="Left" Tag="TextBl1" Text="{}" Margin="0,10,30,0" FontWeight="Bold" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" FontSize="15" x:Name="filenameScript"/>
-        <Button DockPanel.Dock="Left" Content="Pythonskript hochladen" Command="{Binding UploadPythonscriptButtonCommand,ElementName=upload_pythonscript_button}" Style="{StaticResource AdminButton}" Width="307" Height="42" Click="upload_script" />
+        <Button DockPanel.Dock="Left" Content="Skript hochladen" Command="{Binding UploadPythonscriptButtonCommand,ElementName=upload_pythonscript_button}" Style="{StaticResource UniversalButton}" Click="upload_script" />
     </DockPanel>
 </UserControl>

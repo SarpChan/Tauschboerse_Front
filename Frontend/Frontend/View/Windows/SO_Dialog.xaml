@@ -127,7 +127,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
+        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Kurs tauschen"/></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
@@ -146,16 +146,9 @@
         <StackPanel Grid.Column="0" Grid.Row="2">
             <TextBlock x:Name="From" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0"><Run Text="Von Gruppe"/></TextBlock>
             <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <!--<xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="Gruppe" Width="250" HorizontalAlignment="Left" Padding="10 15"/>-->
-                <ComboBox x:Name="cmbColors" SelectionChanged="cmbColors_SelectionChanged" ItemsSource="{Binding }">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding DisplayText}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                
+                <xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="Gruppe" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
+                
             </Border>
 
         </StackPanel>
@@ -173,7 +166,7 @@
 
         <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
         <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 60 0 0">
-            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create"/>
+            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create" Margin="0 0 0 0"/>
             <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloWi" Margin="40 0 0 0"/>
 
         </WrapPanel>

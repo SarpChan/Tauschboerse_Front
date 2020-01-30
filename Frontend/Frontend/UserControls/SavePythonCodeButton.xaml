@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d"
              x:Name="savePythonCodeButton">
     <UserControl.Resources>
@@ -14,8 +15,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <TextBox  DockPanel.Dock="Top" Margin="0,20,0,0" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Foreground="{StaticResource CD_Grey}" FontSize="15" x:Name="textblockName"/>
-        <TextBox  DockPanel.Dock="Top" Margin="0,8,0,0" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="Eigener Code ..." VerticalAlignment="Top" Width="1289" FontFamily="/Frontend;component/Resources/Fonts/#Roboto" Background="{StaticResource CD_LightTeal}" Foreground="{StaticResource CD_Grey}" FontSize="15" x:Name="textblockCode"/>
-        <Button DockPanel.Dock="Top" Margin="0,25,0,0" HorizontalAlignment="Left" Content="Neuer Pythoncode hochladen" Command="{Binding SavePythonCodeButtonCommand,ElementName=save_python_code_button}" Style="{StaticResource AdminButton}" Width="307" Height="42" Click="save_script"/>
+        <xctk:WatermarkTextBox  Style="{StaticResource Textbox}" Foreground="{StaticResource CD_Grey}" Watermark="Name" DockPanel.Dock="Top" Margin="0,20,0,0" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap"  VerticalAlignment="Top" Width="1289" x:Name="textblockName"/>
+        <xctk:WatermarkTextBox   Style="{StaticResource Textbox}" Foreground="{StaticResource CD_Grey}" Watermark="Eigener Code..." DockPanel.Dock="Top" Margin="0,8,0,0" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalAlignment="Top" Width="1289" Background="{StaticResource CD_LightTeal}" x:Name="textblockCode"/>
+        <Button DockPanel.Dock="Top" Margin="0,25,0,0" HorizontalAlignment="Left" Content="Code hochladen" Command="{Binding SavePythonCodeButtonCommand,ElementName=save_python_code_button}" Style="{StaticResource UniversalButton}"  Click="save_script"/>
     </DockPanel>
 </UserControl>

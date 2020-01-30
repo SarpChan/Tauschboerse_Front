@@ -91,7 +91,6 @@ namespace Frontend.ViewModel
         public void GroupSelect(SwapOfferGroup group)
         {
             ChangeLine = "Du wechselst von " + FromGroup + " zu Gruppe " + group.Char;
-            Console.WriteLine(ChangeLine);
             ToGroupId = group.Id;
         }
         
@@ -128,73 +127,6 @@ namespace Frontend.ViewModel
             }
         }
         
-
-        public void FillDummy()
-        {
-            Console.WriteLine("Filling");
-            DatabaseCourses.Add(new SwapOfferCourse
-            {
-                CourseComponentId = 0,
-                CourseId = 1,
-                CourseName = "Prog 3",
-                CourseType = "Praktikum",
-                GroupChar = 'A',
-                Groups = new List<SwapOfferGroup>
-                {
-                    new SwapOfferGroup
-                    {
-                        Char = 'A',
-                        Id = 17
-                    }, new SwapOfferGroup
-                    {
-                        Char = 'B',
-                        Id = 18
-                    }
-                }
-            });
-            DatabaseCourses.Add(new SwapOfferCourse
-            {
-                CourseComponentId = 1,
-                CourseId = 1,
-                CourseName = "Prog 3",
-                CourseType = "Übung",
-                GroupChar = 'B',
-                Groups = new List<SwapOfferGroup>
-                {
-                    new SwapOfferGroup
-                    {
-                        Char = 'A',
-                        Id = 19
-                    }, new SwapOfferGroup
-                    {
-                        Char = 'B',
-                        Id = 20
-                    }
-                }
-            });
-            DatabaseCourses.Add(new SwapOfferCourse
-            {
-                CourseComponentId = 0,
-                CourseId = 2,
-                CourseName = "Eibo",
-                CourseType = "Tutorium",
-                GroupChar = 'B',
-                Groups = new List<SwapOfferGroup>
-                {
-                    new SwapOfferGroup
-                    {
-                        Char = 'A',
-                        Id = 19
-                    }, new SwapOfferGroup
-                    {
-                        Char = 'B',
-                        Id = 20
-                    }
-                }
-            });
-
-        }
-
         public void FillList()
         {
             foreach (SwapOfferCourse swapOfferCourse in this.DatabaseCourses)

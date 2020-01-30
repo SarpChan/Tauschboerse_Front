@@ -118,7 +118,6 @@ namespace Frontend.ViewModel
             } else
             {
                 App.notifier.ShowSuccess("Tausch gelöscht");
-                //Ging
             }
         }
 

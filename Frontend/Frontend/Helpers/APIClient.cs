@@ -41,11 +41,11 @@ namespace Frontend.Helpers
 
             var response = await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             cancellationTokenSource.Dispose();
-            Console.WriteLine("->"+response.ResponseStatus);
             if (response.IsSuccessful)
             {
                 string token = response.Content.Split(' ')[0];
                 _client.Authenticator = new JwtAuthenticator(token);
+                Console.WriteLine(_client.Authenticator.ToString());
                 UserInformation.UserId = response.Content.Split(' ')[1];
                 Console.WriteLine(UserInformation.UserId);
                 return true;
@@ -103,9 +103,10 @@ namespace Frontend.Helpers
             var cancellationTokenSource = new CancellationTokenSource();
             _request = new RestRequest(restEndpoint, Method.GET);
             _request.AddHeader("Accept", "application/json");
-            //request.AddHeader("Content-Type", "application/json");
-
+            _request.AddHeader("Content-Type", "application/json");
+            
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
+            Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400)
             {
                 MainViewModel.Instance.HandleHttpError((int)response.StatusCode);

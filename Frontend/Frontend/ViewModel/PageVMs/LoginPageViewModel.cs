@@ -102,6 +102,7 @@ namespace Frontend.ViewModel
             if (IsLoggedIn)
             {
                 App.notifier.ShowSuccess("Einloggen erfolgreich");
+                MainViewModel.Instance.SwitchActivePageAsync("SharingServicePage.xaml");
             }
             
         }

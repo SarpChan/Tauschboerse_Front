@@ -32,7 +32,7 @@ namespace Frontend.ViewModel
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
 
-        SwapOfferMessageBroker so_mb;
+        //SwapOfferMessageBroker so_mb;
 
         public MainViewModel()
         {
@@ -44,13 +44,13 @@ namespace Frontend.ViewModel
             dayValues.Add("FRIDAY", "5");
             dayValues.Add("SATURDAY", "6");
             dayValues.Add("SUNDAY", "7");
-            ActivePage = "HomePage.xaml";
+            ActivePage = "SharingServicePage.xaml";
             IsLoading = false;
             personalData = PersonalData.Instance;
             timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
             //Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
-            so_mb = new SwapOfferMessageBroker();
+            //so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
 
@@ -194,7 +194,7 @@ namespace Frontend.ViewModel
         /*
          * Handled das Page-Switchen inkl. asynchroner Anfrage an den Server und anzeigen des Loading Screens
          */
-        private async void SwitchActivePageAsync(string newActivePage)
+        public async void SwitchActivePageAsync(string newActivePage)
         {
             if (newActivePage == "HomePage.xaml")
             {
@@ -354,7 +354,7 @@ namespace Frontend.ViewModel
          */
         public void Logout(int code)
         {
-            this.SwitchActivePageAsync("HomePage.xaml");
+            this.SwitchActivePageAsync("SharingServicePage.xaml");
             personalData.LogoutUser();
             LoginPageViewModel.Instance.IsLoggedIn = false;
             if (code == 200)
@@ -375,7 +375,7 @@ namespace Frontend.ViewModel
         {
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/student_timetable");
             if ((int)response.StatusCode >= 400) return;
             //Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
@@ -443,10 +443,10 @@ namespace Frontend.ViewModel
          */
         private async Task RequestAdminDataFromServerAsync()
         {
-
+           
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/date_timetable");
             if ((int)response.StatusCode >= 400) return;
             
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
@@ -454,7 +454,9 @@ namespace Frontend.ViewModel
             {
                 tm.Day = dayValues[tm.Day];
             }
+
             timetableModuleList.SetList(tempTable);
+            
         }
         #endregion
     }

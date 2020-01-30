@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Frontend.UserControls.ModuleTypEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
+             xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:helpers="clr-namespace:Frontend.Helpers"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Helpers="clr-namespace:Frontend.Helpers" 
+             xmlns:models="clr-namespace:Frontend.Models" 
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewmodel:ModuleTypEditorVM x:Name="viewmodel"/>
+    </UserControl.DataContext>
+
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Art"
+                Click="BackButton_Click" Command="{Binding DiscardAllChangesCommand}">
+            <Button.Tag>
+                <Image DockPanel.Dock="Left" Source="{StaticResource lecture_b}" Width="20pt" Margin="0,0,10pt,0"/>
+            </Button.Tag>
+        </Button>
+
+        <Border DockPanel.Dock="Top" BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
+
+            <DockPanel Margin="10pt" x:Name="TimeEditPanel">
+
+                <ItemsControl x:Name="Types" ItemsSource="{Binding Types}" DockPanel.Dock="Top" UseLayoutRounding="False">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" Background="White" />
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding}"
+                                        GroupName="TypeChoose"
+                                        Style="{StaticResource UniversalRadioButton}"
+                                        Command="{Binding ElementName=Types, Path=DataContext.ChangeTypeCommand}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5pt"
+                                        />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Click="BackButton_Click" Command="{Binding SaveCommand}" Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</UserControl>

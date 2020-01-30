@@ -29,27 +29,55 @@ namespace Frontend.UserControls
      */
     public partial class TimeTable : UserControl
     {
-        
+
+        private object _LastEditModuleOpener = null;
+
         public TimeTable()
         {
             InitializeComponent();
-            
+            Focusable = true;
+            Loaded += (s, e) => Keyboard.Focus(this);
         }
 
         private void TimetableItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            //Console.WriteLine("MouseEnter TimeTableItem");
-            popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
-            uc.MouseLeave += TimetableItem_MouseLeave;
-            popUp.IsOpen = true;
-            uc.item.Module = ((TimetableItem)sender).Module;
-
+            if (!moduleEdit.IsOpen)
+            {
+                Console.WriteLine("MouseEnter TimeTableItem");
+                popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
+                uc.MouseLeave += TimetableItem_MouseLeave;
+                popUp.IsOpen = true;
+                uc.item.Module = ((TimetableItem)sender).Module;
+            }
 
         }
 
         private void TimetableItem_MouseLeave(object sender, MouseEventArgs e)
         {
             popUp.IsOpen = false;
+        }
+
+        private void TimetableItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            Console.WriteLine("MouseLeftClick TimeTableItem");
+            if (UserInformation.isAdmin)
+            {
+                if (moduleEdit.IsOpen)
+                {
+                    moduleEdit.IsOpen = false;
+                }
+                else
+                {
+                    var tti = (TimetableItem)sender;
+                    moduleEdit.PlacementTarget = tti;
+                    moduleEdit.Child = ModuleEditor;
+                    ModuleEditor.viewmodel.EditTimetableModule = tti.Module.Module;
+                    moduleEdit.IsOpen = true;
+                    popUp.IsOpen = false;
+                    _LastEditModuleOpener = sender;
+                }
+            }
         }
     }
 }

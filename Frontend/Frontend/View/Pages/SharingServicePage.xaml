@@ -124,7 +124,7 @@
                         <DataGridTemplateColumn Header="Kurs" Width="2.5*" CanUserSort="True" SortMemberPath="CourseName">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CourseName}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding CourseName}" Style="{DynamicResource TextTextblock}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -194,10 +194,10 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-                <Button Width="240pt" HorizontalAlignment="Left" Margin="0,20,0,0" Style="{Binding Mode=OneWay, Source={StaticResource AdminButton}}" Click="OpenDialog">
+                <Button HorizontalAlignment="Left" Margin="0,20,0,0" Style="{Binding Mode=OneWay, Source={StaticResource UniversalButton}}" Click="OpenDialog">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
                         <Image Name="AddIcon" Source="{DynamicResource add}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <TextBlock Padding="20,8,0,0" Height="40" Text="Tauschangebot erstellen" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Left" FontSize="22"/>
+                        <TextBlock Padding="10,8,0,0" Height="40" Text="Tauschangebot erstellen" Margin="0,0,10,0" />
                     </DockPanel>
                 </Button>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Alle öffentlichen Tauschangebote" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" Margin="0,40,0,20" />

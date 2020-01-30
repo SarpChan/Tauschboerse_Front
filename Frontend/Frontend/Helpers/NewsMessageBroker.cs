@@ -68,7 +68,7 @@ namespace Frontend.Helpers
             }
             catch (Exception exc)
             {
-                throw new MessageBrokerCommunicationException("Error sending message: " + exc.Message);
+                //throw new MessageBrokerCommunicationException("Error sending message: " + exc.Message);
             }
         }
 

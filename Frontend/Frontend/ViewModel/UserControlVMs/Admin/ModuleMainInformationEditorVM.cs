@@ -3,17 +3,34 @@ using Frontend.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Frontend.ViewModel
 {
-    class AdminPageViewModel: ViewModelBase
+    class ModuleMainInformationEditorVM : ModuleEditorVM
     {
-        #region Properties
+
+        public ModuleMainInformationEditorVM()
+        {
+
+            //ZUM TEST
+            _ModuleDict.Add(1, "Mathe 7 - Bewiesen ist noch garnichts");
+            _ModuleDict.Add(2, "Dokumentation schreiben lernen (so nicht MS)");
+            _ModuleDict.Add(4, "Kaffee, Klaviertasten und Comedians - (Dumme Namen für Sprachen)");
+
+            _SemesterDict.Add(3, "SS 2010");
+            _SemesterDict.Add(4, "WS 2019/2020");
+            _SemesterDict.Add(5, "WS 2030/2031");
+
+            LoadFieldOfStudyList();
+        }
+
+
         private List<FieldOfStudy> _FieldOfStudyList = new List<FieldOfStudy>();
 
         private Dictionary<FieldOfStudy, string> _FieldOfStudyDict = new Dictionary<FieldOfStudy, string>();
@@ -37,6 +54,13 @@ namespace Frontend.ViewModel
             set { _ExamRegulationDict = value; }
         }
 
+        private Dictionary<long, string> _ModuleDict = new Dictionary<long, string>();
+        public Dictionary<long, string> ModuleDict
+        {
+            get { return _ModuleDict; }
+            set { _ModuleDict = value; }
+        }
+
         private Dictionary<long, string> _SemesterDict = new Dictionary<long, string>();
         public Dictionary<long, string> SemesterDict
         {
@@ -44,46 +68,63 @@ namespace Frontend.ViewModel
             set { _SemesterDict = value; }
         }
 
-        #endregion
-
-        public AdminPageViewModel()
+        private ICommand _FillStudyProgramDictCommand;
+        public ICommand FillStudyProgramDictCommand
         {
+            get
+            {
+                if (_FillStudyProgramDictCommand == null)
+                {
+                    _FillStudyProgramDictCommand = new ActionCommand(param => this.FillStudyProgramDict(param as FieldOfStudy));
+                }
+                return _FillStudyProgramDictCommand;
+            }
+        }
 
-            //Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
-
-            //LoadFieldOfStudyList();
+        private ICommand _FillExamRegulationDictCommand;
+        public ICommand FillExamRegulationDictCommand
+        {
+            get
+            {
+                if (_FillExamRegulationDictCommand == null)
+                {
+                    _FillExamRegulationDictCommand = new ActionCommand(param => this.FillExamRegulationDict(param as StudyProgram));
+                }
+                return _FillExamRegulationDictCommand;
+            }
         }
 
         private async void LoadFieldOfStudyList()
         {
-            try
-            {
+            try {
                 await RequestMainInformationDataFromServerAsync();
-            }
-            catch (Exception ex)
+            }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
 
+        public void LoadTimetable()
+        {
+
+        }
 
         private async Task RequestMainInformationDataFromServerAsync()
         {
-
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/fieldOfStudy");
             Console.WriteLine("[RequestMainInformationDataFromServer]" + response.StatusDescription);
             if ((int)response.StatusCode >= 400) return;
+
             Console.WriteLine(response.Content.ToString());
             _FieldOfStudyList = JsonConvert.DeserializeObject<List<FieldOfStudy>>(response.Content.ToString());
-
             FillFieldOfStudyDicts(_FieldOfStudyList);
-
+            
         }
 
         private void FillFieldOfStudyDicts(List<FieldOfStudy> fieldOfStudyList)
         {
-            if (fieldOfStudyList != null)
+            if(fieldOfStudyList != null)
             {
                 FieldOfStudyDict.Clear();
                 foreach (FieldOfStudy FoS in fieldOfStudyList)
@@ -99,10 +140,10 @@ namespace Frontend.ViewModel
 
         public void FillStudyProgramDict(FieldOfStudy fieldOfStudy)
         {
-            if (fieldOfStudy.StudyPrograms != null)
+            if(fieldOfStudy.StudyPrograms != null)
             {
                 StudyProgramDict.Clear();
-                foreach (StudyProgram sP in fieldOfStudy.StudyPrograms)
+                foreach(StudyProgram sP in fieldOfStudy.StudyPrograms)
                 {
                     StudyProgramDict.Add(sP, sP.Title);
                 }
@@ -111,17 +152,15 @@ namespace Frontend.ViewModel
 
         public void FillExamRegulationDict(StudyProgram studyProgram)
         {
-            if (studyProgram.ExamRegulations != null)
+            if(studyProgram.ExamRegulations != null)
             {
                 ExamRegulationDict.Clear();
-                foreach (ExamRegulation eR in studyProgram.ExamRegulations)
+                foreach(ExamRegulation eR in studyProgram.ExamRegulations)
                 {
                     // Datum Format Y de-DE => Oktober 2008
                     ExamRegulationDict.Add(eR, eR.Date.ToString("Y", CultureInfo.CreateSpecificCulture("de-DE")));
                 }
             }
         }
-
-
     }
 }

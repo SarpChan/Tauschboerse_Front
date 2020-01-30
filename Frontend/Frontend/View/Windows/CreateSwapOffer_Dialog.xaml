@@ -130,7 +130,7 @@
 
         <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
+            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
                 <ComboBox x:Name="combo_courseList" ItemsSource="{Binding CourseList}" Padding="10 15" SelectionChanged="CourseSelectionChanged" IsEditable="False" IsReadOnly="True">
                     <ComboBox.ItemTemplate>
@@ -145,7 +145,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
-            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
+            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="KursTyp"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
                 <ComboBox x:Name="combo_courseTypeList" ItemsSource="{Binding CourseTypeList}" Padding="10 15" SelectionChanged="CourseTypeSelectionChanged">
                     <ComboBox.ItemTemplate>
@@ -191,7 +191,7 @@
 
         <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
         <WrapPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 0 0 0">
-            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create"/>
+            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create" Margin="0 0 0 0"/>
             <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloseWindow" Margin="40 0 0 0"/>
 
         </WrapPanel>
