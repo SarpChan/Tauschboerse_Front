@@ -23,13 +23,24 @@ namespace Frontend.ViewModel
             get { return _CourseList; }
         }
 
-        private ObservableCollection<SwapOfferCourse> _GroupList = new ObservableCollection<SwapOfferCourse>();
+        private List<SwapOfferCourse> DatabaseCourses = new List<SwapOfferCourse>();
+
+        private ObservableCollection<SwapOfferGroup> _GroupList = new ObservableCollection<SwapOfferGroup>();
         /// <summary>
         /// Eine Liste mit allen Öffentlichen Tauschangeboten
         /// </summary>
-        public ObservableCollection<SwapOfferCourse> GroupList
+        public ObservableCollection<SwapOfferGroup> GroupList
         {
             get { return _GroupList; }
+        }
+
+        private ObservableCollection<SwapOfferCourse> _CourseTypeList = new ObservableCollection<SwapOfferCourse>();
+        /// <summary>
+        /// Eine Liste mit allen Öffentlichen Tauschangeboten
+        /// </summary>
+        public ObservableCollection<SwapOfferCourse> CourseTypeList
+        {
+            get { return _CourseTypeList; }
         }
 
         private Dictionary<long, List<SwapOfferCourse>> courseDict = new Dictionary<long, List<SwapOfferCourse>>();
@@ -38,27 +49,97 @@ namespace Frontend.ViewModel
 
         public SwapOfferDialogViewModel()
         {
-            //FillLists();
-            FillDummy();
+            
+            FetchFromDatabase();
+            FromGroup = "";
+        }
+        
+        public void CourseSelectionChanged(SwapOfferCourse selectedItem)
+        {        
+            CourseTypeList.Clear();
+            GroupList.Clear();
+            FromGroup = "";
+            foreach (SwapOfferCourse courseType in courseDict[selectedItem.CourseId])
+            {
+                CourseTypeList.Add(courseType);
+            }
         }
 
-        private void CourseSelectionChanged(object sender, SelectionChangedEventArgs e)
+        public async void CreateSwapOffer()
         {
-            SwapOfferGroup selectedItem = (e.AddedItems[0] as ComboBoxItem).Content as SwapOfferGroup;
-            Console.WriteLine(selectedItem.Id);
+            SwapOffer so = new SwapOffer(FromGroupId, ToGroupId);
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewPOSTRequest("/rest/swapOffer/create", so);
+            Console.WriteLine(response.Content);
+            if ((int)response.StatusCode >= 400) return;
         }
-        //DropDownClosed 
+
+        public void CourseTypeSelectionChanged(SwapOfferCourse selectedItem)
+        {
+            FromGroup = "Gruppe " + selectedItem.GroupChar;
+            GroupList.Clear();
+            foreach (SwapOfferGroup group in selectedItem.Groups)
+            {
+                if(group.Char == selectedItem.GroupChar)
+                {
+                    FromGroupId = group.Id;
+                }
+                GroupList.Add(group);
+            }
+        }
+
+        public void GroupSelect(SwapOfferGroup group)
+        {
+            ChangeLine = "Du wechselst von " + FromGroup + " zu Gruppe " + group.Char;
+            Console.WriteLine(ChangeLine);
+            ToGroupId = group.Id;
+        }
+        
+
+        public SwapOfferCourse SelectedCourse {get;set;}
+
+        public string _ChangeLine;
+        public string ChangeLine
+        {
+            get
+            {
+                return _ChangeLine;
+            }
+            set
+            {
+                _ChangeLine = value;
+                OnPropertyChanged("ChangeLine");
+            }
+        }
+
+        private long FromGroupId = 0;
+        private long ToGroupId = 0;
+
+        public string _FromGroup;
+        public string FromGroup
+        {
+            get
+            {
+                return _FromGroup;
+            } set
+            {
+                _FromGroup = value;
+                OnPropertyChanged("FromGroup");
+            }
+        }
+        
 
         public void FillDummy()
         {
-            CourseList.Add(new SwapOfferCourse
+            Console.WriteLine("Filling");
+            DatabaseCourses.Add(new SwapOfferCourse
             {
-                courseComponentId = 0,
-                courseId = 1,
-                courseName = "Prog 3",
-                courseType = "Praktikum",
-                groupChar = 'A',
-                groups = new List<SwapOfferGroup>
+                CourseComponentId = 0,
+                CourseId = 1,
+                CourseName = "Prog 3",
+                CourseType = "Praktikum",
+                GroupChar = 'A',
+                Groups = new List<SwapOfferGroup>
                 {
                     new SwapOfferGroup
                     {
@@ -71,14 +152,14 @@ namespace Frontend.ViewModel
                     }
                 }
             });
-            CourseList.Add(new SwapOfferCourse
+            DatabaseCourses.Add(new SwapOfferCourse
             {
-                courseComponentId = 1,
-                courseId = 1,
-                courseName = "Prog 3",
-                courseType = "Übung",
-                groupChar = 'B',
-                groups = new List<SwapOfferGroup>
+                CourseComponentId = 1,
+                CourseId = 1,
+                CourseName = "Prog 3",
+                CourseType = "Übung",
+                GroupChar = 'B',
+                Groups = new List<SwapOfferGroup>
                 {
                     new SwapOfferGroup
                     {
@@ -91,20 +172,55 @@ namespace Frontend.ViewModel
                     }
                 }
             });
+            DatabaseCourses.Add(new SwapOfferCourse
+            {
+                CourseComponentId = 0,
+                CourseId = 2,
+                CourseName = "Eibo",
+                CourseType = "Tutorium",
+                GroupChar = 'B',
+                Groups = new List<SwapOfferGroup>
+                {
+                    new SwapOfferGroup
+                    {
+                        Char = 'A',
+                        Id = 19
+                    }, new SwapOfferGroup
+                    {
+                        Char = 'B',
+                        Id = 20
+                    }
+                }
+            });
+
         }
 
-        public async void FillLists()
+        public void FillList()
+        {
+            foreach (SwapOfferCourse swapOfferCourse in this.DatabaseCourses)
+            {
+                List<SwapOfferCourse> fill = new List<SwapOfferCourse>();
+                bool found = this.courseDict.TryGetValue(swapOfferCourse.CourseId, out fill);
+                if(!found)
+                {
+                    this.courseDict[swapOfferCourse.CourseId] = new List<SwapOfferCourse>();
+                    CourseList.Add(swapOfferCourse);    
+                }
+                this.courseDict[swapOfferCourse.CourseId].Add(swapOfferCourse);
+            
+
+        }
+        }
+
+        public async void FetchFromDatabase()
         {
             APIClient api = APIClient.Instance;
             var response = await api.NewGETRequest("/rest/lists/availableSwaps");
-            this.allSwapOfferCourses = JsonConvert.DeserializeObject<List<SwapOfferCourse>>(response.Content);
-            foreach(SwapOfferCourse swapOfferCourse in this.allSwapOfferCourses)
-            {
-                List<SwapOfferCourse> fill;
-                this.courseDict.TryGetValue(swapOfferCourse.courseId, out fill);
-                fill.Add(swapOfferCourse);
-                CourseList.Add(swapOfferCourse);
-            }
+            Console.WriteLine(response.Content);
+            this.DatabaseCourses = JsonConvert.DeserializeObject<List<SwapOfferCourse>>(response.Content);
+            FillList();
+
+           
         }
         
     }

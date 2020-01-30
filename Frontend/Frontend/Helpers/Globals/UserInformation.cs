@@ -10,5 +10,6 @@ namespace Frontend
     {
         public static string UserName = "Unkown";
         public static bool isAdmin = false;
+        public static string UserId = "-1";
     }
 }

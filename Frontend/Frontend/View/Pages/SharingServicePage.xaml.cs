@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Frontend.View.Windows;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Frontend.View
@@ -16,7 +17,7 @@ namespace Frontend.View
 
         public void OpenDialog(object sender, RoutedEventArgs args)
         {
-            SO_Dialog d = new SO_Dialog();
+            CreateSwapOffer_Dialog d= new CreateSwapOffer_Dialog();
             d.Show();
             d.Topmost = true;
         }

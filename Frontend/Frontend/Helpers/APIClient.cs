@@ -44,7 +44,10 @@ namespace Frontend.Helpers
             Console.WriteLine("->"+response.ResponseStatus);
             if (response.IsSuccessful)
             {
-                _client.Authenticator = new JwtAuthenticator(response.Content);
+                string token = response.Content.Split(' ')[0];
+                _client.Authenticator = new JwtAuthenticator(token);
+                UserInformation.UserId = response.Content.Split(' ')[1];
+                Console.WriteLine(UserInformation.UserId);
                 return true;
             } else if(response.ResponseStatus != ResponseStatus.Completed)
             {

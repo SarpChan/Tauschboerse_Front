@@ -309,25 +309,6 @@ namespace Frontend.ViewModel
             set { }
         }
 
-        private ICommand _EditCommand;
-
-        /// <summary>
-        /// Command der an den Edit Button in jeder Zeile gebinded wird
-        /// </summary>
-        /*public ICommand EditCommand
-        {
-            get
-            {
-                if (_EditCommand == null)
-                {
-                    _EditCommand = new ActionCommand(id => EditTradeOffer(id));
-                }
-
-                return _EditCommand;
-            }
-            set { }
-        }*/
-
         private ICommand _RequestCommand;
 
         /// <summary>
@@ -392,7 +373,7 @@ namespace Frontend.Models
             {"lecture", "Vorlesung"},
             {"practice", "Praktikum"},
             {"tutorial", "Tutorium"},
-            {"test", "Test"},
+            {"test", "Übung"},
         };
 
         private Dictionary<String, String> CourseTypeTranslateRe = new Dictionary<string, string>() {

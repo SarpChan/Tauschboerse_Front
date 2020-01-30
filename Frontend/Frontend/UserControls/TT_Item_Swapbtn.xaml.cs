@@ -1,6 +1,5 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
-using Frontend.Models.SwapOffers;
 using Frontend.View;
 using Newtonsoft.Json;
 using System;
@@ -79,7 +78,7 @@ namespace Frontend.UserControls
            
             d.CourseName.Text = item.Module.Module.CourseName;
             d.CourseType.Text = item.Module.Module.Type.ToString();
-            d.FromGroup.Text = item.Module.Module.GroupChar;      
+            //d.FromGroup.Text = item.Module.Module.GroupChar;      
             d.ModuleID = item.Module.Module.ID;
             GetGroupLstAsync();
 

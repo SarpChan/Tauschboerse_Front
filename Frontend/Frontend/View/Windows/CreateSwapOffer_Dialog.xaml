@@ -7,14 +7,14 @@
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-        Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="50pt"  MaxWidth="500pt"
+        Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MaxWidth="500pt" MinWidth="500pt" MaxHeight="500pt"
             >
-    
+
     <Window.Resources>
         <viewmodel:SwapOfferDialogViewModel x:Name="SwapOfferDialogViewModel" x:Key="SwapOfferDialogViewModel"/>
         <!--Combobox  Style-->
-        
-        
+
+
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#d2e7eb"/>
 
         <Style TargetType="ComboBoxItem">
@@ -112,17 +112,15 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Window.DataContext>
-        <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
-    </Window.DataContext>
 
     <!--Griddefinition-->
-    <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left">
+    <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left" x:Name="WrapperGrid"  DataContext="{StaticResource SwapOfferDialogViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -134,23 +132,49 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <xctk:WatermarkTextBox x:Name="CourseName" Style="{StaticResource Textbox}" Watermark="Kursname" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
+                <ComboBox x:Name="combo_courseList" ItemsSource="{Binding CourseList}" Padding="10 15" SelectionChanged="CourseSelectionChanged" IsEditable="False" IsReadOnly="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CourseName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Border>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
             <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <xctk:WatermarkTextBox x:Name="TargetCourse" Style="{StaticResource Textbox}" Watermark="Kursname" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
+                <ComboBox x:Name="combo_courseTypeList" ItemsSource="{Binding CourseTypeList}" Padding="10 15" SelectionChanged="CourseTypeSelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CourseType}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Border>
         </StackPanel>
 
 
-        <StackPanel Grid.Column="0" Grid.Row="2">
-            <TextBlock x:Name="From" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0"><Run Text="Von Gruppe"/></TextBlock>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="0 0 0 0">
+            <TextBlock x:Name="from" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Von Gruppe"/></TextBlock>
             <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <!--<xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="Gruppe" Width="250" HorizontalAlignment="Left" Padding="10 15"/>-->
-                <ComboBox x:Name="cmbColors" SelectionChanged="cmbColors_SelectionChanged" ItemsSource="{Binding }">
+                <!--<xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="" Width="250" HorizontalAlignment="Left" Padding="10 15" Text="/>-->
+                <Label Content="{Binding FromGroup, NotifyOnSourceUpdated=True}"/>
+            </Border>
+
+        </StackPanel>
+
+        <!--Combobox für die noch auszuwählenden Gruppen-->
+        <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
+            <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
+            <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
+                <ComboBox x:Name="combo_toGroup" ItemsSource="{Binding GroupList}" Padding="10 15" SelectionChanged="GroupSelect">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -160,24 +184,15 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </Border>
-
+            
         </StackPanel>
 
-        <!--Combobox für die noch auszuwählenden Gruppen-->
-        <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
-            <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
-            <ComboBox x:Name="ToGroup" ItemsSource="{Binding .}" Width="250" Height="50" HorizontalAlignment="Left">
-                <!--<ComboBoxItem Content="Gruppe A"/>
-                <ComboBoxItem IsSelected="True" Content="Gruppe B"/>
-                <ComboBoxItem Content="Gruppe C"/>
-                <ComboBoxItem Content="Gruppe D"/>-->
-            </ComboBox>
-        </StackPanel>
+        <TextBlock Text="{Binding ChangeLine}" Grid.Row="4" Grid.ColumnSpan="2" Margin="0 20" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" HorizontalAlignment="Center" FontSize="20" FontWeight="Normal"/>
 
         <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
-        <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 60 0 0">
+        <WrapPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 0 0 0">
             <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create"/>
-            <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloWi" Margin="40 0 0 0"/>
+            <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloseWindow" Margin="40 0 0 0"/>
 
         </WrapPanel>
 
