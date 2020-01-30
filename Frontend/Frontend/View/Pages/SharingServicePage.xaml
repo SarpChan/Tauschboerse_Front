@@ -197,7 +197,7 @@
                 <Button HorizontalAlignment="Left" Margin="0,20,0,0" Style="{Binding Mode=OneWay, Source={StaticResource UniversalButton}}" Click="OpenDialog">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0">
                         <Image Name="AddIcon" Source="{DynamicResource add}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <TextBlock Padding="10,8,0,0" Height="40" Text="Tauschangebot erstellen" Margin="0,0,10,0" />
+                        <TextBlock  VerticalAlignment="Center" Text="Tauschangebot erstellen" Margin="10,0,10,0" />
                     </DockPanel>
                 </Button>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Alle öffentlichen Tauschangebote" FontSize="24" FontFamily="/Frontend;component/Resources/Fonts/#Kiona" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" Margin="0,40,0,20" />
