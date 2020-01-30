@@ -68,6 +68,7 @@ namespace Frontend.ViewModel
         public async void CreateSwapOffer()
         {
             SwapOffer so = new SwapOffer(FromGroupId, ToGroupId);
+            Console.WriteLine(FromGroupId + " - " + ToGroupId);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapoffer/insert", so);
             Console.WriteLine(response.Content);
@@ -78,12 +79,9 @@ namespace Frontend.ViewModel
         {
             FromGroup = "Gruppe " + selectedItem.GroupChar;
             GroupList.Clear();
+            FromGroupId = selectedItem.GroupId;
             foreach (SwapOfferGroup group in selectedItem.Groups)
             {
-                if(group.Char == selectedItem.GroupChar)
-                {
-                    FromGroupId = group.Id;
-                }
                 GroupList.Add(group);
             }
         }

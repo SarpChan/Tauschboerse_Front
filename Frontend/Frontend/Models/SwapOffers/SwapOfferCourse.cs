@@ -30,6 +30,8 @@ namespace Frontend.Models
         public char _groupChar;
         [JsonProperty("type")]
         public string _courseType;
+        [JsonProperty("myGroupId")]
+        public long _groupId;
 
         [JsonIgnore]
         public long CourseComponentId
@@ -96,6 +98,20 @@ namespace Frontend.Models
         }
 
         [JsonIgnore]
+        public long GroupId
+        {
+            get
+            {
+                return _groupId;
+            }
+            set
+            {
+                _groupId = value;
+            }
+        }
+
+
+        [JsonIgnore]
         public string CourseType
         {
             get
@@ -107,6 +123,8 @@ namespace Frontend.Models
                 _courseType = value;
             }
         }
+
+
 
     }
 
