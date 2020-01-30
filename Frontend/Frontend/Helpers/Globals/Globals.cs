@@ -43,5 +43,16 @@ namespace Frontend
         public static double TimeTextFontSize = 12;
         public static double RowPadding = 0;
 
+        public static Dictionary<string, string> dayValues = new Dictionary<string, string>()
+        {
+            { "MONDAY", "1" },
+            { "TUESDAY", "2" },
+            { "WEDNESDAY", "3" },
+            { "THURSDAY", "4" },
+            { "FRIDAY", "5" },
+            { "SATURDAY", "6" },
+            { "SUNDAY", "7" }
+        };
+
     }
 }

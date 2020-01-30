@@ -9,6 +9,7 @@ using Frontend.Helpers;
 using Microsoft.Win32;
 using System.IO;
 using Frontend.ViewModel;
+using Newtonsoft.Json;
 
 namespace Frontend.View
 {
@@ -58,19 +59,33 @@ namespace Frontend.View
 
         private void FieldofStudyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (KeyValuePair<FieldOfStudy, string> x in e.AddedItems)
+            foreach (FieldOfStudy x in e.AddedItems)
             {
-
-                AdminPageViewModel.FillStudyProgramDict(x.Key);
+                AdminPageViewModel.FillStudyProgramList(x);
             }
         }
 
         private void StudyProgramComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (KeyValuePair<StudyProgram, string> x in e.AddedItems)
+            foreach (StudyProgram x in e.AddedItems)
             {
-                AdminPageViewModel.FillExamRegulationDict(x.Key);
+                AdminPageViewModel.FillExamRegulationList(x);
             }
+        }
+
+        private void ExamRegulationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach(ExamRegulation eR in e.AddedItems)
+            {
+                AdminPageViewModel.FillSemesterList(eR);
+            }
+        }
+
+        private void Semester_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var content = (string)button.Content;
+            AdminPageViewModel.LoadNewTimeTable(content);
         }
     }
 }

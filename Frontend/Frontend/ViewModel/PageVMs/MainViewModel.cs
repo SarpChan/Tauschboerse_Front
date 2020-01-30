@@ -27,7 +27,7 @@ namespace Frontend.ViewModel
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
 
         private int thisID;
-        private Dictionary<string, string> dayValues = new Dictionary<string, string>();
+        
         
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
@@ -35,13 +35,6 @@ namespace Frontend.ViewModel
         public MainViewModel()
         {
 
-            dayValues.Add("MONDAY", "1");
-            dayValues.Add("TUESDAY", "2");
-            dayValues.Add("WEDNESDAY", "3");
-            dayValues.Add("THURSDAY", "4");
-            dayValues.Add("FRIDAY", "5");
-            dayValues.Add("SATURDAY", "6");
-            dayValues.Add("SUNDAY", "7");
             ActivePage = "HomePage.xaml";
             IsLoading = false;
             personalData = PersonalData.Instance;
@@ -281,7 +274,7 @@ namespace Frontend.ViewModel
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
-                tm.Day = dayValues[tm.Day];
+                tm.Day = Globals.dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             timetableModuleList.SetList(tempTable);
@@ -342,12 +335,10 @@ namespace Frontend.ViewModel
             if ((int)response.StatusCode >= 400) return;
             
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
-            foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
+            foreach (TimetableModule tm in tempTable)
             {
-                tm.Day = dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+                tm.Day = Globals.dayValues[tm.Day];
             }
-
             timetableModuleList.SetList(tempTable);
             
         }

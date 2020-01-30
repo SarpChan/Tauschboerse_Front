@@ -5,8 +5,10 @@
       xmlns:user_controls="clr-namespace:Frontend.UserControls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+      xmlns:helpers="clr-namespace:Frontend.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1640"
+      x:Name="Admin"
       Title="Admin">
 
     <Page.DataContext>
@@ -15,6 +17,7 @@
 
     <Page.Resources>
 
+        <helpers:ExamRegulationDataConverter x:Key="ExamRegulationDataConverter"/>
         <!-- margin rectangle -->
         <Thickness  x:Key="RectangleMargin" Right="10" Left="30" />
         <Thickness  x:Key="firstRectangleMargin" Right="10" Left="0" />
@@ -167,14 +170,41 @@
                 -->
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}"
-                              ItemsSource="{Binding FieldOfStudyDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
-                              SelectionChanged="FieldofStudyComboBox_SelectionChanged"/>
-                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}"
-                              ItemsSource="{Binding SemesterDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
-                              SelectionChanged="StudyProgramComboBox_SelectionChanged"/>
-                    <ComboBox Name="ExamRegulationComboBox" Text="PO" Width="50"
-                              ItemsSource="{Binding ExamRegulationDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                    <ComboBox x:Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}"
+                              ItemsSource="{Binding FieldOfStudyList, ElementName=AdminPageViewModel}"
+                              SelectionChanged="FieldofStudyComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <ComboBox x:Name="StudyProgramComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}"
+                              ItemsSource="{Binding StudyProgramList, ElementName=AdminPageViewModel}"
+                              SelectionChanged="StudyProgramComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <ComboBox x:Name="ExamRegulationComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}"
+                              ItemsSource="{Binding ExamRegulationList , ElementName=AdminPageViewModel}"
+                              SelectionChanged="ExamRegulationComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Date,Converter={StaticResource ExamRegulationDataConverter}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </DockPanel>
                 
                 <!-- caption-->
@@ -187,7 +217,23 @@
                     <TextBlock Text="= Stundenplan fehlt" Style="{StaticResource TextTextblock}" />
                 </DockPanel>
 
-                <user_controls:SelectionBarElement Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left" />
+                <ItemsControl x:Name="SemsterSelector" ItemsSource="{Binding SemesterList,ElementName=AdminPageViewModel}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Left" Background="White" />
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Name="Semester" HorizontalContentAlignment="Center" Click="Semester_Click"
+                                    Margin="5pt" Style="{StaticResource AdminButton}"
+                                    Content="{Binding .}">
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <DockPanel Margin="{StaticResource HeaderMargin}">
                     <Button DockPanel.Dock="Left" Style="{StaticResource Deletebutton}" Content="Studenplan löschen" Margin="{StaticResource TextMargin}"/>

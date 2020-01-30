@@ -80,7 +80,7 @@ namespace Frontend.ViewModel
 
         public TimetableTetris()
         {
-            
+
         }
 
         public void StartGame()
@@ -125,8 +125,11 @@ namespace Frontend.ViewModel
         {
 
 
-            player = new TimetableModule() { ID = new Random().Next(), StartTime = Globals.StartTime.ToString(@"hh\:mm"),
-            EndTime = Globals.StartTime.Add(new TimeSpan(1, 0, 0)).ToString(@"hh\:mm")
+            player = new TimetableModule()
+            {
+                ID = new Random().Next(),
+                StartTime = Globals.StartTime.ToString(@"hh\:mm"),
+                EndTime = Globals.StartTime.Add(new TimeSpan(1, 0, 0)).ToString(@"hh\:mm")
             };
 
             moduleListModel.ModuleList.Add(player);
@@ -154,7 +157,7 @@ namespace Frontend.ViewModel
                 start = start.Add(Globals.TimeSubdivision);
                 end = end.Add(Globals.TimeSubdivision);
 
-                if (CheckGround(start,end))
+                if (CheckGround(start, end))
                 {
                     if (startBefore == Globals.StartTime)
                     {
@@ -162,6 +165,7 @@ namespace Frontend.ViewModel
                     }
 
                     _IsGrounded = true;
+                    //CheckForLineClear();
                 }
                 else
                 {
@@ -172,9 +176,50 @@ namespace Frontend.ViewModel
             }
         }
 
-        public bool CheckGround(TimeSpan start,TimeSpan end)
+        private void CheckForLineClear()
         {
-            if (end > Globals.EndTime || CheckBlock(start,end, Convert.ToInt32(player.Day)))
+            foreach (var ttm_1 in moduleListModel.ModuleList)
+            {
+                if (CheckForFullLine(ttm_1))
+                {
+
+                }
+                
+            }
+        }
+
+        private bool CheckForFullLine(TimetableModule ttm_1)
+        {
+
+            TimeSpan start = TimeSpan.Parse(ttm_1.StartTime);
+            TimeSpan end = TimeSpan.Parse(ttm_1.EndTime);
+            
+            for (int i = 0; i < Globals.weekdays; i++)
+            {
+                if (!CheckOnDay(start, end, i))
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+        private bool CheckOnDay(TimeSpan start, TimeSpan end,int day)
+        {
+            foreach (var t in moduleListModel.ModuleList)
+            {
+                if (CheckBlock(start, end, day))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckGround(TimeSpan start, TimeSpan end)
+        {
+            if (end > Globals.EndTime || CheckBlock(start, end, Convert.ToInt32(player.Day)))
             {
                 return true;
             }
@@ -184,16 +229,16 @@ namespace Frontend.ViewModel
             }
         }
 
-        public bool CheckBlock(TimeSpan s1,TimeSpan e1, int day)
+        public bool CheckBlock(TimeSpan s1, TimeSpan e1, int day)
         {
 
-            foreach(var ttm in moduleListModel.ModuleList)
+            foreach (var ttm in moduleListModel.ModuleList)
             {
 
                 TimeSpan s2 = TimeSpan.Parse(ttm.StartTime);
                 TimeSpan e2 = TimeSpan.Parse(ttm.EndTime);
 
-                if (ttm != player && day == Convert.ToInt32(ttm.Day) && (s1 > s2 && s1 < e2 ||e1 > s2 && e1 < e2))
+                if (ttm != player && day == Convert.ToInt32(ttm.Day) && (s1 > s2 && s1 < e2 || e1 > s2 && e1 < e2))
                 {
                     return true;
                 }
@@ -216,7 +261,7 @@ namespace Frontend.ViewModel
                 TimeSpan start = TimeSpan.Parse(player.StartTime);
 
 
-                if (d >= 1 && !CheckBlock(start,end, d - 1))
+                if (d >= 1 && !CheckBlock(start, end, d - 1))
                 {
                     d -= 1;
                     player.Day = Convert.ToString(d);
@@ -239,7 +284,7 @@ namespace Frontend.ViewModel
                 TimeSpan end = TimeSpan.Parse(player.EndTime);
                 TimeSpan start = TimeSpan.Parse(player.StartTime);
 
-                if (d < Globals.weekdays - 1 && !CheckBlock(start,end, d + 1))
+                if (d < Globals.weekdays - 1 && !CheckBlock(start, end, d + 1))
                 {
                     d += 1;
                     player.Day = Convert.ToString(d);
@@ -261,16 +306,16 @@ namespace Frontend.ViewModel
             {
                 _QueueThread = new Thread(() =>
                 {
-                    while(_InputQueue.Count != 0)
+                    while (_InputQueue.Count != 0)
                     {
                         _InputQueue.Dequeue()();
                     }
-                    
+
                 });
 
                 _QueueThread.Start();
             }
-            
+
         }
     }
 }

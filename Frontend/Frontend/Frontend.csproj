@@ -82,6 +82,7 @@
     <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
+    <Compile Include="Helpers\Converters\ExamRegulationDateConverter.cs" />
     <Compile Include="Helpers\Converters\TimeConverter.cs" />
     <Compile Include="Helpers\Converters\TimeToCoordinatesConverter.cs" />
     <Compile Include="Helpers\Converters\TypeToIconConverter.cs" />
