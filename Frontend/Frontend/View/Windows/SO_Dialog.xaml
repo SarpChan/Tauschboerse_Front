@@ -127,7 +127,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
+        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Kurs tauschen"/></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">

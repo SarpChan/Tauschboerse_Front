@@ -17,15 +17,17 @@
     <Style TargetType="{x:Type Button}" x:Key="UniversalButton">
         <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
         <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="{StaticResource CD_Grey}"/>
         <Setter Property="MinWidth" Value="180" />
         <Setter Property="Height" Value="50" />
+        <Setter Property="Margin" Value="10 0 0 10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <!--Triggers for switching on hover -->
                     <ControlTemplate.Triggers>
