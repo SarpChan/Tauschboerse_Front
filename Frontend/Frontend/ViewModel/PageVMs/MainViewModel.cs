@@ -338,7 +338,7 @@ namespace Frontend.ViewModel
            
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("/rest/lists/date_timetable");
+            var response = await apiClient.NewGETRequest("/rest/lists/date_timetable/1");
             if ((int)response.StatusCode >= 400) return;
             
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());

@@ -88,9 +88,12 @@ namespace Frontend.ViewModel
 
         private async Task SendChangesToServerAsync()
         {
+            Console.WriteLine(EditTimetableModule.StartTime);
+            Console.WriteLine(EditTimetableModule.EndTime);
+
             APIClient apiClient = APIClient.Instance;
             string json = JsonConvert.SerializeObject(EditTimetableModule);
-            var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate", EditTimetableModule);
+            var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate", json);
             
             if ((int)response.StatusCode >= 400) return;
             Console.WriteLine("[SAVE TIMETABLE]"+response.Content.ToString());

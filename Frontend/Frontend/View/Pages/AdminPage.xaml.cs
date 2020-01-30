@@ -58,17 +58,18 @@ namespace Frontend.View
 
         private void FieldofStudyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (StudyProgram Sp in e.AddedItems)
+            foreach (KeyValuePair<FieldOfStudy, string> x in e.AddedItems)
             {
-                AdminPageViewModel.FillExamRegulationDict(Sp);
+
+                AdminPageViewModel.FillStudyProgramDict(x.Key);
             }
         }
 
         private void StudyProgramComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (FieldOfStudy foS in e.AddedItems)
+            foreach (KeyValuePair<StudyProgram, string> x in e.AddedItems)
             {
-                AdminPageViewModel.FillStudyProgramDict(foS);
+                AdminPageViewModel.FillExamRegulationDict(x.Key);
             }
         }
     }

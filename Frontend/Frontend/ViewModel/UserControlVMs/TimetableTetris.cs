@@ -13,32 +13,18 @@ namespace Frontend.ViewModel
 {
     class TimetableTetris
     {
-
+        InputQueue _InputQueue = new InputQueue();
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
         private TimetableModule player = new TimetableModule();
+        private Task _GameTask;
+        private Task _QueueTask;
 
         private bool _IsGrounded = false;
         private bool _IsGameOver = false;
+        public bool IsGameOver { get { return _IsGameOver; } }
 
 
         #region Commands
-
-        private ICommand _StartCommand;
-        public ICommand StartCommand
-
-        {
-            get
-            {
-                if (_StartCommand == null)
-
-                {
-                    _StartCommand = new ActionCommand(dummy => this.StartGame(), null);
-                }
-                return _StartCommand;
-            }
-
-        }
-
         private ICommand _LeftCommand;
         public ICommand LeftCommand
 
@@ -89,16 +75,17 @@ namespace Frontend.ViewModel
 
 
 
+
         #endregion
 
         public TimetableTetris()
         {
-
+            
         }
 
         public void StartGame()
         {
-            Task gameTask = Task.Factory.StartNew(() =>
+            _GameTask = Task.Factory.StartNew(() =>
             {
                 SetUpTimetable();
                 GameThread();
@@ -108,6 +95,7 @@ namespace Frontend.ViewModel
         private void GameThread()
         {
             Spawn();
+
             while (!_IsGameOver)
             {
                 if (_IsGrounded)
@@ -118,6 +106,9 @@ namespace Frontend.ViewModel
                 Down();
                 Thread.Sleep(200);
             }
+
+            Thread.Sleep(200);
+            KillGame();
         }
 
         private void SetUpTimetable()
@@ -127,6 +118,13 @@ namespace Frontend.ViewModel
 
         private void Spawn()
         {
+            _InputQueue.Enqueque(HandleSpawn);
+        }
+
+        private void HandleSpawn()
+        {
+
+
             player = new TimetableModule() { ID = new Random().Next(), StartTime = Globals.StartTime.ToString(@"hh\:mm"),
             EndTime = Globals.StartTime.Add(new TimeSpan(1, 0, 0)).ToString(@"hh\:mm")
             };
@@ -135,28 +133,48 @@ namespace Frontend.ViewModel
             _IsGrounded = false;
         }
 
+        public void KillGame()
+        {
+            _IsGameOver = true;
+            moduleListModel.ClearList();
+        }
+
         public void Down()
-        { 
-            TimeSpan start = TimeSpan.Parse(player.StartTime);
-            TimeSpan end = TimeSpan.Parse(player.EndTime);
-            start = start.Add(Globals.TimeSubdivision);
-            end = end.Add(Globals.TimeSubdivision);
+        {
+            _InputQueue.Enqueque(HandleDown);
+        }
 
-            if (CheckGround(end))
+        private void HandleDown()
+        {
+            if (!_IsGameOver)
             {
-                _IsGrounded = true;
-            }
-            else
-            {
-                player.StartTime = start.ToString(@"hh\:mm");
-                player.EndTime = end.ToString(@"hh\:mm");
+                TimeSpan start = TimeSpan.Parse(player.StartTime);
+                TimeSpan end = TimeSpan.Parse(player.EndTime);
+                var startBefore = start;
+                start = start.Add(Globals.TimeSubdivision);
+                end = end.Add(Globals.TimeSubdivision);
 
+                if (CheckGround(start,end))
+                {
+                    if (startBefore == Globals.StartTime)
+                    {
+                        _IsGameOver = true;
+                    }
+
+                    _IsGrounded = true;
+                }
+                else
+                {
+                    player.StartTime = start.ToString(@"hh\:mm");
+                    player.EndTime = end.ToString(@"hh\:mm");
+
+                }
             }
         }
 
-        public bool CheckGround(TimeSpan end)
+        public bool CheckGround(TimeSpan start,TimeSpan end)
         {
-            if (end > Globals.EndTime || CheckBlock(end))
+            if (end > Globals.EndTime || CheckBlock(start,end, Convert.ToInt32(player.Day)))
             {
                 return true;
             }
@@ -165,14 +183,17 @@ namespace Frontend.ViewModel
                 return false;
             }
         }
-        public bool CheckBlock(TimeSpan end)
+
+        public bool CheckBlock(TimeSpan s1,TimeSpan e1, int day)
         {
-            int day = Convert.ToInt32(player.Day);
 
             foreach(var ttm in moduleListModel.ModuleList)
             {
 
-                if (ttm != player && day == Convert.ToInt32(ttm.Day) && TimeSpan.Parse(ttm.StartTime) < end)
+                TimeSpan s2 = TimeSpan.Parse(ttm.StartTime);
+                TimeSpan e2 = TimeSpan.Parse(ttm.EndTime);
+
+                if (ttm != player && day == Convert.ToInt32(ttm.Day) && (s1 > s2 && s1 < e2 ||e1 > s2 && e1 < e2))
                 {
                     return true;
                 }
@@ -182,22 +203,74 @@ namespace Frontend.ViewModel
 
         public void Left()
         {
-            int d = Convert.ToInt32(player.Day);
-            if (d >= 1)
+            _InputQueue.Enqueque(HandleLeft);
+        }
+
+        private void HandleLeft()
+        {
+
+            if (!_IsGameOver)
             {
-                d -= 1;
-                player.Day = Convert.ToString(d);
+                int d = Convert.ToInt32(player.Day);
+                TimeSpan end = TimeSpan.Parse(player.EndTime);
+                TimeSpan start = TimeSpan.Parse(player.StartTime);
+
+
+                if (d >= 1 && !CheckBlock(start,end, d - 1))
+                {
+                    d -= 1;
+                    player.Day = Convert.ToString(d);
+                }
             }
         }
 
+
         public void Right()
         {
-            int d = Convert.ToInt32(player.Day);
-            if(d < Globals.weekdays-1)
+            _InputQueue.Enqueque(HandleRight);
+        }
+
+        private void HandleRight()
+        {
+
+            if (!_IsGameOver)
             {
-                d += 1;
-                player.Day = Convert.ToString(d);
+                int d = Convert.ToInt32(player.Day);
+                TimeSpan end = TimeSpan.Parse(player.EndTime);
+                TimeSpan start = TimeSpan.Parse(player.StartTime);
+
+                if (d < Globals.weekdays - 1 && !CheckBlock(start,end, d + 1))
+                {
+                    d += 1;
+                    player.Day = Convert.ToString(d);
+                }
             }
+        }
+    }
+
+    class InputQueue
+    {
+        private Thread _QueueThread;
+        Queue<Action> _InputQueue = new Queue<Action>();
+
+        public void Enqueque(Action e)
+        {
+            _InputQueue.Enqueue(e);
+
+            if (_QueueThread == null || !_QueueThread.IsAlive)
+            {
+                _QueueThread = new Thread(() =>
+                {
+                    while(_InputQueue.Count != 0)
+                    {
+                        _InputQueue.Dequeue()();
+                    }
+                    
+                });
+
+                _QueueThread.Start();
+            }
+            
         }
     }
 }

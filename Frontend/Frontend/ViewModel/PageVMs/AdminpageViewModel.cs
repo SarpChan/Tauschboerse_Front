@@ -1,6 +1,7 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
 using Newtonsoft.Json;
+using NSwag.Collections;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,29 +17,29 @@ namespace Frontend.ViewModel
         #region Properties
         private List<FieldOfStudy> _FieldOfStudyList = new List<FieldOfStudy>();
 
-        private Dictionary<FieldOfStudy, string> _FieldOfStudyDict = new Dictionary<FieldOfStudy, string>();
-        public Dictionary<FieldOfStudy, string> FieldOfStudyDict
+        private ObservableDictionary<FieldOfStudy, string> _FieldOfStudyDict = new ObservableDictionary<FieldOfStudy, string>();
+        public ObservableDictionary<FieldOfStudy, string> FieldOfStudyDict
         {
             get { return _FieldOfStudyDict; }
             set { _FieldOfStudyDict = value; }
         }
 
-        private Dictionary<StudyProgram, string> _StudyProgramDict = new Dictionary<StudyProgram, string>();
-        public Dictionary<StudyProgram, string> StudyProgramDict
+        private ObservableDictionary<StudyProgram, string> _StudyProgramDict = new ObservableDictionary<StudyProgram, string>();
+        public ObservableDictionary<StudyProgram, string> StudyProgramDict
         {
             get { return _StudyProgramDict; }
             set { _StudyProgramDict = value; }
         }
 
-        private Dictionary<ExamRegulation, string> _ExamRegulationDict = new Dictionary<ExamRegulation, string>();
-        public Dictionary<ExamRegulation, string> ExamRegulationDict
+        private ObservableDictionary<ExamRegulation, string> _ExamRegulationDict = new ObservableDictionary<ExamRegulation, string>();
+        public ObservableDictionary<ExamRegulation, string> ExamRegulationDict
         {
             get { return _ExamRegulationDict; }
             set { _ExamRegulationDict = value; }
         }
 
-        private Dictionary<long, string> _SemesterDict = new Dictionary<long, string>();
-        public Dictionary<long, string> SemesterDict
+        private ObservableDictionary<long, string> _SemesterDict = new ObservableDictionary<long, string>();
+        public ObservableDictionary<long, string> SemesterDict
         {
             get { return _SemesterDict; }
             set { _SemesterDict = value; }
@@ -51,7 +52,7 @@ namespace Frontend.ViewModel
 
             Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
 
-            //LoadFieldOfStudyList();
+            LoadFieldOfStudyList();
         }
 
         private async void LoadFieldOfStudyList()

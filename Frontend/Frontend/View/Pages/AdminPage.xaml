@@ -167,14 +167,14 @@
                 -->
 
                 <DockPanel Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Left">
-                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
-                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                    <ComboBox Name="FieldofStudyComboBox" Text="Fachbereich" Margin="{StaticResource TextMargin}"
+                              ItemsSource="{Binding FieldOfStudyDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
                               SelectionChanged="FieldofStudyComboBox_SelectionChanged"/>
-                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}" Style="{StaticResource UniversalComboBox}"
-                              ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                    <ComboBox Name="StudyProgramComboBox" Text="Studiengang" Margin="{StaticResource TextMargin}"
+                              ItemsSource="{Binding SemesterDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
                               SelectionChanged="StudyProgramComboBox_SelectionChanged"/>
-                    <ComboBox Name="ExamRegulationComboBox" Text="PO" Width="50" Style="{StaticResource UniversalComboBox}"
-                              ItemsSource="{Binding ExamRegulationDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                    <ComboBox Name="ExamRegulationComboBox" Text="PO" Width="50"
+                              ItemsSource="{Binding ExamRegulationDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                 </DockPanel>
                 
                 <!-- caption-->

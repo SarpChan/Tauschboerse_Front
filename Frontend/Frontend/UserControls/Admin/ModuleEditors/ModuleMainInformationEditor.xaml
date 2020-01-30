@@ -35,28 +35,28 @@
                
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Fachbereich" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Name="FieldOfStudyDict" Style="{StaticResource UniversalComboBox}" Text="Fachbereich"
-                              ItemsSource="{Binding FieldOfStudyDict}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                    <ComboBox Name="FieldOfStudyDict" Text="Fachbereich"
+                              ItemsSource="{Binding FieldOfStudyDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value" 
                               SelectionChanged="FieldOfStudyDict_SelectionChanged"/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Studiengang" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Name="StudyProgramsDict" Style="{StaticResource UniversalComboBox}" Text="Gruppe" HorizontalAlignment="Center"
-                               ItemsSource="{Binding StudyProgramsDict}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                    <ComboBox Name="StudyProgramsDict" Text="Gruppe" HorizontalAlignment="Center"
+                               ItemsSource="{Binding StudyProgramsDict, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Key" DisplayMemberPath="Value"
                               SelectionChanged="StudyProgramsDict_SelectionChanged"/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Module" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" HorizontalAlignment="Center"
+                    <ComboBox  HorizontalAlignment="Center"
                                ItemsSource="{Binding ModuleDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
                 </StackPanel>
 
 
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="Semester" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
-                    <ComboBox Style="{StaticResource UniversalComboBox}" HorizontalAlignment="Center"
+                    <ComboBox HorizontalAlignment="Center"
                                ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value" />
                 </StackPanel>
 

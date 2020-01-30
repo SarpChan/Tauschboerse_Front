@@ -1,5 +1,4 @@
 ﻿using Frontend.Helpers;
-using Frontend.Helpers.Calculators;
 using Frontend.Helpers.Generators;
 using Frontend.Helpers.Handlers;
 using Frontend.Models;
@@ -20,7 +19,7 @@ namespace Frontend.ViewModel
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
         private DayListModel dayListModel = new DayListModel();
-        private TimetableTetris tetris = new TimetableTetris();
+        private TimetableTetris tetris =  new TimetableTetris();
         TaskFactory taskFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
         
         public TimetableViewModel()
@@ -130,11 +129,17 @@ namespace Frontend.ViewModel
         }
 
         //Spezial Command
+        private ICommand _StartTetrisCommand;
         public ICommand StartTetrisCommand
         {
             get
             {
-                return tetris.StartCommand;
+                if (_StartTetrisCommand == null)
+
+                {
+                    _StartTetrisCommand = new ActionCommand(param => this.StartTetris(), null);
+                }
+                return _StartTetrisCommand;
             }
         }
 
@@ -159,6 +164,36 @@ namespace Frontend.ViewModel
             get
             {
                 return tetris.DownCommand;
+            }
+        }
+
+        private ICommand _KillTetrisCommand;
+        public ICommand KillTetrisCommand
+
+        {
+            get
+            {
+                if (_KillTetrisCommand == null)
+
+                {
+                    _KillTetrisCommand = new ActionCommand(param => this.KillTetris(), null);
+                }
+                return _KillTetrisCommand;
+            }
+
+        }
+
+        public void StartTetris()
+        {
+            tetris.StartGame();
+        }
+
+        public void KillTetris()
+        {
+            if(tetris != null)
+            {
+                tetris.KillGame();
+                tetris = null;
             }
         }
 

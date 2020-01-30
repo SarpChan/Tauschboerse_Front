@@ -52,6 +52,14 @@ namespace Frontend.Models
             });
         }
 
+        public void ClearList()
+        {
+            Task gameTask = Task.Factory.StartNew(() =>
+            {
+                _moduleList.Clear();
+            });
+        }
+
         public void SetList(ObservableCollection<TimetableModule> moduleList)
         {
             Task gameTask = Task.Factory.StartNew(() =>
