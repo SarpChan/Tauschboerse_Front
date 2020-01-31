@@ -205,24 +205,6 @@ namespace Frontend.ViewModel
                     DoLineClear(ttm);
                 }
             }
-
-            foreach (var cmp in moduleListModel.ModuleList)
-            {
-                var s2 = TimeSpan.Parse(cmp.StartTime);
-                var e2 = TimeSpan.Parse(cmp.StartTime);
-                var div = new TimeSpan(1, 0, 0);
-
-                s2 = s2.Add(div);
-                e2 = e2.Add(div);
-
-                if(e2 != Globals.EndTime)
-                {
-                    cmp.EndTime = e2.ToString(@"hh\:mm");
-                    cmp.StartTime = s2.ToString(@"hh\:mm");
-                }
-                
-
-            }
         }
 
         private void DoLineClear(TimetableModule ttm)
