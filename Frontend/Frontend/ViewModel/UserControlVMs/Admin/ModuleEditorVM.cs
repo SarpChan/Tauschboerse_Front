@@ -2,9 +2,6 @@
 using Frontend.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -31,7 +28,7 @@ namespace Frontend.ViewModel
         }
 
         private string _Color;
-        public string Color
+         public string Color
         {
             get { return _Color; }
             set { _Color = value; }

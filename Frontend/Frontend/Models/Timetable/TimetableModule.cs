@@ -40,9 +40,9 @@ namespace Frontend.Models
         [JsonProperty("courseTitleAbbreviation")]
         public string courseTitleAbbreviation;
 
-
         public enum ModuleType {[Description("Vorlesung")] LECTURE, [Description("Übung")] TEST, [Description("Praktikum")] PRACTICE, [Description("Tutorium")] TUTORIAL };
 
+        [JsonProperty("startTime")]
         public string StartTime
         {
             get { return _StartTime; }
@@ -53,6 +53,8 @@ namespace Frontend.Models
                 NotifyPropertyChanged("StartTime", oldValue, value);
             }
         }
+
+        [JsonProperty("endTime")]
         public string EndTime
         {
             get { return _EndTime; }
@@ -118,7 +120,7 @@ namespace Frontend.Models
                 NotifyPropertyChanged("Day", oldValue, value);
             }
         }
-        //[Newtonsoft.Json.JsonProperty("courseType")]
+        [JsonProperty("courseType")]
         public ModuleType Type
         {
             get { return _Type; }
