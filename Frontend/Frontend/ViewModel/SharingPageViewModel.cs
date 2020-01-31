@@ -159,9 +159,13 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Jedes mal wenn sich die Liste der persönlichen Tauschangebote im Model verändert wird zieht das Viewmodel nach indem es das betreffende Tauschangebot löscht bzw ein neues hinzufügt.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnPersonalCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
         {
-
 
             switch (e.Action)
             {
@@ -179,6 +183,11 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Äquivalent zu OnPersonalCollectionChange wird auch hier die Änderung abgeglichen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnPublicCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
         {
 
@@ -199,6 +208,11 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Äquivalent zu OnPersonalCollectionChange wird auch hier die Änderung abgeglichen jedoch hier für die News
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnNewsCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -221,6 +235,12 @@ namespace Frontend.ViewModel
 
         #region CollectionChangeActions
 
+        /// <summary>
+        /// Wenn ein neues Module im Model hinzugefügt wird wird dieses auch hier in der ViewModel Liste hinzugefügt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="own">Ob es sich um die Öffentliche oder Private Tauschangebotliste handelt. True wenn es die Persönliche ist</param>
         private void OnModuleAdd(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
 
@@ -237,6 +257,13 @@ namespace Frontend.ViewModel
                 
             }
         }
+
+        /// <summary>
+        /// Wenn ein neues Module im Model gelöscht wird wird dieses auch hier in der ViewModel Liste gelöscht
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="own">Ob es sich um die Öffentliche oder Private Tauschangebotliste handelt. True wenn es die Persönliche ist</param>
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
             foreach (SwapOfferFrontendModel t in e.NewItems)
@@ -253,6 +280,13 @@ namespace Frontend.ViewModel
                 }
             }
         }
+
+        /// <summary>
+        /// Wenn ein die ModuleList im Model geleert wird wird auch hier in der ViewModel die Liste geleert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="own">Ob es sich um die Öffentliche oder Private Tauschangebotliste handelt. True wenn es die Persönliche ist</param>
         private void OnModuleClear(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
             if (own)
@@ -265,6 +299,11 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Äquivalent zu OnModuleAdd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNewsAdd(object sender, NotifyCollectionChangedEventArgs e)
         {
 
@@ -273,6 +312,11 @@ namespace Frontend.ViewModel
                 this.NewsList.Add(t);
             }
         }
+        /// <summary>
+        /// Äquivalent zu OnModuleRemove
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNewsRemove(object sender, NotifyCollectionChangedEventArgs e)
         {
             foreach (News t in e.NewItems)
@@ -281,11 +325,23 @@ namespace Frontend.ViewModel
                 this.NewsList.Remove(foundNews);
             }
         }
+
+        /// <summary>
+        /// Äquivalent zu OnModuleClear
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNewsClear(object sender, NotifyCollectionChangedEventArgs e)
         {
             this.NewsList.Clear();
         }
 
+        /// <summary>
+        /// Findet das passende SharingPageViewModelSwapOffer in der übergebenen Liste mit der übergebenen Id
+        /// </summary>
+        /// <param name="id">des gesuchten Tauschangebots</param>
+        /// <param name="swapOffers">Liste mit allen Tauschangeboten</param>
+        /// <returns></returns>
         private SharingPageViewModelSwapOffer FindSharingPageViewModelSwapOfferWithId(long id, IList<SharingPageViewModelSwapOffer> swapOffers)
         {
             foreach (SharingPageViewModelSwapOffer spvmso in swapOffers)
@@ -297,7 +353,12 @@ namespace Frontend.ViewModel
             }
             return null;
         }
-
+        /// <summary>
+        /// Äquivalent zu der Suche nach Tauschangeboten
+        /// </summary>
+        /// <param name="id">der gesuchten News</param>
+        /// <param name="newsList">Liste mit allen News</param>
+        /// <returns></returns>
         private News FindNewsWithId(long id, IList<News> newsList)
         {
             foreach (News news in newsList)
@@ -360,102 +421,3 @@ namespace Frontend.ViewModel
 }
 
 
-namespace Frontend.Models
-{
-    //SPVMSO
-
-    /// <summary>
-    /// Für die SharingPageView vorbereitetes Model mit berechneten Daten.
-    /// Enthält gleiche Id wie das SwapOfferFrontendModel was es repräsentiert
-    /// 
-    /// Kurz SPVMSO
-    /// </summary>
-    public class SharingPageViewModelSwapOffer
-    {
-
-        private Dictionary<String,String> WeekdayTranslate = new Dictionary<string, string>() {
-            {"monday", "Montag"},
-            {"tuesday", "Dienstag"},
-            {"wednesday", "Mittwoch"},
-            {"thursday", "Donnerstag"},
-            {"friday", "Freitag"},
-            {"satturday", "Samstag"},
-            {"sunday", "Sonntag"},
-        };
-
-        private Dictionary<String, String> WeekdayTranslateRe = new Dictionary<string, string>() {
-            {"montag", "monday"},
-            {"dienstag", "tuesday"},
-            {"mittwoch", "wednesday"},
-            {"donnerstag", "thursday"},
-            {"freitag", "friday"},
-            {"samstag", "satturday"},
-            {"sonntag", "sunday"},
-        };
-
-        private Dictionary<String, String> CourseTypeTranslate = new Dictionary<string, string>() {
-            {"lecture", "Vorlesung"},
-            {"practice", "Praktikum"},
-            {"tutorial", "Tutorium"},
-            {"test", "Übung"},
-        };
-
-        private Dictionary<String, String> CourseTypeTranslateRe = new Dictionary<string, string>() {
-            {"vorlesung", "lecture"},
-            {"praktikum", "practice"},
-            {"tutorium", "tutorial"},
-            {"test", "test"},
-        };
-
-        public string CourseName
-        {
-            get
-            {
-                return SwapOffer.CourseName;
-            }
-            set
-            {
-                SwapOffer.CourseName = (string)value;
-            }
-        }
-        public string CourseType
-        {
-            get
-            {
-                return CourseTypeTranslate[SwapOffer.CourseType.ToLower()];
-            }
-            set
-            {
-                SwapOffer.CourseType = CourseTypeTranslateRe[(string)value.ToLower()].ToUpper();
-            }
-        }
-        //Könnte auch dann ein Bild sein.
-        public string Has { get; set; }
-        public string Wants { get; set; }
-        public long Id { get; set; }
-
-        public SwapOfferFrontendModel SwapOffer { get; set; }
-
-        /// <summary>
-        /// Konstruktor für ein SPVMSO
-        /// </summary>
-        /// <param name="sofm">Das zu repräsentierende SwapOfferFrontendModel</param>
-        public SharingPageViewModelSwapOffer(SwapOfferFrontendModel sofm)
-        {
-            //Im getter durchreichen
-            this.SwapOffer = sofm;
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Gruppe ").Append(sofm.FromGroupChar).Append(" (");
-            sb.Append(WeekdayTranslate[sofm.FromDay.ToString().ToLower()]).Append(" ");
-            sb.Append(sofm.FromStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.FromEndTime.ToString(@"hh\:mm")).Append(")");
-            this.Has = sb.ToString();
-            sb.Clear();
-            sb.Append("Gruppe ").Append(sofm.ToGroupChar).Append(" (");
-            sb.Append(WeekdayTranslate[sofm.ToDay.ToString().ToLower()]).Append(" ");
-            sb.Append(sofm.ToStartTime.ToString(@"hh\:mm")).Append(" - ").Append(sofm.ToEndTime.ToString(@"hh\:mm")).Append(")");
-            this.Wants = sb.ToString();
-            this.Id = sofm.Id;
-        }
-    }
-
-}

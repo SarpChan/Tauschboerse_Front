@@ -133,6 +133,7 @@
     <Compile Include="Models\Outdated\Term.cs" />
     <Compile Include="Models\SwapOfferFrontendModel.cs" />
     <Compile Include="Models\SwapOfferListModel.cs" />
+    <Compile Include="Models\SwapOffers\SharingPageViewModelSwapOffer.cs" />
     <Compile Include="Models\SwapOffers\SwapOfferCourse.cs" />
     <Compile Include="Models\Timetable\TimetableModule.cs" />
     <Compile Include="Models\Timetable\TimetableRowListModel.cs" />
