@@ -171,7 +171,7 @@ namespace Frontend.ViewModel
                     }
 
                     _IsGrounded = true;
-                    _InputQueue.Enqueque(CheckForLineClear);
+                    CheckForLineClear();
                 }
                 else
                 {
@@ -201,8 +201,27 @@ namespace Frontend.ViewModel
             {
                 if (moduleListModel.ModuleList.Contains(ttm))
                 {
+
                     DoLineClear(ttm);
                 }
+            }
+
+            foreach (var cmp in moduleListModel.ModuleList)
+            {
+                var s2 = TimeSpan.Parse(cmp.StartTime);
+                var e2 = TimeSpan.Parse(cmp.StartTime);
+                var div = new TimeSpan(1, 0, 0);
+
+                s2 = s2.Add(div);
+                e2 = e2.Add(div);
+
+                if(e2 != Globals.EndTime)
+                {
+                    cmp.EndTime = e2.ToString(@"hh\:mm");
+                    cmp.StartTime = s2.ToString(@"hh\:mm");
+                }
+                
+
             }
         }
 
@@ -215,38 +234,12 @@ namespace Frontend.ViewModel
 
             TimeSpan div = e1.Subtract(s1);
 
-            foreach (var cmp in moduleListModel.ModuleList)
+
+            Task.Factory.StartNew(() =>
             {
-                var s2 = TimeSpan.Parse(cmp.StartTime);
-                var e2 = TimeSpan.Parse(cmp.StartTime);
+                moduleListModel.ModuleList.Remove(ttm);
+            }).Wait();
 
-                if ((s1 > s2 && s1 < e2 || e1 > s2 && e1 < e2) || (s1 == s2 && e1 == e2))
-                {
-                    removeList.Add(cmp);
-                }
-            }
-
-            foreach (var r in removeList)
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    moduleListModel.ModuleList.Remove(r);
-                }).Wait();
-            }
-
-            foreach (var cmp in moduleListModel.ModuleList)
-            {
-                var s2 = TimeSpan.Parse(cmp.StartTime);
-                var e2 = TimeSpan.Parse(cmp.StartTime);
-
-                if(e2 > e1)
-                {
-                    s2 = s2.Add(div);
-                    e2 = e2.Add(div);
-                    cmp.StartTime = s2.ToString(@"hh\:mm");
-                    cmp.EndTime = e2.ToString(@"hh\:mm");
-                }
-            }
         }
 
         private bool CheckForFullLine(TimetableModule ttm_1)
@@ -324,7 +317,7 @@ namespace Frontend.ViewModel
             }
             return false;
         }
-      
+
         public void Left()
         {
             _InputQueue.Enqueque(HandleLeft);
