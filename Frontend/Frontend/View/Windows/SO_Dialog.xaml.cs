@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
 
 namespace Frontend.View
 {
@@ -65,15 +66,14 @@ namespace Frontend.View
 
             long ToGroupId = SelectedGroup.Id;
 
-            Console.WriteLine("create");
-           
             SwapOffer so = new SwapOffer(FromGroupID, ToGroupId);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapoffer/insert", so);
-            Console.WriteLine(response.Content);
+            
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);
-           
+            
+            App.notifier.ShowSuccess("Tauschangebot erstellt!");
+
 
         }
 
