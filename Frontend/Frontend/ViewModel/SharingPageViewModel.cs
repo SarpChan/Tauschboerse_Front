@@ -91,6 +91,9 @@ namespace Frontend.ViewModel
         }
 
         #region methods
+        /// <summary>
+        /// Creates Autocompletions for the search.
+        /// </summary>
         private void CreateAutocompletes()
         {
             List<String> autoCompleteConvertList = new List<string>();
@@ -111,6 +114,10 @@ namespace Frontend.ViewModel
 
         }
 
+        /// <summary>
+        /// Sendet eine Delete-Request an den Server um das Tauschangebot mir der übergebenen Id zu löschen
+        /// </summary>
+        /// <param name="id">des Tauschangebots was gelöscht werden soll</param>
         private async void DeleteTradeOffer(object id)
         {
             //ID = System.Int64
@@ -127,6 +134,10 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Sendet eine Anfrage an den Server um eins der öffentlichen angezeigten Tauschangebote anzunehmen
+        /// </summary>
+        /// <param name="id">des Tauschangebots was angefragt wird.</param>
         private async void RequestTradeOffer(object id)
         {
             APIClient api = APIClient.Instance;
@@ -135,7 +146,15 @@ namespace Frontend.ViewModel
                 if (swapOffer.Id == (long)id)
                 {
                     Console.WriteLine("Trading " + id + "...");
-                    await api.NewPOSTRequest("/tradeOffer/request", swapOffer);
+                    var response = await api.NewPOSTRequest("/tradeOffer/request", swapOffer);
+                    if ((int)response.StatusCode >= 400)
+                    {
+                        App.notifier.ShowError((int)response.StatusCode + ": Beim Anfragen des Tauschanbots ist ein Fehler aufgetreten");
+                    }
+                    else
+                    {
+                        App.notifier.ShowSuccess("Tausch angenommen!");
+                    }
                 }
             }
         }
