@@ -58,6 +58,12 @@ namespace Frontend.ViewModel
         /// </summary>
         public IEnumerable<String> AutocompletePublic { get; set; }
 
+        /// <summary>
+        /// Konstruktor
+        /// 
+        /// Gleicht die lokalen swapOffer Lists / News List mit der Model List ab. (Diese ist eine Instanz somit ist jede SharingPageViewModel instanz stehts gleich gefüllt).
+        /// Zusätzlich meldet sich die Klasse auf jedrige Änderung der besagten Listen an um Änderungen zu synchronisieren.
+        /// </summary>
         public SharingPageViewModel()
         {
 
