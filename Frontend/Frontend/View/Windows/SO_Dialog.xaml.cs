@@ -35,19 +35,24 @@ namespace Frontend.View
         {
             InitializeComponent();
         }
-   
-        /*
-         * Methode, um das Dialogfenster wieder zu schließen
-         */
+
+        /// <summary>
+        /// Methode, um das Dialogfenster wieder zu schließen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+       
         private void CloWi(object sender, RoutedEventArgs e)
         {
             Visibility = Visibility.Collapsed;
         }
 
-        /*
-         * Methode für den "Erstellen"-Button, die die Methode CreateSwapOfferAsync aufruft und
-         * das Dialogfenster wieder schließt 
-         */
+        /// <summary>
+        /// Methode für den "Erstellen"-Button, die die Methode CreateSwapOfferAsync aufruft und
+        /// das Dialogfenster wieder schließt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Create(object sender, RoutedEventArgs e)
         {
             CreateSwapOfferAsync();
@@ -55,11 +60,14 @@ namespace Frontend.View
         }
 
         /*
-         * Methode, um ein neues SwapOffer anzulegen und dieses an das Backend zu schicken
-         * Das SwapOfferobjekt bekommt dafür die IDs von der Gruppe, in der der Student aktuell ist, 
-         * die ID der Gruppe, in die er wechseln möchte.
-         * Über den APIClient wird das Backend und der passende PostRequest angesprochen
+         * 
          */
+         /// <summary>
+         /// ein neues SwapOffer wird angelegt und an das Backend geschickt
+         /// Das SwapOfferobjekt bekommt dafür die IDs von der Gruppe, in der der Student aktuell ist, 
+         /// die ID der Gruppe, in die er wechseln möchte.
+         /// Über den APIClient wird das Backend und der passende PostRequest angesprochen
+         /// </summary>
         private async void CreateSwapOfferAsync()
         {
             SwapOfferGroup SelectedGroup = (SwapOfferGroup) ToGroup.SelectedItem;

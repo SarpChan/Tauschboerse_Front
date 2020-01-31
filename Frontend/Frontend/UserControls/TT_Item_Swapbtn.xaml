@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Frontend.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <!--Anzeige vom ausgwählten Fach und dem Tauschenbutton für das PopUp-->
     <Grid>
         <StackPanel>
         <local:TimetableItem x:Name="item" Module="{Binding .}"></local:TimetableItem>

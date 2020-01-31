@@ -31,14 +31,16 @@ namespace Frontend.UserControls
         public TT_Item_Swapbtn()
         {
             InitializeComponent();
-         
-                      
+
+
         }
 
-      /*
-       * Methode, die vom Usercontrol aufgerufen wird, um ein neues Dialogfenster zum Tauschen erstellt und
-       * dieses öffnet und mit allen Daten über den Aufruf FillDialog() füllt
-       */
+        /// <summary>
+        /// Ein neues Dialogfenster zum Tauschen soll erstellt,
+        /// geöffnet und mit allen Daten über den Aufruf FillDialog() gefüllt werden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenDialog(object sender, RoutedEventArgs e)
         {
             d = new SO_Dialog();
@@ -49,17 +51,17 @@ namespace Frontend.UserControls
             
         }
 
-        /*
-         * Methode, um die Liste mit allen Gruppen aus dem Backend zu holen, die der User noch wählen kann
-         */
+        /// <summary>
+        /// Eine Liste mit allen Gruppen, die zum jeweiligen Fach gehören und die der User noch wählen kann, 
+        /// werden aus dem Backend geholt
+        /// </summary>
         private async void GetGroupLstAsync()
         {
             Dictionary<long, char> Groups;
             List<SwapOfferGroup> lst = new List<SwapOfferGroup>();
-            List<char> c = new List<char>();
+          
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/" + d.FromGroupID);
-            Console.WriteLine(response.Content);
             Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
 
             foreach (KeyValuePair<long, char> keyValue in Groups)
@@ -71,9 +73,11 @@ namespace Frontend.UserControls
 
         }
 
-        /*
-         * Methode, um das Dialogfenster mit den richtigen Daten zu füllen
-         */
+        /// <summary>
+        /// Das geöffnete Dialogfenster wird mit den richtigen Daten gefüllt:
+        /// Kursname, Kurstyp und die Gruppe, in der der User ist
+        /// Zudem wird die GruppenID gespeichert
+        /// </summary>
         private void FillDialog()
         {
            

@@ -217,9 +217,6 @@
     <Compile Include="UserControls\TT_Item_Swapbtn.xaml.cs">
       <DependentUpon>TT_Item_Swapbtn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TT_SwapButton.xaml.cs">
-      <DependentUpon>TT_SwapButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UploadPythonscriptButton.xaml.cs">
       <DependentUpon>UploadPythonscriptButton.xaml</DependentUpon>
     </Compile>
@@ -429,10 +426,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\TT_Item_Swapbtn.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\TT_SwapButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
