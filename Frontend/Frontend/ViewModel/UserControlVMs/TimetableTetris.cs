@@ -165,7 +165,7 @@ namespace Frontend.ViewModel
                     }
 
                     _IsGrounded = true;
-                    //CheckForLineClear();
+                    _InputQueue.Enqueque(CheckForLineClear);
                 }
                 else
                 {
@@ -178,13 +178,68 @@ namespace Frontend.ViewModel
 
         private void CheckForLineClear()
         {
+            List<TimetableModule> fullLines = new List<TimetableModule>();
+
             foreach (var ttm_1 in moduleListModel.ModuleList)
             {
                 if (CheckForFullLine(ttm_1))
                 {
-
+                    fullLines.Add(ttm_1);
                 }
-                
+
+            }
+
+            Console.WriteLine("count" + fullLines.Count);
+
+            foreach (var ttm in fullLines)
+            {
+                if (moduleListModel.ModuleList.Contains(ttm))
+                {
+                    DoLineClear(ttm);
+                }
+            }
+        }
+
+        private void DoLineClear(TimetableModule ttm)
+        {
+
+            List<TimetableModule> removeList = new List<TimetableModule>();
+            TimeSpan s1 = TimeSpan.Parse(ttm.StartTime);
+            TimeSpan e1 = TimeSpan.Parse(ttm.EndTime);
+
+            TimeSpan div = e1.Subtract(s1);
+
+            foreach (var cmp in moduleListModel.ModuleList)
+            {
+                var s2 = TimeSpan.Parse(cmp.StartTime);
+                var e2 = TimeSpan.Parse(cmp.StartTime);
+
+                if ((s1 > s2 && s1 < e2 || e1 > s2 && e1 < e2) || (s1 == s2 && e1 == e2))
+                {
+                    removeList.Add(cmp);
+                }
+            }
+
+            foreach (var r in removeList)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    moduleListModel.ModuleList.Remove(r);
+                }).Wait();
+            }
+
+            foreach (var cmp in moduleListModel.ModuleList)
+            {
+                var s2 = TimeSpan.Parse(cmp.StartTime);
+                var e2 = TimeSpan.Parse(cmp.StartTime);
+
+                if(e2 > e1)
+                {
+                    s2 = s2.Add(div);
+                    e2 = e2.Add(div);
+                    cmp.StartTime = s2.ToString(@"hh\:mm");
+                    cmp.EndTime = e2.ToString(@"hh\:mm");
+                }
             }
         }
 
@@ -193,7 +248,7 @@ namespace Frontend.ViewModel
 
             TimeSpan start = TimeSpan.Parse(ttm_1.StartTime);
             TimeSpan end = TimeSpan.Parse(ttm_1.EndTime);
-            
+
             for (int i = 0; i < Globals.weekdays; i++)
             {
                 if (!CheckOnDay(start, end, i))
@@ -205,11 +260,11 @@ namespace Frontend.ViewModel
             return true;
         }
 
-        private bool CheckOnDay(TimeSpan start, TimeSpan end,int day)
+        private bool CheckOnDay(TimeSpan start, TimeSpan end, int day)
         {
             foreach (var t in moduleListModel.ModuleList)
             {
-                if (CheckBlock(start, end, day))
+                if (CheckBlockWithPlayer(start, end, day))
                 {
                     return true;
                 }
@@ -238,7 +293,25 @@ namespace Frontend.ViewModel
                 TimeSpan s2 = TimeSpan.Parse(ttm.StartTime);
                 TimeSpan e2 = TimeSpan.Parse(ttm.EndTime);
 
-                if (ttm != player && day == Convert.ToInt32(ttm.Day) && (s1 > s2 && s1 < e2 || e1 > s2 && e1 < e2))
+                if (ttm != player && day == Convert.ToInt32(ttm.Day)
+                    && ((s1 > s2 && s1 < e2) || (e1 > s2 && e1 < e2) || (s1 == s2 && e1 == e2)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckBlockWithPlayer(TimeSpan s1, TimeSpan e1, int day)
+        {
+            foreach (var ttm in moduleListModel.ModuleList)
+            {
+
+                TimeSpan s2 = TimeSpan.Parse(ttm.StartTime);
+                TimeSpan e2 = TimeSpan.Parse(ttm.EndTime);
+
+                if (day == Convert.ToInt32(ttm.Day)
+                    && ((s1 > s2 && s1 < e2) || (e1 > s2 && e1 < e2) || (s1 == s2 && e1 == e2)))
                 {
                     return true;
                 }
