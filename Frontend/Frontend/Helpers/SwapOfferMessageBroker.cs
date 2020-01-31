@@ -77,6 +77,10 @@ namespace Frontend.Helpers
             }
         }
 
+        /// <summary>
+        /// this method reacts to the message (msg) and depending wether the action equals "add" or "delete" it creates a new SwapOffer or deletes an existing one.
+        /// </summary>
+        /// <param name="msg">the message contains different parameters, action that defines the type and data that contains a JSon</param>
         public void OnSwapOfferPublicReceive(IMessage msg) //neues hinzufügen oder löschen
         {
             if (msg is ITextMessage)
@@ -95,6 +99,10 @@ namespace Frontend.Helpers
             }
         }
 
+        /// <summary>
+        /// This method reacts on an incoming message, reads the JSon and creates a new news object and puts it into the NewsList.
+        /// </summary>
+        /// <param name="msg">the message that^contains a JSon and a timestamp. This information will be shown in the newslist. </param>
         public void OnNewsListReceive(IMessage msg)
         {
             if (msg is ITextMessage)
@@ -114,7 +122,10 @@ namespace Frontend.Helpers
         }
 
 
-
+        /// <summary>
+        /// outdated method, not used anymore
+        /// </summary>
+        /// <param name="cmd"></param>
         void ParseCommand(string cmd)
         {
             var fields = cmd.Split();

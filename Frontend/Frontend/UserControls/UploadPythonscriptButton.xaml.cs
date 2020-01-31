@@ -18,7 +18,11 @@ namespace Frontend.UserControls
         }
         public static readonly DependencyProperty UploadPythonscriptButtonCommandProperty =
             DependencyProperty.Register("UploadPythonscriptButtonCommand", typeof(ICommand), typeof(UploadPythonscriptButton), new UIPropertyMetadata(null));
-
+        /// <summary>
+        /// this method lets the user upload an existing file
+        /// </summary>
+        /// <param name="sender">standard</param>
+        /// <param name="e">standard</param>
         private void upload_script(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -39,7 +43,12 @@ namespace Frontend.UserControls
 
            
         }
-
+        
+        /// <summary>
+        /// this method sends the path of a file to the server
+        /// </summary>
+        /// <param name="path"> this is the path of the file</param>
+        /// <returns></returns>
         private async Task sendPythonCodeToServerAsync(string path)
         {
 
