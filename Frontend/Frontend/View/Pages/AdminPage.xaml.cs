@@ -85,7 +85,8 @@ namespace Frontend.View
         {
             var button = (Button)sender;
             var content = (string)button.Content;
-            AdminPageViewModel.LoadNewTimeTable(content);
+            var exR = (ExamRegulation)ExamRegulationComboBox.SelectedItem;
+            AdminPageViewModel.LoadNewTimeTable(exR,content);
         }
     }
 }

@@ -19,16 +19,27 @@ namespace Frontend.View
         {
             InitializeComponent();
 
-            if (!UserInformation.isAdmin){
-                Adminbutton.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                Timetablebutton.Visibility = Visibility.Hidden;
-            }
-      
-            {
+            UserInformation.Instance.PropertyChanged += Instance_PropertyChanged;
+        }
 
+        /// <summary>
+        /// Deaktiviert auf Grund des Globals.isAdmin weleche Button in der SB
+        /// nicht sichtbar sein sollen
+        /// </summary>
+        private void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName.Equals("IsAdmin"))
+            {
+                if (!UserInformation.Instance.IsAdmin)
+                {
+                    Timetablebutton.Visibility = Visibility.Visible;
+                    Adminbutton.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    Adminbutton.Visibility = Visibility.Visible;
+                    Timetablebutton.Visibility = Visibility.Collapsed;
+                }
             }
         }
 

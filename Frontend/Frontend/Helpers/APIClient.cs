@@ -46,11 +46,12 @@ namespace Frontend.Helpers
                 {
                     var token = response.Content.Substring(0, 175);
                     _client.Authenticator = new JwtAuthenticator(token);
-                    UserInformation.isAdmin = true;
+                    UserInformation.Instance.IsAdmin = true;
                     return true;
                 }
                 else
                 {
+                    UserInformation.Instance.IsAdmin = false;
                     _client.Authenticator = new JwtAuthenticator(response.Content);
                     return true;
                 }

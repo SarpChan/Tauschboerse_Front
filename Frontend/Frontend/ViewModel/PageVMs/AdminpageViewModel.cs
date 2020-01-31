@@ -119,11 +119,11 @@ namespace Frontend.ViewModel
 
         }
 
-        public async void LoadNewTimeTable(string term)
+        public async void LoadNewTimeTable(ExamRegulation examRegulation, string term)
         {
             try
             {
-                await RequestAdminTimetableServerAsync(term);
+                await RequestAdminTimetableServerAsync(examRegulation,term);
             }
             catch (Exception ex)
             {
@@ -131,13 +131,13 @@ namespace Frontend.ViewModel
             }
         }
 
-        private async Task RequestAdminTimetableServerAsync(string term)
+        private async Task RequestAdminTimetableServerAsync(ExamRegulation examRegulation, string term)
         {
 
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             //TODO: Backend muss mit der ExamRegulation + Term funktionieren
-            var response = await apiClient.NewGETRequest("/rest/lists/date_timetable/"+term);
+            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable/"+term,examRegulation);
             if ((int)response.StatusCode >= 400) return;
 
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());

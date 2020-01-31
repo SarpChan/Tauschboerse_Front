@@ -61,7 +61,7 @@ namespace Frontend.UserControls
         {
 
             Console.WriteLine("MouseLeftClick TimeTableItem");
-            if (UserInformation.isAdmin)
+            if (UserInformation.Instance.IsAdmin)
             {
                 if (moduleEdit.IsOpen)
                 {
