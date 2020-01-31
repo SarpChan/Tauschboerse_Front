@@ -42,8 +42,18 @@ namespace Frontend.Helpers
 
             if (response.IsSuccessful)
             {
-                _client.Authenticator = new JwtAuthenticator(response.Content);
-                return true;
+                if (response.Content.Contains("ADMIN"))
+                {
+                    var token = response.Content.Substring(0, 175);
+                    _client.Authenticator = new JwtAuthenticator(token);
+                    UserInformation.isAdmin = true;
+                    return true;
+                }
+                else
+                {
+                    _client.Authenticator = new JwtAuthenticator(response.Content);
+                    return true;
+                }
             }
             return false;
         }
