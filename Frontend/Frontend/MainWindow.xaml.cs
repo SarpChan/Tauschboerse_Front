@@ -1,4 +1,6 @@
-﻿using System.Windows.Navigation;
+﻿using System;
+using System.Windows;
+using System.Windows.Navigation;
 
 namespace Frontend
 {
@@ -12,6 +14,12 @@ namespace Frontend
             //this.DataContext = new RootPageViewModel(); //TODO: MW Ohne das ging nix beim testen
             InitializeComponent();
             this.ShowsNavigationUI = false;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
     }
 }
