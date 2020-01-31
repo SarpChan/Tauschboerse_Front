@@ -18,6 +18,18 @@ namespace Frontend.View
         public RootPage()
         {
             InitializeComponent();
+
+            if (!UserInformation.isAdmin){
+                Adminbutton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Timetablebutton.Visibility = Visibility.Hidden;
+            }
+      
+            {
+
+            }
         }
 
         #region MainFrame DataContext to Pages
