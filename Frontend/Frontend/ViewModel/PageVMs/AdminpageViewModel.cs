@@ -137,7 +137,8 @@ namespace Frontend.ViewModel
             ObservableCollection<TimetableModule> tempTable = new ObservableCollection<TimetableModule>();
             APIClient apiClient = APIClient.Instance;
             //TODO: Backend muss mit der ExamRegulation + Term funktionieren
-            var response = await apiClient.NewPOSTRequest("/rest/lists/timetable/"+term,examRegulation);
+            var restString = "rest/lists/term_timetable/" + examRegulation.Id + "/" + term;
+            var response = await apiClient.NewGETRequest(restString);
             if ((int)response.StatusCode >= 400) return;
 
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
