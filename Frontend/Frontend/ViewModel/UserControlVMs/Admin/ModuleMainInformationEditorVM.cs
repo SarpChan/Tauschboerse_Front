@@ -18,7 +18,7 @@ namespace Frontend.ViewModel
         public ModuleMainInformationEditorVM()
         {
 
-            //ZUM TEST
+            //Bsp Datensaetzte da es eh nicht berabeiten werden kann
             _ModuleDict.Add(1, "Mathe 7 - Bewiesen ist noch garnichts");
             _ModuleDict.Add(2, "Dokumentation schreiben lernen (so nicht MS)");
             _ModuleDict.Add(4, "Kaffee, Klaviertasten und Comedians - (Dumme Namen für Sprachen)");
@@ -74,6 +74,10 @@ namespace Frontend.ViewModel
             FillFieldOfStudyList(foSList);
         }
 
+        /// <summary>
+        ///  Fuellt die FieldOfStudyList[Observable] mit einer List von FieldOfStudys
+        /// </summary>
+        /// <param name="list">Die neue Liste die zum fuellen der ObserableList [FieldOfStudyList] benutzt wird</param>
         public void FillFieldOfStudyList(List<FieldOfStudy> list)
         {
             FieldOfStudyList.Clear();
@@ -88,7 +92,10 @@ namespace Frontend.ViewModel
 
         }
 
-
+        /// <summary>
+        /// Fuellt die StudyProgramList[Observable] mit FieldOfStudy.StudyPrograms(List<StudProgram>)
+        /// </summary>
+        /// <param name="fieldOfStudy">Das ausgewaehlte FieldOfStudy</param>
         public void FillStudyProgramList(FieldOfStudy fieldOfStudy)
         {
 
@@ -105,6 +112,10 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Fuellt die ExamRegulationList[Observable] 
+        /// </summary>
+        /// <param name="studyProgram">Das ausgewaehlte studyProgram</param>
         public void FillExamRegulationList(StudyProgram studyProgram)
         {
             if (studyProgram.ExamRegulations != null)
@@ -117,6 +128,10 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Fuellt die SemesterList[Observable]
+        /// </summary>
+        /// <param name="examRegulation">Die ausgeaehlte ExamRegulation</param>
         public void FillSemesterList(ExamRegulation examRegulation)
         {
             if (examRegulation != null)

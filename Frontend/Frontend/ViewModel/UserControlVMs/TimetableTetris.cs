@@ -77,7 +77,10 @@ namespace Frontend.ViewModel
 
 
         #endregion
-
+        /// <summary>
+        /// Ein kleines Extra das mit einer Bestimmtentastencombo aktiviert werden kann
+        /// (Spoiler) Es ist Tetris mit unser LiveUpdateSystem fuer den Stundenplan
+        /// </summary>
         public TimetableTetris()
         {
 
@@ -136,6 +139,9 @@ namespace Frontend.ViewModel
             _IsGrounded = false;
         }
 
+        /// <summary>
+        /// Beendet Tetris
+        /// </summary>
         public void KillGame()
         {
             _IsGameOver = true;
@@ -318,7 +324,7 @@ namespace Frontend.ViewModel
             }
             return false;
         }
-
+      
         public void Left()
         {
             _InputQueue.Enqueque(HandleLeft);

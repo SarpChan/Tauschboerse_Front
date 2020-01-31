@@ -9,11 +9,6 @@ namespace Frontend.ViewModel
 {
     abstract class ModuleEditorVM : ViewModelBase
     {
-
-
-        private APIClient apiClient = APIClient.Instance;
-        private ModuleListModel moduleListModel = ModuleListModel.Instance;
-
         private TimetableModule _TimetableModuleBackUp;
         private TimetableModule _EditTimetableModule;
         public TimetableModule EditTimetableModule
@@ -43,7 +38,7 @@ namespace Frontend.ViewModel
             {
                 if (_SaveCommand == null)
                 {
-                    _SaveCommand = new ActionCommand(dummy => this.SaveTime(), null);
+                    _SaveCommand = new ActionCommand(dummy => this.Save(), null);
                 }
                 return _SaveCommand;
             }
@@ -63,8 +58,11 @@ namespace Frontend.ViewModel
         }
 
         #endregion
-
-        public async void SaveTime()
+        /// <summary>
+        /// speichet bzw schickt es an den Server das TTM das veraendert wurde,
+        /// schlaegt das fehl werden die aenderungen zurueck gesetzt 
+        /// </summary>
+        public async void Save()
         {
             //Hier APIclient ansprechen 
             if (EditTimetableModule != null)
@@ -94,6 +92,9 @@ namespace Frontend.ViewModel
             if ((int)response.StatusCode >= 400) return;
         }
 
+        /// <summary>
+        /// setzt alle aenderungen des EditTTM zurueck (mit hilfe des BackupTTMs)
+        /// </summary>
         public void DiscardAllhanges()
         {
             Console.WriteLine("Discard Changes");

@@ -38,6 +38,10 @@ namespace Frontend.ViewModel
             }
         }
 
+        /// <summary>
+        /// Andet den Typen des EditTTM
+        /// </summary>
+        /// <param name="param">(TimetableModule.ModuleType) type</param>
         private void ChangeType(object param)
         {
             var type = (TimetableModule.ModuleType)param;

@@ -44,6 +44,10 @@ namespace Frontend.ViewModel
 
         #endregion
 
+        /// <summary>
+        /// Andert den Tag des EditTTM
+        /// </summary>
+        /// <param name="param">(String) der Tag</param>
         public void ChangeDay(object param)
         {
             var dayStr = (string)param;
