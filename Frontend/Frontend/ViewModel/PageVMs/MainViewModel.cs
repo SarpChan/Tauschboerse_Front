@@ -403,17 +403,19 @@ namespace Frontend.ViewModel
         {
             ObservableCollection<SwapOfferFrontendModel> tempList = new ObservableCollection<SwapOfferFrontendModel>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewGETRequest("/rest/lists/swapOffer/me");
-            if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content.ToString());
-            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
-            SwapOfferListModel.Instance.SetList(tempList, false);
-            response = await apiClient.NewGETRequest("/rest/lists/swapOffer/all");
-            if ((int)response.StatusCode >= 400) return;
-            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
+            if (!UserInformation.Instance.IsAdmin)
+            {
+                var responseMe = await apiClient.NewGETRequest("/rest/lists/swapOffer/me");
+                if ((int)responseMe.StatusCode >= 400) return;
+                tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(responseMe.Content.ToString());
+                SwapOfferListModel.Instance.SetList(tempList, false);
+            }
+            
+            var responseAll = await apiClient.NewGETRequest("/rest/lists/swapOffer/all");
+            if ((int)responseAll.StatusCode >= 400) return;
+            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(responseAll.Content.ToString());
             SwapOfferListModel.Instance.SetList(tempList, true);
-            //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
-            //sharingdataList.SetList(tempTable);
+
         }
 
         /*
@@ -445,8 +447,8 @@ namespace Frontend.ViewModel
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable)
             {
-                tm.Day = dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
+                tm.Day = Globals.dayValues[tm.Day];
+                //tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             timetableModuleList.SetList(tempTable);
             

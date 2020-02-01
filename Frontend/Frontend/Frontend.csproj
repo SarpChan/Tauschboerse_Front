@@ -104,6 +104,7 @@
     <Compile Include="Helpers\SwapOfferFromBackend.cs" />
     <Compile Include="Helpers\SwapOfferMessageBroker.cs" />
     <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\MessageBrokerModel.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsListModel.cs" />

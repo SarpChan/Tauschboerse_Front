@@ -35,6 +35,19 @@ namespace Frontend
                 NotifyPropertyChanged("UserName", oldValue, value);
             } 
         }
+
+        private long _UserId = -1;
+        public long UserId
+        {
+            get { return _UserId; }
+            set
+            {
+                var oldValue = _UserId;
+                _UserId = value;
+                NotifyPropertyChanged("UserId", oldValue, value);
+            }
+        }
+
         private bool _IsAdmin = false;
         public bool IsAdmin
         {

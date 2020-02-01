@@ -97,13 +97,19 @@ namespace Frontend.ViewModel
 
         internal async void ProcessLogin()
         {
-            Console.WriteLine(Username + " - " + Password);
             APIClient apiClient = APIClient.Instance;
             IsLoggedIn = await apiClient.SendLogin(Username, Password);
             if (IsLoggedIn)
             {
                 App.notifier.ShowSuccess("Einloggen erfolgreich");
-                MainViewModel.Instance.SwitchActivePageAsync("SharingServicePage.xaml");
+                if(UserInformation.Instance.IsAdmin)
+                {
+                    MainViewModel.Instance.SwitchActivePageAsync("AdminPage.xaml");
+                } else
+                {
+                    MainViewModel.Instance.SwitchActivePageAsync("SharingServicePage.xaml");
+                }
+                
             }
             
         }

@@ -1,4 +1,6 @@
+using Frontend.Models;
 using Frontend.ViewModel;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
@@ -43,19 +45,11 @@ namespace Frontend.Helpers
             cancellationTokenSource.Dispose();
             if (response.IsSuccessful)
             {
-                if (response.Content.Contains("ADMIN"))
-                {
-                    var token = response.Content.Substring(0, 175);
-                    _client.Authenticator = new JwtAuthenticator(token);
-                    UserInformation.Instance.IsAdmin = true;
-                    return true;
-                }
-                else
-                {
-                    UserInformation.Instance.IsAdmin = false;
-                    _client.Authenticator = new JwtAuthenticator(response.Content);
-                    return true;
-                }
+                LoginResponse LoginResponse = JsonConvert.DeserializeObject<LoginResponse>(response.Content.ToString());
+                _client.Authenticator = new JwtAuthenticator(LoginResponse.AuthenticationToken);
+                UserInformation.Instance.UserId = LoginResponse.UserId;
+                UserInformation.Instance.IsAdmin = LoginResponse.userRight.Equals(LoginResponse.Rights.ADMIN.ToString());
+                return true;
             }
             return false;
         }

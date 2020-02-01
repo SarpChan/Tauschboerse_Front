@@ -34,9 +34,11 @@ namespace Frontend.View
                 {
                     Timetablebutton.Visibility = Visibility.Visible;
                     Adminbutton.Visibility = Visibility.Collapsed;
+                    SharingPageButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
+                    SharingPageButton.Visibility = Visibility.Collapsed;
                     Adminbutton.Visibility = Visibility.Visible;
                     Timetablebutton.Visibility = Visibility.Collapsed;
                 }

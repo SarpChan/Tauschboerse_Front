@@ -11,13 +11,14 @@ using Frontend.Models;
 using ToastNotifications.Messages;
 using Frontend.Helpers.Converters;
 using Frontend.View;
+using Frontend.Helpers.Handlers;
 
 namespace Frontend.ViewModel
 {
     /// <summary>
     /// ViewModel für die Sharing-Page
     /// </summary>
-    class SharingPageViewModel
+    class SharingPageViewModel : NotifyPropertyValueChange
     {
         private ObservableCollection<SharingPageViewModelSwapOffer> _SwapListPublic = new ObservableCollection<SharingPageViewModelSwapOffer>();
         /// <summary>
@@ -87,8 +88,8 @@ namespace Frontend.ViewModel
             newsListModel.NewsList.CollectionChanged += OnNewsCollectionChange;
             
             CreateAutocompletes();
-
         }
+
 
         #region methods
         /// <summary>
