@@ -29,9 +29,6 @@ namespace Frontend.ViewModel
 
         public AdminPageViewModel()
         {
-
-            //Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
-
             LoadFieldOfStudyList();
         }
 
@@ -53,9 +50,7 @@ namespace Frontend.ViewModel
 
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/fieldOfStudy");
-            Console.WriteLine("[RequestMainInformationDataFromServer]" + response.StatusDescription);
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content.ToString());
             var foSList = JsonConvert.DeserializeObject<List<FieldOfStudy>>(response.Content.ToString());
             FillFieldOfStudyList(foSList);
         }
@@ -70,7 +65,6 @@ namespace Frontend.ViewModel
 
             foreach (var foS in list)
             {
-                Console.WriteLine("FOS :" + foS.Title);
                 FieldOfStudyList.Add(foS);
             }
 

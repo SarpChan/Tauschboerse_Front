@@ -184,7 +184,6 @@ namespace Frontend.ViewModel
         {
             APIClient api = APIClient.Instance;
             var response = await api.NewGETRequest("/rest/lists/availableSwaps");
-            Console.WriteLine(response.Content);
             this.DatabaseCourses = JsonConvert.DeserializeObject<List<SwapOfferCourse>>(response.Content);
             FillList();
         }

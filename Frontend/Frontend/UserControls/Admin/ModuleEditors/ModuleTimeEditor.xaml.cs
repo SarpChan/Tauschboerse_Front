@@ -45,7 +45,6 @@ namespace Frontend.UserControls
 
         private void StartTimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            Console.WriteLine("change Value" + e.NewValue);
             var time = (DateTime)e.NewValue;
             var ttm = viewmodel.EditTimetableModule;
             ttm.StartTime = time.ToString("HH:mm");

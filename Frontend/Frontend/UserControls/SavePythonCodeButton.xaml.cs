@@ -53,7 +53,6 @@ namespace Frontend.UserControls
 
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewFileUploadRequest("/rest/pyScript/upload", path);
-            Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
 
         }

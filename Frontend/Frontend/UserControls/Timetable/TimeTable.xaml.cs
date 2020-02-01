@@ -43,7 +43,6 @@ namespace Frontend.UserControls
         {
             if (!moduleEdit.IsOpen)
             {
-                Console.WriteLine("MouseEnter TimeTableItem");
                 popUp.Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse;
                 popUp.IsOpen = true;
                 uc.item.Module = ((TimetableItem)sender).Module;
@@ -60,7 +59,6 @@ namespace Frontend.UserControls
         private void TimetableItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            Console.WriteLine("MouseLeftClick TimeTableItem");
             if (UserInformation.Instance.IsAdmin)
             {
                 if (moduleEdit.IsOpen)

@@ -192,7 +192,6 @@ namespace Frontend.Helpers
             {
                 return 1;
             }
-            //Console.WriteLine("Module: " + ttvmm.Module.CourseName + "Div :" + divider);
             return divider;
         }
 
@@ -225,8 +224,6 @@ namespace Frontend.Helpers
                                 before = CalculateModuleRowPosition(counter, 1 + i, startTime, s2, id, day, module, items);
                             }
 
-                            //Console.WriteLine("founde:", found, "behinde: ", behinde, "before", before);
-
                             return Math.Max(Math.Max(found, behinde), before);
 
                         }
@@ -251,7 +248,6 @@ namespace Frontend.Helpers
 
             pos = CalculateModuleRowPosition(pos, 0, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day, module, moduleList.ToArray());
 
-            //Console.WriteLine("Module: "+module.CourseName+"Pos :" + pos);
             return pos;
         }
 

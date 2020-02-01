@@ -28,8 +28,6 @@ namespace Frontend.View.Windows
 
         public void CourseSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Change");
-            Console.WriteLine(e);
             if(e.AddedItems != null && e.AddedItems.Count > 0)
             {
                 ComboBox comboBox = (ComboBox)sender;

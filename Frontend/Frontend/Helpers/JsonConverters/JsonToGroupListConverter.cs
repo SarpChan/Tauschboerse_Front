@@ -33,7 +33,6 @@ namespace Frontend.Helpers.JsonConverters
             {
                 string start = new List<string>(g.StartTime.Keys)[0];
                 string end = new List<string>(g.EndTime.Keys)[0];
-                Console.WriteLine("group " + g.Id + " starts at " + start + " ends at " + g.EndTime.Keys);
             }
            
             return groupList;

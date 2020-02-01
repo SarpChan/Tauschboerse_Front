@@ -195,8 +195,6 @@ namespace Frontend.ViewModel
 
             }
 
-            Console.WriteLine("count" + fullLines.Count);
-
             foreach (var ttm in fullLines)
             {
                 if (moduleListModel.ModuleList.Contains(ttm))

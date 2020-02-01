@@ -41,7 +41,6 @@ namespace Frontend.ViewModel
             personalData = PersonalData.Instance;
             ModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
-            //Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
             so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
@@ -387,7 +386,6 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/student_timetable");
             if ((int)response.StatusCode >= 400) return;
-            //Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
@@ -479,7 +477,6 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/module/prioritize");
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<List<ModuleSelectionItem>>(response.Content.ToString());
             
             ModuleList.SetList(tempTable);
@@ -502,7 +499,6 @@ namespace Frontend.ViewModel
             ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, ModuleList.ModuleList);
             ModuleList.ModuleItemList.Add(moduleItem1);
             ModuleList.ModuleItemList.Add(moduleItem2);
-            Console.WriteLine("");
         }
 
 

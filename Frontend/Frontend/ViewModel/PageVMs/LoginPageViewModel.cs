@@ -29,7 +29,6 @@ namespace Frontend.ViewModel
             Username = "Nutzername";
             Password = "Passwort";
             thisID = (int)(new Random().NextDouble() * 9999 ) + 1;
-            //Console.WriteLine("\"new LoginPageViewModel()\" InstanceID: " + thisID);
             _instance = this;
         }
 
