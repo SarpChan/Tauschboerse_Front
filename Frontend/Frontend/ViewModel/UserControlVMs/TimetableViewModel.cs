@@ -24,12 +24,12 @@ namespace Frontend.ViewModel
         
         public TimetableViewModel()
         {
-                
-                Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
-                foreach (var module in moduleListModel.ModuleList)
-                {
-                    OnModuleAdd(module);
-                }
+
+            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
+            foreach (var module in moduleListModel.ModuleList)
+            {
+                OnModuleAdd(module);
+            }
 
                 foreach (var row in rowListModel.RowList)
                 {

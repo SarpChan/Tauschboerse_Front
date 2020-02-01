@@ -58,6 +58,23 @@ namespace Frontend.Models
             else _swapOfferListPersonal.Add(swapOffer);
         }
 
+        public void RemoveById(long id)
+        {
+            foreach (SwapOfferFrontendModel so in _swapOfferListPublic.ToList())
+            {
+                if (id == so.Id)
+                {
+                    _swapOfferListPublic.Remove(so);
+                }
+            }
+            foreach (SwapOfferFrontendModel so in _swapOfferListPersonal.ToList())
+            {
+                if (id == so.Id)
+                {
+                    _swapOfferListPersonal.Remove(so);
+                }
+            }
+        }
         public void RemoveSwapOffer(SwapOfferFrontendModel swapOffer, bool isPublic)
         {
             if (isPublic) _swapOfferListPersonal.Remove(swapOffer);

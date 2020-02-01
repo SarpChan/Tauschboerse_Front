@@ -72,15 +72,15 @@ namespace Frontend.ViewModel
             NewsListModel newsListModel = NewsListModel.Instance;
             foreach(SwapOfferFrontendModel swapOffer in swapOfferListModel.SwapOfferListPublic)
             {
-                _SwapListPublic.Add(new SharingPageViewModelSwapOffer(swapOffer));
+                    _SwapListPublic.Add(new SharingPageViewModelSwapOffer(swapOffer));
             }
             foreach (SwapOfferFrontendModel swapOffer in swapOfferListModel.SwapOfferListPersonal)
             {
-                _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
+                    _SwapListOwn.Add(new SharingPageViewModelSwapOffer(swapOffer));
             }
             foreach(News news in newsListModel.NewsList)
             {
-                _NewsList.Add(news);
+                    _NewsList.Add(news);
             }
 
             swapOfferListModel.SwapOfferListPublic.CollectionChanged += OnPublicCollectionChange;
@@ -100,16 +100,16 @@ namespace Frontend.ViewModel
             List<String> autoCompleteConvertList = new List<string>();
             foreach (SharingPageViewModelSwapOffer swapoffer in this.SwapListOwn)
             {
-                autoCompleteConvertList.Add(swapoffer.CourseName);
-                autoCompleteConvertList.Add(swapoffer.CourseType);
+                    autoCompleteConvertList.Add(swapoffer.CourseName);
+                    autoCompleteConvertList.Add(swapoffer.CourseType);
             }
             this.AutocompleteOwn = autoCompleteConvertList.Distinct().ToList(); ;
             foreach (string s in this.AutocompleteOwn) Console.WriteLine(s);
             List<String> autoCompleteConvertList2 = new List<string>();
             foreach (SharingPageViewModelSwapOffer swapoffer in this.SwapListPublic)
             {
-                autoCompleteConvertList2.Add(swapoffer.CourseName);
-                autoCompleteConvertList2.Add(swapoffer.CourseType);
+                    autoCompleteConvertList2.Add(swapoffer.CourseName);
+                    autoCompleteConvertList2.Add(swapoffer.CourseType);
             }
             this.AutocompletePublic = autoCompleteConvertList2.Distinct().ToList(); ;
 
@@ -250,10 +250,16 @@ namespace Frontend.ViewModel
                 SharingPageViewModelSwapOffer add = new SharingPageViewModelSwapOffer(t);
                 if (own)
                 {
-                    this.SwapListOwn.Add(add);
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        this.SwapListOwn.Add(add);
+                    });
                 } else
                 {
-                    this.SwapListPublic.Add(add);
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        this.SwapListPublic.Add(add);
+                    });
                 }
                 
             }
@@ -267,17 +273,24 @@ namespace Frontend.ViewModel
         /// <param name="own">Ob es sich um die Öffentliche oder Private Tauschangebotliste handelt. True wenn es die Persönliche ist</param>
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
-            foreach (SwapOfferFrontendModel t in e.NewItems)
+            foreach (SwapOfferFrontendModel t in e.OldItems)
             {
                 if (own)
                 {
                     SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListOwn);
-                    this.SwapListOwn.Remove(foundSPVMSO);
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        this.SwapListOwn.Remove(foundSPVMSO);
+                    });
                 }
                 else
                 {
                     SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListPublic);
-                    this.SwapListPublic.Remove(foundSPVMSO);
+                    App.Current.Dispatcher.Invoke((Action)delegate 
+                    {
+                        this.SwapListPublic.Remove(foundSPVMSO);
+                    });
+                    
                 }
             }
         }
@@ -292,11 +305,17 @@ namespace Frontend.ViewModel
         {
             if (own)
             {
-                this.SwapListOwn.Clear();
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    this.SwapListOwn.Clear();
+                });
             }
             else
             {
-                this.SwapListPublic.Clear();
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    this.SwapListPublic.Clear();
+                });
             }
         }
 
@@ -310,7 +329,10 @@ namespace Frontend.ViewModel
 
             foreach (News t in e.NewItems)
             {
-                this.NewsList.Add(t);
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    this.NewsList.Add(t);
+                });
             }
         }
         /// <summary>
@@ -323,7 +345,10 @@ namespace Frontend.ViewModel
             foreach (News t in e.NewItems)
             {
                 News foundNews = FindNewsWithId(t.id, this.NewsList);
-                this.NewsList.Remove(foundNews);
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    this.NewsList.Remove(foundNews);
+                });
             }
         }
 
@@ -334,7 +359,10 @@ namespace Frontend.ViewModel
         /// <param name="e"></param>
         private void OnNewsClear(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.NewsList.Clear();
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                this.NewsList.Clear();
+            });
         }
 
         /// <summary>

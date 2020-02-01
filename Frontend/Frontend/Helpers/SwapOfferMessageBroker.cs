@@ -1,9 +1,10 @@
 ﻿using Apache.NMS;
-using Frontend.Models;
-using Apache.NMS.ActiveMQ.Commands;
 using Apache.NMS.ActiveMQ;
+using Apache.NMS.ActiveMQ.Commands;
+using Frontend.Models;
 using System;
-
+using Newtonsoft.Json;
+using ToastNotifications.Messages;
 
 namespace Frontend.Helpers
 {
@@ -23,9 +24,9 @@ namespace Frontend.Helpers
 
         public SwapOfferMessageBroker()
         {
-            //UpdateConnection();
+            UpdateConnection();
         }
-
+       
         public void UpdateConnection()
         {
             try
@@ -45,7 +46,7 @@ namespace Frontend.Helpers
 
                 // Thread zum Empfang eingehender Nachrichten starten
                 connection.Start();
-
+                
             }
             catch (Exception e)
             {
@@ -58,38 +59,73 @@ namespace Frontend.Helpers
         // Textnachrichten werden zur Kommandoausführung an parseCommand() weitergegeben
         public void OnPersonalSwapOfferAccept(IMessage msg)
         {
+
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
-                ParseCommand(textmessage.Text);
-
+                JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
+                News news = new News
+                {
+                    Message = jmsg.message,
+                    Timestamp = jmsg.timestamp
+                };
+                NewsListModel.Instance.NewsList.Add(news);
+                App.notifierSO.ShowSuccess(jmsg.message);
+                //ParseCommand(textmessage.Text);
+                
             }
         }
 
-        public void OnSwapOfferPublicReceive(IMessage msg)
+        /// <summary>
+        /// this method reacts to the message (msg) and depending wether the action equals "add" or "delete" it creates a new SwapOffer or deletes an existing one.
+        /// </summary>
+        /// <param name="msg">the message contains different parameters, action that defines the type and data that contains a JSon</param>
+        public void OnSwapOfferPublicReceive(IMessage msg) //neues hinzufügen oder löschen
         {
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
                 ParseCommand(textmessage.Text);
-
+                PublicSwapMessage psmsg = JsonConvert.DeserializeObject<PublicSwapMessage>(textmessage.Text);
+                if (psmsg.action.Equals("add")){
+                    SwapOfferFrontendModel newjmsg = JsonConvert.DeserializeObject<SwapOfferFrontendModel>(psmsg.data);
+                    swapOffers.AddSwapOffer(newjmsg,true);
+                }
+                else if (psmsg.action.Equals("delete")){
+                    swapOffers.RemoveById(long.Parse(psmsg.data));
+                }
             }
         }
 
+        /// <summary>
+        /// This method reacts on an incoming message, reads the JSon and creates a new news object and puts it into the NewsList.
+        /// </summary>
+        /// <param name="msg">the message that^contains a JSon and a timestamp. This information will be shown in the newslist. </param>
         public void OnNewsListReceive(IMessage msg)
         {
-            if (msg is IMapMessage)
+            if (msg is ITextMessage)
             {
-                IMapMessage textmessage = msg as IMapMessage;
+                ITextMessage textmessage = msg as ITextMessage;
                 Console.WriteLine("\nreceived: " + textmessage + "\n");
                 //ParseCommand(textmessage);
                 Console.WriteLine(textmessage.Properties);
-
+                JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
+                News news = new News
+                {
+                    Message = jmsg.message,
+                    Timestamp = jmsg.timestamp,
+                };
+                NewsListModel.Instance.NewsList.Add(news);
             }
         }
 
+
+        /// <summary>
+        /// outdated method, not used anymore
+        /// </summary>
+        /// <param name="cmd"></param>
         void ParseCommand(string cmd)
         {
             var fields = cmd.Split();
