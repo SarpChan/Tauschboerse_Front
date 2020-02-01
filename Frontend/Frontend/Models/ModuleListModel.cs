@@ -73,7 +73,7 @@ namespace Frontend.Models
             });
         }
 
-        public void SetList(List<ModuleSelectionItem> moduleItems)
+        public void SetModuleSelcionItemList(List<ModuleSelectionItem> moduleItems)
         {
             _moduleItemList = moduleItems;
         }

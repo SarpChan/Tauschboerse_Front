@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Frontend.Helpers;
+using ToastNotifications.Messages;
 
 namespace Frontend.UserControls
 {
@@ -55,8 +56,12 @@ namespace Frontend.UserControls
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewFileUploadRequest("/rest/pyScript/upload", path);
 
-            if ((int)response.StatusCode >= 400) return;
-
+            if ((int)response.StatusCode >= 400)
+            {
+                App.notifier.ShowError("Fehler beim Upload!");
+                return;
+            }
+            App.notifier.ShowSuccess("Datei hochgeladen!");
         }
 
     }

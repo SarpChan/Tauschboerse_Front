@@ -34,10 +34,12 @@ namespace Frontend.Helpers
                 // Verbindung / Session / MessageProducer und -Consumer instanziieren
                 if (connectionFactory == null) connectionFactory = new ConnectionFactory(currentBrokerURL);
                 connection = connectionFactory.CreateConnection();
+                connection.Start();
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
                 messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
-                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP + UserInformation.Instance.UserId));
-                messageConsumerNews = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS));
+                messageConsumerPersonal = session.CreateConsumer(new ActiveMQQueue(TOPIC_NAME_PERSONAL_SWAP + UserInformation.Instance.UserId));
+                messageConsumerNews = session.CreateDurableConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS),"news",null,false);
+
 
                 // MessageListener-Methode für eingehende Nachrichten registrieren
                 messageConsumerPublic.Listener += OnSwapOfferPublicReceive;
@@ -45,13 +47,19 @@ namespace Frontend.Helpers
                 messageConsumerPersonal.Listener += OnPersonalSwapOfferAccept;
 
                 // Thread zum Empfang eingehender Nachrichten starten
-                connection.Start();
-                
+               
+
             }
             catch (Exception e)
             {
                 throw new MessageBrokerCommunicationException("updateConnection(): " + e.Message);
             }
+        }
+
+        private void PullInitialNews()
+        {
+            var message = (ActiveMQTextMessage)messageConsumerNews.Receive(TimeSpan.FromTicks(DateTime.Now.Ticks));
+            Console.WriteLine(message.Text);
         }
 
         // OnMessageReceived - beim messageConsumer registrierte Callback-Methode,

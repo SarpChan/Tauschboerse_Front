@@ -144,7 +144,9 @@ namespace Frontend.ViewModel
             {
                 if (swapOffer.Id == (long)id)
                 {
-                    var response = await api.NewGETRequest("/swapoffer/accept/"+ swapOffer.Id);
+                    string url = "/swapoffer/accept/" + swapOffer.Id;
+                    Console.WriteLine(url);
+                    var response = await api.NewGETRequest("rest/swapoffer/accept/"+ swapOffer.Id);
                     if ((int)response.StatusCode >= 400)
                     {
                         App.notifier.ShowError((int)response.StatusCode + ": Beim Anfragen des Tauschanbots ist ein Fehler aufgetreten");
@@ -213,6 +215,7 @@ namespace Frontend.ViewModel
         /// <param name="e"></param>
         void OnNewsCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
         {
+            Console.WriteLine("news list change");
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
