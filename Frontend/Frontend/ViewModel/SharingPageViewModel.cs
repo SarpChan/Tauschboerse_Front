@@ -215,17 +215,24 @@ namespace Frontend.ViewModel
         }
         private void OnModuleRemove(object sender, NotifyCollectionChangedEventArgs e, bool own)
         {
-            foreach (SwapOfferFrontendModel t in e.NewItems)
+            foreach (SwapOfferFrontendModel t in e.OldItems)
             {
                 if (own)
                 {
                     SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListOwn);
-                    this.SwapListOwn.Remove(foundSPVMSO);
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        this.SwapListOwn.Remove(foundSPVMSO);
+                    });
                 }
                 else
                 {
                     SharingPageViewModelSwapOffer foundSPVMSO = FindSharingPageViewModelSwapOfferWithId(t.Id, this.SwapListPublic);
-                    this.SwapListPublic.Remove(foundSPVMSO);
+                    App.Current.Dispatcher.Invoke((Action)delegate 
+                    {
+                        this.SwapListPublic.Remove(foundSPVMSO);
+                    });
+                    
                 }
             }
         }

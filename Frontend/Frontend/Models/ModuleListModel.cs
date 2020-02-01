@@ -92,7 +92,7 @@ namespace Frontend.Models
                 PersonName = "Dude",
                 RoomNumber = "D21",
                 CourseName = "EIBO 2",
-                Type = ModuleDummy.ModuleType.Vorlesung,
+                Type = ModuleDummy.ModuleType.Vorlesung,3
                 GroupChar = 'B',
                 Color = "#FFF4A233"
             });

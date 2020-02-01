@@ -60,11 +60,18 @@ namespace Frontend.Models
 
         public void RemoveById(long id)
         {
-            foreach (SwapOfferFrontendModel so in _swapOfferListPublic)
+            foreach (SwapOfferFrontendModel so in _swapOfferListPublic.ToList())
             {
                 if (id == so.Id)
                 {
                     _swapOfferListPublic.Remove(so);
+                }
+            }
+            foreach (SwapOfferFrontendModel so in _swapOfferListPersonal.ToList())
+            {
+                if (id == so.Id)
+                {
+                    _swapOfferListPersonal.Remove(so);
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace Frontend.Helpers
 
         public SwapOfferMessageBroker()
         {
-            //UpdateConnection();
+            UpdateConnection();
         }
        
         public void UpdateConnection()
