@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
+
 namespace Frontend.Models
 {
     /// <summary>
@@ -8,11 +10,11 @@ namespace Frontend.Models
     /// </summary>
     public class ExamRegulation
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("date")]
         public DateTime Date { get; set; } 
-        public int Rule { get; set; }
-        public StudyProgram StudyProgramId { get; set; }
-        public HashSet<Curriculum> Curricula { get; set; }
-        public HashSet<Student> Students { get; set; }
+        [JsonProperty("maxTerms")]
+        public int MaxTerms;
     }
 }

@@ -2,6 +2,7 @@ using Frontend.ViewModel;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace Frontend.Helpers
         }
         private APIClient()
         {
-            _client = new RestClient("http://localhost:8080/");
+            _client = new RestClient(ConfigurationManager.AppSettings.Get("server.url"));
         }
         public static APIClient Instance
         {
@@ -41,8 +42,19 @@ namespace Frontend.Helpers
 
             if (response.IsSuccessful)
             {
-                _client.Authenticator = new JwtAuthenticator(response.Content);
-                return true;
+                if (response.Content.Contains("ADMIN"))
+                {
+                    var token = response.Content.Substring(0, 175);
+                    _client.Authenticator = new JwtAuthenticator(token);
+                    UserInformation.Instance.IsAdmin = true;
+                    return true;
+                }
+                else
+                {
+                    UserInformation.Instance.IsAdmin = false;
+                    _client.Authenticator = new JwtAuthenticator(response.Content);
+                    return true;
+                }
             }
             return false;
         }
@@ -76,7 +88,7 @@ namespace Frontend.Helpers
             var cancellationTokenSource = new CancellationTokenSource();
             _request = new RestRequest(restEndpoint, Method.GET);
             _request.AddHeader("Accept", "application/json");
-            //request.AddHeader("Content-Type", "application/json");
+            _request.AddHeader("Content-Type", "application/json");
 
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
             if ((int)response.StatusCode >= 400 && LoginPageViewModel.Instance.IsLoggedIn)

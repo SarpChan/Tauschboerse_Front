@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Frontend.Models
@@ -8,9 +9,11 @@ namespace Frontend.Models
     /// </summary>
     public class FieldOfStudy
     {
+        [JsonProperty("id")]
         public long Id { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
-        public long UniversityId { get; set; }
+        [JsonProperty("studyPrograms")]
         public HashSet<StudyProgram> StudyPrograms { get; set; }
     }
 }

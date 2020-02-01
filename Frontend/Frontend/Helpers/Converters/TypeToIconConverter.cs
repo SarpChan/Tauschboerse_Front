@@ -26,14 +26,14 @@ namespace Frontend.Helpers
             }
             else
             {
-                type = TimetableModule.ModuleType.Vorlesung;
+                type = TimetableModule.ModuleType.LECTURE;
             }
 
             switch (type)
             {
-                case TimetableModule.ModuleType.Praktikum: return LoadIcon("timetabel.item.icon.practicaltraining");
-                case TimetableModule.ModuleType.Tutorium: return LoadIcon("timetabel.item.icon.tutorial");
-                case TimetableModule.ModuleType.Übung: return LoadIcon("timetabel.item.icon.exercise");
+                case TimetableModule.ModuleType.PRACTICE: return LoadIcon("timetabel.item.icon.practicaltraining");
+                case TimetableModule.ModuleType.TUTORIAL: return LoadIcon("timetabel.item.icon.tutorial");
+                case TimetableModule.ModuleType.TEST: return LoadIcon("timetabel.item.icon.exercise");
                 default: return LoadIcon("timetabel.item.icon.lecture");
             }
         }
