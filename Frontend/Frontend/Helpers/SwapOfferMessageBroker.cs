@@ -36,7 +36,7 @@ namespace Frontend.Helpers
                 connection = connectionFactory.CreateConnection();
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
                 messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
-                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP));
+                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP + UserInformation.Instance.UserId));
                 messageConsumerNews = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS));
 
                 // MessageListener-Methode für eingehende Nachrichten registrieren
