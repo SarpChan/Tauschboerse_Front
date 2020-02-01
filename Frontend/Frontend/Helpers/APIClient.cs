@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using ToastNotifications.Messages;
 
 namespace Frontend.Helpers
@@ -49,6 +50,8 @@ namespace Frontend.Helpers
                 _client.Authenticator = new JwtAuthenticator(LoginResponse.AuthenticationToken);
                 UserInformation.Instance.UserId = LoginResponse.UserId;
                 UserInformation.Instance.IsAdmin = LoginResponse.userRight.Equals(LoginResponse.Rights.ADMIN.ToString());
+                
+                
                 return true;
             }
             return false;

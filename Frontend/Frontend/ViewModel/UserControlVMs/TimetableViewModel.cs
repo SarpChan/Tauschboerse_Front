@@ -215,8 +215,7 @@ namespace Frontend.ViewModel
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
 
-            taskFactory.StartNew(() =>
-            {
+
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
@@ -231,7 +230,7 @@ namespace Frontend.ViewModel
                     default:
                         throw new ArgumentException("Unbehandelter TupelHaufen-Change " + e.Action.ToString());
                 }
-            }).Wait();
+            
 
         }
 

@@ -11,7 +11,7 @@ namespace Frontend.Helpers
     class SwapOfferMessageBroker : ViewModelBase
     {
         const string TOPIC_NAME_PUBLIC_SWAP = "SwapOfferTopic";
-        const string TOPIC_NAME_PERSONAL_SWAP = "SwapMessageQueue";
+        const string TOPIC_NAME_PERSONAL_SWAP = "SwapMessagePersonalTopic";
         const string TOPIC_NAME_NEWS = "NewsMessageTopic";
         private IConnection connection;
         private IConnectionFactory connectionFactory;
@@ -37,7 +37,7 @@ namespace Frontend.Helpers
                 connection.Start();
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
                 messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
-                messageConsumerPersonal = session.CreateConsumer(new ActiveMQQueue(TOPIC_NAME_PERSONAL_SWAP + UserInformation.Instance.UserId));
+                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP));
                 messageConsumerNews = session.CreateDurableConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS),"news",null,false);
 
 
@@ -71,14 +71,18 @@ namespace Frontend.Helpers
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
-                JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
-                News news = new News
+                PersonalNewsMessage jmsg = JsonConvert.DeserializeObject<PersonalNewsMessage>(textmessage.Text);
+                if(jmsg.userid == UserInformation.Instance.UserId)
                 {
-                    Message = jmsg.message,
-                    Timestamp = jmsg.timestamp
-                };
-                NewsListModel.Instance.NewsList.Add(news);
-                App.notifierSO.ShowSuccess(jmsg.message);
+                    News news = new News
+                    {
+                        Message = jmsg.message,
+                        Timestamp = jmsg.timestamp
+                    };
+                    NewsListModel.Instance.NewsList.Add(news);
+                    App.notifier.ShowSuccess(jmsg.message);
+                }
+                
                 //ParseCommand(textmessage.Text);
                 
             }

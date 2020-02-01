@@ -34,31 +34,42 @@ namespace Frontend.Models
             _instance = this;
         }
 
-        private void AddNews(News n)
+        public void AddNews(News n)
         {
-            _newsList.Add(n);
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                _newsList.Add(n);
+            });
         }
 
-        private void RemoveNews(News n)
+        public void RemoveNews(News n)
         {
-            _newsList.Remove(n);
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                _newsList.Remove(n);
+            });
         }
 
         public void SetNewsList(ObservableCollection<News> newsList)
         {
-            _newsList = newsList;
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                _newsList.Clear();
+            });
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                foreach(News n in newsList)
+                {
+                    _newsList.Add(n);
+                }
+            });
+            
         }
 
         public void RemoveById(long id)
         {
             News rm = FindNewsByID(id);
             RemoveNews(rm);
-        }
-
-        public void AddById(long id)
-        {
-            News add = FindNewsByID(id);
-            AddNews(add);
         }
 
         private News FindNewsByID(long id)

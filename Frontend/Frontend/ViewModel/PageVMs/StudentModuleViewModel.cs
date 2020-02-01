@@ -22,12 +22,12 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
-            moduleListModel.ModuleList.Clear();
+            moduleListModel.ClearList();
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
                 //_modules.Add(moduleItem);
-                Boolean found = false;
+                bool found = false;
                 foreach (var semester in tempSemesterList)
                 {
                     if (moduleItem.semester == semester)
@@ -45,7 +45,7 @@ namespace Frontend.ViewModel
             }
             tempSemesterList = tempSemesterList.OrderBy(i => i).ToList();
 
-
+            NumberOfSemesters.Clear();
             for (int i = 0; i < tempSemesterList.Count; i++)
             {
                 NumberOfSemesters.Add(tempSemesterList[i]);
@@ -129,8 +129,8 @@ namespace Frontend.ViewModel
                             timetableModule.Day = weekdays[timetableModule.Day];
                         }
 
+                        moduleListModel.AddModule(timetableModule);
 
-                        moduleListModel.ModuleList.Add(timetableModule);
                     }
                 }
             }
@@ -149,7 +149,7 @@ namespace Frontend.ViewModel
                     CPSum -= moduleItem.CreditPoints;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
-                        moduleListModel.ModuleList.Remove(timetableModule);
+                        moduleListModel.RemoveModule(timetableModule);
                     }
                 }
             }

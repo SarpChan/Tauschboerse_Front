@@ -40,15 +40,16 @@ namespace Frontend.Models
 
         public void AddModule(TimetableModule m)
         {
-            Task gameTask = Task.Factory.StartNew(() =>
+            App.Current.Dispatcher.Invoke((Action)delegate
             {
                 _moduleList.Add(m);
             });
+
         }
 
         public void RemoveModule(TimetableModule m)
         {
-            Task gameTask = Task.Factory.StartNew(() =>
+            App.Current.Dispatcher.Invoke((Action)delegate
             {
                 _moduleList.Remove(m);
             });
@@ -56,26 +57,37 @@ namespace Frontend.Models
 
         public void ClearList()
         {
-            Task gameTask = Task.Factory.StartNew(() =>
+            App.Current.Dispatcher.Invoke((Action)delegate
             {
                 _moduleList.Clear();
             });
         }
 
-        public void SetList(ObservableCollection<TimetableModule> moduleList)
+        public void SetList(IList<TimetableModule> moduleList)
         {
-            Task gameTask = Task.Factory.StartNew(() =>
+            App.Current.Dispatcher.Invoke((Action)delegate
             {
                 _moduleList.Clear();
-                foreach( var x in moduleList){
-                    _moduleList.Add(x);
-                }
+            });
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                foreach (var x in moduleList.ToList())
+            {
+                _moduleList.Add(x);
+            }
             });
         }
 
         public void SetModuleSelcionItemList(List<ModuleSelectionItem> moduleItems)
         {
-            _moduleItemList = moduleItems;
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                _moduleList.Clear();
+                foreach (var x in moduleItems)
+                {
+                    _moduleItemList.Add(x);
+                }
+            });
         }
 
         public void AddModuleItem(ModuleSelectionItem m)

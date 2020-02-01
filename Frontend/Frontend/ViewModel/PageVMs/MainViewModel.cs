@@ -25,14 +25,13 @@ namespace Frontend.ViewModel
         public PersonalData personalData;
         public ModuleListModel ModuleList;
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
-
+        public SwapOfferMessageBroker so_mb;
+        
         private int thisID;
         
         
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
-
-        SwapOfferMessageBroker so_mb;
 
         public MainViewModel()
         {
@@ -44,6 +43,7 @@ namespace Frontend.ViewModel
             so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
+
 
         #region properties
         //Loading Flag ob loading page angezeigt werden soll
@@ -187,20 +187,7 @@ namespace Frontend.ViewModel
          */
         public async void SwitchActivePageAsync(string newActivePage)
         {
-            if (newActivePage == "HomePage.xaml")
-            {
-                IsLoading = true;
-                switch (mode)
-                {
-                    case "debug":
-                        break;
-                    case "normal":
-                        await RequestNewsFromServerAsync();
-                        break;
-                }
-                IsLoading = false;
-            }
-            else if (newActivePage == "TimetablePage.xaml")
+            if (newActivePage == "TimetablePage.xaml")
             {
 
                 IsLoading = true;
@@ -390,7 +377,6 @@ namespace Frontend.ViewModel
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = Globals.dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
 
             ModuleList.SetList(tempTable);
@@ -468,8 +454,6 @@ namespace Frontend.ViewModel
                 //tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             ModuleList.SetList(tempTable);
-            
-           ModuleList.SetList(tempTable);
         }
 
         private async Task RequestModuleDataFromServerAsync()
