@@ -36,7 +36,6 @@ namespace Frontend.UserControls
 
         private void OpenDialog(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("open dialog");
             CreateModule_Dialog d = new CreateModule_Dialog();
             d.Show();
             d.Topmost = true;

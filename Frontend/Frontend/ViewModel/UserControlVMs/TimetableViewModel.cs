@@ -25,7 +25,6 @@ namespace Frontend.ViewModel
         public TimetableViewModel()
         {
 
-            Console.WriteLine("NEW TIMETABLEVIEWMODEL ->  " + this.GetHashCode());
             foreach (var module in moduleListModel.ModuleList)
             {
                 OnModuleAdd(module);
@@ -458,9 +457,6 @@ namespace Frontend.ViewModel
             RecalculateTimeDependetProperties(ttvmm);
             RecalculateDayDependetProperties(ttvmm);
             ttvmm.Color = ColorGenerator.generateColor(ttvmm.Module.CourseName, ttvmm.Module.Type);
-
-            Console.WriteLine("\t\t(after) ->  Color:" + ttvmm.Color + " Y:" + ttvmm.Y +
-                "  X:" + ttvmm.X + "  H:" + ttvmm.Height + " W:" + ttvmm.Width);
 
         }
 

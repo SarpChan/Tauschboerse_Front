@@ -104,7 +104,6 @@ namespace Frontend.ViewModel
                     autoCompleteConvertList.Add(swapoffer.CourseType);
             }
             this.AutocompleteOwn = autoCompleteConvertList.Distinct().ToList(); ;
-            foreach (string s in this.AutocompleteOwn) Console.WriteLine(s);
             List<String> autoCompleteConvertList2 = new List<string>();
             foreach (SharingPageViewModelSwapOffer swapoffer in this.SwapListPublic)
             {
@@ -124,7 +123,6 @@ namespace Frontend.ViewModel
             //ID = System.Int64
             APIClient api = APIClient.Instance;
             string requestUrl = "/rest/swapOffer/delete/" + id;
-            Console.WriteLine(requestUrl);
             var response = await api.NewDELETERequest(requestUrl);
             if ((int)response.StatusCode >= 400)
             {
@@ -146,8 +144,7 @@ namespace Frontend.ViewModel
             {
                 if (swapOffer.Id == (long)id)
                 {
-                    Console.WriteLine("Trading " + id + "...");
-                    var response = await api.NewPOSTRequest("/tradeOffer/request", swapOffer);
+                    var response = await api.NewGETRequest("/swapoffer/accept/"+ swapOffer.Id);
                     if ((int)response.StatusCode >= 400)
                     {
                         App.notifier.ShowError((int)response.StatusCode + ": Beim Anfragen des Tauschanbots ist ein Fehler aufgetreten");

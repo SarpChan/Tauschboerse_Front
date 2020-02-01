@@ -621,9 +621,6 @@
     <Resource Include="Resources\Icons\password.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\trade_w.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Icons\check.png" />
   </ItemGroup>
   <ItemGroup>

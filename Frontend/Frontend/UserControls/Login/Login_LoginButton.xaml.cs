@@ -22,7 +22,6 @@ namespace Frontend.UserControls
                 return _PWBox;
             }
             set {
-                Console.WriteLine(((PasswordBox)value).Password);
                 _PWBox = (PasswordBox)value;
             }
         }

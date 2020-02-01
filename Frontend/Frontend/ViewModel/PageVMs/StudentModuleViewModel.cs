@@ -22,7 +22,6 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
-            Console.WriteLine("StudentViewModel: "+this.GetHashCode());
             moduleListModel.ModuleList.Clear();
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
@@ -52,7 +51,6 @@ namespace Frontend.ViewModel
                 NumberOfSemesters.Add(tempSemesterList[i]);
             }
 
-            Console.WriteLine(NumberOfSemesters);
 
         }
 
@@ -102,7 +100,6 @@ namespace Frontend.ViewModel
         // Hilfsmethode für SwitchTermCommand
         private void SwitchTerm(object i)
         {
-            Console.WriteLine("KLICK" + i.ToString());
             int semester = (int)i;
             Modules.Clear();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
@@ -118,7 +115,6 @@ namespace Frontend.ViewModel
         private void CheckboxIsChecked(object i)
         {
             Dictionary<String, String> weekdays = new Dictionary<String, String>() { { "MONDAY", "0" }, { "TUESDAY", "1" }, { "WEDNESDAY", "2" }, { "THURSDAY", "3" }, { "FRIDAY", "4" }, { "SATURDAY", "5" } };
-            Console.WriteLine("isChecked" + (long)i);
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
 
@@ -144,7 +140,6 @@ namespace Frontend.ViewModel
 
         private void CheckboxIsUnChecked(object i)
         {
-            Console.WriteLine("uncheck");
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
                 

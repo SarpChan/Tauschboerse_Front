@@ -64,7 +64,6 @@ namespace Frontend.Helpers
 
             double totalWidth = System.Convert.ToDouble(value[0]);
             double timeWidth = System.Convert.ToDouble(value[1]);
-            //Console.WriteLine(value[2]);
             int weekday = System.Convert.ToInt32(value[2]);
             int rowPos = TimeConverterHelper.CalculateModuleRowPosition((TimetableModule)value[3], (IList<TimetableModule>)value[4]);
             int divder = TimeConverterHelper.CalculateModuleWidthDivider((TimetableModule)value[3], (IList<TimetableModule>)value[4]);
@@ -208,7 +207,6 @@ namespace Frontend.Helpers
 
             divider =  CalculateModuleWidthDivider(divider, 0, startTime, endTime, module.Day,module, moduleList.ToArray());
 
-            //Console.WriteLine("Module: " + module.CourseName + "Div :" + divider);
             return divider;
         }
 
@@ -241,8 +239,6 @@ namespace Frontend.Helpers
                                 before = CalculateModuleRowPosition(counter, 1+i, startTime, s2, id, day,module, items);
                             }
 
-                            //Console.WriteLine("founde:", found, "behinde: ", behinde, "before", before);
-
                             return Math.Max(Math.Max(found, behinde),before);
                            
                         }
@@ -267,7 +263,6 @@ namespace Frontend.Helpers
            
             pos = CalculateModuleRowPosition(pos, 0, startTime, endTime, System.Convert.ToInt64(module.ID), module.Day,module, moduleList.ToArray());
 
-            //Console.WriteLine("Module: "+module.CourseName+"Pos :" + pos);
             return pos;
         }
 

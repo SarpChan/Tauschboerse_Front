@@ -16,7 +16,6 @@ namespace Frontend.ViewModel
             get { return _EditTimetableModule; }
             set
             {
-                Console.WriteLine("set ttm" + value.GetHashCode());
                 _EditTimetableModule = value;
                 _TimetableModuleBackUp = value.DeepCopy();
             }
@@ -73,7 +72,7 @@ namespace Frontend.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex);
+                    Console.WriteLine(ex.Message);
                     DiscardAllhanges();
                 }
             }
@@ -82,13 +81,10 @@ namespace Frontend.ViewModel
 
         private async Task SendChangesToServerAsync()
         {
-            Console.WriteLine(EditTimetableModule.StartTime);
-            Console.WriteLine(EditTimetableModule.EndTime);
-
+            
             APIClient apiClient = APIClient.Instance;
             string json = JsonConvert.SerializeObject(EditTimetableModule);
             var response = await apiClient.NewPOSTRequest("rest/lists/timetableUpdate", json);
-            Console.WriteLine("[SAVE TIMETABLE]" + response.Content.ToString());
             if ((int)response.StatusCode >= 400) return;
         }
 
@@ -97,7 +93,6 @@ namespace Frontend.ViewModel
         /// </summary>
         public void DiscardAllhanges()
         {
-            Console.WriteLine("Discard Changes");
             _EditTimetableModule.ReplaceData(_TimetableModuleBackUp);
         }
     }

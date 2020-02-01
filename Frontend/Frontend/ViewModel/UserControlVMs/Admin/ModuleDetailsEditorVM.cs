@@ -18,7 +18,6 @@ namespace Frontend.ViewModel
 
         public ModuleDetailsEditorVM()
         {
-            Console.WriteLine("CREATE CreateModuleDialogViewModel");
             _RoomDict.Add(17, "D17");
             _GroupDict.Add(14, "C");
             _LectureDict.Add(17,"Ich");

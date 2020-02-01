@@ -63,7 +63,6 @@ namespace Frontend.Helpers
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
-                Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
                 JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
                 News news = new News
                 {
@@ -86,7 +85,6 @@ namespace Frontend.Helpers
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
-                Console.WriteLine("\nreceived: " + textmessage.Text + "\n");
                 ParseCommand(textmessage.Text);
                 PublicSwapMessage psmsg = JsonConvert.DeserializeObject<PublicSwapMessage>(textmessage.Text);
                 if (psmsg.action.Equals("add")){
@@ -108,9 +106,7 @@ namespace Frontend.Helpers
             if (msg is ITextMessage)
             {
                 ITextMessage textmessage = msg as ITextMessage;
-                Console.WriteLine("\nreceived: " + textmessage + "\n");
                 //ParseCommand(textmessage);
-                Console.WriteLine(textmessage.Properties);
                 JsonMessage jmsg = JsonConvert.DeserializeObject<JsonMessage>(textmessage.Text);
                 News news = new News
                 {

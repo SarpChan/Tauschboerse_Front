@@ -101,7 +101,6 @@ namespace Frontend.Helpers
             _request.AddHeader("Content-Type", "application/json");
             
             var response =  await _client.ExecuteTaskAsync(_request, cancellationTokenSource.Token);
-            Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400)
             {
                 MainViewModel.Instance.HandleHttpError((int)response.StatusCode);
@@ -121,7 +120,6 @@ namespace Frontend.Helpers
             _request.RequestFormat = DataFormat.Json;
             _request.AddHeader("Content-Type", "multipart/form-data");
             _request.AddFile("file", path, "file");
-            Console.WriteLine(path);
             var response = await _client.ExecuteTaskAsync(_request);
 
             return response;
