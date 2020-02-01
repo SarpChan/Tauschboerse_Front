@@ -44,6 +44,7 @@ namespace Frontend.Models
             {
                 _moduleList.Add(m);
             });
+            gameTask.Wait();
         }
 
         public void RemoveModule(TimetableModule m)
@@ -52,6 +53,7 @@ namespace Frontend.Models
             {
                 _moduleList.Remove(m);
             });
+            gameTask.Wait();
         }
 
         public void ClearList()
@@ -60,6 +62,7 @@ namespace Frontend.Models
             {
                 _moduleList.Clear();
             });
+            gameTask.Wait();
         }
 
         public void SetList(ObservableCollection<TimetableModule> moduleList)
@@ -71,6 +74,7 @@ namespace Frontend.Models
                     _moduleList.Add(x);
                 }
             });
+            gameTask.Wait();
         }
 
         public void SetModuleSelcionItemList(List<ModuleSelectionItem> moduleItems)

@@ -187,20 +187,7 @@ namespace Frontend.ViewModel
          */
         public async void SwitchActivePageAsync(string newActivePage)
         {
-            if (newActivePage == "HomePage.xaml")
-            {
-                IsLoading = true;
-                switch (mode)
-                {
-                    case "debug":
-                        break;
-                    case "normal":
-                        await RequestNewsFromServerAsync();
-                        break;
-                }
-                IsLoading = false;
-            }
-            else if (newActivePage == "TimetablePage.xaml")
+            if (newActivePage == "TimetablePage.xaml")
             {
 
                 IsLoading = true;
@@ -390,7 +377,6 @@ namespace Frontend.ViewModel
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = Globals.dayValues[tm.Day];
-                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
 
             ModuleList.SetList(tempTable);
