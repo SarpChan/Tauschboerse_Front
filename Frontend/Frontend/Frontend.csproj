@@ -81,6 +81,7 @@
     <Compile Include="Helpers\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\Calculators\ResultionCalculators.cs" />
     <Compile Include="Helpers\Converters\DayConverters.cs" />
+    <Compile Include="Helpers\Converters\ExamRegulationDateConverter.cs" />
     <Compile Include="Helpers\Converters\RowConverters.cs" />
     <Compile Include="Helpers\Converters\TimeConverter.cs" />
     <Compile Include="Helpers\Converters\TimestampToDatetimeConverter.cs" />
@@ -158,12 +159,6 @@
     </Compile>
     <Compile Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml.cs">
       <DependentUpon>ModuleTypEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SavePythonCodeButton.xaml.cs">
-      <DependentUpon>SavePythonCodeButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Sidebar\SB_PythonScriptButton.xaml.cs">
-      <DependentUpon>SB_PythonScriptButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Login\Login_HeadText.xaml.cs">
       <DependentUpon>Login_HeadText.xaml</DependentUpon>
@@ -337,7 +332,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Admin\ModuleEditors\ModuleEditorChooser.xaml">
+    <Page Include="UserControls\Admin\ModuleEditors\ModuleDetailsEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -354,14 +349,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Admin\ModuleEditors\ModuleTypEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\SavePythonCodeButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Sidebar\SB_PythonScriptButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -617,7 +604,6 @@
     <Resource Include="Resources\Icons\check.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\ToastNotifications.Messages.dll" />
     <Resource Include="Resources\Icons\add.png" />
     <Resource Include="Resources\Icons\reload.png" />
     <Resource Include="Resources\Icons\trade_b.png" />
@@ -628,14 +614,6 @@
       <Project>{512fd53f-9ad1-46a1-a961-9fabdfad50c5}</Project>
       <Name>DataGridFilterLibrary</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\add.png" />
-    <Resource Include="Resources\Icons\reload.png" />
-    <Resource Include="Resources\Icons\trade_b.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,6 @@
              xmlns:local="clr-namespace:Frontend.UserControls"
              xmlns:helpers="clr-namespace:Frontend.Helpers"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:Helpers="clr-namespace:Frontend.Helpers" 
              xmlns:models="clr-namespace:Frontend.Models" 
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
              mc:Ignorable="d">
