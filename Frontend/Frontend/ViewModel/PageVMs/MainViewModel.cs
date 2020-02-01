@@ -454,8 +454,6 @@ namespace Frontend.ViewModel
                 //tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             ModuleList.SetList(tempTable);
-            
-           ModuleList.SetList(tempTable);
         }
 
         private async Task RequestModuleDataFromServerAsync()
