@@ -78,7 +78,7 @@ namespace Frontend.ViewModel
                 if(response.Content.Length == 0)
                 {
                     App.notifier.ShowSuccess("Passendes Tauschangebot gefunden! Wurde direkt aktzeptiert!");
-                    NewsListModel.Instance.AddNews(new News("Du hast erfolgreich von Gruppe " + FromGroup + " zu Gruppe " + ToGroup));
+                    NewsListModel.Instance.AddNews(new News("Du hast erfolgreich von " + FromGroup + " zu Gruppe " + ToGroup + " getauscht!"));
                 } else
                 {
                     App.notifier.ShowSuccess("Tauschangebot erstellt!");

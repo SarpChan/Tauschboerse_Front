@@ -37,7 +37,7 @@ namespace Frontend.Helpers
                 connection.Start();
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
                 messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
-                messageConsumerPersonal = session.CreateConsumer(new ActiveMQQueue(TOPIC_NAME_PERSONAL_SWAP));
+                messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP));
                 messageConsumerNews = session.CreateDurableConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS),"news",null,false);
 
 
@@ -80,7 +80,7 @@ namespace Frontend.Helpers
                         Timestamp = jmsg.timestamp
                     };
                     NewsListModel.Instance.NewsList.Add(news);
-                    App.notifierSO.ShowSuccess(jmsg.message);
+                    App.notifier.ShowSuccess(jmsg.message);
                 }
                 
                 //ParseCommand(textmessage.Text);
