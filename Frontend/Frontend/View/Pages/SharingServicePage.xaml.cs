@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Frontend.View.Windows;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Frontend.View
 {
@@ -10,6 +12,14 @@ namespace Frontend.View
         public SharingServicePage()
         {
             InitializeComponent();
+            DataContext = this;
+        }
+
+        public void OpenDialog(object sender, RoutedEventArgs args)
+        {
+            CreateSwapOffer_Dialog d= new CreateSwapOffer_Dialog();
+            d.Show();
+            d.Topmost = true;
         }
     }
 }

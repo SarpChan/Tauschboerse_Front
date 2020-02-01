@@ -43,11 +43,11 @@ namespace Frontend.View
             }
         }
 
-        #region MainFrame DataContext to Pages
+        /*#region MainFrame DataContext to Pages
 
-        /* 
+        *//* 
          * Benoetigt um DataContext an Pages in Frame weiter zu geben.
-        */
+        *//*
 
         private void FrameDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -71,6 +71,6 @@ namespace Frontend.View
                 return;
             content.DataContext = MainFrame.DataContext;
         }
-        #endregion
+        #endregion*/
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Frontend.ViewModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -24,5 +25,15 @@ namespace Frontend.UserControls
                 PasswordInput.SelectAll();
             }
         }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                ((LoginPageViewModel)DataContext).Password = PasswordInput.Text;
+                ((LoginPageViewModel)DataContext).ProcessLogin();
+            }
+        }
+    
     }
 }

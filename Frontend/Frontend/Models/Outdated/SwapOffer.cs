@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    class SwapOffer { 
-    
+    class SwapOffer
+    {
 
-        [JsonProperty("fromGroup")]
-        public long FromGroupID { get; set; }
-        [JsonProperty("toGroup")]
-        public long ToGroupID { get; set; }
+
+        [JsonProperty("fromGroupsID")]
+        public long fromGroupsID { get; set; }
+        [JsonProperty("toGroupsID")]
+        public long[] toGroupsID { get; set; }
 
         public SwapOffer(long fromGroup, long toGroup)
         {
-           // this.course = course;
-            this.FromGroupID = fromGroup;
-            this.ToGroupID = toGroup;
+            // this.course = course;
+            this.fromGroupsID = fromGroup;
+            this.toGroupsID = new long[] { toGroup };
         }
     }
 }

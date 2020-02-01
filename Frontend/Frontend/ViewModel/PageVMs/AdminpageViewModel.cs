@@ -30,7 +30,7 @@ namespace Frontend.ViewModel
         public AdminPageViewModel()
         {
 
-            Console.WriteLine("\nNEW ADMINPAGEVM -> " + this.GetHashCode());
+            //Console.WriteLine("\nNEW ADMINPAGEVM -> "+this.GetHashCode());
 
             LoadFieldOfStudyList();
         }

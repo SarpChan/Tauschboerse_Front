@@ -32,15 +32,17 @@ namespace Frontend.ViewModel
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
 
+        //SwapOfferMessageBroker so_mb;
+
         public MainViewModel()
         {
-
-            ActivePage = "HomePage.xaml";
+            ActivePage = "SharingServicePage.xaml";
             IsLoading = false;
             personalData = PersonalData.Instance;
             timetableModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
-            Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
+            //Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
+            //so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
 
@@ -79,6 +81,15 @@ namespace Frontend.ViewModel
         /*
          * Alle ICommands für die Button-Funktionen
          */
+
+        private ICommand pythonscriptUpload_ButtonCommand;
+
+        public ICommand UploadPythonscriptCommand
+        {
+            get { return pythonscriptUpload_ButtonCommand; }
+            set { pythonscriptUpload_ButtonCommand = value; }
+        }
+
         private ICommand _SwitchToHomePageCommand;
         public ICommand SwitchToHomePageCommand
         {
@@ -144,6 +155,19 @@ namespace Frontend.ViewModel
             }
         }
 
+        private ICommand _SwitchToPythonUploadPageCommand;
+        public ICommand SwitchToPythonUploadPageCommand
+        {
+            get
+            {
+                if (_SwitchToPythonUploadPageCommand == null)
+                {
+                    _SwitchToPythonUploadPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("PythonUpload.xaml"));
+                }
+                return _SwitchToPythonUploadPageCommand;
+            }
+        }
+
         private ICommand _LogoutCommand;
         public ICommand LogoutCommand
         {
@@ -162,9 +186,8 @@ namespace Frontend.ViewModel
         /*
          * Handled das Page-Switchen inkl. asynchroner Anfrage an den Server und anzeigen des Loading Screens
          */
-        private async void SwitchActivePageAsync(string newActivePage)
+        public async void SwitchActivePageAsync(string newActivePage)
         {
-            Console.WriteLine("SWITCH STARTET");
             if (newActivePage == "HomePage.xaml")
             {
                 IsLoading = true;
@@ -231,13 +254,91 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
+            else if (newActivePage == "PythonUpload.xaml")
+            {
+                IsLoading = true;
+                switch (mode)
+                {
+                    case "debug":
+                        break;
+                    case "normal":
+                        await RequestAdminDataFromServerAsync();
+                        break;
+                }
+                IsLoading = false;
+            }
             else
             {
                 return;
             }
-            Console.WriteLine("SWITCH VOR ACTIVE");
             ActivePage = newActivePage;
-            Console.WriteLine("SWITCH NACH ACTIVE");
+        }
+
+        public void HandleHttpError(int HttpCode)
+        {
+            switch (HttpCode)
+            {
+                //Bad Request
+                case (400):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Fehlerhafter Request an Server");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Unauthorized
+                case (401):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        Logout(HttpCode);
+                        APIClient.Instance.Logout();
+                    }
+                    break;
+                //Forbidden
+                case (403):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Keine Zugriffsberechtigung");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Not Found
+                case (404):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Resource nicht gefunden");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                //Method Not Allowed
+                case (405):
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning(HttpCode + ": Anfrage-Methode nicht erlaubt");
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+                case (-1):
+                    
+                    App.notifier.ShowError("Server is offline");
+                    //Logout(HttpCode);
+                    //APIClient.Instance.Logout();
+                    
+                    break;
+                default:
+                    if (LoginPageViewModel.Instance.IsLoggedIn)
+                    {
+                        App.notifier.ShowWarning("HttpFehlerCode: " + HttpCode);
+                        //Logout(HttpCode);
+                        //APIClient.Instance.Logout();
+                    }
+                    break;
+            }
+
         }
 
         /*
@@ -245,7 +346,7 @@ namespace Frontend.ViewModel
          */
         public void Logout(int code)
         {
-            this.SwitchActivePageAsync("HomePage.xaml");
+            this.SwitchActivePageAsync("SharingServicePage.xaml");
             personalData.LogoutUser();
             LoginPageViewModel.Instance.IsLoggedIn = false;
             if (code == 200)
@@ -255,9 +356,7 @@ namespace Frontend.ViewModel
             {
                 App.notifier.ShowError("Der Authentifizierungstoken ist nicht mehr gueltig");
             }
-        
-            APIClient apiClient = APIClient.Instance;
-            apiClient.Logout();
+            APIClient.Instance.Logout();
         }
        
         /*
@@ -270,13 +369,14 @@ namespace Frontend.ViewModel
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/student_timetable");
             if ((int)response.StatusCode >= 400) return;
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable) //TODO ViewModel.MVM: Sollte besser in einem JSON Converter passieren
             {
                 tm.Day = Globals.dayValues[tm.Day];
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
+
             timetableModuleList.SetList(tempTable);
         }
 
@@ -286,10 +386,11 @@ namespace Frontend.ViewModel
          */
         private async Task RequestNewsFromServerAsync()
         {
-            List<string> tempTable = new List<string>();
+            
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/lists/news", new { id = 32 });
             if ((int)response.StatusCode >= 400) return;
+            
             //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //newsList.SetList(tempTable);
         }
@@ -300,10 +401,17 @@ namespace Frontend.ViewModel
          */
         private async Task RequestSharingDataFromServerAsync()
         {
-            List<string> tempTable = new List<string>();
+            ObservableCollection<SwapOfferFrontendModel> tempList = new ObservableCollection<SwapOfferFrontendModel>();
             APIClient apiClient = APIClient.Instance;
-            var response = await apiClient.NewPOSTRequest("/rest/lists/sharingdata", new { id = 32 });
+            var response = await apiClient.NewGETRequest("/rest/lists/swapOffer/me");
             if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content.ToString());
+            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
+            SwapOfferListModel.Instance.SetList(tempList, false);
+            response = await apiClient.NewGETRequest("/rest/lists/swapOffer/all");
+            if ((int)response.StatusCode >= 400) return;
+            tempList = JsonConvert.DeserializeObject<ObservableCollection<SwapOfferFrontendModel>>(response.Content.ToString());
+            SwapOfferListModel.Instance.SetList(tempList, true);
             //tempTable = JsonConvert.DeserializeObject<List<string>>(response.Content.ToString());
             //sharingdataList.SetList(tempTable);
         }
@@ -337,7 +445,8 @@ namespace Frontend.ViewModel
             tempTable = JsonConvert.DeserializeObject<ObservableCollection<TimetableModule>>(response.Content.ToString());
             foreach (TimetableModule tm in tempTable)
             {
-                tm.Day = Globals.dayValues[tm.Day];
+                tm.Day = dayValues[tm.Day];
+                tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
             timetableModuleList.SetList(tempTable);
             

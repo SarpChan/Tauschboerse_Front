@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.UserControls"
              xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-        Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="550" MaxWidth="700"
+        Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MinHeight="50pt"  MaxWidth="500pt"
             >
 
     <Window.Resources>
-        <!--Combobox  Style-->
+        <!--Comboboxitem Style-->
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#d2e7eb"/>
 
         <Style TargetType="ComboBoxItem">
@@ -43,7 +44,8 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-
+        
+        <!--Combobox Style-->
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="MinWidth" Value="150"/>
             <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
@@ -112,6 +114,7 @@
         <viewmodel:TimetableViewModel x:Name="TimetableViewModel"/>
     </Window.DataContext>
 
+    <!--Griddefinition-->
     <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -125,49 +128,49 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 10 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
+        <!--Headline-->
+        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Kurs tauschen"/></TextBlock>
+        
+        <!--Textbox für ausgewählten Kurs-->
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Von Fach"/></TextBlock>
+            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <TextBlock x:Name="CourseName" Width="250" HorizontalAlignment="Left" Style="{StaticResource Textblock}" Padding="10 15">
-                </TextBlock>
+                <xctk:WatermarkTextBox x:Name="CourseName" Style="{StaticResource Textbox}" Watermark="Kursname" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
             </Border>
-
         </StackPanel>
 
+        <!--Textbox für den Kurstyp-->
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
-            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Nach Fach"/></TextBlock>
+            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="Kurstyp"/></TextBlock>
             <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <TextBlock  x:Name="TargetCourse"  Style="{StaticResource Textblock}" Padding="10 15"></TextBlock>
+                <xctk:WatermarkTextBox x:Name="CourseType" Style="{StaticResource Textbox}" Watermark="Kurstyp" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
             </Border>
-
-
         </StackPanel>
 
-
+        <!--Textbox für die aktuelle Gruppe-->
         <StackPanel Grid.Column="0" Grid.Row="2">
             <TextBlock x:Name="From" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0"><Run Text="Von Gruppe"/></TextBlock>
             <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
-                <TextBlock x:Name="FromGroup" Width="250" HorizontalAlignment="Left" Padding="10 15" Style="{StaticResource Textblock}" />
+                <xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="Gruppe" Width="250" HorizontalAlignment="Left" Padding="10 15"/>
             </Border>
-
         </StackPanel>
 
+        <!--Combobox für die noch auszuwählenden Gruppen-->
         <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
             <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
             <ComboBox x:Name="ToGroup" Width="250" Height="50" HorizontalAlignment="Left">
-                <ComboBoxItem IsSelected="True" Content="Gruppe B"/>
-                <ComboBoxItem Content="Gruppe C"/>
-                <ComboBoxItem Content="Gruppe D"/>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayText}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
 
-        <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 80 0 0">
-            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create"/>
+        <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
+        <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 60 0 0">
+            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create" Margin="0 0 0 0"/>
             <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloWi" Margin="40 0 0 0"/>
-
         </WrapPanel>
-
     </Grid>
-
 </Window>

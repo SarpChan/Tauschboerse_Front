@@ -1,6 +1,10 @@
-﻿using Frontend.View;
+﻿using Frontend.Helpers;
+using Frontend.Models;
+using Frontend.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,28 +25,69 @@ namespace Frontend.UserControls
     /// </summary>
     public partial class TT_Item_Swapbtn : UserControl
     {
+        SO_Dialog d;
+       
+
         public TT_Item_Swapbtn()
         {
-            InitializeComponent(); 
-                      
+            InitializeComponent();
+
+
         }
 
-      
+        /// <summary>
+        /// Ein neues Dialogfenster zum Tauschen soll erstellt,
+        /// geöffnet und mit allen Daten über den Aufruf FillDialog() gefüllt werden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenDialog(object sender, RoutedEventArgs e)
         {
-            SO_Dialog d = new SO_Dialog();
+            d = new SO_Dialog();
             d.Show();
             d.Topmost = true;
-            FillDialog(d);
+            FillDialog();
+           
             
         }
 
-        private void FillDialog(SO_Dialog d)
+        /// <summary>
+        /// Eine Liste mit allen Gruppen, die zum jeweiligen Fach gehören und die der User noch wählen kann, 
+        /// werden aus dem Backend geholt
+        /// </summary>
+        private async void GetGroupLstAsync()
         {
+            Dictionary<long, char> Groups;
+            List<SwapOfferGroup> lst = new List<SwapOfferGroup>();
+          
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewGETRequest("rest/group/dropdowncollection/" + d.FromGroupID);
+            Groups = JsonConvert.DeserializeObject<Dictionary<long, char>>(response.Content);
+
+            foreach (KeyValuePair<long, char> keyValue in Groups)
+            {
+                lst.Add(new SwapOfferGroup { Char = keyValue.Value, Id = keyValue.Key });
+            }
+          
+            d.ToGroup.ItemsSource = lst;
+
+        }
+
+        /// <summary>
+        /// Das geöffnete Dialogfenster wird mit den richtigen Daten gefüllt:
+        /// Kursname, Kurstyp und die Gruppe, in der der User ist
+        /// Zudem wird die GruppenID gespeichert
+        /// </summary>
+        private void FillDialog()
+        {
+           
             d.CourseName.Text = item.Module.Module.CourseName;
-            d.TargetCourse.Text = item.Module.Module.CourseName;
-            d.FromGroup.Text = item.Module.Module.GroupChar;
-            d.GroupID = item.Module.Module.ID;
+            d.CourseType.Text = item.Module.Module.Type.ToString();
+            d.FromGroup.Text = item.Module.Module.GroupChar;      
+            d.FromGroupID = item.Module.Module.ID;
+            GetGroupLstAsync();
+
+           
         }
     }
 }

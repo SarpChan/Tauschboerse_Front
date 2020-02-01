@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace Frontend.ViewModel
 {
-    class TimetableViewModel : ViewModelBase
+    class TimetableViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private ModuleListModel moduleListModel = ModuleListModel.Instance;
         private TimetableRowListModel rowListModel = new TimetableRowListModel();
