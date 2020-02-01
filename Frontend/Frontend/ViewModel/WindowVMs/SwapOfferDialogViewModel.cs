@@ -67,8 +67,27 @@ namespace Frontend.ViewModel
             SwapOffer so = new SwapOffer(FromGroupId, ToGroupId);
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewPOSTRequest("/rest/swapoffer/insert", so);
-            if ((int)response.StatusCode >= 400) return;
-            App.notifier.ShowSuccess("Tauschangebot erstellt!");
+            if ((int)response.StatusCode == 400)
+            {
+                App.notifier.ShowInformation("Das Tauschangebot wurde nicht erstellt, weil es bereits exestierte.");
+            } else if((int)response.StatusCode > 400)
+            {
+                App.notifier.ShowError("Ein Fehler ist beim Erstellen des Tauschangebots aufgetreten.");
+            } else
+            {
+                if(response.Content.Length == 0)
+                {
+                    App.notifier.ShowSuccess("Passendes Tauschangebot gefunden! Wurde direkt aktzeptiert!");
+                    NewsListModel.Instance.AddNews(new News("Du hast erfolgreich von Gruppe " + FromGroup + " zu Gruppe " + ToGroup));
+                } else
+                {
+                    App.notifier.ShowSuccess("Tauschangebot erstellt!");
+                    SwapOfferListModel.Instance.AddSwapOffer(JsonConvert.DeserializeObject<SwapOfferFrontendModel>(response.Content), false);
+                }
+                
+            }
+
+            
         }
 
 
@@ -115,6 +134,7 @@ namespace Frontend.ViewModel
         {
             ChangeLine = "Du wechselst von " + FromGroup + " zu Gruppe " + group.Char;
             ToGroupId = group.Id;
+            ToGroup = group.Char;
         }
 
         #endregion
@@ -154,6 +174,22 @@ namespace Frontend.ViewModel
                 OnPropertyChanged("FromGroup");
             }
         }
+
+        public char _ToGroup;
+        public char ToGroup
+        {
+            get
+            {
+                return _ToGroup;
+            }
+            set
+            {
+                _ToGroup = value;
+                OnPropertyChanged("ToGroup");
+            }
+        }
+
+
 
         #endregion
 

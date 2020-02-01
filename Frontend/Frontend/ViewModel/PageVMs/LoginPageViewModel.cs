@@ -1,8 +1,10 @@
 ﻿using Frontend.Helpers;
 using System;
 using System.Configuration;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ToastNotifications.Messages;
 
 namespace Frontend.ViewModel

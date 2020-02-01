@@ -25,14 +25,13 @@ namespace Frontend.ViewModel
         public PersonalData personalData;
         public ModuleListModel ModuleList;
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
-
+        public SwapOfferMessageBroker so_mb;
+        
         private int thisID;
         
         
         private static MainViewModel _instance;
         public static MainViewModel Instance { get { return _instance; } }
-
-        SwapOfferMessageBroker so_mb;
 
         public MainViewModel()
         {
@@ -44,6 +43,7 @@ namespace Frontend.ViewModel
             so_mb = new SwapOfferMessageBroker();
             _instance = this;
         }
+
 
         #region properties
         //Loading Flag ob loading page angezeigt werden soll

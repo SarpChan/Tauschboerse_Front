@@ -9,9 +9,15 @@ namespace Frontend.Models
 {
     public class JsonMessage
     {
-        [JsonProperty]
         public long timestamp;
         public string message;
+    }
+
+    public class PersonalNewsMessage
+    {
+        public long timestamp;
+        public string message;
+        public long userid;
     }
 
     public class PublicSwapMessage

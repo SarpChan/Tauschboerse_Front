@@ -44,5 +44,13 @@ namespace Frontend.Models
                 Time = (string)value;
             }
         }
+
+        public News() { }
+
+        public News(string message)
+        {
+            this.Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            this.Message = message;
+        }
     }
 }
