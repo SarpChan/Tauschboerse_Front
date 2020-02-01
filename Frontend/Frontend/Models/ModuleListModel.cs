@@ -12,7 +12,9 @@ namespace Frontend.Models
     class ModuleListModel
     {
         private ObservableCollection<TimetableModule> _moduleList = new ObservableCollection<TimetableModule>();
+        private List<ModuleSelectionItem> _moduleItemList = new List<ModuleSelectionItem>();
         public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
+        public List<ModuleSelectionItem> ModuleItemList { get { return _moduleItemList; } }
 
         private static ModuleListModel _instance;
 
@@ -69,6 +71,21 @@ namespace Frontend.Models
                     _moduleList.Add(x);
                 }
             });
+        }
+
+        public void SetList(List<ModuleSelectionItem> moduleItems)
+        {
+            _moduleItemList = moduleItems;
+        }
+
+        public void AddModuleItem(ModuleSelectionItem m)
+        {
+            _moduleItemList.Add(m);
+        }
+
+        public void RemoveModuleItem(ModuleSelectionItem m)
+        {
+            _moduleItemList.Remove(m);
         }
     }
 }

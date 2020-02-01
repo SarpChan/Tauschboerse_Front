@@ -23,7 +23,7 @@ namespace Frontend.ViewModel
     class MainViewModel : ViewModelBase
     {
         public PersonalData personalData;
-        public ModuleListModel timetableModuleList;
+        public ModuleListModel ModuleList;
         string mode = ConfigurationManager.AppSettings.Get("login.mode");
 
         private int thisID;
@@ -39,7 +39,7 @@ namespace Frontend.ViewModel
             ActivePage = "SharingServicePage.xaml";
             IsLoading = false;
             personalData = PersonalData.Instance;
-            timetableModuleList = ModuleListModel.Instance;
+            ModuleList = ModuleListModel.Instance;
             thisID = (int)(new Random().NextDouble() * 9999) + 1;
             //Console.WriteLine("\"NEW MAIN_VIEWMODEL\" InstanceID: "  + thisID);
             so_mb = new SwapOfferMessageBroker();
@@ -136,7 +136,7 @@ namespace Frontend.ViewModel
             {
                 if (_SwitchToPersonalDataPageCommand == null)
                 {
-                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("PersonalDataPage.xaml"));
+                    _SwitchToPersonalDataPageCommand = new ActionCommand(dummy => this.SwitchActivePageAsync("StudentModulePage.xaml"));
                 }
                 return _SwitchToPersonalDataPageCommand;
             }
@@ -240,6 +240,7 @@ namespace Frontend.ViewModel
                         break;
                 }
                 IsLoading = false;
+
             }
             else if (newActivePage == "AdminPage.xaml")
             {
@@ -254,6 +255,21 @@ namespace Frontend.ViewModel
                 }
                 IsLoading = false;
             }
+            else if (newActivePage =="StudentModulePage.xaml")
+            {
+                IsLoading = true;
+                switch (mode)
+                {
+                    case "debug":
+                        RequestModuleDataDummy();
+                        break;
+                    case "normal":
+                        await RequestModuleDataFromServerAsync();
+                        break;
+                }
+                IsLoading = false;
+            }
+
             else if (newActivePage == "PythonUpload.xaml")
             {
                 IsLoading = true;
@@ -341,6 +357,8 @@ namespace Frontend.ViewModel
 
         }
 
+        
+
         /*
          * Logout types: 1=auf button geklickt, 2=token nicht mehr valide
          */
@@ -377,7 +395,7 @@ namespace Frontend.ViewModel
                 tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
 
-            timetableModuleList.SetList(tempTable);
+            ModuleList.SetList(tempTable);
         }
 
         /*
@@ -450,8 +468,41 @@ namespace Frontend.ViewModel
                 tm.Day = Globals.dayValues[tm.Day];
                 //tm.RoomNumber = ((int)(new Random().NextDouble() * 17) + 1).ToString(); //TODO: MUSS VOM SERVER KOMMEN
             }
-            timetableModuleList.SetList(tempTable);
+            ModuleList.SetList(tempTable);
             
+           ModuleList.SetList(tempTable);
+        }
+
+        private async Task RequestModuleDataFromServerAsync()
+        {
+            List<ModuleSelectionItem> tempTable = new List<ModuleSelectionItem>();
+            APIClient apiClient = APIClient.Instance;
+            var response = await apiClient.NewGETRequest("/rest/lists/module/prioritize");
+            if ((int)response.StatusCode >= 400) return;
+            Console.WriteLine(response.Content);
+            tempTable = JsonConvert.DeserializeObject<List<ModuleSelectionItem>>(response.Content.ToString());
+            
+            ModuleList.SetList(tempTable);
+        }
+
+        private async void RequestModuleDataDummy()
+        {
+            //await RequestModuleDataFromServerAsync();
+            var v = new TimetableModule();
+            v.Type = TimetableModule.ModuleType.LECTURE;
+            var p = new TimetableModule();
+            p.Type = TimetableModule.ModuleType.PRACTICE;
+            var t = new TimetableModule();
+            t.Type = TimetableModule.ModuleType.TUTORIAL;
+            var u = new TimetableModule();
+            u.Type = TimetableModule.ModuleType.TEST;
+            ModuleList.ModuleList.Add(v);
+            ModuleList.ModuleList.Add(t);
+            ModuleSelectionItem moduleItem1 = new ModuleSelectionItem(1, "prog3", 5, 3, ModuleList.ModuleList);
+            ModuleSelectionItem moduleItem2 = new ModuleSelectionItem(2, "prog17", 5, 1, ModuleList.ModuleList);
+            ModuleList.ModuleItemList.Add(moduleItem1);
+            ModuleList.ModuleItemList.Add(moduleItem2);
+            Console.WriteLine("");
         }
 
 

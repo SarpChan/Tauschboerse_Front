@@ -2,15 +2,24 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:helpers="clr-namespace:Frontend.Helpers"
+             xmlns:models="clr-namespace:Frontend.Models" 
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="1550">
-    <Grid>
+             xmlns:project1="clr-namespace:Frontend.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             d:DesignHeight="70" d:DesignWidth="1550">
+    <UserControl.Resources>
+        <helpers:ModuleSelectionConverter x:Key="ModuleSelectionConverter"/>
+    </UserControl.Resources>
+    <!--UserControl.DataContext>
+        <project1:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
+    </-->
+    <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.7*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.7*" />
+            <ColumnDefinition Width="3*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -25,15 +34,33 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBlock Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center">3 CP</TextBlock>
-            <TextBlock Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center">Programmieren 3</TextBlock>
-            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center"/>
+            <TextBlock Name="Credits" Padding ="30,0,0,0" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding CreditPoints, StringFormat='\{\0} CP'}"></TextBlock>
+            <TextBlock Name="ModuleName" Grid.Column="1" Foreground="White" Style="{StaticResource HeadlineTextBlock}" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
+            <CheckBox Grid.Column="2" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" IsChecked="{Binding IsChecked}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.IsCompletedCheckedCommand}" CommandParameter="{Binding Id}"/>
+                    </i:EventTrigger>
+
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.IsCompletedUnCheckedCommand}" CommandParameter="{Binding Id}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
         </Grid>
-        <CheckBox Grid.Column="1" FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Margin="10,0,0,0" Source="{StaticResource lecture_b}" Width="40" Stretch="Uniform"/>
-        </CheckBox>
-        <CheckBox Grid.Column="2" FlowDirection="RightToLeft" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Margin="10,0,0,0" Source="{StaticResource exercise_b}" Width="40" Stretch="Uniform"/>
-        </CheckBox>
+        <ItemsControl ItemsSource="{Binding moduleTypes}" Grid.Column="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="String">
+                    <CheckBox FlowDirection="RightToLeft" Margin="40,0,0,0" Foreground="White" Style="{StaticResource checkBox}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding Converter={StaticResource ModuleSelectionConverter}}"/>
+                    </CheckBox>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
