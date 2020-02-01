@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Frontend.ViewModel;
+using System.Windows.Controls;
 
 namespace Frontend.View
 {

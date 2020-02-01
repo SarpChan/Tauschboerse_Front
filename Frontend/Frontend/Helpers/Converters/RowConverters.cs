@@ -71,7 +71,7 @@ namespace Frontend.Helpers
         {
             double totalHeight = System.Convert.ToDouble(values[0]);
             double headerHeight = System.Convert.ToDouble(values[1]);
-            Console.WriteLine("Header Height " + headerHeight);
+            //Console.WriteLine("Header Height " + headerHeight);
             return (totalHeight);
         }
 
@@ -120,7 +120,7 @@ namespace Frontend.Helpers
             double height = (totalHeight - headerHeight) / rowAmount + Globals.RowPadding;
         
 
-            Console.WriteLine("RowIndex : " + rowIndex + " RowHeight : " + height + " Amount :" + Globals.RowSeperatorAmount);
+            //Console.WriteLine("RowIndex : " + rowIndex + " RowHeight : " + height + " Amount :" + Globals.RowSeperatorAmount);
 
             if (height <= PixelCalculator.PointsToPixels(Globals.TimeTextFontSize))
             {

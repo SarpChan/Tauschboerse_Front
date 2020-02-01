@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Frontend
 {
-    //TODO: Change to Properties
+    //TODO Helpers.Globals: Change to Properties
     /// <summary>
     /// Temporary solution for saving global variables that can be changed
     /// </summary>

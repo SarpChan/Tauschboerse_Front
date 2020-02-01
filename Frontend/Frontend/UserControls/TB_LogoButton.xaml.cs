@@ -7,7 +7,6 @@ namespace Frontend.UserControls
     public partial class TB_LogoButton : UserControl
     {
         public TB_LogoButton() { InitializeComponent(); }
-        /* Dependency Properties für eigene *bindbare* Properties */
         public ICommand TB_LogoButtonCommand
         {
             get { return (ICommand)GetValue(TB_LogoButtonCommandProperty); }
