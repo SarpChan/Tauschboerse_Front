@@ -83,8 +83,6 @@ namespace Frontend.Helpers
                     App.notifier.ShowSuccess(jmsg.message);
                 }
                 
-                //ParseCommand(textmessage.Text);
-                
             }
         }
 

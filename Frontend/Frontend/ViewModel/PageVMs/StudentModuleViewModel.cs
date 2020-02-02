@@ -22,7 +22,9 @@ namespace Frontend.ViewModel
 
         public StudentModuleViewModel()
         {
+            CPSum = 0;
             moduleListModel.ClearList();
+            moduleListModel.ModuleItemList.CollectionChanged += OnCollectionChange;
             List<int> tempSemesterList = new List<int>();
             foreach (var moduleItem in moduleListModel.ModuleItemList)
             {
@@ -52,6 +54,19 @@ namespace Frontend.ViewModel
             }
 
 
+        }
+
+        void OnCollectionChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Reset:
+                    CPSum = 0;
+                    break;
+                default:
+                    break;
+            }
         }
 
         #region ICommands

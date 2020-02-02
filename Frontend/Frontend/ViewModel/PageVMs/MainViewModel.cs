@@ -461,10 +461,9 @@ namespace Frontend.ViewModel
             List<ModuleSelectionItem> tempTable = new List<ModuleSelectionItem>();
             APIClient apiClient = APIClient.Instance;
             var response = await apiClient.NewGETRequest("/rest/lists/module/prioritize");
-            Console.WriteLine(response.Content);
             if ((int)response.StatusCode >= 400) return;
             tempTable = JsonConvert.DeserializeObject<List<ModuleSelectionItem>>(response.Content.ToString());
-
+            ModuleList.ClearList();
             ModuleList.SetModuleSelcionItemList(tempTable);
         }
 

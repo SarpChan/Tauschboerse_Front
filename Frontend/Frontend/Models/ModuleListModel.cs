@@ -12,9 +12,10 @@ namespace Frontend.Models
     class ModuleListModel
     {
         private ObservableCollection<TimetableModule> _moduleList = new ObservableCollection<TimetableModule>();
-        private List<ModuleSelectionItem> _moduleItemList = new List<ModuleSelectionItem>();
+        private ObservableCollection<ModuleSelectionItem> _moduleItemList = new ObservableCollection<ModuleSelectionItem>();
         public ObservableCollection<TimetableModule> ModuleList { get { return _moduleList; } }
-        public List<ModuleSelectionItem> ModuleItemList { get { return _moduleItemList; } }
+        public ObservableCollection<ModuleSelectionItem> ModuleItemList { get { return _moduleItemList; } }
+
 
         private static ModuleListModel _instance;
 
@@ -63,6 +64,15 @@ namespace Frontend.Models
             });
         }
 
+
+        public void ClearModuleItemList()
+        {
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                _moduleItemList.Clear();
+            });
+        }
+
         public void SetList(IList<TimetableModule> moduleList)
         {
             App.Current.Dispatcher.Invoke((Action)delegate
@@ -82,7 +92,7 @@ namespace Frontend.Models
         {
             App.Current.Dispatcher.Invoke((Action)delegate
             {
-                _moduleList.Clear();
+                _moduleItemList.Clear();
                 foreach (var x in moduleItems)
                 {
                     _moduleItemList.Add(x);
