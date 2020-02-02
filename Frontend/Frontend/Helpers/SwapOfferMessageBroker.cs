@@ -38,7 +38,7 @@ namespace Frontend.Helpers
                 session = connection.CreateSession(AcknowledgementMode.AutoAcknowledge);
                 messageConsumerPublic = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PUBLIC_SWAP));
                 messageConsumerPersonal = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_PERSONAL_SWAP));
-                messageConsumerNews = session.CreateDurableConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS),"news",null,false);
+                messageConsumerNews = session.CreateConsumer(new ActiveMQTopic(TOPIC_NAME_NEWS));
 
 
                 // MessageListener-Methode für eingehende Nachrichten registrieren
@@ -46,7 +46,7 @@ namespace Frontend.Helpers
                 messageConsumerNews.Listener += OnNewsListReceive;
                 messageConsumerPersonal.Listener += OnPersonalSwapOfferAccept;
 
-                // Thread zum Empfang eingehender Nachrichten starten
+                
                
 
             }
@@ -56,11 +56,6 @@ namespace Frontend.Helpers
             }
         }
 
-        private void PullInitialNews()
-        {
-            var message = (ActiveMQTextMessage)messageConsumerNews.Receive(TimeSpan.FromTicks(DateTime.Now.Ticks));
-            Console.WriteLine(message.Text);
-        }
 
         // OnMessageReceived - beim messageConsumer registrierte Callback-Methode,
         // wird bei Empfang einer neuen Nachricht vom messageConsumer aufgerufen.

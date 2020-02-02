@@ -27,7 +27,7 @@ namespace Frontend.Models
             this.timetableModules = timetableModules;
         }
 
-        public Boolean IsChecked { get; set; } = false;
+        public bool IsChecked { get; set; } = false;
 
 
         //public HashSet<Curriculum> Curriculua { get; set; }

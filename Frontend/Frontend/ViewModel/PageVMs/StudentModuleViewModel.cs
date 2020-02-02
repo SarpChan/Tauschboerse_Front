@@ -63,6 +63,7 @@ namespace Frontend.ViewModel
             {
                 case NotifyCollectionChangedAction.Reset:
                     CPSum = 0;
+                    Modules.Clear();
                     break;
                 default:
                     break;
@@ -162,6 +163,7 @@ namespace Frontend.ViewModel
                 {
                     moduleItem.IsChecked = false;
                     CPSum -= moduleItem.CreditPoints;
+                    CPSum = CPSum < 0 ? 0 : CPSum;
                     foreach (var timetableModule in moduleItem.timetableModules)
                     {
                         moduleListModel.RemoveModule(timetableModule);
