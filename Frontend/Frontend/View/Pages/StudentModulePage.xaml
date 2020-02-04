@@ -1,0 +1,75 @@
+﻿<Page x:Class="Frontend.View.StudentModulePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Frontend.View"
+      xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
+      xmlns:project ="clr-namespace:Frontend.ViewModel"
+      xmlns:models="clr-namespace:Frontend.Models" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1640"
+      Title="StudentModulePage">
+    <!--Page.DataContext>
+        <project:StudentModuleViewModel x:Name="StudentModuleViewModel"/>
+    </-->
+    <StackPanel>
+        <StackPanel.DataContext>
+            <project:StudentModuleViewModel/>
+        </StackPanel.DataContext>
+        <ScrollViewer>
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="1550"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="77"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Modulauswahl" VerticalAlignment="Top" Style="{StaticResource HeadlineTextBlock}" Margin="0,0,0,80"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Legende:</TextBlock>
+                        <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource lecture_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Vorlesung</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" VerticalAlignment="Center">
+                            <Image Source="{StaticResource exercise_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Übung</TextBlock>
+                        </WrapPanel>
+                        <TextBlock Grid.Column="3" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Höchste Priorität A-D Niedrigste Priorität</TextBlock>
+                        <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource tutorial_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Tutorium</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+                            <Image Source="{StaticResource practicum_b}" Width="40" Stretch="Uniform"/>
+                            <TextBlock Margin="15,0,0,0" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Praktikum</TextBlock>
+                        </WrapPanel>
+                        <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource SecondHeadlineTextBlock}" VerticalAlignment="Center">Termin nicht möglich x</TextBlock>
+                    </Grid>
+
+                    <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                        <usercontrols:ModuleSemsterChooser HorizontalAlignment="Left"/>
+                        <usercontrols:ModuleChooser HorizontalAlignment="Left"/>
+                        <TextBlock HorizontalAlignment ="Left" Text="{Binding CPSum, StringFormat='gesamt: \{\0} CP', Mode=TwoWay, NotifyOnSourceUpdated=True}"  Style="{StaticResource SecondHeadlineTextBlock}" Margin="0,25,0,0"/>
+                        <usercontrols:TimeTable Height="500pt" BorderBrush="Black" Margin="0,25,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </StackPanel>
+</Page>

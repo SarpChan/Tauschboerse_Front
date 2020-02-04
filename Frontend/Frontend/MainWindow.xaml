@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Frontend"
         mc:Ignorable="d"
         Title="StuPla" d:DesignHeight="2000" d:DesignWidth="1980"
-        Source="View/RootPage.xaml"
-        WindowStartupLocation="CenterScreen" WindowState="Maximized">
-
+        MinWidth="730" MinHeight="480"
+        Source="View/Pages/RootPage.xaml"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Icon="{StaticResource stupla_logo_icon}"
+        WindowStyle="SingleBorderWindow"
+        ShowsNavigationUI="False">
 </NavigationWindow>

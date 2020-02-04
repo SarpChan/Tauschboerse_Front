@@ -1,0 +1,201 @@
+﻿<Window x:Class="Frontend.View.Windows.CreateSwapOffer_Dialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+        Title="Neues Tauschangebot erstellen" x:Name="myDialog" WindowStartupLocation="CenterScreen" MaxWidth="500pt" MinWidth="500pt" MaxHeight="500pt"
+            >
+
+    <Window.Resources>
+        <viewmodel:SwapOfferDialogViewModel x:Name="SwapOfferDialogViewModel" x:Key="SwapOfferDialogViewModel"/>
+        <!--Combobox  Style-->
+
+
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#d2e7eb"/>
+
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" Name="Border" BorderBrush="{StaticResource CD_GreyBrown }" BorderThickness="1, 1, 1, 1" Background="White" />
+                <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="White" Name="ButtonBorder" Background="White" />
+                <Path Name="Arrow" Grid.Column="1" Data="M0 0.316406L5 7.29009L10 0.316406"
+                HorizontalAlignment="Center" Fill="{StaticResource CD_DarkTeal}" VerticalAlignment="Center"  Stretch="Uniform" Width="7"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource CD_LightBlueGrey}"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource CD_LightBlueGrey}"/>
+                </Trigger>
+                <Trigger Property="UIElement.IsEnabled" Value="False">
+                    <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource CD_LightBlueGrey}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+            <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+            <Setter Property="TextElement.Foreground" Value="{StaticResource CD_Black}"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Grid.Column="2" ClickMode="Press" Focusable="False"
+                             IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
+                            <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
+                              HorizontalAlignment="Left" VerticalAlignment="Center"                              
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                            <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3" IsReadOnly="{TemplateBinding IsReadOnly}"
+                            Visibility="Hidden" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="True" >
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox" >
+                                        <Border Name="PART_ContentHost" Focusable="False" />
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </TextBox>
+                            <!-- Popup showing items -->
+                            <Popup Name="Popup" Placement="Bottom" Focusable="False" AllowsTransparency="True"
+                            IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                    <Border Name="DropDownBorder" Background="White" Margin="0, 1, 0, 0" BorderThickness="1,1,1,1" 
+                                    BorderBrush="{StaticResource CD_DarkTeal}"/>
+                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ItemsControl.HasItems" Value="False">
+                                <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                            </Trigger>
+                            <Trigger Property="ComboBox.IsEditable" Value="True">
+                                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                                <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
+                                <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!--Griddefinition-->
+    <Grid Background="{StaticResource CD_White}" Margin="27 0 0 0" HorizontalAlignment="Left" x:Name="WrapperGrid"  DataContext="{StaticResource SwapOfferDialogViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="NewOffer" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource CD_DarkTeal}" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 20 0 30"><Run Text="Neues Angebot erstellen"/></TextBlock>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <TextBlock x:Name="Course" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 0 0 "><Run Text="Kurs"/></TextBlock>
+            <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
+                <ComboBox x:Name="combo_courseList" ItemsSource="{Binding CourseList}" Padding="10 15" SelectionChanged="CourseSelectionChanged" IsEditable="False" IsReadOnly="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CourseName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="280" HorizontalAlignment="Right">
+            <TextBlock Style="{StaticResource secondHeadlineLableBold}" Grid.Column="1" Grid.Row="1" Padding="0 20 0 0 "><Run Text="KursTyp"/></TextBlock>
+            <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
+                <ComboBox x:Name="combo_courseTypeList" ItemsSource="{Binding CourseTypeList}" Padding="10 15" SelectionChanged="CourseTypeSelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CourseType}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Border>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="0 0 0 0">
+            <TextBlock x:Name="from" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Von Gruppe"/></TextBlock>
+            <Border  BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1 1 1 1" Margin="0 15" Width="250" HorizontalAlignment="Left">
+                <!--<xctk:WatermarkTextBox x:Name="FromGroup" Style="{StaticResource Textbox}" Watermark="" Width="250" HorizontalAlignment="Left" Padding="10 15" Text="/>-->
+                <Label Content="{Binding FromGroup, NotifyOnSourceUpdated=True}"/>
+            </Border>
+
+        </StackPanel>
+
+        <!--Combobox für die noch auszuwählenden Gruppen-->
+        <StackPanel Grid.Column="1" Grid.Row="2" Width="280" HorizontalAlignment="Right" Margin="50 0 0 0">
+            <TextBlock x:Name="To" Style="{StaticResource secondHeadlineLableBold}" Padding="0 20 200 15"><Run Text="Nach Gruppe"/></TextBlock>
+            <Border BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1" Margin="0 15" Width="250" HorizontalAlignment="Left">
+                <ComboBox x:Name="combo_toGroup" ItemsSource="{Binding GroupList}" Padding="10 15" SelectionChanged="GroupSelect">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding DisplayText}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Border>
+            
+        </StackPanel>
+
+        <TextBlock Text="{Binding ChangeLine}" Grid.Row="4" Grid.ColumnSpan="2" Margin="0 20" Style="{Binding Mode=OneWay, Source={StaticResource secondHeadlineLableBold}}" HorizontalAlignment="Center" FontSize="20" FontWeight="Normal"/>
+
+        <!-- Funktionsbuttons "Erstellen" und "Abbrechen"-->
+        <WrapPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 0 0 0">
+            <Button x:Name="D_SaveButton" Style="{StaticResource DialogButtonFocused}" Click="Create" Margin="0 0 0 0"/>
+            <Button x:Name="D_CancelButton" Style="{StaticResource CancelButton}" Click="CloseWindow" Margin="40 0 0 0"/>
+
+        </WrapPanel>
+
+    </Grid>
+
+</Window>

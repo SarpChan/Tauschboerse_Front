@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio Version 16
+# Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{7D269ADE-0D59-4572-A4B6-F119E2FB4634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridFilterLibrary", "DataGridFilterLibrary\DataGridFilterLibrary.csproj", "{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7D269ADE-0D59-4572-A4B6-F119E2FB4634}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D269ADE-0D59-4572-A4B6-F119E2FB4634}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D269ADE-0D59-4572-A4B6-F119E2FB4634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

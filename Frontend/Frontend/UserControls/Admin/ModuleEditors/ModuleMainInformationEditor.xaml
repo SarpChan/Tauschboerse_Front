@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Frontend.UserControls.ModuleMainInformationEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:usercontrols ="clr-namespace:Frontend.UserControls"
+             xmlns:local="clr-namespace:Frontend.UserControls"
+             xmlns:helpers="clr-namespace:Frontend.Helpers"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:models="clr-namespace:Frontend.Models" 
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModel"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewmodel:ModuleMainInformationEditorVM  x:Name="viewmodel"/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <helpers:ExamRegulationDataConverter x:Key="ExamRegulationDataConverter"/>
+    </UserControl.Resources>
+    
+    <DockPanel LastChildFill="True">
+       <Button DockPanel.Dock="Top" Style="{StaticResource ModuleChangeButton}" Content="Einstellungen"
+               Click="BackButton_Click" Command="{Binding DiscardAllChangesCommand}">
+            <Button.Tag>
+                <Image DockPanel.Dock="Left" Source="{StaticResource edit_b}" Width="20pt" Margin="0,0,10pt,0"/>
+            </Button.Tag>
+        </Button>
+
+        <Border DockPanel.Dock="Top" BorderThickness="2pt" Background="White" BorderBrush="Green" Margin="0,10pt,0,0">
+
+            <DockPanel Margin="10pt" x:Name="TimeEditPanel">
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                    <TextBlock Text="Name" Style="{StaticResource SecondHeadlineTextBlock}" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="nameTextBox" Text="{Binding EditTimetableModule.CourseName ,Mode=OneWay}" Margin="0,10pt,0,0"
+                             />
+                </StackPanel>
+               
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Fachbereich" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
+                    <ComboBox x:Name="FieldOfStudyComboBox" Text="Fachbereich"
+                              ItemsSource="{Binding FieldOfStudyList, ElementName=viewmodel}"
+                              SelectionChanged="FieldOfStudyComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Studiengang" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
+                    
+                    <ComboBox x:Name="StudyProgramComboBox" Text="Studiengang"
+                              ItemsSource="{Binding StudyProgramList, ElementName=viewmodel}"
+                              SelectionChanged="StudyProgramComboBox_SelectionChanged" IsReadOnly="True" IsEditable="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Module" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
+                    <ComboBox  HorizontalAlignment="Center"
+                               ItemsSource="{Binding ModuleDict}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                </StackPanel>
+
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Semester" HorizontalAlignment="Center" Style="{StaticResource SecondHeadlineTextBlock}"/>
+                    <ComboBox HorizontalAlignment="Center"
+                               ItemsSource="{Binding SemesterDict}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+                </StackPanel>
+
+                <Button Click="BackButton_Click" Command="{Binding SaveCommand}" DockPanel.Dock="Top" Margin="0,10pt,0,0" x:Name="saveButton" Width="{Binding Path=ActualWidth,ElementName=TimeEditPanel}" HorizontalAlignment="Center"  Style="{StaticResource  SaveButton}" />
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</UserControl>

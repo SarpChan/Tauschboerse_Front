@@ -1,0 +1,338 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+
+    <!--Margin for Icons-->
+    <Thickness  x:Key="IconMargin" Left="15" Right="20" Top="0" Bottom="0" />
+
+    <!--Style Icon for Button-->
+    <Style TargetType="{x:Type Image}"  x:Key="ImageButton">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Margin" Value="{StaticResource IconMargin}" />
+        <Setter Property="Stretch" Value="Uniform" />
+    </Style>
+
+    <!--universal Button Style -->
+    <Style TargetType="{x:Type Button}" x:Key="UniversalButton">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Kiona"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="MinWidth" Value="180" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Admin Button Style -->
+    <Style TargetType="{x:Type Button}" x:Key="AdminButton" BasedOn="{StaticResource UniversalButton}">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+        <Setter Property="FontSize" Value="12pt"/>
+    </Style>
+    
+
+    <!--ModuleChangeButton Style -->
+    <Style TargetType="{x:Type Button}" x:Key="ModuleChangeButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        
+                    </ControlTemplate.Resources>
+                    <Border BorderThickness="2pt" Background="White" BorderBrush="Green">
+                        <DockPanel Margin="5pt" LastChildFill="True" >
+
+                            <ContentPresenter DockPanel.Dock="Left" ContentSource="Icon" Content="{TemplateBinding Tag}"/>
+                            
+                            <TextBlock DockPanel.Dock="Left" Style="{StaticResource HeadlineTextBlock}" FontSize="15pt">
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                            </TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- upload button style -->
+    <Style TargetType="{x:Type Button}" x:Key="Uploadbutton" BasedOn="{StaticResource AdminButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <DockPanel>
+                            <Rectangle Name="Upload" Width="20" Height="20" Margin="{StaticResource IconMargin}" Fill="{StaticResource upload_b }"/>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0"/>
+                        </DockPanel>
+
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter TargetName="Upload" Property="Fill" Value="{StaticResource upload_hover_b }" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Style save Button -->
+    <Style TargetType="{x:Type Button}" x:Key="SaveButton" BasedOn="{StaticResource UniversalButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_Grey}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <DockPanel>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Image Name="Save" Source="{StaticResource save_b}" Style="{StaticResource ImageButton}" />
+                            <TextBlock VerticalAlignment="Center">Speichern</TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter TargetName="Save" Property="Source" Value="{StaticResource save_hover_b}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <!--MenuButton-->
+    <Style TargetType="{x:Type Button}" x:Key="MenuButton">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Width" Value="280" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,1,1" Background="{TemplateBinding Background}">
+                        <!--MenuButton contains Horizontal StackPanel: [TEXT] [ARROW_IMAGE]-->
+                        <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Padding="10,0,0,0" Width="229" Text="{TemplateBinding Tag}" VerticalAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                            <Image Name="Arrow" Source="{StaticResource left_arrow_b}" Width="50" Height="20" Stretch="Uniform" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                    <!--Triggers for switching the arrow image. black to white on hover and focus-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_t}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter TargetName="Arrow" Property="Source"
+                                        Value="{StaticResource left_arrow_w}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers for switching the MenuButton Background to #265b65 on hover and focus-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--LogoutButton-->
+    <Style TargetType="{x:Type Button}" x:Key="LogoutButton">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+        <Setter Property="Width" Value="280" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                        <!--LogoutButton contains Horizontal StackPanel: [TEXT] [LOGOUT_IMAGE]-->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Padding="0,28,0,0" Width="160" Height="80" Text="Abmelden" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="24"/>
+                            <Image Name="Logout" Source="{StaticResource logout_b}" Height="30" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LogoButton-->
+    <Style TargetType="{x:Type Button}" x:Key="LogoButton">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="Background" Value="{StaticResource CD_White}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{StaticResource CD_Black}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" VerticalAlignment="Center">
+                        <!--LogoButton contains Horizontal StackPanel: [LOGO_IMAGE] [TEXT] -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
+                            <Image Name="StuPla" Source="{StaticResource stupla_logo_icon}" Height="70" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Padding="0,21,0,0" Width="120" Height="80" Text="StuPla" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt" TextAlignment="Center" FontSize="32"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--SelectionBarElement-->
+    <Style TargetType="{x:Type Button}" x:Key="SelectionBarButton">
+        <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+        <Setter Property="Background" Value="{StaticResource CD_Grey}"/>
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Height" Value="52"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{StaticResource CD_Grey}" BorderThickness="1,1,1,1" Background="{TemplateBinding Background}">
+                        <DockPanel HorizontalAlignment="Center">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Padding="0,12,0,0" Height="50" Text="{TemplateBinding Tag}" TextAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto Lt"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{StaticResource CD_DarkTeal}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource CD_White}"/>
+                <Setter Property="Foreground" Value="{StaticResource CD_Grey}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Login Button Style -->
+    <Style TargetType="{x:Type Button}" x:Key="LoginButton">
+        <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+        <Setter Property="Background" Value="{StaticResource CD_Teal}"/>
+        <Setter Property="Width" Value="750"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="MinWidth" Value="250"/>
+        <Setter Property="MinHeight" Value="80"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{StaticResource CD_Teal}" BorderThickness="1.5" Background="{TemplateBinding Background}">
+                        <TextBlock Text="{TemplateBinding Tag}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Frontend;component/Resources/Fonts/#Roboto"/>
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_White}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_Black}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{StaticResource CD_Teal}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--DialogButtonFocused-->
+    <Style TargetType="{x:Type Button}" x:Key="DialogButtonFocused" BasedOn="{StaticResource UniversalButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_DarkTeal}" BorderThickness="1.5" Background="{StaticResource CD_DarkTeal}">
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource CD_White}" HorizontalAlignment="Center" VerticalAlignment="Center">Erstellen</TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_LightBlueGrey}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_DarkTeal}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_DarkTeal}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--CancelButton-->
+    <Style TargetType="{x:Type Button}" x:Key="CancelButton" BasedOn="{StaticResource UniversalButton}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{StaticResource CD_GreyBrown}" BorderThickness="1.5" Background="{StaticResource CD_White}">
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource CD_Red}" HorizontalAlignment="Center" VerticalAlignment="Center">Abbrechen</TextBlock>
+                        </DockPanel>
+
+                    </Border>
+                    <!--Triggers for switching on hover -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource CD_Black}"/>
+                            <Setter Property="Foreground" Value="{StaticResource CD_White}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CD_Red}"/>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

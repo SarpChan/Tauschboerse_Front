@@ -3,10 +3,10 @@
     "",
     "\\Frontend",
     "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\Resources",
-    "\\Frontend\\Frontend\\Resources\\Icons",
-    "\\Frontend\\Frontend\\View"
+    "\\Frontend\\Frontend\\UserControls",
+    "\\Frontend\\Frontend\\View",
+    "\\Frontend\\Frontend\\ViewModel"
   ],
-  "SelectedNode": "\\Frontend\\Frontend\\Properties",
+  "SelectedNode": "\\Frontend\\Frontend.sln",
   "PreviewInSolutionExplorer": false
 }
